@@ -24,9 +24,15 @@ class VSphereREPL(Cmd):
         print("{0} VMs available.".format(self.cache.length()))
 
     def do_reload(self, line):
+        """Usage: reload
+        Reload VM cache from the vSphere server.
+        """
         self.preloop()
 
     def do_reset(self, patterns):
+        """Usage: reset [pattern1 [pattern2]...]
+        Reset vms matching the given ORed name patterns.
+        """
         reset_tasks = []
         for vm_name in self.compile_and_yield_patterns(patterns):
             print("Launching reset task for {0}".format(vm_name))
@@ -36,11 +42,17 @@ class VSphereREPL(Cmd):
         self.cache.wait_for_tasks(reset_tasks)
 
     def do_reboot(self, patterns):
+        """Usage: reboot [pattern1 [pattern2]...]
+        Soft reboot vms matching the given ORed name patterns.
+        """
         for vm_name in self.compile_and_yield_patterns(patterns):
             print("Asking {0} to reboot".format(vm_name))
             self.cache.retrieve(vm_name).RebootGuest()
 
     def do_alarms(self, patterns):
+        """Usage: alarms [pattern1 [pattern2]...]
+        Show alarm information for vms matching the given ORed name patterns.
+        """
         for vm_name in self.compile_and_yield_patterns(patterns):
             print("-" * 70)
             print("Alarms for {0}".format(vm_name))
@@ -50,10 +62,18 @@ class VSphereREPL(Cmd):
                 print("\talarm status: {0}".format(alarm.overallStatus))
 
     def do_list(self, patterns):
+        """Usage: list [pattern1 [pattern2]...]
+        List the vm names matching the given ORed name patterns.
+        Example:
+              list dev.* ...ybc01
+        """
         for vm_name in self.compile_and_yield_patterns(patterns, risky=False):
             print(vm_name)
 
     def do_info(self, patterns):
+        """Usage: info [pattern1 [pattern2]...]
+        Show quick info about vms matching the given ORed name patterns.
+        """
         for vm_name in self.compile_and_yield_patterns(patterns):
             vm = self.cache.retrieve(vm_name)
             print("-" * 70)
@@ -68,6 +88,10 @@ class VSphereREPL(Cmd):
             print()
 
     def do_config(self, patterns):
+        """Usage: config [pattern1 [pattern2]...]
+        Show the full config of vms matching the given ORed name patterns.
+        Careful, there's lots of output!
+        """
         for vm_name in self.compile_and_yield_patterns(patterns):
             print("-" * 70)
             print("Config for {0}:".format(vm_name))
