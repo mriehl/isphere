@@ -2,4 +2,6 @@
 
 from isphere.command import VSphereREPL
 
-VSphereREPL().cmdLoop()
+
+repl = VSphereREPL()
+repl.cmdLoop()
