@@ -55,6 +55,29 @@ class VSphereREPL(Cmd):
         print("Waiting for {0} reset tasks to complete".format(len(reset_tasks)))
         self.cache.wait_for_tasks(reset_tasks)
 
+    def do_eval(self, line):
+        """Usage: eval [pattern1 [pattern2]...] ! <statement>
+        Evaluate a statement of python code. You can access the
+        virtual machine object by using the variable `vm`.
+        """
+        try:
+            patterns_and_statement = line.split("!", 1)
+            patterns = patterns_and_statement[0]
+            print("Using patterns %r" % patterns)
+            statement = patterns_and_statement[1]
+        except IndexError:
+            print("Looks like your input was malformed. Try `help eval`.")
+            return
+
+        for vm_name in self.compile_and_yield_patterns(patterns):
+            _globals, _locals = {}, {}
+            vm = self.retrieve(vm_name)
+            _locals["vm"] = vm
+            try:
+                print(eval(statement, _globals, _locals))
+            except Exception as e:
+                print("Eval failed for {0}: {1}".format(vm_name, e))
+
     def do_reboot(self, patterns):
         """Usage: reboot [pattern1 [pattern2]...]
         Soft reboot vms matching the given ORed name patterns.
@@ -117,7 +140,7 @@ class VSphereREPL(Cmd):
             message = "No pattern specified - you're doing this to all {0} VMs. Proceed? (y/N) ".format(self.cache.length())
             if not _input(message).lower() == "y":
                 return []
-        actual_patterns = patterns.split(" ")
+        actual_patterns = patterns.strip().split(" ")
         try:
             compiled_patterns = [re.compile(pattern) for pattern in actual_patterns]
         except Exception as e:
