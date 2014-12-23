@@ -63,7 +63,6 @@ class VSphereREPL(Cmd):
         try:
             patterns_and_statement = line.split("!", 1)
             patterns = patterns_and_statement[0]
-            print("Using patterns %r" % patterns)
             statement = patterns_and_statement[1]
         except IndexError:
             print("Looks like your input was malformed. Try `help eval`.")
