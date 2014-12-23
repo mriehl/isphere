@@ -3,8 +3,13 @@ from __future__ import print_function
 from isphere.interactive_wrapper import VVC
 import thirdparty.tasks as thirdparty_tasks
 
-import requests
-requests.packages.urllib3.disable_warnings()
+try:
+    import requests
+    requests.packages.urllib3.disable_warnings()
+except ImportError:
+    pass
+except AttributeError:
+    pass
 
 try:
     _input = raw_input
