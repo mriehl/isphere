@@ -23,6 +23,7 @@ class VVC(object):
         - `hostname` (str) is the name of the vCenter host.
         """
         self.hostname = hostname
+        self.service_instance = None
 
     def connect(self, username, password=None):
         """

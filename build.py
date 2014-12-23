@@ -39,7 +39,8 @@ def set_properties(project):
     project.set_property('frosted_ignore', [FROSTED_BARE_EXCEPT_WARNING])
 
     project.set_property('coverage_threshold_warn', 50)
-    project.set_property('coverage_break_build', True)
+    project.set_property('coverage_break_build', False)
+    project.set_property('coverage_exceptions', ['thirdparty.tasks'])
 
     project.set_property('copy_resources_target', '$dir_dist')
     project.get_property('copy_resources_glob').extend(['setup.cfg'])
