@@ -135,6 +135,9 @@ class VM(object):
     def __getattr__(self, attribute):
         return getattr(self.raw_vm, attribute)
 
+    def __dir__(self):
+        return dir(self.raw_vm)
+
     def get_first_network_interface_matching(self, predicate):
         """
         Returns the first network interface of this VM that matches the given
