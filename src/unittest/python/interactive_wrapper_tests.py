@@ -9,8 +9,10 @@ from mock import Mock
 
 from isphere.interactive_wrapper import (
     VM,
+    VVC,
     ESX,
-    get_all_vms_in_folder
+    get_all_vms_in_folder,
+    NotFound
 )
 
 
@@ -116,3 +118,34 @@ class getAllVMInFolderTests(TestCase):
         self.assertEqual(len(actual_vms), 2)
         self.assertEqual(actual_vms[0].raw_vm, vm_1)
         self.assertEqual(actual_vms[1].raw_vm, vm_2)
+
+
+class VVCTests(TestCase):
+
+    def setUp(self):
+        self.vvc_mock = Mock(VVC, service_instance=Mock())
+        self.mock_search = self.vvc_mock.service_instance.RetrieveContent.return_value.searchIndex.FindByDnsName
+
+    def test_should_return_item_when_found_by_searching(self):
+        mock_item = Mock()
+        self.mock_search.return_value = mock_item
+
+        actual_item = VVC.find_by_dns_name(self.vvc_mock, "any.dns.name")
+
+        self.assertEqual(actual_item, mock_item)
+
+    def test_should_raise_not_found_when_searching_fails(self):
+        self.mock_search.return_value = None
+
+        self.assertRaises(NotFound,
+                          VVC.find_by_dns_name, self.vvc_mock, "any.dns.name")
+
+    def test_should_passthrough_search_call_with_disabled_vm_search_by_default(self):
+        VVC.find_by_dns_name(self.vvc_mock, "any.dns.name")
+
+        self.mock_search.assert_called_with(vmSearch=False, dnsName='any.dns.name')
+
+    def test_should_passthrough_search_call_with_enabled_vm_search_when_specified(self):
+        VVC.find_by_dns_name(self.vvc_mock, "any.dns.name", search_for_vms=True)
+
+        self.mock_search.assert_called_with(vmSearch=True, dnsName='any.dns.name')

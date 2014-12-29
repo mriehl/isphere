@@ -17,7 +17,16 @@ to get all VMs.
 """
 
 
+class NotFound(BaseException):
+
+    """
+    To be raised when a requested item was not found.
+    """
+    pass
+
+
 class VVC(object):
+
     """
     A vCenter host.
     """
@@ -54,6 +63,25 @@ class VVC(object):
             if hasattr(child, "vmFolder"):
                 yield child.vmFolder
 
+    def find_by_dns_name(self, dns_name, search_for_vms=False):
+        """
+        Returns an item by searching for its DNS name.
+        An exception will be raised if the item cannot be found.
+
+        - `dns_name` (str) is the DNS name of the desired item.
+        - `search_for_vms` (boolean) (default False) indicates if VMs should
+          be included in the search.
+        """
+        search_index = self.service_instance.RetrieveContent().searchIndex
+        item = search_index.FindByDnsName(dnsName=dns_name, vmSearch=search_for_vms)
+        if not item:
+            raise NotFound(
+                "Item with dns name {0} not found (search_for_vms: {1})".format(
+                    dns_name,
+                    search_for_vms))
+
+        return item
+
     def get_all_vms(self):
         """
         Returns a generator over all VMs known to this vCenter host.
@@ -64,6 +92,7 @@ class VVC(object):
 
 
 class ESX(object):
+
     """
     An ESX instance.
     """
@@ -94,6 +123,7 @@ class ESX(object):
 
 
 class VM(object):
+
     """
     A virtual machine.
     """
@@ -131,3 +161,22 @@ def get_all_vms_in_folder(folder):
                 yield vm  # it's now a VM
         else:
             yield VM(vm_or_folder)  # it's a VM
+
+
+'''
+>>> index = vvc.service_instance.RetrieveContent().searchIndex
+>>> index
+'vim.SearchIndex:SearchIndex'
+>>> index.FindByDnsName(dnsName="tuvesx11.rz.is", vmSearch=False)
+'vim.HostSystem:host-70'
+>>> host = index.FindByDnsName(dnsName="tuvesx11.rz.is", vmSearch=False)
+>>> host
+'vim.HostSystem:host-70'
+>>> host.name
+'tuvesx11.rz.is'
+>>> host = index.FindByDnsName(dnsName="tuvesx42.rz.is", vmSearch=False)
+>>> host
+>>> print(host)
+None
+>>>
+'''
