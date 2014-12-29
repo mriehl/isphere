@@ -161,22 +161,3 @@ def get_all_vms_in_folder(folder):
                 yield vm  # it's now a VM
         else:
             yield VM(vm_or_folder)  # it's a VM
-
-
-'''
->>> index = vvc.service_instance.RetrieveContent().searchIndex
->>> index
-'vim.SearchIndex:SearchIndex'
->>> index.FindByDnsName(dnsName="tuvesx11.rz.is", vmSearch=False)
-'vim.HostSystem:host-70'
->>> host = index.FindByDnsName(dnsName="tuvesx11.rz.is", vmSearch=False)
->>> host
-'vim.HostSystem:host-70'
->>> host.name
-'tuvesx11.rz.is'
->>> host = index.FindByDnsName(dnsName="tuvesx42.rz.is", vmSearch=False)
->>> host
->>> print(host)
-None
->>>
-'''

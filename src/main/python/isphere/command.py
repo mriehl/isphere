@@ -6,10 +6,13 @@
 
 from __future__ import print_function
 
+from pyVmomi import vim
+
 from cmd import Cmd
 import re
 
 from isphere.connection import CachingVSphere
+from isphere.interactive_wrapper import NotFound
 
 
 try:
@@ -77,6 +80,36 @@ class VSphereREPL(Cmd):
             print("Asking {0} to reboot".format(vm_name))
             self.cache.retrieve(vm_name).RebootGuest()
 
+    def do_migrate(self, line):
+        """Usage: migrate [pattern1 [pattern2]...] ! TARGET_ESX_NAME
+        Migrate one or several VMs to another ESX host by name.
+        """
+        try:
+            patterns_and_esx_name = line.split("!", 1)
+            patterns = patterns_and_esx_name[0]
+            esx_name = patterns_and_esx_name[1].strip()
+        except IndexError:
+            print("Looks like your input was malformed. Try `help migrate`.")
+            return
+
+        if not esx_name:
+            print("No target esx name given. Try `help migrate`.")
+            return
+
+        try:
+            esx_host = self.cache.vvc.find_by_dns_name(esx_name)
+        except NotFound:
+            print("Target esx host '{0}' not found, maybe try with FQDN?".format(esx_name))
+            return
+
+        for vm_name in self.compile_and_yield_patterns(patterns):
+            relocate_spec = vim.vm.RelocateSpec(host=esx_host)
+            print("Relocating {0} to {1}".format(vm_name, esx_name))
+            try:
+                self.cache.retrieve(vm_name).Relocate(relocate_spec)
+            except Exception as e:
+                print("Relocation failed: {0}".format(e))
+
     def do_alarms(self, patterns):
         """Usage: alarms [pattern1 [pattern2]...]
         Show alarm information for vms matching the given ORed name patterns.
@@ -106,6 +139,7 @@ class VSphereREPL(Cmd):
             vm = self.cache.retrieve(vm_name)
             print("-" * 70)
             print("Name: {0}".format(vm.name))
+            print("Host: {0}".format(vm.get_esx_host().name))
             print("BIOS UUID: {0}".format(vm.config.uuid))
             print("CPUs: {0}".format(vm.config.hardware.numCPU))
             print("MemoryMB: {0}".format(vm.config.hardware.memoryMB))
