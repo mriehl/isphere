@@ -7,7 +7,7 @@
 from unittest import TestCase
 import re
 
-from mock import patch
+from mock import patch, call
 
 from isphere.command import VSphereREPL
 
@@ -101,7 +101,24 @@ class VSphereREPLTests(TestCase):
 
     def setUp(self):
         self.repl = VSphereREPL()
+        self.print_patcher = patch("isphere.command.print", create=True)
+        self.mock_print = self.print_patcher.start()
+
+        self.vm_names_patcher = patch("isphere.command.VSphereREPL.compile_and_yield_patterns")
+        self.vm_names = self.vm_names_patcher.start()
+
+    def tearDown(self):
+        self.print_patcher.stop()
+        self.vm_names_patcher.stop()
 
     @patch("isphere.command.CachingVSphere.retrieve")
     def test_should_retrieve_vm_from_cache(self, cache_retrieve):
         self.assertEqual(self.repl.retrieve("any-vm-name"), cache_retrieve.return_value)
+
+    def test_should_list_matching_vms(self):
+        self.vm_names.return_value = ["any-host-1", "any-host-2"]
+
+        self.repl.do_list("any-host")
+
+        self.assertEqual(self.mock_print.call_args_list,
+                         [call('any-host-1'), call('any-host-2')])
