@@ -7,7 +7,9 @@
 from unittest import TestCase
 from mock import patch, call, Mock
 
-from isphere.connection import AutoEstablishingConnection, CachingVSphere
+from isphere.connection import (AutoEstablishingConnection,
+                                CachingVSphere,
+                                memoized)
 
 
 class CachingVSphereTests(TestCase):
@@ -86,3 +88,60 @@ class ConnectionTests(TestCase):
 
         connection.ensure_established()
         self.assertEqual(True, connect.called)
+
+
+class MemoizingTests(TestCase):
+
+    def setUp(self):
+        self.mock_function = Mock()
+        self.mock_function.return_value = "any-return-value"
+        self.mock_function.__name__ = "any-name"
+        self.mock_function.__doc__ = "any-doc"
+        self.memoized_mock_function = memoized(self.mock_function)
+
+    def test_should_compute_new_value(self):
+        self.assertEqual(self.memoized_mock_function(), "any-return-value")
+        self.mock_function.assert_called_with()
+
+    def test_should_compute_new_value_with_args(self):
+        self.assertEqual(self.memoized_mock_function("arg1", "arg2"), "any-return-value")
+        self.mock_function.assert_called_with("arg1", "arg2")
+
+    def test_should_compute_new_value_with_args_and_kwargs(self):
+        self.assertEqual(self.memoized_mock_function("arg1", "arg2", any_kwarg="any-kwarg"), "any-return-value")
+        self.mock_function.assert_called_with("arg1", "arg2", any_kwarg="any-kwarg")
+
+    def test_should_not_reissue_call_when_it_was_issued_before(self):
+        self.assertEqual(self.memoized_mock_function("any-arg", any_kwarg="any-kwarg"), "any-return-value")
+        self.assertEqual(self.memoized_mock_function("any-arg", any_kwarg="any-kwarg"), "any-return-value")
+
+        self.assertEqual(self.mock_function.call_args_list,
+                         [call("any-arg", any_kwarg="any-kwarg")])
+
+    def test_should_compute_new_value_when_arg_differs_from_previous_calls(self):
+        self.assertEqual(self.memoized_mock_function("arg1"), "any-return-value")
+        self.assertEqual(self.memoized_mock_function("arg1-new-value"), "any-return-value")
+
+        self.assertEqual(self.mock_function.call_args_list,
+                         [call("arg1"), call("arg1-new-value")])
+
+    def test_should_compute_new_value_when_arity_differs_from_previous_calls(self):
+        self.assertEqual(self.memoized_mock_function("arg1"), "any-return-value")
+        self.assertEqual(self.memoized_mock_function("arg1", "arg2"), "any-return-value")
+
+        self.assertEqual(self.mock_function.call_args_list,
+                         [call("arg1"), call("arg1", "arg2")])
+
+    def test_should_compute_new_value_when_kwarg_differs_from_previous_calls(self):
+        self.assertEqual(self.memoized_mock_function("arg1", any_kwarg="any-kwarg"), "any-return-value")
+        self.assertEqual(self.memoized_mock_function("arg1", any_kwarg="any-kwarg-other-value"), "any-return-value")
+
+        self.assertEqual(self.mock_function.call_args_list,
+                         [call('arg1', any_kwarg='any-kwarg'),
+                          call('arg1', any_kwarg='any-kwarg-other-value')])
+
+    def test_should_preserve_name_when_decorating_function(self):
+        self.assertEqual(self.memoized_mock_function.__name__, "any-name")
+
+    def test_should_preserve_docstring_when_decorating_function(self):
+        self.assertEqual(self.memoized_mock_function.__doc__, "any-doc")

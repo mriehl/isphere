@@ -6,6 +6,8 @@
 
 from __future__ import print_function
 
+from functools import wraps
+
 from isphere.interactive_wrapper import VVC
 import thirdparty.tasks as thirdparty_tasks
 
@@ -70,3 +72,16 @@ class AutoEstablishingConnection(object):
         self.vvc.connect(self.username)
 
         return self.vvc
+
+
+def memoized(function):
+    cached_calls = function.cached_calls = {}
+
+    @wraps(function)
+    def function_with_memoized_calls(*args, **kwargs):
+        cache_id_for_this_call = str(args) + str(kwargs)
+        if cache_id_for_this_call not in cached_calls:
+            call_result = function(*args, **kwargs)
+            cached_calls[cache_id_for_this_call] = call_result
+        return cached_calls[cache_id_for_this_call]
+    return function_with_memoized_calls
