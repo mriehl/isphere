@@ -48,7 +48,6 @@ class CachingVSphere(object):
 
     @memoized
     def find_by_dns_name(self, dns_name, search_for_vms=False):
-
         return self.vvc.find_by_dns_name(dns_name, search_for_vms)
 
     def fill(self):
