@@ -101,11 +101,7 @@ class VSphereREPLTests(TestCase):
 
     def setUp(self):
         self.repl = VSphereREPL()
-        self.cache_retrieve_patcher = patch("isphere.command.CachingVSphere.retrieve")
-        self.cache_retrieve = self.cache_retrieve_patcher.start()
 
-    def tearDown(self):
-        self.cache_retrieve_patcher.stop()
-
-    def test_should_retrieve_vm_from_cache(self):
-        self.assertEqual(self.repl.retrieve("any-vm-name"), self.cache_retrieve.return_value)
+    @patch("isphere.command.CachingVSphere.retrieve")
+    def test_should_retrieve_vm_from_cache(self, cache_retrieve):
+        self.assertEqual(self.repl.retrieve("any-vm-name"), cache_retrieve.return_value)
