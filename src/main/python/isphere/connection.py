@@ -33,6 +33,9 @@ class CachingVSphere(object):
     def vvc(self):
         return self._connection.ensure_established()
 
+    def find_by_dns_name(self, dns_name, search_for_vms=False):
+        return self.vvc.find_by_dns_name(dns_name, search_for_vms)
+
     def fill(self):
         for vm in self.vvc.get_all_vms():
             self.vm_mapping[vm.name] = vm

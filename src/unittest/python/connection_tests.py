@@ -15,17 +15,35 @@ class CachingVSphereTests(TestCase):
     def setUp(self):
         self.cache = CachingVSphere()
         self.cache._connection = Mock()
+        self.vvc = self.cache._connection.ensure_established.return_value
 
     def test_should_fill_cache_with_vms_returned_by_vvc(self):
-        vvc = self.cache._connection.ensure_established.return_value
         vm_1, vm_2 = Mock(), Mock()
         vm_1.name = "vm-1"
         vm_2.name = "vm-2"
-        vvc.get_all_vms.return_value = [vm_1, vm_2]
+        self.vvc.get_all_vms.return_value = [vm_1, vm_2]
 
         self.cache.fill()
 
         self.assertEqual(self.cache.vm_mapping, {"vm-1": vm_1, "vm-2": vm_2})
+
+    def test_should_passthrough_find_by_dns_name_calls(self):
+        mock_item = Mock()
+        self.vvc.find_by_dns_name.return_value = mock_item
+
+        actual_item = self.cache.find_by_dns_name("any.dns.name")
+
+        self.assertEqual(actual_item, mock_item)
+        self.vvc.find_by_dns_name.assert_called_with("any.dns.name", False)
+
+    def test_should_passthrough_find_by_dns_name_calls_when_searching_for_vms(self):
+        mock_item = Mock()
+        self.vvc.find_by_dns_name.return_value = mock_item
+
+        actual_item = self.cache.find_by_dns_name("any.dns.name", search_for_vms=True)
+
+        self.assertEqual(actual_item, mock_item)
+        self.vvc.find_by_dns_name.assert_called_with("any.dns.name", True)
 
 
 class ConnectionTests(TestCase):
