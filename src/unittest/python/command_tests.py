@@ -7,7 +7,7 @@
 from unittest import TestCase
 import re
 
-from mock import patch, call
+from mock import patch, call, Mock
 
 from isphere.command import VSphereREPL
 
@@ -122,3 +122,37 @@ class VSphereREPLTests(TestCase):
 
         self.assertEqual(self.mock_print.call_args_list,
                          [call('any-host-1'), call('any-host-2')])
+
+    @patch("isphere.command.CachingVSphere.retrieve")
+    def test_should_print_info_for_matching_vms(self, cache_retrieve):
+        self.vm_names.return_value = ["any-host-1"]
+        mock_vm = Mock(
+            config=Mock(
+                uuid="any-uuid",
+                guestId="any-id",
+                version="any-version",
+                guestFullName="any-full-name",
+                hardware=Mock(numCPU=2,
+                              memoryMB=2048,
+                              )))
+        mock_vm.guest.guestState = "any-guest-state"
+        mock_vm.name = "any-name"
+        mock_vm.get_esx_host.return_value.name = "any-esx-name"
+        cache_retrieve.return_value = mock_vm
+
+        self.repl.do_info("any-host-1")
+
+        self.assertEqual(self.mock_print.call_args_list,
+                         [
+                             call('----------------------------------------------------------------------'),
+                             call("Name: any-name"),
+                             call("Host: any-esx-name"),
+                             call("BIOS UUID: any-uuid"),
+                             call("CPUs: 2"),
+                             call("MemoryMB: 2048"),
+                             call("Guest PowerState: any-guest-state"),
+                             call("Guest Full Name: any-full-name"),
+                             call("Guest Container Type: any-id"),
+                             call("Container Version: any-version"),
+                             call()
+                         ])
