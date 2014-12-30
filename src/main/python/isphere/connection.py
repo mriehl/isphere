@@ -23,6 +23,19 @@ except NameError:
     _input = input
 
 
+def memoized(function):
+    cached_calls = function.cached_calls = {}
+
+    @wraps(function)
+    def function_with_memoized_calls(*args, **kwargs):
+        cache_id_for_this_call = str(args) + str(kwargs)
+        if cache_id_for_this_call not in cached_calls:
+            call_result = function(*args, **kwargs)
+            cached_calls[cache_id_for_this_call] = call_result
+        return cached_calls[cache_id_for_this_call]
+    return function_with_memoized_calls
+
+
 class CachingVSphere(object):
 
     def __init__(self):
@@ -33,7 +46,9 @@ class CachingVSphere(object):
     def vvc(self):
         return self._connection.ensure_established()
 
+    @memoized
     def find_by_dns_name(self, dns_name, search_for_vms=False):
+
         return self.vvc.find_by_dns_name(dns_name, search_for_vms)
 
     def fill(self):
@@ -70,16 +85,3 @@ class AutoEstablishingConnection(object):
         self.vvc.connect(self.username)
 
         return self.vvc
-
-
-def memoized(function):
-    cached_calls = function.cached_calls = {}
-
-    @wraps(function)
-    def function_with_memoized_calls(*args, **kwargs):
-        cache_id_for_this_call = str(args) + str(kwargs)
-        if cache_id_for_this_call not in cached_calls:
-            call_result = function(*args, **kwargs)
-            cached_calls[cache_id_for_this_call] = call_result
-        return cached_calls[cache_id_for_this_call]
-    return function_with_memoized_calls
