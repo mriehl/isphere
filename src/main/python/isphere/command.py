@@ -97,7 +97,7 @@ class VSphereREPL(Cmd):
             return
 
         try:
-            esx_host = self.cache.vvc.find_by_dns_name(esx_name)
+            esx_host = self.cache.find_by_dns_name(esx_name)
         except NotFound:
             print("Target esx host '{0}' not found, maybe try with FQDN?".format(esx_name))
             return
