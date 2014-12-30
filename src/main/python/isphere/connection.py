@@ -4,8 +4,6 @@
 #  as published by Sam Hocevar. See the COPYING.wtfpl file for more details.
 #
 
-from __future__ import print_function
-
 from functools import wraps
 
 from isphere.interactive_wrapper import VVC
