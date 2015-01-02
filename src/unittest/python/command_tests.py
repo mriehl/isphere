@@ -197,3 +197,61 @@ class VSphereREPLTests(TestCase):
                              call("Any vm config\nCould be several lines long."),
                              call()
                          ])
+
+    @patch("isphere.command.vim")
+    @patch("isphere.command.CachingVSphere.find_by_dns_name")
+    @patch("isphere.command.CachingVSphere.retrieve")
+    def test_should_not_migrate_when_syntax_is_invalid(self, cache_retrieve, find_by_dns_name, vim):
+        self.vm_names.return_value = ["any-host-1"]
+        mock_vm = Mock()
+        cache_retrieve.return_value = mock_vm
+
+        self.repl.do_migrate("any.*")
+
+        self.assertFalse(mock_vm.Relocate.called)
+        self.mock_print.assert_called_with('Looks like your input was malformed. Try `help migrate`.')
+
+    @patch("isphere.command.vim")
+    @patch("isphere.command.CachingVSphere.find_by_dns_name")
+    @patch("isphere.command.CachingVSphere.retrieve")
+    def test_should_not_migrate_when_target_esx_is_missing(self, cache_retrieve, find_by_dns_name, vim):
+        self.vm_names.return_value = ["any-host-1"]
+        mock_vm = Mock()
+        cache_retrieve.return_value = mock_vm
+
+        self.repl.do_migrate("any.*!")
+
+        self.assertFalse(mock_vm.Relocate.called)
+        self.mock_print.assert_called_with('No target esx name given. Try `help migrate`.')
+
+    @patch("isphere.command.vim")
+    @patch("isphere.command.CachingVSphere.find_by_dns_name")
+    @patch("isphere.command.CachingVSphere.retrieve")
+    def test_should_trim_whitespace_from_esx_name_when_surrounded_with_whitespace(self, cache_retrieve, find_by_dns_name, vim):
+        self.vm_names.return_value = ["any-host-1"]
+        mock_vm = Mock()
+        cache_retrieve.return_value = mock_vm
+
+        self.repl.do_migrate("any.*!     any-esxi.domain        ")
+
+        find_by_dns_name.assert_called_with("any-esxi.domain")
+
+    @patch("isphere.command.vim")
+    @patch("isphere.command.CachingVSphere.find_by_dns_name")
+    @patch("isphere.command.CachingVSphere.retrieve")
+    def test_should_migrate_matching_vms(self, cache_retrieve, find_by_dns_name, vim):
+        self.vm_names.return_value = ["any-host-1", "any-host-2"]
+        mock_esx = Mock()
+        find_by_dns_name.return_value = mock_esx
+        mock_vm1, mock_vm2 = Mock(), Mock()
+        cache_retrieve.side_effect = [mock_vm1, mock_vm2]
+        spec_1, spec_2 = Mock(), Mock()
+        vim.vm.RelocateSpec.side_effect = [spec_1, spec_2]
+
+        self.repl.do_migrate("any.*!any-esxi.domain")
+
+        find_by_dns_name.assert_called_with("any-esxi.domain")
+        self.assertEqual(vim.vm.RelocateSpec.call_args_list,
+                         [call(host=mock_esx), call(host=mock_esx)])
+        mock_vm1.Relocate.assert_called_with(spec_1)
+        mock_vm2.Relocate.assert_called_with(spec_2)
