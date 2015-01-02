@@ -45,7 +45,8 @@ class VSphereREPL(Cmd):
         reset_tasks = []
         for vm_name in self.compile_and_yield_patterns(patterns):
             print("Launching reset task for {0}".format(vm_name))
-            reset_tasks.append(self.cache.retrieve(vm_name).ResetVM_Task())
+            reset_task = self.cache.retrieve(vm_name).ResetVM_Task()
+            reset_tasks.append(reset_task)
 
         print("Waiting for {0} reset tasks to complete".format(len(reset_tasks)))
         self.cache.wait_for_tasks(reset_tasks)

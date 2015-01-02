@@ -156,3 +156,44 @@ class VSphereREPLTests(TestCase):
                              call("Container Version: any-version"),
                              call()
                          ])
+
+    @patch("isphere.command.CachingVSphere.wait_for_tasks")
+    @patch("isphere.command.CachingVSphere.retrieve")
+    def test_should_reset_vms(self, cache_retrieve, _):
+        self.vm_names.return_value = ["any-host-1", "any-host-2"]
+        mock_vm1 = Mock()
+        mock_vm2 = Mock()
+        cache_retrieve.side_effect = [mock_vm1, mock_vm2]
+
+        self.repl.do_reset("any.*")
+
+        mock_vm1.ResetVM_Task.assert_called_with()
+        mock_vm2.ResetVM_Task.assert_called_with()
+
+    @patch("isphere.command.CachingVSphere.retrieve")
+    def test_should_reboot_vms(self, cache_retrieve):
+        self.vm_names.return_value = ["any-host-1", "any-host-2"]
+        mock_vm1 = Mock()
+        mock_vm2 = Mock()
+        cache_retrieve.side_effect = [mock_vm1, mock_vm2]
+
+        self.repl.do_reboot("any.*")
+
+        mock_vm1.RebootGuest.assert_called_with()
+        mock_vm2.RebootGuest.assert_called_with()
+
+    @patch("isphere.command.CachingVSphere.retrieve")
+    def test_should_print_config_for_matching_vms(self, cache_retrieve):
+        self.vm_names.return_value = ["any-host-1"]
+        mock_vm = Mock(config="Any vm config\nCould be several lines long.")
+        cache_retrieve.return_value = mock_vm
+
+        self.repl.do_config("any-host-1")
+
+        self.assertEqual(self.mock_print.call_args_list,
+                         [
+                             call("----------------------------------------------------------------------"),
+                             call("Config for any-host-1:"),
+                             call("Any vm config\nCould be several lines long."),
+                             call()
+                         ])
