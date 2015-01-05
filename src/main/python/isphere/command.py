@@ -70,7 +70,7 @@ class VSphereREPL(Cmd):
             _locals["vm"] = vm
             try:
                 separator = "-" * 25
-                print("{0} {1:10} {0}".format(separator, vm_name))
+                print("{0} {1:10} {0}".format(separator, vm_name[:10]))
                 print(eval(statement, _globals, _locals))
             except Exception as e:
                 print("Eval failed for {0}: {1}".format(vm_name, e))
