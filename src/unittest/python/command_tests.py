@@ -124,6 +124,64 @@ class VSphereREPLTests(TestCase):
                          [call('any-host-1'), call('any-host-2')])
 
     @patch("isphere.command.CachingVSphere.retrieve")
+    def test_should_statement_code_using_vms(self, cache_retrieve):
+        self.vm_names.return_value = ["any-host-1"]
+        mock_vm = Mock()
+        mock_vm.any_attribute_or_function.return_value = "any-return-value"
+        cache_retrieve.return_value = mock_vm
+
+        self.repl.do_eval("any-host!vm.any_attribute_or_function()")
+
+        self.assertEqual(self.mock_print.call_args_list,
+                         [
+                             call('------------------------- any-host-1 -------------------------'),
+                             call('any-return-value')
+                         ])
+
+    @patch("isphere.command.CachingVSphere.retrieve")
+    def test_should_eval_statement_using_vms_when_whitespace_is_trailing(self, cache_retrieve):
+        self.vm_names.return_value = ["any-host-1"]
+        mock_vm = Mock()
+        mock_vm.any_attribute_or_function.return_value = "any-return-value"
+        cache_retrieve.return_value = mock_vm
+
+        self.repl.do_eval("any-host   !    vm.any_attribute_or_function()")
+
+        self.assertEqual(self.mock_print.call_args_list,
+                         [
+                             call('------------------------- any-host-1 -------------------------'),
+                             call('any-return-value')
+                         ])
+
+    @patch("isphere.command.CachingVSphere.retrieve")
+    def test_should_eval_statement_and_catch_syntax_errors(self, cache_retrieve):
+        self.vm_names.return_value = ["any-host-1"]
+        mock_vm = Mock()
+        cache_retrieve.return_value = mock_vm
+
+        self.repl.do_eval("any-host ! {[this_is not valid; python")
+
+        self.assertEqual(self.mock_print.call_args_list,
+                         [
+                             call('------------------------- any-host-1 -------------------------'),
+                             call('Eval failed for any-host-1: invalid syntax (<string>, line 1)')
+                         ])
+
+    @patch("isphere.command.CachingVSphere.retrieve")
+    def test_should_eval_statement_and_catch_exceptions_that_occur(self, cache_retrieve):
+        self.vm_names.return_value = ["any-host-1"]
+        mock_vm = Mock()
+        cache_retrieve.return_value = mock_vm
+
+        self.repl.do_eval("any-host ! 42 + 'concatenating ints and strings is a type error'")
+
+        self.assertEqual(self.mock_print.call_args_list,
+                         [
+                             call('------------------------- any-host-1 -------------------------'),
+                             call("Eval failed for any-host-1: unsupported operand type(s) for +: 'int' and 'str'")
+                         ])
+
+    @patch("isphere.command.CachingVSphere.retrieve")
     def test_should_print_info_for_matching_vms(self, cache_retrieve):
         self.vm_names.return_value = ["any-host-1"]
         mock_vm = Mock(
