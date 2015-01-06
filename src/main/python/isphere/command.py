@@ -61,7 +61,7 @@ class VSphereREPL(Cmd):
         virtual machine object by using the variable `vm`.
 
         Sample usage:
-        * `eval MY_VM_NAME ! dir(vm)`
+        * `eval MY_VM_NAME ! [field for field in dir(vm) if field.lower().startswith("power")]`
         * `eval MY_VM_NAME ! vm.name`
         * `eval MY_VM_NAME ! vm.RebootGuest()`
         """
