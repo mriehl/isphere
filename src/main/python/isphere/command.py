@@ -35,12 +35,16 @@ class VSphereREPL(Cmd):
     def do_reload(self, line):
         """Usage: reload
         Reload VM cache from the vSphere server.
+
+        Sample usage: `reload`
         """
         self.preloop()
 
     def do_reset(self, patterns):
         """Usage: reset [pattern1 [pattern2]...]
         Reset vms matching the given ORed name patterns.
+
+        Sample usage: `reset MY_VM_NAME OTHERNAME`
         """
         reset_tasks = []
         for vm_name in self.compile_and_yield_patterns(patterns):
@@ -55,6 +59,11 @@ class VSphereREPL(Cmd):
         """Usage: eval [pattern1 [pattern2]...] ! <statement>
         Evaluate a statement of python code. You can access the
         virtual machine object by using the variable `vm`.
+
+        Sample usage:
+        * `eval MY_VM_NAME ! dir(vm)`
+        * `eval MY_VM_NAME ! vm.name`
+        * `eval MY_VM_NAME ! vm.RebootGuest()`
         """
         try:
             patterns_and_statement = line.split("!", 1)
@@ -79,6 +88,8 @@ class VSphereREPL(Cmd):
     def do_reboot(self, patterns):
         """Usage: reboot [pattern1 [pattern2]...]
         Soft reboot vms matching the given ORed name patterns.
+
+        Sample usage: `reboot MY_VM_NAME`
         """
         for vm_name in self.compile_and_yield_patterns(patterns):
             print("Asking {0} to reboot".format(vm_name))
@@ -87,6 +98,8 @@ class VSphereREPL(Cmd):
     def do_migrate(self, line):
         """Usage: migrate [pattern1 [pattern2]...] ! TARGET_ESX_NAME
         Migrate one or several VMs to another ESX host by name.
+
+        Sample usage: `migrate MYVNNAME ! ESX_FQDN`
         """
         try:
             patterns_and_esx_name = line.split("!", 1)
@@ -117,6 +130,8 @@ class VSphereREPL(Cmd):
     def do_alarms(self, patterns):
         """Usage: alarms [pattern1 [pattern2]...]
         Show alarm information for vms matching the given ORed name patterns.
+
+        Sample usage: `alarms MY_VM_NAME`
         """
         for vm_name in self.compile_and_yield_patterns(patterns):
             print("-" * 70)
@@ -129,8 +144,11 @@ class VSphereREPL(Cmd):
     def do_list(self, patterns):
         """Usage: list [pattern1 [pattern2]...]
         List the vm names matching the given ORed name patterns.
-        Example:
-              list dev.* ...ybc01
+
+        Sample usage:
+        * `list dev.* ...ybc01`
+        * `list`
+        * `list .*`
         """
         for vm_name in self.compile_and_yield_patterns(patterns, risky=False):
             print(vm_name)
@@ -138,6 +156,8 @@ class VSphereREPL(Cmd):
     def do_info(self, patterns):
         """Usage: info [pattern1 [pattern2]...]
         Show quick info about vms matching the given ORed name patterns.
+
+        Sample usage: `info MY_VM_NAME`
         """
         for vm_name in self.compile_and_yield_patterns(patterns):
             vm = self.cache.retrieve(vm_name)
@@ -157,6 +177,8 @@ class VSphereREPL(Cmd):
         """Usage: config [pattern1 [pattern2]...]
         Show the full config of vms matching the given ORed name patterns.
         Careful, there's lots of output!
+
+        Sample usage: `config MY_VM_NAME`
         """
         for vm_name in self.compile_and_yield_patterns(patterns):
             print("-" * 70)
