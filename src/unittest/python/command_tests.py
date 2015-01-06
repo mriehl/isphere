@@ -194,6 +194,7 @@ class VSphereREPLTests(TestCase):
                               memoryMB=2048,
                               )))
         mock_vm.guest.guestState = "any-guest-state"
+        mock_vm.summary.config.vmPathName = "/any/path/to/the/vm"
         mock_vm.name = "any-name"
         mock_vm.get_esx_host.return_value.name = "any-esx-name"
         cache_retrieve.return_value = mock_vm
@@ -204,7 +205,8 @@ class VSphereREPLTests(TestCase):
                          [
                              call('----------------------------------------------------------------------'),
                              call("Name: any-name"),
-                             call("Host: any-esx-name"),
+                             call("ESXi Host: any-esx-name"),
+                             call('Path to VM: /any/path/to/the/vm'),
                              call("BIOS UUID: any-uuid"),
                              call("CPUs: 2"),
                              call("MemoryMB: 2048"),
