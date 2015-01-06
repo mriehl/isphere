@@ -61,7 +61,8 @@ class VSphereREPL(Cmd):
         virtual machine object by using the variable `vm`.
 
         Sample usage:
-        * `eval MY_VM_NAME ! [field for field in dir(vm) if field.lower().startswith("power")]`
+        * `eval MY_VM_NAME ! filter(lambda field_name: callable(getattr(vm, field_name)) and not field_name.startswith("_"), dir(vm))`
+          ^ shows 'public' methods we can call on the vm object
         * `eval MY_VM_NAME ! vm.name`
         * `eval MY_VM_NAME ! vm.RebootGuest()`
         """
@@ -77,6 +78,7 @@ class VSphereREPL(Cmd):
             _globals, _locals = {}, {}
             vm = self.retrieve(vm_name)
             _locals["vm"] = vm
+            _globals["vm"] = vm
             try:
                 separator = "-" * 25
                 max_width_of_vm_name = 10
