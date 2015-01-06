@@ -39,6 +39,7 @@ class VVC(object):
         """
         self.hostname = hostname
         self.service_instance = None
+        self.service_instance_content = None
 
     def connect(self, username, password=None):
         """
@@ -50,15 +51,15 @@ class VVC(object):
         """
         if not password:
             password = getpass("Password for {0}: ".format(self.hostname))
-        self.service_instance = connect.SmartConnect(host=self.hostname,
-                                                     user=username,
-                                                     pwd=password,
-                                                     port=443)
-        atexit.register(connect.Disconnect, self.service_instance)
+        self.service_instance_content = connect.SmartConnect(host=self.hostname,
+                                                             user=username,
+                                                             pwd=password,
+                                                             port=443)
+        self.content = self.service_instance_content.RetrieveContent()
+        atexit.register(connect.Disconnect, self.service_instance_content)
 
     def get_first_level_of_vm_folders(self):
-        content = self.service_instance.RetrieveContent()
-        children = content.rootFolder.childEntity
+        children = self.content.rootFolder.childEntity
         for child in children:
             if hasattr(child, "vmFolder"):
                 yield child.vmFolder
