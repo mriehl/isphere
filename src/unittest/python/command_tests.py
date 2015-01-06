@@ -124,7 +124,7 @@ class VSphereREPLTests(TestCase):
                          [call('any-host-1'), call('any-host-2')])
 
     @patch("isphere.command.CachingVSphere.retrieve")
-    def test_should_statement_code_using_vms(self, cache_retrieve):
+    def test_should_eval_statement_using_vms(self, cache_retrieve):
         self.vm_names.return_value = ["any-host-1"]
         mock_vm = Mock()
         mock_vm.any_attribute_or_function.return_value = "any-return-value"
