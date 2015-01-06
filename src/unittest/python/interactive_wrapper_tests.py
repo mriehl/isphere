@@ -149,3 +149,29 @@ class VVCTests(TestCase):
         VVC.find_by_dns_name(self.vvc_mock, "any.dns.name", search_for_vms=True)
 
         self.mock_search.assert_called_with(vmSearch=True, dnsName='any.dns.name')
+
+    def test_should_proxy_service_when_it_exists(self):
+        self.vvc_mock.service_instance_content = Mock()
+        self.vvc_mock.service_instance_content.any_service_name = Mock()
+
+        self.assertEqual(VVC.get_service(self.vvc_mock, "any_service_name"),
+                         self.vvc_mock.service_instance_content.any_service_name)
+
+    def test_should_raise_when_service_does_not_exist(self):
+        self.vvc_mock.service_instance_content = object()
+
+        self.assertRaises(NotFound,
+                          VVC.get_service, self.vvc_mock, "any_other_service_name")
+
+    def test_should_get_custom_attributes_mapping(self):
+        fields = [Mock(key="any-key"),
+                  Mock(key="any-other-key")]
+        fields[0].name = "any-name"
+        fields[1].name = "any-other-name"
+        self.vvc_mock.get_service.return_value = Mock(field=fields)
+
+        actual_mapping = VVC.get_custom_attributes_mapping(self.vvc_mock)
+
+        self.assertEqual(actual_mapping,
+                         {"any-key": "any-name",
+                          "any-other-key": "any-other-name"})

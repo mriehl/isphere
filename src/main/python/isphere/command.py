@@ -159,6 +159,8 @@ class VSphereREPL(Cmd):
 
         Sample usage: `info MY_VM_NAME`
         """
+        custom_attributes_mapping = self.cache.get_custom_attributes_mapping()
+
         for vm_name in self.compile_and_yield_patterns(patterns):
             vm = self.cache.retrieve(vm_name)
             print("-" * 70)
@@ -172,6 +174,9 @@ class VSphereREPL(Cmd):
             print("Guest Full Name: {0}".format(vm.config.guestFullName))
             print("Guest Container Type: {0}".format(vm.config.guestId))
             print("Container Version: {0}".format(vm.config.version))
+            for custom_field in vm.customValue:
+                print("{0}: {1}".format(custom_attributes_mapping[custom_field.key], custom_field.value))
+
             print()
 
     def do_config(self, patterns):

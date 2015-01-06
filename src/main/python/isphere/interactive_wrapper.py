@@ -52,9 +52,9 @@ class VVC(object):
         if not password:
             password = getpass("Password for {0}: ".format(self.hostname))
         self.service_instance = connect.SmartConnect(host=self.hostname,
-                                                             user=username,
-                                                             pwd=password,
-                                                             port=443)
+                                                     user=username,
+                                                     pwd=password,
+                                                     port=443)
         self.service_instance_content = self.service_instance.RetrieveContent()
         atexit.register(connect.Disconnect, self.service_instance)
 
@@ -63,6 +63,18 @@ class VVC(object):
         for child in children:
             if hasattr(child, "vmFolder"):
                 yield child.vmFolder
+
+    def get_service(self, service_name):
+        if hasattr(self.service_instance_content, service_name):
+            return getattr(self.service_instance_content, service_name)
+        raise NotFound("Service {0} not found".format(service_name))
+
+    def get_custom_attributes_mapping(self):
+        custom_attributes_mapping = {}
+        for field in self.get_service("customFieldsManager").field:
+            custom_attributes_mapping[field.key] = field.name
+
+        return custom_attributes_mapping
 
     def find_by_dns_name(self, dns_name, search_for_vms=False):
         """

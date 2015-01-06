@@ -50,6 +50,10 @@ class CachingVSphere(object):
     def find_by_dns_name(self, dns_name, search_for_vms=False):
         return self.vvc.find_by_dns_name(dns_name, search_for_vms)
 
+    @memoized
+    def get_custom_attributes_mapping(self):
+        return self.vvc.get_custom_attributes_mapping()
+
     def fill(self):
         for vm in self.vvc.get_all_vms():
             self.vm_mapping[vm.name] = vm

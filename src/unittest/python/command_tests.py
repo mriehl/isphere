@@ -181,10 +181,15 @@ class VSphereREPLTests(TestCase):
                              call("Eval failed for any-host-1: unsupported operand type(s) for +: 'int' and 'str'")
                          ])
 
+    @patch("isphere.command.CachingVSphere.get_custom_attributes_mapping")
     @patch("isphere.command.CachingVSphere.retrieve")
-    def test_should_print_info_for_matching_vms(self, cache_retrieve):
+    def test_should_print_info_for_matching_vms(self, cache_retrieve, custom_attributes_mapping):
         self.vm_names.return_value = ["any-host-1"]
+        custom_attributes_mapping.return_value = {"key-1": "name-for-key-1",
+                                                  "key-2": "name-for-key-2"}
         mock_vm = Mock(
+            customValue=[Mock(key="key-1", value="value-1"),
+                         Mock(key="key-2", value="value-2")],
             config=Mock(
                 uuid="any-uuid",
                 guestId="any-id",
@@ -214,6 +219,8 @@ class VSphereREPLTests(TestCase):
                              call("Guest Full Name: any-full-name"),
                              call("Guest Container Type: any-id"),
                              call("Container Version: any-version"),
+                             call('name-for-key-1: value-1'),
+                             call('name-for-key-2: value-2'),
                              call()
                          ])
 
