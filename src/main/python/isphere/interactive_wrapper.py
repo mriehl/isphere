@@ -8,6 +8,7 @@ import atexit
 from getpass import getpass
 
 from pyVim import connect
+from pyVmomi import vim
 
 """
 This module overlays the pyVmomi library to make its use in a
@@ -96,12 +97,22 @@ class VVC(object):
         return item
 
     def get_all_vms(self):
-        """
-        Returns a generator over all VMs known to this vCenter host.
-        """
-        for folder in self.get_first_level_of_vm_folders():
-            for vm in get_all_vms_in_folder(folder):
-                yield vm
+        for vm in self.get_all_by_type([vim.VirtualMachine]):
+            yield VM(vm)
+
+    # FIXME @mriehl untested
+    def get_all_by_type(self, types):
+        view = self.get_service("viewManager").CreateContainerView(
+            self.service_instance_content.rootFolder,
+            types,
+            True)
+        all_items = view.view
+        view.Destroy()
+        return all_items
+
+    def get_all_esx(self):
+        for esx in self.get_all_by_type([vim.HostSystem]):
+            yield ESX(esx)
 
 
 class ESX(object):

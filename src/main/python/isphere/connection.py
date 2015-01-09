@@ -41,6 +41,7 @@ class CachingVSphere(object):
     def __init__(self):
         self._connection = AutoEstablishingConnection()
         self.vm_mapping = {}
+        self.esx_mapping = {}
 
     @property
     def vvc(self):
@@ -58,10 +59,13 @@ class CachingVSphere(object):
         for vm in self.vvc.get_all_vms():
             self.vm_mapping[vm.name] = vm
 
+        for esx in self.vvc.get_all_esx():
+            self.esx_mapping[esx.name] = esx
+
     def list_cached_vms(self):
         return self.vm_mapping.keys()
 
-    def retrieve(self, vm_name):
+    def retrieve_vm(self, vm_name):
         return self.vm_mapping[vm_name]
 
     def length(self):
