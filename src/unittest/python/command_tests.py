@@ -149,6 +149,20 @@ class VSphereREPLTests(TestCase):
                              call('any-return-value')
                          ])
 
+    @patch("isphere.command.CachingVSphere.retrieve_vm")
+    def test_should_not_print_eval_result_when_no_output_used(self, cache_retrieve):
+        self.vm_names.return_value = ["any-host-1"]
+        mock_vm = Mock()
+        mock_vm.any_attribute_or_function.return_value = "any-return-value"
+        cache_retrieve.return_value = mock_vm
+
+        self.repl.do_eval_vm("any-host!no_output()")
+
+        self.assertEqual(self.mock_print.call_args_list,
+                         [
+                             call('------------------------- any-host-1 -------------------------'),
+                         ])
+
     @patch("isphere.command.CachingVSphere.retrieve_esx")
     def test_should_eval_statement_using_esxis(self, cache_retrieve):
         self.esx_names.return_value = ["any-host-1"]

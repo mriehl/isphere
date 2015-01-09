@@ -21,6 +21,10 @@ except NameError:
     _input = input
 
 
+class NoOutput(Exception):
+    pass
+
+
 class VSphereREPL(Cmd):
     prompt = "isphere > "
 
@@ -66,15 +70,23 @@ class VSphereREPL(Cmd):
             return
 
         for item_name in item_name_generator(patterns):
+            def guard():
+                raise NoOutput()
             _globals, _locals = {}, {}
             item = item_retriever(item_name)
             _locals[local_name] = item
+            _locals["no_output"] = guard
             _globals[local_name] = item
+            _globals["no_output"] = guard
             try:
                 separator = "-" * 25
                 max_width_of_item_name = 10
                 print("{0} {1:^{2}} {0}".format(separator, item_name[:max_width_of_item_name], max_width_of_item_name))
-                print(eval(statement, _globals, _locals))
+                result = eval(statement, _globals, _locals)
+                if result != guard:
+                    print(result)
+            except NoOutput:
+                pass
             except Exception as e:
                 print("Eval failed for {0}: {1}".format(item_name, e))
 
@@ -82,6 +94,8 @@ class VSphereREPL(Cmd):
         """Usage: eval_vm [pattern1 [pattern2]...] ! <statement>
         Evaluate a statement of python code. You can access the
         virtual machine object by using the variable `vm`.
+        Calling the function `no_output` will not produce any output (use this
+                                                                      to filter).
 
         Sample usage:
         * `eval MY_VM_NAME ! filter(lambda field_name: callable(getattr(vm, field_name)) and not field_name.startswith("_"), dir(vm))`
@@ -96,10 +110,15 @@ class VSphereREPL(Cmd):
         Evaluate a statement of python code. You can access the
         esx object by using the variable `esx`.
 
+        Calling the function `no_output` will not produce any output (use this
+                                                                      to filter).
+
         Sample usage:
         * `eval MY_ESX_NAME ! filter(lambda field_name: callable(getattr(esx, field_name)) and not field_name.startswith("_"), dir(esx))`
           ^ shows 'public' methods we can call on the esx object
         * `eval MY_ESX_NAME ! esx.name`
+        * `eval_esx ! esx.overallStatus if esx.overallStatus != "green" else no_output()`
+          ^ shows overall status of esx hosts unless they have the "green" status
         """
         self.eval(line, self.compile_and_yield_esx_patterns, self.retrieve_esx, "esx")
 
