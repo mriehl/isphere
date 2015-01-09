@@ -56,6 +56,28 @@ class VSphereREPL(Cmd):
         print("Waiting for {0} reset tasks to complete".format(len(reset_tasks)))
         self.cache.wait_for_tasks(reset_tasks)
 
+    def eval(self, line, item_name_generator, item_retriever, local_name):
+        try:
+            patterns_and_statement = line.split("!", 1)
+            patterns = patterns_and_statement[0]
+            statement = patterns_and_statement[1]
+        except IndexError:
+            print("Looks like your input was malformed. Try `help eval_*`.")
+            return
+
+        for item_name in item_name_generator(patterns):
+            _globals, _locals = {}, {}
+            item = item_retriever(item_name)
+            _locals[local_name] = item
+            _globals[local_name] = item
+            try:
+                separator = "-" * 25
+                max_width_of_item_name = 10
+                print("{0} {1:^{2}} {0}".format(separator, item_name[:max_width_of_item_name], max_width_of_item_name))
+                print(eval(statement, _globals, _locals))
+            except Exception as e:
+                print("Eval failed for {0}: {1}".format(item_name, e))
+
     def do_eval_vm(self, line):
         """Usage: eval_vm [pattern1 [pattern2]...] ! <statement>
         Evaluate a statement of python code. You can access the
@@ -67,26 +89,19 @@ class VSphereREPL(Cmd):
         * `eval MY_VM_NAME ! vm.name`
         * `eval MY_VM_NAME ! vm.RebootGuest()`
         """
-        try:
-            patterns_and_statement = line.split("!", 1)
-            patterns = patterns_and_statement[0]
-            statement = patterns_and_statement[1]
-        except IndexError:
-            print("Looks like your input was malformed. Try `help eval`.")
-            return
+        self.eval(line, self.compile_and_yield_vm_patterns, self.retrieve_vm, "vm")
 
-        for vm_name in self.compile_and_yield_vm_patterns(patterns):
-            _globals, _locals = {}, {}
-            vm = self.retrieve_vm(vm_name)
-            _locals["vm"] = vm
-            _globals["vm"] = vm
-            try:
-                separator = "-" * 25
-                max_width_of_vm_name = 10
-                print("{0} {1:^{2}} {0}".format(separator, vm_name[:max_width_of_vm_name], max_width_of_vm_name))
-                print(eval(statement, _globals, _locals))
-            except Exception as e:
-                print("Eval failed for {0}: {1}".format(vm_name, e))
+    def do_eval_esx(self, line):
+        """Usage: eval_esx [pattern1 [pattern2]...] ! <statement>
+        Evaluate a statement of python code. You can access the
+        esx object by using the variable `esx`.
+
+        Sample usage:
+        * `eval MY_ESX_NAME ! filter(lambda field_name: callable(getattr(esx, field_name)) and not field_name.startswith("_"), dir(esx))`
+          ^ shows 'public' methods we can call on the esx object
+        * `eval MY_ESX_NAME ! esx.name`
+        """
+        self.eval(line, self.compile_and_yield_esx_patterns, self.retrieve_esx, "esx")
 
     def do_reboot_vm(self, patterns):
         """Usage: reboot_vm [pattern1 [pattern2]...]
@@ -109,11 +124,11 @@ class VSphereREPL(Cmd):
             patterns = patterns_and_esx_name[0]
             esx_name = patterns_and_esx_name[1].strip()
         except IndexError:
-            print("Looks like your input was malformed. Try `help migrate`.")
+            print("Looks like your input was malformed. Try `help migrate_vm`.")
             return
 
         if not esx_name:
-            print("No target esx name given. Try `help migrate`.")
+            print("No target esx name given. Try `help migrate_vm`.")
             return
 
         try:
@@ -245,6 +260,9 @@ class VSphereREPL(Cmd):
 
     def retrieve_vm(self, vm_name):
         return self.cache.retrieve_vm(vm_name)
+
+    def retrieve_esx(self, esx_name):
+        return self.cache.retrieve_esx(esx_name)
 
     def do_EOF(self, line):
         return True

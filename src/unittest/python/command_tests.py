@@ -149,6 +149,21 @@ class VSphereREPLTests(TestCase):
                              call('any-return-value')
                          ])
 
+    @patch("isphere.command.CachingVSphere.retrieve_esx")
+    def test_should_eval_statement_using_esxis(self, cache_retrieve):
+        self.esx_names.return_value = ["any-host-1"]
+        mock_esx = Mock()
+        mock_esx.any_attribute_or_function.return_value = "any-return-value"
+        cache_retrieve.return_value = mock_esx
+
+        self.repl.do_eval_esx("any-host!esx.any_attribute_or_function()")
+
+        self.assertEqual(self.mock_print.call_args_list,
+                         [
+                             call('------------------------- any-host-1 -------------------------'),
+                             call('any-return-value')
+                         ])
+
     @patch("isphere.command.CachingVSphere.retrieve_vm")
     def test_should_eval_statement_using_vms_when_whitespace_is_trailing(self, cache_retrieve):
         self.vm_names.return_value = ["any-host-1"]
@@ -287,7 +302,7 @@ class VSphereREPLTests(TestCase):
         self.repl.do_migrate_vm("any.*")
 
         self.assertFalse(mock_vm.Relocate.called)
-        self.mock_print.assert_called_with('Looks like your input was malformed. Try `help migrate`.')
+        self.mock_print.assert_called_with('Looks like your input was malformed. Try `help migrate_vm`.')
 
     @patch("isphere.command.vim")
     @patch("isphere.command.CachingVSphere.find_by_dns_name")
@@ -300,7 +315,7 @@ class VSphereREPLTests(TestCase):
         self.repl.do_migrate_vm("any.*!")
 
         self.assertFalse(mock_vm.Relocate.called)
-        self.mock_print.assert_called_with('No target esx name given. Try `help migrate`.')
+        self.mock_print.assert_called_with('No target esx name given. Try `help migrate_vm`.')
 
     @patch("isphere.command.vim")
     @patch("isphere.command.CachingVSphere.find_by_dns_name")
