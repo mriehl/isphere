@@ -81,12 +81,14 @@ class VSphereREPL(Cmd):
             try:
                 separator = "-" * 25
                 max_width_of_item_name = 20
+                item_name_header = "{0} {1:^{2}} {0}".format(separator, item_name[:max_width_of_item_name], max_width_of_item_name)
                 result = eval(statement, _globals, _locals)
-                print("{0} {1:^{2}} {0}".format(separator, item_name[:max_width_of_item_name], max_width_of_item_name))
+                print(item_name_header)
                 print(result)
             except NoOutput:
                 pass
             except Exception as e:
+                print(item_name_header)
                 print("Eval failed for {0}: {1}".format(item_name, e))
 
     def do_eval_vm(self, line):
