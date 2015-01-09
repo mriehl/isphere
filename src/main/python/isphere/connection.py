@@ -68,8 +68,16 @@ class CachingVSphere(object):
     def retrieve_vm(self, vm_name):
         return self.vm_mapping[vm_name]
 
-    def length(self):
+    def retrieve_esx(self, esx_name):
+        return self.esx_mapping[esx_name]
+
+    @property
+    def number_of_vms(self):
         return len(self.vm_mapping)
+
+    @property
+    def number_of_esxis(self):
+        return len(self.esx_mapping)
 
     def wait_for_tasks(self, tasks):
         return thirdparty_tasks.wait_for_tasks(self.vvc.service_instance, tasks)

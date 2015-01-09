@@ -30,7 +30,8 @@ class VSphereREPL(Cmd):
 
     def preloop(self):
         self.cache.fill()
-        print("{0} VMs available.".format(self.cache.length()))
+        print("{0} VMs on {1} ESXis available.".format(self.cache.number_of_vms,
+                                                       self.cache.number_of_esxis))
 
     def do_reload(self, line):
         """Usage: reload
@@ -116,6 +117,7 @@ class VSphereREPL(Cmd):
             return
 
         try:
+            # TODO use esx from cache, allows for better error messages (eg no fqdn)
             esx_host = self.cache.find_by_dns_name(esx_name)
         except NotFound:
             print("Target esx host '{0}' not found, maybe try with FQDN?".format(esx_name))
@@ -196,7 +198,7 @@ class VSphereREPL(Cmd):
 
     def compile_and_yield_vm_patterns(self, patterns, risky=True):
         if not patterns and risky:
-            message = "No pattern specified - you're doing this to all {0} VMs. Proceed? (y/N) ".format(self.cache.length())
+            message = "No pattern specified - you're doing this to all {0} VMs. Proceed? (y/N) ".format(self.cache.number_of_vms)
             if not _input(message).lower() == "y":
                 return []
         actual_patterns = patterns.strip().split(" ")
