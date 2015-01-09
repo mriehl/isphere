@@ -196,11 +196,13 @@ class VSphereREPL(Cmd):
             print(self.cache.retrieve_vm(vm_name).config)
             print()
 
-    def compile_and_yield_vm_patterns(self, patterns, risky=True):
+    def compile_and_yield_generic_patterns(self, patterns, item_type, risky=True):
         if not patterns and risky:
-            message = "No pattern specified - you're doing this to all {0} VMs. Proceed? (y/N) ".format(self.cache.number_of_vms)
+            message = "No pattern specified - you're doing this to all {count} {type}. Proceed? (y/N) ".format(count=self.cache.number_of_esxis,
+                                                                                                               type=item_type)
             if not _input(message).lower() == "y":
                 return []
+
         actual_patterns = patterns.strip().split(" ")
         try:
             compiled_patterns = [re.compile(pattern) for pattern in actual_patterns]
@@ -208,7 +210,21 @@ class VSphereREPL(Cmd):
             print("Invalid regular expression patterns: {0}".format(e))
             return []
 
-        return self.yield_vm_patterns(compiled_patterns)
+        if item_type == ItemType.HOST_SYSTEM:
+            return self.yield_esx_patterns(compiled_patterns)
+        if item_type == ItemType.VIRTUAL_MACHINE:
+            return self.yield_vm_patterns(compiled_patterns)
+
+    def compile_and_yield_esx_patterns(self, patterns, risky=True):
+        return self.compile_and_yield_generic_patterns(patterns, ItemType.HOST_SYSTEM, risky)
+
+    def compile_and_yield_vm_patterns(self, patterns, risky=True):
+        return self.compile_and_yield_generic_patterns(patterns, ItemType.VIRTUAL_MACHINE, risky)
+
+    def yield_esx_patterns(self, compiled_patterns):
+        for esx_name in self.cache.list_cached_esxis():
+            if any([pattern.match(esx_name) for pattern in compiled_patterns]):
+                yield(esx_name)
 
     def yield_vm_patterns(self, compiled_patterns):
         for vm_name in self.cache.list_cached_vms():
@@ -220,3 +236,8 @@ class VSphereREPL(Cmd):
 
     def do_EOF(self, line):
         return True
+
+
+class ItemType(object):
+    VIRTUAL_MACHINE = "vm"
+    HOST_SYSTEM = "esx"

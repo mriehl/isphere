@@ -65,6 +65,9 @@ class CachingVSphere(object):
     def list_cached_vms(self):
         return self.vm_mapping.keys()
 
+    def list_cached_esxis(self):
+        return self.esx_mapping.keys()
+
     def retrieve_vm(self, vm_name):
         return self.vm_mapping[vm_name]
 

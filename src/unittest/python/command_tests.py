@@ -107,6 +107,9 @@ class VSphereREPLTests(TestCase):
         self.vm_names_patcher = patch("isphere.command.VSphereREPL.compile_and_yield_vm_patterns")
         self.vm_names = self.vm_names_patcher.start()
 
+        self.esx_names_patcher = patch("isphere.command.VSphereREPL.compile_and_yield_esx_patterns")
+        self.esx_names = self.esx_names_patcher.start()
+
     def tearDown(self):
         self.print_patcher.stop()
         self.vm_names_patcher.stop()
@@ -119,6 +122,14 @@ class VSphereREPLTests(TestCase):
         self.vm_names.return_value = ["any-host-1", "any-host-2"]
 
         self.repl.do_list_vm("any-host")
+
+        self.assertEqual(self.mock_print.call_args_list,
+                         [call('any-host-1'), call('any-host-2')])
+
+    def test_should_list_matching_esxis(self):
+        self.esx_names.return_value = ["any-host-1", "any-host-2"]
+
+        self.repl.do_list_esx("any-host")
 
         self.assertEqual(self.mock_print.call_args_list,
                          [call('any-host-1'), call('any-host-2')])
