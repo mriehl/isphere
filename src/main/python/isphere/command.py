@@ -80,7 +80,7 @@ class VSphereREPL(Cmd):
             _globals["no_output"] = guard
             try:
                 separator = "-" * 25
-                max_width_of_item_name = 10
+                max_width_of_item_name = 20
                 result = eval(statement, _globals, _locals)
                 print("{0} {1:^{2}} {0}".format(separator, item_name[:max_width_of_item_name], max_width_of_item_name))
                 print(result)
