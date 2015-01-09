@@ -50,7 +50,7 @@ class VSphereREPL(Cmd):
         reset_tasks = []
         for vm_name in self.compile_and_yield_vm_patterns(patterns):
             print("Launching reset task for {0}".format(vm_name))
-            reset_task = self.cache.retrieve_vm(vm_name).ResetVM_Task()
+            reset_task = self.retrieve_vm(vm_name).ResetVM_Task()
             reset_tasks.append(reset_task)
 
         print("Waiting for {0} reset tasks to complete".format(len(reset_tasks)))
@@ -111,7 +111,7 @@ class VSphereREPL(Cmd):
         """
         for vm_name in self.compile_and_yield_vm_patterns(patterns):
             print("Asking {0} to reboot".format(vm_name))
-            self.cache.retrieve_vm(vm_name).RebootGuest()
+            self.retrieve_vm(vm_name).RebootGuest()
 
     def do_migrate_vm(self, line):
         """Usage: migrate_vm [pattern1 [pattern2]...] ! TARGET_ESX_NAME
@@ -142,7 +142,7 @@ class VSphereREPL(Cmd):
             relocate_spec = vim.vm.RelocateSpec(host=esx_host)
             print("Relocating {0} to {1}".format(vm_name, esx_name))
             try:
-                self.cache.retrieve_vm(vm_name).Relocate(relocate_spec)
+                self.retrieve_vm(vm_name).Relocate(relocate_spec)
             except Exception as e:
                 print("Relocation failed: {0}".format(e))
 
@@ -155,7 +155,7 @@ class VSphereREPL(Cmd):
         for vm_name in self.compile_and_yield_vm_patterns(patterns):
             print("-" * 70)
             print("Alarms for {0}".format(vm_name))
-            alarms = self.cache.retrieve_vm(vm_name).triggeredAlarmState
+            alarms = self.retrieve_vm(vm_name).triggeredAlarmState
             for alarm in alarms:
                 print("\talarm_moref: {0}".format(alarm.key.split('.')[0]))
                 print("\talarm status: {0}".format(alarm.overallStatus))
@@ -193,7 +193,7 @@ class VSphereREPL(Cmd):
         custom_attributes_mapping = self.cache.get_custom_attributes_mapping()
 
         for vm_name in self.compile_and_yield_vm_patterns(patterns):
-            vm = self.cache.retrieve_vm(vm_name)
+            vm = self.retrieve_vm(vm_name)
             print("-" * 70)
             print("Name: {0}".format(vm.name))
             print("ESXi Host: {0}".format(vm.get_esx_host().name))
@@ -220,7 +220,7 @@ class VSphereREPL(Cmd):
         for vm_name in self.compile_and_yield_vm_patterns(patterns):
             print("-" * 70)
             print("Config for {0}:".format(vm_name))
-            print(self.cache.retrieve_vm(vm_name).config)
+            print(self.retrieve_vm(vm_name).config)
             print()
 
     def compile_and_yield_generic_patterns(self, patterns, item_type, risky=True):
