@@ -81,10 +81,9 @@ class VSphereREPL(Cmd):
             try:
                 separator = "-" * 25
                 max_width_of_item_name = 10
-                print("{0} {1:^{2}} {0}".format(separator, item_name[:max_width_of_item_name], max_width_of_item_name))
                 result = eval(statement, _globals, _locals)
-                if result != guard:
-                    print(result)
+                print("{0} {1:^{2}} {0}".format(separator, item_name[:max_width_of_item_name], max_width_of_item_name))
+                print(result)
             except NoOutput:
                 pass
             except Exception as e:
