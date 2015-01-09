@@ -19,7 +19,7 @@ class CachingVSphereTests(TestCase):
         self.cache._connection = Mock()
         self.vvc = self.cache._connection.ensure_established.return_value
 
-    def test_should_fill_cache_with_vms_returned_by_vvc(self):
+    def test_should_fill_cache_with_vms_and_esxis_returned_by_vvc(self):
         vm_1, vm_2 = Mock(), Mock()
         vm_1.name = "vm-1"
         vm_2.name = "vm-2"
