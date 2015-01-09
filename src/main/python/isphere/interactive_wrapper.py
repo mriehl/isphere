@@ -134,6 +134,9 @@ class ESX(object):
     def __getattr__(self, attribute):
         return getattr(self.raw_esx, attribute)
 
+    def __dir__(self):
+        return dir(self.raw_esx)
+
     def get_number_of_cores(self):
         """
         Returns the number of CPU cores (type long) on this ESX.
