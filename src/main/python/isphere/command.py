@@ -157,6 +157,18 @@ class VSphereREPL(Cmd):
         for vm_name in self.compile_and_yield_vm_patterns(patterns, risky=False):
             print(vm_name)
 
+    def do_list_esx(self, patterns):
+        """Usage: list [pattern1 [pattern2]...]
+        List the esx names matching the given ORed name patterns.
+
+        Sample usage:
+        * `list dev.* ...ybc01`
+        * `list`
+        * `list .*`
+        """
+        for esx_name in self.compile_and_yield_esx_patterns(patterns, risky=False):
+            print(esx_name)
+
     def do_info_vm(self, patterns):
         """Usage: info_vm [pattern1 [pattern2]...]
         Show quick info about vms matching the given ORed name patterns.
