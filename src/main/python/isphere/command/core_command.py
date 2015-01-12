@@ -42,7 +42,8 @@ class CoreCommand(Cmd):
         """
         self.preloop()
 
-    def eval(self, line, item_name_generator, item_retriever, local_name):
+    @staticmethod
+    def eval(line, item_name_generator, item_retriever, local_name):
         try:
             patterns_and_statement = line.split("!", 1)
             patterns = patterns_and_statement[0]
@@ -92,7 +93,8 @@ class CoreCommand(Cmd):
         if item_type == ItemType.VIRTUAL_MACHINE:
             return self.yield_vm_patterns(compiled_patterns)
 
-    def do_EOF(self, line):
+    @staticmethod
+    def do_EOF(line):
         return True
 
 
