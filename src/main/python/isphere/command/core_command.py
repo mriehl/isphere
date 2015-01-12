@@ -64,7 +64,10 @@ class CoreCommand(Cmd):
             try:
                 separator = "-" * 25
                 max_width_of_item_name = 10
-                item_name_header = "{0} {1:^{2}} {0}".format(separator, item_name[:max_width_of_item_name], max_width_of_item_name)
+                item_name_header = "{separator} {name:^{width}} {separator}".format(
+                    name=item_name[:max_width_of_item_name],
+                    width=max_width_of_item_name,
+                    separator=separator)
                 result = eval(statement, _globals, _locals)
                 print(item_name_header)
                 print(result)
