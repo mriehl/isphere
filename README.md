@@ -19,6 +19,10 @@ This is a platform independent REPL (mac, windows, linux) thanks to the [pyVmomi
 Usage
 -----
 
+### Help
+`help` will provide an overview of available commands.
+`help <command>` will provide detailed help for a command.
+
 ### Concepts
 #### Long lived sessions
 Long lived session that fetches all data on startup (and manually with the `reload` command).
