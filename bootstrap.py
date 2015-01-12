@@ -5,4 +5,4 @@ sys.path.insert(0, "src/main/python")
 
 from isphere.command import VSphereREPL
 
-VSphereREPL().cmdloop()
+exec(open("src/main/scripts/isphere").read())
