@@ -4,3 +4,4 @@ venv
 *.pyo
 __pycache__
 .coverage
+.idea
