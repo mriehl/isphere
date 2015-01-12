@@ -4,8 +4,8 @@
 #  as published by Sam Hocevar. See the COPYING.wtfpl file for more details.
 #
 
-from unittest import TestCase
 import re
+from unittest import TestCase
 
 from mock import patch, call, Mock
 
