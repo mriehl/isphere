@@ -93,6 +93,7 @@ class CoreCommand(Cmd):
             print("Invalid regular expression patterns: {0}".format(e))
             return []
 
+        # TODO @mriehl this dispatch is pretty ugly
         if item_type == ItemType.HOST_SYSTEM:
             return self.yield_esx_patterns(compiled_patterns)
         if item_type == ItemType.VIRTUAL_MACHINE:
