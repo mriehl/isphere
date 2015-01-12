@@ -27,7 +27,7 @@ Long lived session that fetches all data on startup (and manually with the `relo
 Operations on ORed name patterns, for example "shutdown all VMs starting with foo or ending with bar" is done with:
 ```
 reboot_vm ^foo bar$
-Asking foobarvm
+Asking foobarvm to reboot
 Asking foo to reboot
 Asking bar to reboot
 Asking vmbar to reboot
