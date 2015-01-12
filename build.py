@@ -68,6 +68,8 @@ def set_properties(project):
                          '#  as published by Sam Hocevar. See the COPYING.wtfpl file for more details.\n'
                          '#\n'))
 
+    project.set_property('distutils_console_scripts',['isphere.exe = isphere.cli:main'])
+
 
 @init(environments='teamcity')
 def set_properties_for_teamcity_builds(project):
