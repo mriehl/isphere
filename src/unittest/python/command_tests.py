@@ -101,10 +101,10 @@ class VSphereREPLTests(TestCase):
 
     def setUp(self):
         self.repl = VSphereREPL()
-        self.vm_print_patcher = patch("isphere.command.virtual_machine_commands.print", create=True)
+        self.vm_print_patcher = patch("isphere.command.virtual_machine_command.print", create=True)
         self.vm_mock_print = self.vm_print_patcher.start()
 
-        self.esx_print_patcher = patch("isphere.command.esx_commands.print", create=True)
+        self.esx_print_patcher = patch("isphere.command.esx_command.print", create=True)
         self.esx_mock_print = self.esx_print_patcher.start()
 
         self.core_print_patcher = patch("isphere.command.core_command.print", create=True)
@@ -313,7 +313,7 @@ class VSphereREPLTests(TestCase):
                              call()
                          ])
 
-    @patch("isphere.command.virtual_machine_commands.vim")
+    @patch("isphere.command.virtual_machine_command.vim")
     @patch("isphere.command.core_command.CachingVSphere.find_by_dns_name")
     @patch("isphere.command.core_command.CachingVSphere.retrieve_vm")
     def test_should_not_migrate_when_syntax_is_invalid(self, cache_retrieve, find_by_dns_name, vim):
@@ -326,7 +326,7 @@ class VSphereREPLTests(TestCase):
         self.assertFalse(mock_vm.Relocate.called)
         self.vm_mock_print.assert_called_with('Looks like your input was malformed. Try `help migrate_vm`.')
 
-    @patch("isphere.command.virtual_machine_commands.vim")
+    @patch("isphere.command.virtual_machine_command.vim")
     @patch("isphere.command.core_command.CachingVSphere.find_by_dns_name")
     @patch("isphere.command.core_command.CachingVSphere.retrieve_vm")
     def test_should_not_migrate_when_target_esx_is_missing(self, cache_retrieve, find_by_dns_name, vim):
@@ -339,7 +339,7 @@ class VSphereREPLTests(TestCase):
         self.assertFalse(mock_vm.Relocate.called)
         self.vm_mock_print.assert_called_with('No target esx name given. Try `help migrate_vm`.')
 
-    @patch("isphere.command.virtual_machine_commands.vim")
+    @patch("isphere.command.virtual_machine_command.vim")
     @patch("isphere.command.core_command.CachingVSphere.find_by_dns_name")
     @patch("isphere.command.core_command.CachingVSphere.retrieve_vm")
     def test_should_trim_whitespace_from_esx_name_when_surrounded_with_whitespace(self, cache_retrieve, find_by_dns_name, vim):
@@ -351,7 +351,7 @@ class VSphereREPLTests(TestCase):
 
         find_by_dns_name.assert_called_with("any-esxi.domain")
 
-    @patch("isphere.command.virtual_machine_commands.vim")
+    @patch("isphere.command.virtual_machine_command.vim")
     @patch("isphere.command.core_command.CachingVSphere.find_by_dns_name")
     @patch("isphere.command.core_command.CachingVSphere.retrieve_vm")
     def test_should_migrate_matching_vms(self, cache_retrieve, find_by_dns_name, vim):

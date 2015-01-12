@@ -4,8 +4,8 @@
 #  as published by Sam Hocevar. See the COPYING.wtfpl file for more details.
 #
 
-from isphere.command.esx_commands import EsxCommand
-from isphere.command.virtual_machine_commands import VirtualMachineCommand
+from isphere.command.esx_command import EsxCommand
+from isphere.command.virtual_machine_command import VirtualMachineCommand
 
 
 class VSphereREPL(EsxCommand, VirtualMachineCommand):
