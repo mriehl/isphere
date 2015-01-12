@@ -313,7 +313,7 @@ class VSphereREPLTests(TestCase):
     @patch("isphere.command.virtual_machine_command.vim")
     @patch("isphere.command.core_command.CachingVSphere.find_by_dns_name")
     @patch("isphere.command.core_command.CachingVSphere.retrieve_vm")
-    def test_should_not_migrate_when_syntax_is_invalid(self, cache_retrieve, find_by_dns_name, vim):
+    def test_should_not_migrate_when_syntax_is_invalid(self, cache_retrieve, _, __):
         self.vm_names.return_value = ["any-host-1"]
         mock_vm = Mock()
         cache_retrieve.return_value = mock_vm
@@ -326,7 +326,7 @@ class VSphereREPLTests(TestCase):
     @patch("isphere.command.virtual_machine_command.vim")
     @patch("isphere.command.core_command.CachingVSphere.find_by_dns_name")
     @patch("isphere.command.core_command.CachingVSphere.retrieve_vm")
-    def test_should_not_migrate_when_target_esx_is_missing(self, cache_retrieve, find_by_dns_name, vim):
+    def test_should_not_migrate_when_target_esx_is_missing(self, cache_retrieve, _, __):
         self.vm_names.return_value = ["any-host-1"]
         mock_vm = Mock()
         cache_retrieve.return_value = mock_vm
@@ -339,7 +339,7 @@ class VSphereREPLTests(TestCase):
     @patch("isphere.command.virtual_machine_command.vim")
     @patch("isphere.command.core_command.CachingVSphere.find_by_dns_name")
     @patch("isphere.command.core_command.CachingVSphere.retrieve_vm")
-    def test_should_trim_whitespace_from_esx_name_when_surrounded_with_whitespace(self, cache_retrieve, find_by_dns_name, vim):
+    def test_should_trim_whitespace_from_esx_name_when_surrounded_with_whitespace(self, cache_retrieve, find_by_dns_name, _):
         self.vm_names.return_value = ["any-host-1"]
         mock_vm = Mock()
         cache_retrieve.return_value = mock_vm

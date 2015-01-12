@@ -34,7 +34,7 @@ class CoreCommand(Cmd):
         print("{0} VMs on {1} ESXis available.".format(self.cache.number_of_vms,
                                                        self.cache.number_of_esxis))
 
-    def do_reload(self, line):
+    def do_reload(self, _):
         """Usage: reload
         Reload VM cache from the vSphere server.
 
@@ -100,7 +100,7 @@ class CoreCommand(Cmd):
             return self.yield_vm_patterns(compiled_patterns)
 
     @staticmethod
-    def do_EOF(line):
+    def do_EOF(_):
         return True
 
 

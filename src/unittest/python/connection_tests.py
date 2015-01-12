@@ -56,7 +56,7 @@ class ConnectionTests(TestCase):
 
     @patch("isphere.connection._input")
     @patch("isphere.connection.VVC")
-    def test_should_ask_for_credentials_when_connecting(self, vvc, _input):
+    def test_should_ask_for_credentials_when_connecting(self, _, _input):
         _input.return_value = "any-input"
         connection = AutoEstablishingConnection()
 
