@@ -60,7 +60,7 @@ def set_properties(project):
 
     project.set_property('pybuilder_header_plugin_break_build', False) # embedded 3rd-party sources
     project.set_property('pybuilder_header_plugin_expected_header',
-                         ('#  Copyright (c) 2014 Maximilien Riehl <max@riehl.io>\n'
+                         ('#  Copyright (c) 2014-2015 Maximilien Riehl <max@riehl.io>\n'
                          '#  This work is free. You can redistribute it and/or modify it under the\n'
                          '#  terms of the Do What The Fuck You Want To Public License, Version 2,\n'
                          '#  as published by Sam Hocevar. See the COPYING.wtfpl file for more details.\n'
