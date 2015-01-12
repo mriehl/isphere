@@ -61,13 +61,14 @@ class CoreCommand(Cmd):
             _locals["no_output"] = guard
             _globals[local_name] = item
             _globals["no_output"] = guard
+
+            separator = "-" * 25
+            max_width_of_item_name = 10
+            item_name_header = "{separator} {name:^{width}} {separator}".format(
+                name=item_name[:max_width_of_item_name],
+                width=max_width_of_item_name,
+                separator=separator)
             try:
-                separator = "-" * 25
-                max_width_of_item_name = 10
-                item_name_header = "{separator} {name:^{width}} {separator}".format(
-                    name=item_name[:max_width_of_item_name],
-                    width=max_width_of_item_name,
-                    separator=separator)
                 result = eval(statement, _globals, _locals)
                 print(item_name_header)
                 print(result)
