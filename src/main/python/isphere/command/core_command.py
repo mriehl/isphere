@@ -63,13 +63,14 @@ class CoreCommand(Cmd):
             try:
                 separator = "-" * 25
                 max_width_of_item_name = 10
-                print("{0} {1:^{2}} {0}".format(separator, item_name[:max_width_of_item_name], max_width_of_item_name))
+                item_name_header = "{0} {1:^{2}} {0}".format(separator, item_name[:max_width_of_item_name], max_width_of_item_name)
                 result = eval(statement, _globals, _locals)
-                if result != guard:
-                    print(result)
+                print(item_name_header)
+                print(result)
             except NoOutput:
                 pass
             except Exception as e:
+                print(item_name_header)
                 print("Eval failed for {0}: {1}".format(item_name, e))
 
     def compile_and_yield_generic_patterns(self, patterns, item_type, risky=True):

@@ -166,10 +166,7 @@ class VSphereREPLTests(TestCase):
 
         self.repl.do_eval_vm("any-host!no_output()")
 
-        self.assertEqual(self.core_mock_print.call_args_list,
-                         [
-                             call('------------------------- any-host-1 -------------------------'),
-                         ])
+        self.assertEqual(False, self.core_mock_print.called)
 
     @patch("isphere.command.core_command.CachingVSphere.retrieve_esx")
     def test_should_eval_statement_using_esxis(self, cache_retrieve):
