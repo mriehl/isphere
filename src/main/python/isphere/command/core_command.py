@@ -79,8 +79,9 @@ class CoreCommand(Cmd):
 
     def compile_and_yield_generic_patterns(self, patterns, item_type, risky=True):
         if not patterns and risky:
-            message = "No pattern specified - you're doing this to all {count} {type}. Proceed? (y/N) ".format(count=self.cache.number_of_esxis,
-                                                                                                               type=item_type)
+            unformatted_message = "No pattern specified - you're doing this to all {count} {type}. Proceed? (y/N) "
+            message = unformatted_message.format(count=self.cache.number_of_esxis,
+                                                 type=item_type)
             if not _input(message).lower() == "y":
                 return []
 
