@@ -8,7 +8,7 @@ import atexit
 from getpass import getpass
 
 from pyVim import connect
-from pyVmomi import vim
+from pyVmomi import vim, vmodl
 
 """
 This module overlays the pyVmomi library to make its use in a
@@ -100,12 +100,8 @@ class VVC(object):
         for vm in self.get_all_by_type([vim.VirtualMachine]):
             yield VM(vm)
 
-    # FIXME @mriehl untested
     def get_all_by_type(self, types):
-        view = self.get_service("viewManager").CreateContainerView(
-            self.service_instance_content.rootFolder,
-            types,
-            True)
+        view = self.view_for(types)
         all_items = view.view
         view.Destroy()
         return all_items
@@ -113,6 +109,71 @@ class VVC(object):
     def get_all_esx(self):
         for esx in self.get_all_by_type([vim.HostSystem]):
             yield ESX(esx)
+
+    def view_for(self, types):
+        return self.get_service("viewManager").CreateContainerView(
+            self.service_instance_content.rootFolder,
+            types,
+            True)
+
+    def get_restricted_view_on_vms(self, properties):
+        return self.get_restricted_view_on_items(properties, [vim.VirtualMachine])
+
+    def get_restricted_view_on_host_systems(self, properties):
+        return self.get_restricted_view_on_items(properties, [vim.HostSystem])
+
+    def get_restricted_view_on_items(self, properties, types):
+        """
+        Returns a restricted view on a specific item type collection.
+        The items are restricted in the sense that only properties which were
+        specified upon retrieval can be accessed.
+
+        The return value will be a list of items that have the desired properties
+        as attributes.
+        Note that recursing properties (e.G. summary.config) will be stored under
+        their full name (item.summary.config).
+
+        - `properties` (str[]) is a list of properties that should be fetched.
+          Recursing properties can be separated by dots, e.G. "summary.config".
+        - `types` (type[]) is a list of types to restrict the items that are given
+          back. The types must be attributes of the pyVmomi.vim module.
+        """
+        unrestricted_view = self.view_for(types)
+        collector_spec = build_property_collector_specs(unrestricted_view, properties)
+
+        retrieved_contents = self.get_service("propertyCollector").RetrieveContents(collector_spec)
+        items = []
+        for item in retrieved_contents:
+            item_instance = ItemContainer()
+            for item_property in item.propSet:
+                if item_property.name in properties:
+                    item_instance.set_path_value(item_property.name, item_property.val)
+            items.append(item_instance)
+        return items
+
+
+class ItemContainer(object):
+
+    def set_path_value(self, path, value):
+        part_names = path.split(".")
+        self._inner_set_path_value(part_names, value)
+
+    def _inner_set_path_value(self, part_names, value, current_item=None):
+        if not part_names:
+            return
+        current_item = self if not current_item else current_item
+        current_part = part_names.pop(0)
+        need_to_set_value = not part_names  # if part_names is empty we're done with the path and can set the value
+        if need_to_set_value:
+            setattr(current_item, current_part, value)
+            return
+        else:
+            if not hasattr(current_item, current_part):
+                part_container = ItemContainer()
+                setattr(current_item, current_part, part_container)
+            else:
+                part_container = getattr(current_item, current_part)
+            part_container._inner_set_path_value(part_names, value, part_container)
 
 
 class ESX(object):
@@ -191,3 +252,25 @@ def get_all_vms_in_folder(folder):
                 yield vm  # it's now a VM
         else:
             yield VM(vm_or_folder)  # it's a VM
+
+
+def build_property_collector_specs(view, item_properties):
+    obj_spec = vmodl.query.PropertyCollector.ObjectSpec()
+    obj_spec.obj = view
+    obj_spec.skip = True
+
+    traversal_spec = vmodl.query.PropertyCollector.TraversalSpec()
+    traversal_spec.name = 'traverseEntities'
+    traversal_spec.path = 'view'
+    traversal_spec.skip = False
+    traversal_spec.type = view.__class__
+    obj_spec.selectSet = [traversal_spec]
+
+    property_spec = vmodl.query.PropertyCollector.PropertySpec()
+    property_spec.type = getattr(vim, view.type[0])
+    property_spec.pathSet = item_properties
+
+    filter_spec = vmodl.query.PropertyCollector.FilterSpec()
+    filter_spec.objectSet = [obj_spec]
+    filter_spec.propSet = [property_spec]
+    return [filter_spec]
