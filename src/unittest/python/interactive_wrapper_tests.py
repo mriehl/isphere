@@ -5,14 +5,15 @@
 #
 
 from unittest import TestCase
-from mock import Mock
+from mock import Mock, patch
 
 from isphere.interactive_wrapper import (
     VM,
     VVC,
     ESX,
     get_all_vms_in_folder,
-    NotFound
+    NotFound,
+    ItemContainer
 )
 
 
@@ -175,3 +176,106 @@ class VVCTests(TestCase):
         self.assertEqual(actual_mapping,
                          {"any-key": "any-name",
                           "any-other-key": "any-other-name"})
+
+    @patch("isphere.interactive_wrapper.build_property_collector_specs")
+    def test_should_create_collector_spec_with_properties_and_type(self, build_property_collector_specs):
+        self.vvc_mock.get_service.return_value.RetrieveContents.return_value = []
+        VVC.get_restricted_view_on_items(self.vvc_mock, ["property_1", "property_2"], "any-type")
+
+        self.vvc_mock.view_for.assert_called_with("any-type")
+        build_property_collector_specs.assert_called_with(self.vvc_mock.view_for.return_value, ["property_1", "property_2"])
+
+    @patch("isphere.interactive_wrapper.build_property_collector_specs")
+    def test_should_retrieve_contents_with_collector_specs(self, build_property_collector_specs):
+        self.vvc_mock.get_service.return_value.RetrieveContents.return_value = []
+        VVC.get_restricted_view_on_items(self.vvc_mock, ["property_1", "property_2"], "any-type")
+
+        self.vvc_mock.get_service.assert_called_with("propertyCollector")
+        self.vvc_mock.get_service.return_value.RetrieveContents.assert_called_with(build_property_collector_specs.return_value)
+
+    @patch("isphere.interactive_wrapper.build_property_collector_specs")
+    def test_should_return_restricted_view_on_items(self, _):
+        mock_item = Mock()
+        property_1 = Mock()
+        property_1.name = "property_1"
+        property_1.val = "1"
+        property_2 = Mock()
+        property_2.name = "property_2"
+        property_2.val = "2"
+        mock_item.propSet = [property_1, property_2]
+        self.vvc_mock.get_service.return_value.RetrieveContents.return_value = [mock_item]
+        actual_items = VVC.get_restricted_view_on_items(self.vvc_mock, ["property_1", "property_2"], "any-type")
+
+        self.assertEqual(1, len(actual_items))
+        actual_item = actual_items[0]
+        self.assertEqual("1", actual_item.property_1)
+        self.assertEqual("2", actual_item.property_2)
+
+    @patch("isphere.interactive_wrapper.build_property_collector_specs")
+    def test_should_return_restricted_view_on_several_items(self, _):
+        property_1 = Mock()
+        property_1.name = "property_1"
+        property_1.val = "1"
+        property_2 = Mock()
+        property_2.name = "property_2"
+        property_2.val = "2"
+        property_3 = Mock()
+        property_3.name = "property_1"
+        property_3.val = "3"
+        property_4 = Mock()
+        property_4.name = "property_2"
+        property_4.val = "4"
+
+        mock_item_1 = Mock()
+        mock_item_1.propSet = [property_1, property_2]
+        mock_item_2 = Mock()
+        mock_item_2.propSet = [property_3, property_4]
+
+        self.vvc_mock.get_service.return_value.RetrieveContents.return_value = [mock_item_1, mock_item_2]
+        actual_items = VVC.get_restricted_view_on_items(self.vvc_mock, ["property_1", "property_2"], "any-type")
+
+        self.assertEqual(2, len(actual_items))
+        actual_item_1 = actual_items[0]
+        self.assertEqual("1", actual_item_1.property_1)
+        self.assertEqual("2", actual_item_1.property_2)
+
+        actual_item_2 = actual_items[1]
+        self.assertEqual("3", actual_item_2.property_1)
+        self.assertEqual("4", actual_item_2.property_2)
+
+    @patch("isphere.interactive_wrapper.build_property_collector_specs")
+    def test_should_return_restricted_view_on_items_when_property_is_not_a_basename(self, _):
+        mock_item = Mock()
+        property_with_child = Mock()
+        property_with_child.name = "parent.child"
+        property_with_child.val = "any-value"
+        mock_item.propSet = [property_with_child]
+        self.vvc_mock.get_service.return_value.RetrieveContents.return_value = [mock_item]
+        actual_items = VVC.get_restricted_view_on_items(self.vvc_mock, ["parent.child"], "any-type")
+
+        self.assertEqual(1, len(actual_items))
+        actual_item = actual_items[0]
+        self.assertEqual("any-value", actual_item.parent.child)
+
+
+class ItemContainerTests(TestCase):
+
+    def setUp(self):
+        self.item = ItemContainer()
+
+    def test_should_create_simple_item_property(self):
+        self.item.set_path_value("x", "any-value")
+
+        self.assertEqual(self.item.x, "any-value")
+
+    def test_should_create_deep_item_property(self):
+        self.item.set_path_value("x.y.z", "any-value")
+
+        self.assertEqual(self.item.x.y.z, "any-value")
+
+    def test_should_not_overwrite_values_on_the_way(self):
+        self.item.set_path_value("x.y.z", "any-value")
+        self.item.set_path_value("x.y.d.m", "any-other-value")
+
+        self.assertEqual(self.item.x.y.z, "any-value")
+        self.assertEqual(self.item.x.y.d.m, "any-other-value")
