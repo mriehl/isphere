@@ -9,22 +9,22 @@ from __future__ import print_function
 from isphere.command.core_command import CoreCommand, ItemType
 
 
-class EsxCommand(CoreCommand):
+class DvsCommand(CoreCommand):
 
     def do_eval_dvs(self, line):
         """Usage: eval_dvs [pattern1 [pattern2]...] ! <statement>
         Evaluate a statement of python code. You can access the
-        esx object by using the variable `dvs`.
+        dvs object by using the variable `dvs`.
 
         Calling the function `no_output` will not produce any output (use this
                                                                       to filter).
 
         Sample usage:
         * `eval MY_DVS_NAME ! filter(lambda field_name: callable(getattr(dvs, field_name)) and not field_name.startswith("_"), dir(dvs))`
-          ^ shows 'public' methods we can call on the esx object
+          ^ shows 'public' methods we can call on the dvs object
         * `eval MY_DVS_NAME ! dvs.name`
         * `eval_dvs ! dvs.overallStatus if dvs.overallStatus != "green" else no_output()`
-          ^ shows overall status of esx hosts unless they have the "green" status
+          ^ shows overall status of dvs hosts unless they have the "green" status
         """
         self.eval(line, self.compile_and_yield_dvs_patterns, self.retrieve_dvs, "dvs")
 
