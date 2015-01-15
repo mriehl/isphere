@@ -153,7 +153,10 @@ class VirtualMachineCommand(CoreCommand):
             print()
 
     def compile_and_yield_vm_patterns(self, patterns, risky=True):
-        return self.compile_and_yield_generic_patterns(patterns, ItemType.VIRTUAL_MACHINE, risky)
+        return self.compile_and_yield_generic_patterns(patterns,
+                                                       ItemType.VIRTUAL_MACHINE,
+                                                       self.cache.number_of_vms,
+                                                       risky)
 
     def yield_vm_patterns(self, compiled_patterns):
         for vm_name in self.cache.list_cached_vms():

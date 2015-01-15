@@ -78,10 +78,10 @@ class CoreCommand(Cmd):
                 print(item_name_header)
                 print("Eval failed for {0}: {1}".format(item_name, e))
 
-    def compile_and_yield_generic_patterns(self, patterns, item_type, risky=True):
+    def compile_and_yield_generic_patterns(self, patterns, item_type, item_count, risky=True):
         if not patterns and risky:
             unformatted_message = "No pattern specified - you're doing this to all {count} {type}. Proceed? (y/N) "
-            message = unformatted_message.format(count=self.cache.number_of_esxis,
+            message = unformatted_message.format(count=item_count,
                                                  type=item_type)
             if not _input(message).lower() == "y":
                 return []

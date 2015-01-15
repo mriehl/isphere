@@ -41,7 +41,10 @@ class EsxCommand(CoreCommand):
             print(esx_name)
 
     def compile_and_yield_esx_patterns(self, patterns, risky=True):
-        return self.compile_and_yield_generic_patterns(patterns, ItemType.HOST_SYSTEM, risky)
+        return self.compile_and_yield_generic_patterns(patterns,
+                                                       ItemType.HOST_SYSTEM,
+                                                       self.cache.number_of_esxis,
+                                                       risky)
 
     def yield_esx_patterns(self, compiled_patterns):
         for esx_name in self.cache.list_cached_esxis():
