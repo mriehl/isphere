@@ -262,6 +262,9 @@ class DVS(object):
     def __dir__(self):
         return dir(self.raw_dvs)
 
+    def __getattr__(self, attribute):
+        return getattr(self.raw_dvs, attribute)
+
 
 def get_all_vms_in_folder(folder):
     vm_or_folders = folder.childEntity
