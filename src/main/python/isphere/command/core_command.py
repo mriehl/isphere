@@ -98,6 +98,8 @@ class CoreCommand(Cmd):
             return self.yield_esx_patterns(compiled_patterns)
         if item_type == ItemType.VIRTUAL_MACHINE:
             return self.yield_vm_patterns(compiled_patterns)
+        if item_type == ItemType.DVS:
+            return self.yield_dvs_patterns(compiled_patterns)
 
     @staticmethod
     def do_EOF(_):
@@ -107,3 +109,4 @@ class CoreCommand(Cmd):
 class ItemType(object):
     VIRTUAL_MACHINE = "vm"
     HOST_SYSTEM = "esx"
+    DVS = "dvs"
