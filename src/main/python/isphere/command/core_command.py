@@ -33,6 +33,8 @@ class CoreCommand(Cmd):
         self.cache.fill()
         print("{0} VMs on {1} ESXis available.".format(self.cache.number_of_vms,
                                                        self.cache.number_of_esxis))
+        print("{0} Distributed Virtual Switches configured.". format(
+                                                        self.cache.number_of_dvses))
 
     def do_reload(self, _):
         """Usage: reload
