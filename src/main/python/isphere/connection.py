@@ -92,6 +92,10 @@ class CachingVSphere(object):
     def number_of_esxis(self):
         return len(self.esx_mapping)
 
+    @property
+    def number_of_dvses(self):
+        return len(self.dvs_mapping)
+
     def wait_for_tasks(self, tasks):
         return thirdparty_tasks.wait_for_tasks(self.vvc.service_instance, tasks)
 
