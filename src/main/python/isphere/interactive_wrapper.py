@@ -110,6 +110,10 @@ class VVC(object):
         for esx in self.get_all_by_type([vim.HostSystem]):
             yield ESX(esx)
 
+    def get_all_dvs(self):
+        for dvs in self.get_all_by_type([vim.VmwareDistributedVirtualSwitch]):
+            yield DVS(dvs)
+
     def view_for(self, types):
         return self.get_service("viewManager").CreateContainerView(
             self.service_instance_content.rootFolder,
@@ -241,6 +245,19 @@ class VM(object):
 
     def get_esx_host(self):
         return ESX(self.raw_vm.runtime.host)
+
+
+class DVS(object):
+    """
+    A DistributedVirtualSwitch
+    """
+
+    def __init__(self, raw_dvs):
+        self.raw_dvs = raw_dvs
+        self.name = raw_dvs.name
+
+    def __eq__(self, other):
+        return self.name == other.name
 
 
 def get_all_vms_in_folder(folder):

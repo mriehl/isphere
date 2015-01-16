@@ -11,6 +11,7 @@ from isphere.interactive_wrapper import (
     VM,
     VVC,
     ESX,
+    DVS,
     get_all_vms_in_folder,
     NotFound,
     ItemContainer
@@ -98,6 +99,28 @@ class ESXTests(TestCase):
         self.raw_esx.licensableResource.resource = resources
 
         self.assertEquals(self.wrapped_esx.get_number_of_cores(), 42)
+
+
+class DVSTests(TestCase):
+
+    def setUp(self):
+        self.raw_dvs = Mock()
+        self.raw_dvs.name = "dvs-name"
+        self.wrapped_dvs = DVS(self.raw_dvs)
+
+    def test_should_equal_to_dvs_with_same_name(self):
+        other_raw_dvs = Mock()
+        other_raw_dvs.name = "dvs-name"
+        other_dvs = DVS(other_raw_dvs)
+
+        self.assertTrue(self.wrapped_dvs == other_dvs)
+
+    def test_should_not_equal_to_dvs_with_other_name(self):
+        other_raw_dvs = Mock()
+        other_raw_dvs.name = "other-dvs-name"
+        other_dvs = DVS(other_raw_dvs)
+
+        self.assertFalse(self.wrapped_dvs == other_dvs)
 
 
 class GetAllVMInFolderTests(TestCase):
