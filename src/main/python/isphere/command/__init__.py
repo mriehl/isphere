@@ -8,5 +8,6 @@ from isphere.command.esx_command import EsxCommand
 from isphere.command.virtual_machine_command import VirtualMachineCommand
 from isphere.command.dvs_command import DvsCommand
 
+
 class VSphereREPL(EsxCommand, VirtualMachineCommand, DvsCommand):
     pass
