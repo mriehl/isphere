@@ -42,6 +42,7 @@ class CachingVSphere(object):
         self._connection = AutoEstablishingConnection()
         self.vm_mapping = {}
         self.esx_mapping = {}
+        self.dvs_mapping = {}
 
     @property
     def vvc(self):
@@ -62,17 +63,26 @@ class CachingVSphere(object):
         for esx in self.vvc.get_all_esx():
             self.esx_mapping[esx.name] = esx
 
+        for dvs in self.vvc.get_all_dvs():
+            self.dvs_mapping[dvs.name] = dvs
+
     def list_cached_vms(self):
         return self.vm_mapping.keys()
 
     def list_cached_esxis(self):
         return self.esx_mapping.keys()
 
+    def list_cached_dvses(self):
+        return self.dvs_mapping.keys()
+
     def retrieve_vm(self, vm_name):
         return self.vm_mapping[vm_name]
 
     def retrieve_esx(self, esx_name):
         return self.esx_mapping[esx_name]
+
+    def retrieve_dvs(self, dvs_name):
+        return self.dvs_mapping[dvs_name]
 
     @property
     def number_of_vms(self):

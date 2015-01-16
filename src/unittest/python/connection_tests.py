@@ -26,8 +26,12 @@ class CachingVSphereTests(TestCase):
         esx_1, esx_2 = Mock(), Mock()
         esx_1.name = "esx-1"
         esx_2.name = "esx-2"
+        dvs_1, dvs_2 = Mock(), Mock()
+        dvs_1.name = "dvs-1"
+        dvs_2.name = "dvs-2"
         self.vvc.get_all_vms.return_value = [vm_1, vm_2]
         self.vvc.get_all_esx.return_value = [esx_1, esx_2]
+        self.vvc.get_all_dvs.return_value = [dvs_1, dvs_2]
 
         self.cache.fill()
 
