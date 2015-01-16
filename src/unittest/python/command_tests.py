@@ -153,7 +153,7 @@ class VSphereREPLTests(TestCase):
 
         self.assertEqual(self.core_mock_print.call_args_list,
                          [
-                             call('------------------------- any-host-1 -------------------------'),
+                             call('---------------------------------- any-host-1 ----------------------------------'),
                              call('any-return-value')
                          ])
 
@@ -179,7 +179,7 @@ class VSphereREPLTests(TestCase):
 
         self.assertEqual(self.core_mock_print.call_args_list,
                          [
-                             call('------------------------- any-host-1 -------------------------'),
+                             call('---------------------------------- any-host-1 ----------------------------------'),
                              call('any-return-value')
                          ])
 
@@ -194,7 +194,7 @@ class VSphereREPLTests(TestCase):
 
         self.assertEqual(self.core_mock_print.call_args_list,
                          [
-                             call('------------------------- any-host-1 -------------------------'),
+                             call('---------------------------------- any-host-1 ----------------------------------'),
                              call('any-return-value')
                          ])
 
@@ -208,7 +208,7 @@ class VSphereREPLTests(TestCase):
 
         self.assertEqual(self.core_mock_print.call_args_list,
                          [
-                             call('------------------------- any-host-1 -------------------------'),
+                             call('---------------------------------- any-host-1 ----------------------------------'),
                              call('Eval failed for any-host-1: invalid syntax (<string>, line 1)')
                          ])
 
@@ -222,7 +222,7 @@ class VSphereREPLTests(TestCase):
 
         self.assertEqual(self.core_mock_print.call_args_list,
                          [
-                             call('------------------------- any-host-1 -------------------------'),
+                             call('---------------------------------- any-host-1 ----------------------------------'),
                              call("Eval failed for any-host-1: unsupported operand type(s) for +: 'int' and 'str'")
                          ])
 
