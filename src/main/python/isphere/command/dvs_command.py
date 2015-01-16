@@ -40,7 +40,7 @@ class DvsCommand(CoreCommand):
             print(dvs_name)
 
     def compile_and_yield_dvs_patterns(self, patterns, risky=True):
-        return self.compile_and_yield_generic_patterns(patterns, ItemType.DVS, risky)
+        return self.compile_and_yield_generic_patterns(patterns, ItemType.DVS, self.cache.number_of_dvses, risky)
 
     def yield_dvs_patterns(self, compiled_patterns):
         for dvs_name in self.cache.list_cached_dvses():
