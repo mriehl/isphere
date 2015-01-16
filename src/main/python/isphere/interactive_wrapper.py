@@ -259,6 +259,9 @@ class DVS(object):
     def __eq__(self, other):
         return self.name == other.name
 
+    def __dir__(self):
+        return dir(self.raw_dvs)
+
 
 def get_all_vms_in_folder(folder):
     vm_or_folders = folder.childEntity
