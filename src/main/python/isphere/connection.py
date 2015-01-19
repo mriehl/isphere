@@ -57,6 +57,10 @@ class CachingVSphere(object):
         return self.vvc.get_custom_attributes_mapping()
 
     def fill(self):
+        self.find_by_dns_name.__func__.cached_calls = {}
+        self.get_custom_attributes_mapping.__func__.cached_calls = {}
+        self.retrieve_vm.__func__.cached_calls = {}
+
         for vm in self.vvc.get_restricted_view_on_vms(["name", "config.uuid"]):
             self.vm_name_to_uuid_mapping[vm.name] = vm.config.uuid
 
@@ -75,6 +79,7 @@ class CachingVSphere(object):
     def list_cached_dvses(self):
         return self.dvs_mapping.keys()
 
+    @memoized
     def retrieve_vm(self, vm_name):
         return self.vvc.get_vm_by_uuid(self.vm_name_to_uuid_mapping[vm_name])
 
