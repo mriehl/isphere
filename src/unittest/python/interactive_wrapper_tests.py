@@ -200,6 +200,19 @@ class VVCTests(TestCase):
                          {"any-key": "any-name",
                           "any-other-key": "any-other-name"})
 
+    def test_should_get_vm_by_uuid(self):
+        mock_vm = Mock()
+        self.vvc_mock.get_service.return_value.FindByUuid.return_value = mock_vm
+
+        actual_vm = VVC.get_vm_by_uuid(self.vvc_mock, "any-uuid")
+
+        self.assertEqual(mock_vm, actual_vm)
+
+    def test_should_raise_when_vm_uuid_not_found(self):
+        self.vvc_mock.get_service.return_value.FindByUuid.return_value = None
+
+        self.assertRaises(NotFound, VVC.get_vm_by_uuid, self.vvc_mock, "any-uuid")
+
     @patch("isphere.interactive_wrapper.build_property_collector_specs")
     def test_should_create_collector_spec_with_properties_and_type(self, build_property_collector_specs):
         self.vvc_mock.get_service.return_value.RetrieveContents.return_value = []

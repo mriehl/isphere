@@ -96,6 +96,12 @@ class VVC(object):
 
         return item
 
+    def get_vm_by_uuid(self, uuid):
+        vm = self.get_service("searchIndex").FindByUuid(uuid=uuid, vmSearch=True)
+        if not vm:
+            raise NotFound("VM with uuid {0} not found".format(uuid))
+        return vm
+
     def get_all_vms(self):
         for vm in self.get_all_by_type([vim.VirtualMachine]):
             yield VM(vm)
