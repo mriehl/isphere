@@ -4,10 +4,15 @@
 #  as published by Sam Hocevar. See the COPYING.wtfpl file for more details.
 #
 
+from isphere.command.core_command import CoreCommand
 from isphere.command.esx_command import EsxCommand
 from isphere.command.virtual_machine_command import VirtualMachineCommand
 from isphere.command.dvs_command import DvsCommand
 
 
 class VSphereREPL(EsxCommand, VirtualMachineCommand, DvsCommand):
-    pass
+    def __init__(self, hostname=None, username=None, password=None):
+        self.hostname = hostname
+        self.username = username
+        self.password = password
+        CoreCommand.__init__(self)

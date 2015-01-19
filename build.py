@@ -4,6 +4,7 @@ use_plugin('python.core')
 use_plugin('python.install_dependencies')
 use_plugin('python.distutils')
 use_plugin('copy_resources')
+use_plugin('filter_resources')
 
 use_plugin('python.pycharm')
 
@@ -31,6 +32,7 @@ default_task = ['clean', 'analyze', 'publish']
 @init
 def set_properties(project):
     project.depends_on('pyvmomi')
+    project.depends_on('docopt')
     project.build_depends_on('mock')
 
     project.set_property('verbose', True)
@@ -48,6 +50,7 @@ def set_properties(project):
 
     project.set_property('copy_resources_target', '$dir_dist')
     project.get_property('copy_resources_glob').extend(['setup.cfg'])
+    project.set_property('filter_resources_glob', ['**/cli.py'])
 
     project.set_property('dir_dist_scripts', 'scripts')
 

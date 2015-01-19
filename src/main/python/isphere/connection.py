@@ -38,8 +38,8 @@ def memoized(function):
 
 class CachingVSphere(object):
 
-    def __init__(self):
-        self._connection = AutoEstablishingConnection()
+    def __init__(self, hostname, username, password):
+        self._connection = AutoEstablishingConnection(hostname, username, password)
         self.vm_mapping = {}
         self.esx_mapping = {}
         self.dvs_mapping = {}
@@ -102,17 +102,18 @@ class CachingVSphere(object):
 
 class AutoEstablishingConnection(object):
 
-    def __init__(self):
+    def __init__(self, hostname, username, password):
         self.vvc = None
-        self.username = None
-        self.hostname = None
+        self.username = username
+        self.hostname = hostname
+        self.password = password
 
     def ensure_established(self):
         return self.vvc or self._connect()
 
     def _connect(self):
-        self.hostname = _input("Remote vsphere hostname: ")
-        self.username = _input("User name for {0}: ".format(self.hostname))
+        self.hostname = self.hostname or _input("Remote vsphere hostname: ")
+        self.username = self.username or _input("User name for {0}: ".format(self.hostname))
         self.vvc = VVC(self.hostname)
         self.vvc.connect(self.username)
 

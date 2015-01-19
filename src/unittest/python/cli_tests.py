@@ -13,9 +13,15 @@ from isphere.cli import main
 
 class CliLoopTest(TestCase):
 
+    @patch("isphere.cli.docopt")
     @patch("isphere.cli.VSphereREPL")
-    def test_should_create_REPL_and_start_it(self, repl_loop):
+    def test_should_create_REPL_and_start_it(self, repl_loop, arguments):
+        arguments.return_value = {"--username": "any-user-name",
+                                  "--password": "any-password",
+                                  "--hostname": "any-hostname"}
         main()
 
-        repl_loop.assert_called_with()
+        repl_loop.assert_called_with('any-hostname',
+                                     'any-user-name',
+                                     'any-password')
         repl_loop.return_value.cmdloop.assert_called_with()

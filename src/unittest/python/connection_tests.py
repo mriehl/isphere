@@ -15,7 +15,7 @@ from isphere.connection import (AutoEstablishingConnection,
 class CachingVSphereTests(TestCase):
 
     def setUp(self):
-        self.cache = CachingVSphere()
+        self.cache = CachingVSphere(None, None, None)
         self.cache._connection = Mock()
         self.vvc = self.cache._connection.ensure_established.return_value
 
@@ -62,7 +62,7 @@ class ConnectionTests(TestCase):
     @patch("isphere.connection.VVC")
     def test_should_ask_for_credentials_when_connecting(self, _, _input):
         _input.return_value = "any-input"
-        connection = AutoEstablishingConnection()
+        connection = AutoEstablishingConnection(None, None, None)
 
         connection._connect()
 
@@ -74,7 +74,7 @@ class ConnectionTests(TestCase):
     @patch("isphere.connection.VVC")
     def test_should_use_supplied_credentials_when_connecting(self, vvc, _input):
         _input.side_effect = ["any-hostname.domain", "any-user-name"]
-        connection = AutoEstablishingConnection()
+        connection = AutoEstablishingConnection(None, None, None)
 
         connection._connect()
 
@@ -83,7 +83,7 @@ class ConnectionTests(TestCase):
 
     @patch("isphere.connection.AutoEstablishingConnection._connect")
     def test_should_use_existing_connection(self, connect):
-        connection = AutoEstablishingConnection()
+        connection = AutoEstablishingConnection(None, None, None)
         fake_vvc = Mock()
         connection.vvc = fake_vvc
 
@@ -92,10 +92,42 @@ class ConnectionTests(TestCase):
 
     @patch("isphere.connection.AutoEstablishingConnection._connect")
     def test_should_connect_when_no_connection_established(self, connect):
-        connection = AutoEstablishingConnection()
+        connection = AutoEstablishingConnection(None, None, None)
 
         connection.ensure_established()
         self.assertEqual(True, connect.called)
+
+    @patch("isphere.connection._input")
+    @patch("isphere.connection.VVC")
+    def test_should_not_ask_for_credentials_when_credentials_supplied(self, _, _input):
+        _input.return_value = "any-input"
+        connection = AutoEstablishingConnection("any-hostname", "any-user-name", None)
+
+        connection._connect()
+
+        self.assertFalse(_input.called)
+
+    @patch("isphere.connection._input")
+    @patch("isphere.connection.VVC")
+    def test_should_ask_for_hostname_when_username_given(self, _, _input):
+        _input.return_value = "any-input"
+        connection = AutoEstablishingConnection(None, "any-user-name", None)
+
+        connection._connect()
+
+        self.assertEqual(_input.call_args_list, [
+                         call('Remote vsphere hostname: ')])
+
+    @patch("isphere.connection._input")
+    @patch("isphere.connection.VVC")
+    def test_should_ask_for_username_when_hostname_given(self, _, _input):
+        _input.return_value = "any-input"
+        connection = AutoEstablishingConnection("any-host-name", None, None)
+
+        connection._connect()
+
+        self.assertEqual(_input.call_args_list, [
+                         call('User name for any-host-name: ')])
 
 
 class MemoizingTests(TestCase):

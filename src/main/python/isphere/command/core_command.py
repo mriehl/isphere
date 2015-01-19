@@ -26,7 +26,7 @@ class CoreCommand(Cmd):
     prompt = "isphere > "
 
     def __init__(self):
-        self.cache = CachingVSphere()
+        self.cache = CachingVSphere(self.hostname, self.username, self.password)
         Cmd.__init__(self)
 
     def preloop(self):
