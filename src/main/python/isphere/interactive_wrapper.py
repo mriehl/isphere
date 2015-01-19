@@ -100,7 +100,7 @@ class VVC(object):
         vm = self.get_service("searchIndex").FindByUuid(uuid=uuid, vmSearch=True)
         if not vm:
             raise NotFound("VM with uuid {0} not found".format(uuid))
-        return vm
+        return VM(vm)
 
     def get_all_vms(self):
         for vm in self.get_all_by_type([vim.VirtualMachine]):

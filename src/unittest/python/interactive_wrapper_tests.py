@@ -206,7 +206,7 @@ class VVCTests(TestCase):
 
         actual_vm = VVC.get_vm_by_uuid(self.vvc_mock, "any-uuid")
 
-        self.assertEqual(mock_vm, actual_vm)
+        self.assertEqual(mock_vm, actual_vm.raw_vm)
 
     def test_should_raise_when_vm_uuid_not_found(self):
         self.vvc_mock.get_service.return_value.FindByUuid.return_value = None
