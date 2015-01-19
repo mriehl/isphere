@@ -40,7 +40,7 @@ class CachingVSphere(object):
 
     def __init__(self, hostname, username, password):
         self._connection = AutoEstablishingConnection(hostname, username, password)
-        self.vm_mapping = {}
+        self.vm_name_to_uuid_mapping = {}
         self.esx_mapping = {}
         self.dvs_mapping = {}
 
@@ -57,8 +57,8 @@ class CachingVSphere(object):
         return self.vvc.get_custom_attributes_mapping()
 
     def fill(self):
-        for vm in self.vvc.get_all_vms():
-            self.vm_mapping[vm.name] = vm
+        for vm in self.vvc.get_restricted_view_on_vms(["name", "config.uuid"]):
+            self.vm_name_to_uuid_mapping[vm.name] = vm.config.uuid
 
         for esx in self.vvc.get_all_esx():
             self.esx_mapping[esx.name] = esx
@@ -67,7 +67,7 @@ class CachingVSphere(object):
             self.dvs_mapping[dvs.name] = dvs
 
     def list_cached_vms(self):
-        return self.vm_mapping.keys()
+        return self.vm_name_to_uuid_mapping.keys()
 
     def list_cached_esxis(self):
         return self.esx_mapping.keys()
@@ -76,7 +76,7 @@ class CachingVSphere(object):
         return self.dvs_mapping.keys()
 
     def retrieve_vm(self, vm_name):
-        return self.vm_mapping[vm_name]
+        return self.vvc.get_vm_by_uuid(self.vm_name_to_uuid_mapping[vm_name])
 
     def retrieve_esx(self, esx_name):
         return self.esx_mapping[esx_name]
@@ -86,7 +86,7 @@ class CachingVSphere(object):
 
     @property
     def number_of_vms(self):
-        return len(self.vm_mapping)
+        return len(self.vm_name_to_uuid_mapping)
 
     @property
     def number_of_esxis(self):

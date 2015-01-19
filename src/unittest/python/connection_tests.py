@@ -22,20 +22,22 @@ class CachingVSphereTests(TestCase):
     def test_should_fill_cache_with_vms_and_esxis_returned_by_vvc(self):
         vm_1, vm_2 = Mock(), Mock()
         vm_1.name = "vm-1"
+        vm_1.config.uuid = "vm-1-uuid"
         vm_2.name = "vm-2"
+        vm_2.config.uuid = "vm-2-uuid"
         esx_1, esx_2 = Mock(), Mock()
         esx_1.name = "esx-1"
         esx_2.name = "esx-2"
         dvs_1, dvs_2 = Mock(), Mock()
         dvs_1.name = "dvs-1"
         dvs_2.name = "dvs-2"
-        self.vvc.get_all_vms.return_value = [vm_1, vm_2]
+        self.vvc.get_restricted_view_on_vms.return_value = [vm_1, vm_2]
         self.vvc.get_all_esx.return_value = [esx_1, esx_2]
         self.vvc.get_all_dvs.return_value = [dvs_1, dvs_2]
 
         self.cache.fill()
 
-        self.assertEqual(self.cache.vm_mapping, {"vm-1": vm_1, "vm-2": vm_2})
+        self.assertEqual(self.cache.vm_name_to_uuid_mapping, {"vm-1": "vm-1-uuid", "vm-2": "vm-2-uuid"})
 
     def test_should_passthrough_find_by_dns_name_calls(self):
         mock_item = Mock()
@@ -45,6 +47,15 @@ class CachingVSphereTests(TestCase):
 
         self.assertEqual(actual_item, mock_item)
         self.vvc.find_by_dns_name.assert_called_with("any.dns.name", False)
+
+    def test_should_retrieve_vm_by_uuid(self):
+        mock_vm = Mock()
+        self.vvc.get_vm_by_uuid.return_value = mock_vm
+        self.cache.vm_name_to_uuid_mapping = {"any-vm-name": "any-uuid"}
+
+        actual_vm = self.cache.retrieve_vm("any-vm-name")
+        self.assertEqual(mock_vm, actual_vm)
+        self.vvc.get_vm_by_uuid.assert_called_with("any-uuid")
 
     def test_should_passthrough_find_by_dns_name_calls_when_searching_for_vms(self):
         mock_item = Mock()
