@@ -9,7 +9,7 @@ from __future__ import print_function
 from pyVmomi import vim
 
 from isphere.interactive_wrapper import NotFound
-from isphere.command.core_command import CoreCommand, ItemType
+from isphere.command.core_command import CoreCommand
 
 
 class VirtualMachineCommand(CoreCommand):
@@ -154,7 +154,7 @@ class VirtualMachineCommand(CoreCommand):
 
     def compile_and_yield_vm_patterns(self, patterns, risky=True):
         return self.compile_and_yield_generic_patterns(patterns,
-                                                       ItemType.VIRTUAL_MACHINE,
+                                                       self.yield_vm_patterns,
                                                        self.cache.number_of_vms,
                                                        risky)
 

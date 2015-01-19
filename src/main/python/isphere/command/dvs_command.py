@@ -6,7 +6,7 @@
 
 from __future__ import print_function
 
-from isphere.command.core_command import CoreCommand, ItemType
+from isphere.command.core_command import CoreCommand
 
 
 class DvsCommand(CoreCommand):
@@ -40,7 +40,7 @@ class DvsCommand(CoreCommand):
             print(dvs_name)
 
     def compile_and_yield_dvs_patterns(self, patterns, risky=True):
-        return self.compile_and_yield_generic_patterns(patterns, ItemType.DVS, self.cache.number_of_dvses, risky)
+        return self.compile_and_yield_generic_patterns(patterns, self.yield_dvs_patterns, self.cache.number_of_dvses, risky)
 
     def yield_dvs_patterns(self, compiled_patterns):
         for dvs_name in self.cache.list_cached_dvses():

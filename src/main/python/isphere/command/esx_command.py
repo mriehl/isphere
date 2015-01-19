@@ -6,7 +6,7 @@
 
 from __future__ import print_function
 
-from isphere.command.core_command import CoreCommand, ItemType
+from isphere.command.core_command import CoreCommand
 
 
 class EsxCommand(CoreCommand):
@@ -42,7 +42,7 @@ class EsxCommand(CoreCommand):
 
     def compile_and_yield_esx_patterns(self, patterns, risky=True):
         return self.compile_and_yield_generic_patterns(patterns,
-                                                       ItemType.HOST_SYSTEM,
+                                                       self.yield_esx_patterns,
                                                        self.cache.number_of_esxis,
                                                        risky)
 

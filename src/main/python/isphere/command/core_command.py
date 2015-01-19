@@ -79,11 +79,10 @@ class CoreCommand(Cmd):
                 print(item_name_header)
                 print("Eval failed for {0}: {1}".format(item_name, e))
 
-    def compile_and_yield_generic_patterns(self, patterns, item_type, item_count, risky=True):
+    def compile_and_yield_generic_patterns(self, patterns, pattern_generator, item_count, risky=True):
         if not patterns and risky:
-            unformatted_message = "No pattern specified - you're doing this to all {count} {type}. Proceed? (y/N) "
-            message = unformatted_message.format(count=item_count,
-                                                 type=item_type)
+            unformatted_message = "No pattern specified - you're doing this to all {count} items. Proceed? (y/N) "
+            message = unformatted_message.format(count=item_count)
             if not _input(message).lower() == "y":
                 return []
 
@@ -94,20 +93,8 @@ class CoreCommand(Cmd):
             print("Invalid regular expression patterns: {0}".format(e))
             return []
 
-        # TODO @mriehl this dispatch is pretty ugly
-        if item_type == ItemType.HOST_SYSTEM:
-            return self.yield_esx_patterns(compiled_patterns)
-        if item_type == ItemType.VIRTUAL_MACHINE:
-            return self.yield_vm_patterns(compiled_patterns)
-        if item_type == ItemType.DVS:
-            return self.yield_dvs_patterns(compiled_patterns)
+        return pattern_generator(compiled_patterns)
 
     @staticmethod
     def do_EOF(_):
         return True
-
-
-class ItemType(object):
-    VIRTUAL_MACHINE = "vm"
-    HOST_SYSTEM = "esx"
-    DVS = "dvs"
