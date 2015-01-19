@@ -66,7 +66,7 @@ class CoreCommand(Cmd):
 
             separator = "-"
             item_name_header = " {name} ".format(
-                name=item_name).center(
+                name=item_name[:78]).center(
                 80, separator)
 
             try:
