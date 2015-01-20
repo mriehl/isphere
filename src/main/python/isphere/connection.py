@@ -7,6 +7,7 @@
 from functools import wraps
 
 from isphere.interactive_wrapper import VVC
+from isphere.input import killable_input
 import thirdparty.tasks as thirdparty_tasks
 
 try:
@@ -16,11 +17,6 @@ except ImportError:
     pass
 except AttributeError:
     pass
-
-try:
-    _input = raw_input
-except NameError:
-    _input = input
 
 
 def memoized(function):
@@ -117,8 +113,8 @@ class AutoEstablishingConnection(object):
         return self.vvc or self._connect()
 
     def _connect(self):
-        self.hostname = self.hostname or _input("Remote vsphere hostname: ")
-        self.username = self.username or _input("User name for {0}: ".format(self.hostname))
+        self.hostname = self.hostname or killable_input("Remote vsphere hostname: ")
+        self.username = self.username or killable_input("User name for {0}: ".format(self.hostname))
         self.vvc = VVC(self.hostname)
         self.vvc.connect(self.username)
 

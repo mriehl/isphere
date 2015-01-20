@@ -4,6 +4,8 @@
 #  as published by Sam Hocevar. See the COPYING.wtfpl file for more details.
 #
 
+import cmd
+
 from isphere.command.core_command import CoreCommand
 from isphere.command.esx_command import EsxCommand
 from isphere.command.virtual_machine_command import VirtualMachineCommand
@@ -16,3 +18,10 @@ class VSphereREPL(EsxCommand, VirtualMachineCommand, DvsCommand):
         self.username = username
         self.password = password
         CoreCommand.__init__(self)
+
+    def cmdloop(self):
+        try:
+            cmd.Cmd.cmdloop(self)
+        except KeyboardInterrupt:
+            print("Quit with Ctrl+D or `EOF`.")
+            self.cmdloop()

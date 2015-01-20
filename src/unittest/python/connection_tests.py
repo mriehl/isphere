@@ -69,22 +69,22 @@ class CachingVSphereTests(TestCase):
 
 class ConnectionTests(TestCase):
 
-    @patch("isphere.connection._input")
+    @patch("isphere.connection.killable_input")
     @patch("isphere.connection.VVC")
-    def test_should_ask_for_credentials_when_connecting(self, _, _input):
-        _input.return_value = "any-input"
+    def test_should_ask_for_credentials_when_connecting(self, _, killable_input):
+        killable_input.return_value = "any-input"
         connection = AutoEstablishingConnection(None, None, None)
 
         connection._connect()
 
-        self.assertEqual(_input.call_args_list, [
+        self.assertEqual(killable_input.call_args_list, [
                          call('Remote vsphere hostname: '),
                          call('User name for any-input: ')])
 
-    @patch("isphere.connection._input")
+    @patch("isphere.connection.killable_input")
     @patch("isphere.connection.VVC")
-    def test_should_use_supplied_credentials_when_connecting(self, vvc, _input):
-        _input.side_effect = ["any-hostname.domain", "any-user-name"]
+    def test_should_use_supplied_credentials_when_connecting(self, vvc, killable_input):
+        killable_input.side_effect = ["any-hostname.domain", "any-user-name"]
         connection = AutoEstablishingConnection(None, None, None)
 
         connection._connect()
@@ -108,36 +108,36 @@ class ConnectionTests(TestCase):
         connection.ensure_established()
         self.assertEqual(True, connect.called)
 
-    @patch("isphere.connection._input")
+    @patch("isphere.connection.killable_input")
     @patch("isphere.connection.VVC")
-    def test_should_not_ask_for_credentials_when_credentials_supplied(self, _, _input):
-        _input.return_value = "any-input"
+    def test_should_not_ask_for_credentials_when_credentials_supplied(self, _, killable_input):
+        killable_input.return_value = "any-input"
         connection = AutoEstablishingConnection("any-hostname", "any-user-name", None)
 
         connection._connect()
 
-        self.assertFalse(_input.called)
+        self.assertFalse(killable_input.called)
 
-    @patch("isphere.connection._input")
+    @patch("isphere.connection.killable_input")
     @patch("isphere.connection.VVC")
-    def test_should_ask_for_hostname_when_username_given(self, _, _input):
-        _input.return_value = "any-input"
+    def test_should_ask_for_hostname_when_username_given(self, _, killable_input):
+        killable_input.return_value = "any-input"
         connection = AutoEstablishingConnection(None, "any-user-name", None)
 
         connection._connect()
 
-        self.assertEqual(_input.call_args_list, [
+        self.assertEqual(killable_input.call_args_list, [
                          call('Remote vsphere hostname: ')])
 
-    @patch("isphere.connection._input")
+    @patch("isphere.connection.killable_input")
     @patch("isphere.connection.VVC")
-    def test_should_ask_for_username_when_hostname_given(self, _, _input):
-        _input.return_value = "any-input"
+    def test_should_ask_for_username_when_hostname_given(self, _, killable_input):
+        killable_input.return_value = "any-input"
         connection = AutoEstablishingConnection("any-host-name", None, None)
 
         connection._connect()
 
-        self.assertEqual(_input.call_args_list, [
+        self.assertEqual(killable_input.call_args_list, [
                          call('User name for any-host-name: ')])
 
 
