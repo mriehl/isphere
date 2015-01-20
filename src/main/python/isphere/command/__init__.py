@@ -20,9 +20,9 @@ class VSphereREPL(EsxCommand, VirtualMachineCommand, DvsCommand):
         self.password = password
         CoreCommand.__init__(self)
 
-    def cmdloop(self):
+    def cmdloop(self, **kwargs):
         try:
-            cmd.Cmd.cmdloop(self)
+            cmd.Cmd.cmdloop(self, **kwargs)
         except KeyboardInterrupt:
             print("Quit with Ctrl+D or `EOF`.")
-            self.cmdloop()
+            self.cmdloop(**kwargs)
