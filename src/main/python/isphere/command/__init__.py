@@ -13,6 +13,7 @@ from isphere.command.dvs_command import DvsCommand
 
 
 class VSphereREPL(EsxCommand, VirtualMachineCommand, DvsCommand):
+
     def __init__(self, hostname=None, username=None, password=None):
         self.hostname = hostname
         self.username = username

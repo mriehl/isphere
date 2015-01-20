@@ -254,6 +254,7 @@ class VM(object):
 
 
 class DVS(object):
+
     """
     A DistributedVirtualSwitch
     """
