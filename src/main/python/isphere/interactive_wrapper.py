@@ -51,7 +51,7 @@ class VVC(object):
           If the password is not specified, a getpass prompt will be used.
         """
         if not password:
-            password = getpass("Password for {0}: ".format(self.hostname))
+            password = getpass("Password for {0}@{1}: ".format(username, self.hostname))
         self.service_instance = connect.SmartConnect(host=self.hostname,
                                                      user=username,
                                                      pwd=password,
