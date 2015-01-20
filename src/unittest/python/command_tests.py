@@ -10,6 +10,7 @@ from unittest import TestCase
 from mock import patch, call, Mock
 
 from isphere.command import VSphereREPL
+from isphere.interactive_wrapper import NotFound
 
 
 class PatternTests(TestCase):
@@ -155,6 +156,20 @@ class VSphereREPLTests(TestCase):
                          [
                              call('---------------------------------- any-host-1 ----------------------------------'),
                              call('any-return-value')
+                         ])
+
+    @patch("isphere.command.core_command.CachingVSphere.retrieve_vm")
+    def test_should_not_crash_during_eval_when_vm_not_found(self, cache_retrieve):
+        self.vm_names.return_value = ["any-host-1"]
+        mock_vm = Mock()
+        mock_vm.any_attribute_or_function.return_value = "any-return-value"
+        cache_retrieve.side_effect = NotFound("oh no!")
+
+        self.repl.do_eval_vm("any-host!vm.any_attribute_or_function()")
+
+        self.assertEqual(self.core_mock_print.call_args_list,
+                         [
+                             call('Skipping any-host-1 since it could not be retrieved.')
                          ])
 
     @patch("isphere.command.core_command.CachingVSphere.retrieve_vm")
