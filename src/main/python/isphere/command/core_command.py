@@ -84,7 +84,8 @@ class CoreCommand(Cmd):
                 print(item_name_header)
                 print("Eval failed for {0}: {1}".format(item_name, e))
 
-    def compile_and_yield_generic_patterns(self, patterns, pattern_generator, item_count, risky=True):
+    @staticmethod
+    def compile_and_yield_generic_patterns(patterns, pattern_generator, item_count, risky=True):
         if not patterns and risky:
             unformatted_message = "No pattern specified - you're doing this to all {count} items. Proceed? (y/N) "
             message = unformatted_message.format(count=item_count)
