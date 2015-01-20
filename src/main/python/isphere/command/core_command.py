@@ -102,4 +102,9 @@ class CoreCommand(Cmd):
 
     @staticmethod
     def do_EOF(_):
+        """
+        Exit this prompt.
+
+        Usage: `EOF` (Ctrl+D also works).
+        """
         return True
