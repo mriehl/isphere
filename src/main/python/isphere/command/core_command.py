@@ -10,6 +10,7 @@ from cmd import Cmd
 import re
 
 from isphere.connection import CachingVSphere
+from isphere.interactive_wrapper import NotFound
 
 
 try:
@@ -58,7 +59,11 @@ class CoreCommand(Cmd):
             def guard():
                 raise NoOutput()
             _globals, _locals = {}, {}
-            item = item_retriever(item_name)
+            try:
+                item = item_retriever(item_name)
+            except NotFound:
+                print("Skipping {item} since it could not be retrieved.".format(item=item_name))
+                continue
             _locals[local_name] = item
             _locals["no_output"] = guard
             _globals[local_name] = item
