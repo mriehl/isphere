@@ -3,6 +3,7 @@
 #  terms of the Do What The Fuck You Want To Public License, Version 2,
 #  as published by Sam Hocevar. See the COPYING.wtfpl file for more details.
 #
+
 """Isphere
 
 Usage:
@@ -18,11 +19,15 @@ Options:
     --version                   Show version.
 """
 
+import sys
+
 from docopt import docopt
 from isphere.command import VSphereREPL
 
 
 def main(*args):
     arguments = docopt(__doc__, version='isphere ${version}')
+    sys.argv = []  # prevent cmd2 from looking at argv
+
     repl = VSphereREPL(arguments['--hostname'], arguments['--username'], arguments['--password'])
     repl.cmdloop()
