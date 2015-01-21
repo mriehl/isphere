@@ -24,11 +24,11 @@ class NoOutput(Exception):
 
 
 class CoreCommand(Cmd):
-    prompt = "isphere > "
 
     def __init__(self):
         self.cache = CachingVSphere(self.hostname, self.username, self.password)
         Cmd.__init__(self)
+        self.prompt = self.colorize("isphere > ", "green")
 
     def preloop(self):
         self.cache.fill()
