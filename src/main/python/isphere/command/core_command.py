@@ -32,10 +32,14 @@ class CoreCommand(Cmd):
 
     def preloop(self):
         self.cache.fill()
-        print("{0} VMs on {1} ESXis available.".format(self.cache.number_of_vms,
-                                                       self.cache.number_of_esxis))
-        print("{0} Distributed Virtual Switches configured.".format(
-              self.cache.number_of_dvses))
+        print(
+            self.colorize("{0} VMs on {1} ESXis available.".format(self.cache.number_of_vms,
+                                                                   self.cache.number_of_esxis),
+                          "blue"))
+        print(
+            self.colorize("{0} Distributed Virtual Switches configured.".format(
+                self.cache.number_of_dvses),
+                "blue"))
 
     def do_reload(self, _):
         """Usage: reload
@@ -45,14 +49,13 @@ class CoreCommand(Cmd):
         """
         self.preloop()
 
-    @staticmethod
-    def eval(line, item_name_generator, item_retriever, local_name):
+    def eval(self, line, item_name_generator, item_retriever, local_name):
         try:
             patterns_and_statement = line.split("!", 1)
             patterns = patterns_and_statement[0]
             statement = patterns_and_statement[1]
         except IndexError:
-            print("Looks like your input was malformed. Try `help eval_*`.")
+            print(self.colorize("Looks like your input was malformed. Try `help eval_*`."), "red")
             return
 
         for item_name in item_name_generator(patterns):
@@ -62,7 +65,7 @@ class CoreCommand(Cmd):
             try:
                 item = item_retriever(item_name)
             except NotFound:
-                print("Skipping {item} since it could not be retrieved.".format(item=item_name))
+                print(self.colorize("Skipping {item} since it could not be retrieved.".format(item=item_name), "red"))
                 continue
             _locals[local_name] = item
             _locals["no_output"] = guard
@@ -76,19 +79,18 @@ class CoreCommand(Cmd):
 
             try:
                 result = eval(statement, _globals, _locals)
-                print(item_name_header)
+                print(self.colorize(item_name_header, "blue"))
                 print(result)
             except NoOutput:
                 pass
             except Exception as e:
                 print(item_name_header)
-                print("Eval failed for {0}: {1}".format(item_name, e))
+                print(self.colorize("Eval failed for {0}: {1}".format(item_name, e), "red"))
 
-    @staticmethod
-    def compile_and_yield_generic_patterns(patterns, pattern_generator, item_count, risky=True):
+    def compile_and_yield_generic_patterns(self, patterns, pattern_generator, item_count, risky=True):
         if not patterns and risky:
             unformatted_message = "No pattern specified - you're doing this to all {count} items. Proceed? (y/N) "
-            message = unformatted_message.format(count=item_count)
+            message = unformatted_message.format(count=self.colorize(str(item_count), "red"))
             if not _input(message).lower() == "y":
                 return []
 
@@ -96,7 +98,7 @@ class CoreCommand(Cmd):
         try:
             compiled_patterns = [re.compile(pattern) for pattern in actual_patterns]
         except Exception as e:
-            print("Invalid regular expression patterns: {0}".format(e))
+            print(self.colorize("Invalid regular expression patterns: {0}".format(e), "red"))
             return []
 
         return pattern_generator(compiled_patterns)

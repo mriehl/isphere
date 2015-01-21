@@ -102,6 +102,8 @@ class VSphereREPLTests(TestCase):
 
     def setUp(self):
         self.repl = VSphereREPL()
+        self.repl.colorize = lambda text, color: text
+
         self.vm_print_patcher = patch("isphere.command.virtual_machine_command.print", create=True)
         self.vm_mock_print = self.vm_print_patcher.start()
 
