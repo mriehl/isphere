@@ -1,0 +1,4460 @@
+<!doctype html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+
+    <title>isphere.command.virtual_machine_command API documentation</title>
+    <meta name="description" content="" />
+
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300' rel='stylesheet' type='text/css'>
+  
+  <style type="text/css">
+  
+* {
+  box-sizing: border-box;
+}
+/*! normalize.css v1.1.1 | MIT License | git.io/normalize */
+
+/* ==========================================================================
+   HTML5 display definitions
+   ========================================================================== */
+
+/**
+ * Correct `block` display not defined in IE 6/7/8/9 and Firefox 3.
+ */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+    display: block;
+}
+
+/**
+ * Correct `inline-block` display not defined in IE 6/7/8/9 and Firefox 3.
+ */
+
+audio,
+canvas,
+video {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+}
+
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+
+audio:not([controls]) {
+    display: none;
+    height: 0;
+}
+
+/**
+ * Address styling not present in IE 7/8/9, Firefox 3, and Safari 4.
+ * Known issue: no IE 6 support.
+ */
+
+[hidden] {
+    display: none;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+/**
+ * 1. Prevent system color scheme's background color being used in Firefox, IE,
+ *    and Opera.
+ * 2. Prevent system color scheme's text color being used in Firefox, IE, and
+ *    Opera.
+ * 3. Correct text resizing oddly in IE 6/7 when body `font-size` is set using
+ *    `em` units.
+ * 4. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ */
+
+html {
+    background: #fff; /* 1 */
+    color: #000; /* 2 */
+    font-size: 100%; /* 3 */
+    -webkit-text-size-adjust: 100%; /* 4 */
+    -ms-text-size-adjust: 100%; /* 4 */
+}
+
+/**
+ * Address `font-family` inconsistency between `textarea` and other form
+ * elements.
+ */
+
+html,
+button,
+input,
+select,
+textarea {
+    font-family: sans-serif;
+}
+
+/**
+ * Address margins handled incorrectly in IE 6/7.
+ */
+
+body {
+    margin: 0;
+}
+
+/* ==========================================================================
+   Links
+   ========================================================================== */
+
+/**
+ * Address `outline` inconsistency between Chrome and other browsers.
+ */
+
+a:focus {
+    outline: thin dotted;
+}
+
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+
+a:active,
+a:hover {
+    outline: 0;
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+/**
+ * Address font sizes and margins set differently in IE 6/7.
+ * Address font sizes within `section` and `article` in Firefox 4+, Safari 5,
+ * and Chrome.
+ */
+
+h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin: 0.83em 0;
+}
+
+h3 {
+    font-size: 1.17em;
+    margin: 1em 0;
+}
+
+h4 {
+    font-size: 1em;
+    margin: 1.33em 0;
+}
+
+h5 {
+    font-size: 0.83em;
+    margin: 1.67em 0;
+}
+
+h6 {
+    font-size: 0.67em;
+    margin: 2.33em 0;
+}
+
+/**
+ * Address styling not present in IE 7/8/9, Safari 5, and Chrome.
+ */
+
+abbr[title] {
+    border-bottom: 1px dotted;
+}
+
+/**
+ * Address style set to `bolder` in Firefox 3+, Safari 4/5, and Chrome.
+ */
+
+b,
+strong {
+    font-weight: bold;
+}
+
+blockquote {
+    margin: 1em 40px;
+}
+
+/**
+ * Address styling not present in Safari 5 and Chrome.
+ */
+
+dfn {
+    font-style: italic;
+}
+
+/**
+ * Address differences between Firefox and other browsers.
+ * Known issue: no IE 6/7 normalization.
+ */
+
+hr {
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 0;
+}
+
+/**
+ * Address styling not present in IE 6/7/8/9.
+ */
+
+mark {
+    background: #ff0;
+    color: #000;
+}
+
+/**
+ * Address margins set differently in IE 6/7.
+ */
+
+p,
+pre {
+    margin: 1em 0;
+}
+
+/**
+ * Correct font family set oddly in IE 6, Safari 4/5, and Chrome.
+ */
+
+code,
+kbd,
+pre,
+samp {
+    font-family: monospace, serif;
+    _font-family: 'courier new', monospace;
+    font-size: 1em;
+}
+
+/**
+ * Improve readability of pre-formatted text in all browsers.
+ */
+
+pre {
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/**
+ * Address CSS quotes not supported in IE 6/7.
+ */
+
+q {
+    quotes: none;
+}
+
+/**
+ * Address `quotes` property not supported in Safari 4.
+ */
+
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+
+small {
+    font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sup {
+    top: -0.5em;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+/* ==========================================================================
+   Lists
+   ========================================================================== */
+
+/**
+ * Address margins set differently in IE 6/7.
+ */
+
+dl,
+menu,
+ol,
+ul {
+    margin: 1em 0;
+}
+
+dd {
+    margin: 0 0 0 40px;
+}
+
+/**
+ * Address paddings set differently in IE 6/7.
+ */
+
+menu,
+ol,
+ul {
+    padding: 0 0 0 40px;
+}
+
+/**
+ * Correct list images handled incorrectly in IE 7.
+ */
+
+nav ul,
+nav ol {
+    list-style: none;
+    list-style-image: none;
+}
+
+/* ==========================================================================
+   Embedded content
+   ========================================================================== */
+
+/**
+ * 1. Remove border when inside `a` element in IE 6/7/8/9 and Firefox 3.
+ * 2. Improve image quality when scaled in IE 7.
+ */
+
+img {
+    border: 0; /* 1 */
+    -ms-interpolation-mode: bicubic; /* 2 */
+}
+
+/**
+ * Correct overflow displayed oddly in IE 9.
+ */
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   Figures
+   ========================================================================== */
+
+/**
+ * Address margin not present in IE 6/7/8/9, Safari 5, and Opera 11.
+ */
+
+figure {
+    margin: 0;
+}
+
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+
+/**
+ * Correct margin displayed oddly in IE 6/7.
+ */
+
+form {
+    margin: 0;
+}
+
+/**
+ * Define consistent border, margin, and padding.
+ */
+
+fieldset {
+    border: 1px solid #c0c0c0;
+    margin: 0 2px;
+    padding: 0.35em 0.625em 0.75em;
+}
+
+/**
+ * 1. Correct color not being inherited in IE 6/7/8/9.
+ * 2. Correct text not wrapping in Firefox 3.
+ * 3. Correct alignment displayed oddly in IE 6/7.
+ */
+
+legend {
+    border: 0; /* 1 */
+    padding: 0;
+    white-space: normal; /* 2 */
+    *margin-left: -7px; /* 3 */
+}
+
+/**
+ * 1. Correct font size not being inherited in all browsers.
+ * 2. Address margins set differently in IE 6/7, Firefox 3+, Safari 5,
+ *    and Chrome.
+ * 3. Improve appearance and consistency in all browsers.
+ */
+
+button,
+input,
+select,
+textarea {
+    font-size: 100%; /* 1 */
+    margin: 0; /* 2 */
+    vertical-align: baseline; /* 3 */
+    *vertical-align: middle; /* 3 */
+}
+
+/**
+ * Address Firefox 3+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+
+button,
+input {
+    line-height: normal;
+}
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Chrome, Safari 5+, and IE 6+.
+ * Correct `select` style inheritance in Firefox 4+ and Opera.
+ */
+
+button,
+select {
+    text-transform: none;
+}
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ * 4. Remove inner spacing in IE 7 without affecting normal text inputs.
+ *    Known issue: inner spacing remains in IE 6.
+ */
+
+button,
+html input[type="button"], /* 1 */
+input[type="reset"],
+input[type="submit"] {
+    -webkit-appearance: button; /* 2 */
+    cursor: pointer; /* 3 */
+    *overflow: visible;  /* 4 */
+}
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+
+button[disabled],
+html input[disabled] {
+    cursor: default;
+}
+
+/**
+ * 1. Address box sizing set to content-box in IE 8/9.
+ * 2. Remove excess padding in IE 8/9.
+ * 3. Remove excess padding in IE 7.
+ *    Known issue: excess padding remains in IE 6.
+ */
+
+input[type="checkbox"],
+input[type="radio"] {
+    box-sizing: border-box; /* 1 */
+    padding: 0; /* 2 */
+    *height: 13px; /* 3 */
+    *width: 13px; /* 3 */
+}
+
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
+ *    (include `-moz` to future-proof).
+ */
+
+input[type="search"] {
+    -webkit-appearance: textfield; /* 1 */
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box; /* 2 */
+    box-sizing: content-box;
+}
+
+/**
+ * Remove inner padding and search cancel button in Safari 5 and Chrome
+ * on OS X.
+ */
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+
+/**
+ * Remove inner padding and border in Firefox 3+.
+ */
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+/**
+ * 1. Remove default vertical scrollbar in IE 6/7/8/9.
+ * 2. Improve readability and alignment in all browsers.
+ */
+
+textarea {
+    overflow: auto; /* 1 */
+    vertical-align: top; /* 2 */
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+
+/**
+ * Remove most spacing between table cells.
+ */
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+  </style>
+
+  <style type="text/css">
+  
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  body {
+    background: #fff;
+    font-family: "Source Sans Pro", "Helvetica Neueue", Helvetica, sans;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.6em;
+  }
+  #content {
+    width: 70%;
+    max-width: 850px;
+    float: left;
+    padding: 30px 60px;
+    border-left: 1px solid #ddd;
+  }
+  #sidebar {
+    width: 25%;
+    float: left;
+    padding: 30px;
+    overflow: hidden;
+  }
+  #nav {
+    font-size: 130%;
+    margin: 0 0 15px 0;
+  }
+
+  #top {
+    display: block;
+    position: fixed;
+    bottom: 5px;
+    left: 5px;
+    font-size: .85em;
+    text-transform: uppercase;
+  }
+
+  #footer {
+    font-size: .75em;
+    padding: 5px 30px;
+    border-top: 1px solid #ddd;
+    text-align: right;
+  }
+    #footer p {
+      margin: 0 0 0 30px;
+      display: inline-block;
+    }
+
+  h1, h2, h3, h4, h5 {
+    font-weight: 300;
+  }
+  h1 {
+    font-size: 2.5em;
+    line-height: 1.1em;
+    margin: 0 0 .50em 0;
+  }
+
+  h2 {
+    font-size: 1.75em;
+    margin: 1em 0 .50em 0;
+  }
+
+  h3 {
+    margin: 25px 0 10px 0;
+  }
+
+  h4 {
+    margin: 0;
+    font-size: 105%;
+  }
+
+  a {
+    color: #058;
+    text-decoration: none;
+    transition: color .3s ease-in-out;
+  }
+
+  a:hover {
+    color: #e08524;
+    transition: color .3s ease-in-out;
+  }
+
+  pre, code, .mono, .name {
+    font-family: "Ubuntu Mono", "Cousine", "DejaVu Sans Mono", monospace;
+  }
+
+  .title .name {
+    font-weight: bold;
+  }
+  .section-title {
+    margin-top: 2em;
+  }
+  .ident {
+    color: #900;
+  }
+
+  code {
+    background: #f9f9f9;
+  } 
+
+  pre {
+    background: #fefefe;
+    border: 1px solid #ddd;
+    box-shadow: 2px 2px 0 #f3f3f3;
+    margin: 0 30px;
+    padding: 15px 30px;
+  }
+
+  .codehilite {
+    margin: 0 30px 10px 30px;
+  }
+
+    .codehilite pre {
+      margin: 0;
+    }
+    .codehilite .err { background: #ff3300; color: #fff !important; } 
+
+  table#module-list {
+    font-size: 110%;
+  }
+
+    table#module-list tr td:first-child {
+      padding-right: 10px;
+      white-space: nowrap;
+    }
+
+    table#module-list td {
+      vertical-align: top;
+      padding-bottom: 8px;
+    }
+
+      table#module-list td p {
+        margin: 0 0 7px 0;
+      }
+
+  .def {
+    display: table;
+  }
+
+    .def p {
+      display: table-cell;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    .def p:first-child {
+      white-space: nowrap;
+    }
+
+    .def p:last-child {
+      width: 100%;
+    }
+
+
+  #index {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+    ul#index .class_name {
+      /* font-size: 110%; */
+      font-weight: bold;
+    }
+    #index ul {
+      margin: 0;
+    }
+
+  .item {
+    margin: 0 0 15px 0;
+  }
+
+    .item .class {
+      margin: 0 0 25px 30px;
+    }
+
+      .item .class ul.class_list {
+        margin: 0 0 20px 0;
+      }
+
+    .item .name {
+      background: #fafafa;
+      margin: 0;
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 3px;
+      display: inline-block;
+      min-width: 40%;
+    }
+      .item .name:hover {
+        background: #f6f6f6;
+      }
+
+    .item .empty_desc {
+      margin: 0 0 5px 0;
+      padding: 0;
+    }
+
+    .item .inheritance {
+      margin: 3px 0 0 30px;
+    }
+
+    .item .inherited {
+      color: #666;
+    }
+
+    .item .desc {
+      padding: 0 8px;
+      margin: 0;
+    }
+
+      .item .desc p {
+        margin: 0 0 10px 0;
+      }
+
+    .source_cont {
+      margin: 0;
+      padding: 0;
+    }
+
+    .source_link a {
+      background: #ffc300;
+      font-weight: 400;
+      font-size: .75em;
+      text-transform: uppercase;
+      color: #fff;
+      text-shadow: 1px 1px 0 #f4b700;
+      
+      padding: 3px 8px;
+      border-radius: 2px;
+      transition: background .3s ease-in-out;
+    }
+      .source_link a:hover {
+        background: #FF7200;
+        text-shadow: none;
+        transition: background .3s ease-in-out;
+      }
+
+    .source {
+      display: none;
+      max-height: 600px;
+      overflow-y: scroll;
+      margin-bottom: 15px;
+    }
+
+      .source .codehilite {
+        margin: 0;
+      }
+
+  .desc h1, .desc h2, .desc h3 {
+    font-size: 100% !important;
+  }
+  .clear {
+    clear: both;
+  }
+
+  @media all and (max-width: 950px) {
+    #sidebar {
+      width: 35%;
+    }
+    #content {
+      width: 65%;
+    }
+  }
+  @media all and (max-width: 650px) {
+    #top {
+      display: none;
+    }
+    #sidebar {
+      float: none;
+      width: auto;
+    }
+    #content {
+      float: none;
+      width: auto;
+      padding: 30px;
+    }
+
+    #index ul {
+      padding: 0;
+      margin-bottom: 15px;
+    }
+    #index ul li {
+      display: inline-block;
+      margin-right: 30px;
+    }
+    #footer {
+      text-align: left;
+    }
+    #footer p {
+      display: block;
+      margin: inherit;
+    }
+  }
+
+  /*****************************/
+
+  </style>
+
+
+  <style type="text/css">
+  
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+    /* Style adjustments for viewports that meet the condition */
+}
+
+@media print,
+       (-o-min-device-pixel-ratio: 5/4),
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 120dpi) {
+    /* Style adjustments for high resolution devices */
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid required HTTP connection: h5bp.com/r
+   ========================================================================== */
+
+@media print {
+    * {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster: h5bp.com/s */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links for images, or javascript/internal links
+     */
+
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group; /* h5bp.com/t */
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    @page {
+        margin: 0.5cm;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
+
+  </style>
+
+  <script type="text/javascript">
+  function toggle(id, $link) {
+    $node = document.getElementById(id);
+    if (!$node)
+    return;
+    if (!$node.style.display || $node.style.display == 'none') {
+    $node.style.display = 'block';
+    $link.innerHTML = 'Hide source &nequiv;';
+    } else {
+    $node.style.display = 'none';
+    $link.innerHTML = 'Show source &equiv;';
+    }
+  }
+  </script>
+</head>
+<body>
+<a href="#" id="top">Top</a>
+
+<div id="container">
+    
+  
+  <div id="sidebar">
+    <h1>Index</h1>
+    <ul id="index">
+
+
+    <li class="set"><h3><a href="#header-classes">Classes</a></h3>
+      <ul>
+        <li class="mono">
+        <span class="class_name"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand">VirtualMachineCommand</a></span>
+        
+          
+  <ul>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.compile_and_yield_generic_patterns">compile_and_yield_generic_patterns</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.do_EOF">do_EOF</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.eval">eval</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.__init__">__init__</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.cmdloop">cmdloop</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.colorize">colorize</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.columnize">columnize</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.compile_and_yield_vm_patterns">compile_and_yield_vm_patterns</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.complete">complete</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.complete_help">complete_help</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.complete_statement">complete_statement</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.completedefault">completedefault</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.completenames">completenames</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.default">default</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.do__load">do__load</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.do__relative_load">do__relative_load</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.do_alarms_vm">do_alarms_vm</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.do_cmdenvironment">do_cmdenvironment</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.do_config_vm">do_config_vm</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.do_ed">do_ed</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.do_edit">do_edit</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.do_eof">do_eof</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.do_eval_vm">do_eval_vm</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.do_exit">do_exit</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.do_help">do_help</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.do_hi">do_hi</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.do_history">do_history</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.do_info_vm">do_info_vm</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.do_l">do_l</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.do_li">do_li</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.do_list">do_list</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.do_list_vm">do_list_vm</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.do_load">do_load</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.do_migrate_vm">do_migrate_vm</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.do_pause">do_pause</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.do_py">do_py</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.do_q">do_q</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.do_quit">do_quit</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.do_r">do_r</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.do_reboot_vm">do_reboot_vm</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.do_reload">do_reload</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.do_reset_vm">do_reset_vm</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.do_run">do_run</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.do_save">do_save</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.do_set">do_set</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.do_shell">do_shell</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.do_shortcuts">do_shortcuts</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.do_show">do_show</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.emptyline">emptyline</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.fileimport">fileimport</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.func_named">func_named</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.get_names">get_names</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.last_matching">last_matching</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.onecmd">onecmd</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.onecmd_plus_hooks">onecmd_plus_hooks</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.parsed">parsed</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.parseline">parseline</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.perror">perror</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.pfeedback">pfeedback</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.postcmd">postcmd</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.postloop">postloop</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.postparse">postparse</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.postparsing_postcmd">postparsing_postcmd</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.postparsing_precmd">postparsing_precmd</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.poutput">poutput</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.precmd">precmd</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.preloop">preloop</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.preparse">preparse</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.print_topics">print_topics</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.pseudo_raw_input">pseudo_raw_input</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.read_file_or_url">read_file_or_url</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.redirect_output">redirect_output</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.restore_output">restore_output</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.retrieve_vm">retrieve_vm</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.runTranscriptTests">runTranscriptTests</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.run_commands_at_invocation">run_commands_at_invocation</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.select">select</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.yield_vm_patterns">yield_vm_patterns</a></li>
+  </ul>
+
+        </li>
+      </ul>
+    </li>
+
+    </ul>
+  </div>
+
+    <article id="content">
+      
+  
+
+  
+
+
+  <header id="section-intro">
+  <h1 class="title"><span class="name">isphere.command.virtual_machine_command</span> module</h1>
+  
+  
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command" class="source">
+    <pre><code>#  Copyright (c) 2014-2015 Maximilien Riehl <max@riehl.io>
+#  This work is free. You can redistribute it and/or modify it under the
+#  terms of the Do What The Fuck You Want To Public License, Version 2,
+#  as published by Sam Hocevar. See the COPYING.wtfpl file for more details.
+#
+
+from __future__ import print_function
+
+from pyVmomi import vim
+
+from isphere.interactive_wrapper import NotFound
+from isphere.command.core_command import CoreCommand
+
+
+class VirtualMachineCommand(CoreCommand):
+
+    def do_reset_vm(self, patterns):
+        """Usage: reset_vm [pattern1 [pattern2]...]
+        Reset vms matching the given ORed name patterns.
+
+        Sample usage: `reset MY_VM_NAME OTHERNAME`
+        """
+        reset_tasks = []
+        for vm_name in self.compile_and_yield_vm_patterns(patterns):
+            print("Launching reset task for {0}".format(vm_name))
+            reset_task = self.retrieve_vm(vm_name).ResetVM_Task()
+            reset_tasks.append(reset_task)
+
+        print("Waiting for {0} reset tasks to complete".format(len(reset_tasks)))
+        self.cache.wait_for_tasks(reset_tasks)
+
+    def do_eval_vm(self, line):
+        """Usage: eval_vm [pattern1 [pattern2]...] ! <statement>
+        Evaluate a statement of python code. You can access the
+        virtual machine object by using the variable `vm`.
+        Calling the function `no_output` will not produce any output (use this
+                                                                      to filter).
+
+        Sample usage:
+        * `eval MY_VM_NAME ! filter(lambda field_name: callable(getattr(vm, field_name)) and not field_name.startswith("_"), dir(vm))`
+          ^ shows 'public' methods we can call on the vm object
+        * `eval MY_VM_NAME ! vm.name`
+        * `eval MY_VM_NAME ! vm.RebootGuest()`
+        """
+        self.eval(line, self.compile_and_yield_vm_patterns, self.retrieve_vm, "vm")
+
+    def do_reboot_vm(self, patterns):
+        """Usage: reboot_vm [pattern1 [pattern2]...]
+        Soft reboot vms matching the given ORed name patterns.
+
+        Sample usage: `reboot MY_VM_NAME`
+        """
+        for vm_name in self.compile_and_yield_vm_patterns(patterns):
+            print("Asking {0} to reboot".format(vm_name))
+            self.retrieve_vm(vm_name).RebootGuest()
+
+    def do_migrate_vm(self, line):
+        """Usage: migrate_vm [pattern1 [pattern2]...] ! TARGET_ESX_NAME
+        Migrate one or several VMs to another ESX host by name.
+
+        Sample usage: `migrate MYVNNAME ! ESX_FQDN`
+        """
+        try:
+            patterns_and_esx_name = line.split("!", 1)
+            patterns = patterns_and_esx_name[0]
+            esx_name = patterns_and_esx_name[1].strip()
+        except IndexError:
+            print("Looks like your input was malformed. Try `help migrate_vm`.")
+            return
+
+        if not esx_name:
+            print("No target esx name given. Try `help migrate_vm`.")
+            return
+
+        try:
+            # TODO use esx from cache, allows for better error messages (eg no fqdn)
+            esx_host = self.cache.find_by_dns_name(esx_name)
+        except NotFound:
+            print("Target esx host '{0}' not found, maybe try with FQDN?".format(esx_name))
+            return
+
+        for vm_name in self.compile_and_yield_vm_patterns(patterns):
+            relocate_spec = vim.vm.RelocateSpec(host=esx_host)
+            print("Relocating {0} to {1}".format(vm_name, esx_name))
+            try:
+                self.retrieve_vm(vm_name).Relocate(relocate_spec)
+            except Exception as e:
+                print("Relocation failed: {0}".format(e))
+
+    def do_alarms_vm(self, patterns):
+        """Usage: alarms_vm [pattern1 [pattern2]...]
+        Show alarm information for vms matching the given ORed name patterns.
+
+        Sample usage: `alarms MY_VM_NAME`
+        """
+        for vm_name in self.compile_and_yield_vm_patterns(patterns):
+            print("-" * 70)
+            print("Alarms for {0}".format(vm_name))
+            alarms = self.retrieve_vm(vm_name).triggeredAlarmState
+            for alarm in alarms:
+                print("\talarm_moref: {0}".format(alarm.key.split('.')[0]))
+                print("\talarm status: {0}".format(alarm.overallStatus))
+
+    def do_list_vm(self, patterns):
+        """Usage: list [pattern1 [pattern2]...]
+        List the vm names matching the given ORed name patterns.
+
+        Sample usage:
+        * `list dev.* ...ybc01`
+        * `list`
+        * `list .*`
+        """
+        for vm_name in self.compile_and_yield_vm_patterns(patterns, risky=False):
+            print(vm_name)
+
+    def do_info_vm(self, patterns):
+        """Usage: info_vm [pattern1 [pattern2]...]
+        Show quick info about vms matching the given ORed name patterns.
+
+        Sample usage: `info MY_VM_NAME`
+        """
+        custom_attributes_mapping = self.cache.get_custom_attributes_mapping()
+
+        for vm_name in self.compile_and_yield_vm_patterns(patterns):
+            vm = self.retrieve_vm(vm_name)
+            print("-" * 70)
+            print("Name: {0}".format(vm.name))
+            print("ESXi Host: {0}".format(vm.get_esx_host().name))
+            print("Path to VM: {0}".format(vm.summary.config.vmPathName))
+            print("BIOS UUID: {0}".format(vm.config.uuid))
+            print("CPUs: {0}".format(vm.config.hardware.numCPU))
+            print("MemoryMB: {0}".format(vm.config.hardware.memoryMB))
+            print("Guest PowerState: {0}".format(vm.guest.guestState))
+            print("Guest Full Name: {0}".format(vm.config.guestFullName))
+            print("Guest Container Type: {0}".format(vm.config.guestId))
+            print("Container Version: {0}".format(vm.config.version))
+            for custom_field in vm.customValue:
+                print("{0}: {1}".format(custom_attributes_mapping[custom_field.key], custom_field.value))
+
+            print()
+
+    def do_config_vm(self, patterns):
+        """Usage: config_vm [pattern1 [pattern2]...]
+        Show the full config of vms matching the given ORed name patterns.
+        Careful, there's lots of output!
+
+        Sample usage: `config MY_VM_NAME`
+        """
+        for vm_name in self.compile_and_yield_vm_patterns(patterns):
+            print("-" * 70)
+            print("Config for {0}:".format(vm_name))
+            print(self.retrieve_vm(vm_name).config)
+            print()
+
+    def compile_and_yield_vm_patterns(self, patterns, risky=True):
+        return self.compile_and_yield_generic_patterns(patterns,
+                                                       self.yield_vm_patterns,
+                                                       self.cache.number_of_vms,
+                                                       risky)
+
+    def yield_vm_patterns(self, compiled_patterns):
+        for vm_name in self.cache.list_cached_vms():
+            if any([pattern.match(vm_name) for pattern in compiled_patterns]):
+                yield(vm_name)
+
+    def retrieve_vm(self, vm_name):
+        return self.cache.retrieve_vm(vm_name)
+</code></pre>
+  </div>
+
+  </header>
+
+  <section id="section-items">
+
+
+    <h2 class="section-title" id="header-classes">Classes</h2>
+      
+      <div class="item">
+      <p id="isphere.command.virtual_machine_command.VirtualMachineCommand" class="name">class <span class="ident">VirtualMachineCommand</span></p>
+      
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand" class="source">
+    <pre><code>class VirtualMachineCommand(CoreCommand):
+
+    def do_reset_vm(self, patterns):
+        """Usage: reset_vm [pattern1 [pattern2]...]
+        Reset vms matching the given ORed name patterns.
+
+        Sample usage: `reset MY_VM_NAME OTHERNAME`
+        """
+        reset_tasks = []
+        for vm_name in self.compile_and_yield_vm_patterns(patterns):
+            print("Launching reset task for {0}".format(vm_name))
+            reset_task = self.retrieve_vm(vm_name).ResetVM_Task()
+            reset_tasks.append(reset_task)
+
+        print("Waiting for {0} reset tasks to complete".format(len(reset_tasks)))
+        self.cache.wait_for_tasks(reset_tasks)
+
+    def do_eval_vm(self, line):
+        """Usage: eval_vm [pattern1 [pattern2]...] ! <statement>
+        Evaluate a statement of python code. You can access the
+        virtual machine object by using the variable `vm`.
+        Calling the function `no_output` will not produce any output (use this
+                                                                      to filter).
+
+        Sample usage:
+        * `eval MY_VM_NAME ! filter(lambda field_name: callable(getattr(vm, field_name)) and not field_name.startswith("_"), dir(vm))`
+          ^ shows 'public' methods we can call on the vm object
+        * `eval MY_VM_NAME ! vm.name`
+        * `eval MY_VM_NAME ! vm.RebootGuest()`
+        """
+        self.eval(line, self.compile_and_yield_vm_patterns, self.retrieve_vm, "vm")
+
+    def do_reboot_vm(self, patterns):
+        """Usage: reboot_vm [pattern1 [pattern2]...]
+        Soft reboot vms matching the given ORed name patterns.
+
+        Sample usage: `reboot MY_VM_NAME`
+        """
+        for vm_name in self.compile_and_yield_vm_patterns(patterns):
+            print("Asking {0} to reboot".format(vm_name))
+            self.retrieve_vm(vm_name).RebootGuest()
+
+    def do_migrate_vm(self, line):
+        """Usage: migrate_vm [pattern1 [pattern2]...] ! TARGET_ESX_NAME
+        Migrate one or several VMs to another ESX host by name.
+
+        Sample usage: `migrate MYVNNAME ! ESX_FQDN`
+        """
+        try:
+            patterns_and_esx_name = line.split("!", 1)
+            patterns = patterns_and_esx_name[0]
+            esx_name = patterns_and_esx_name[1].strip()
+        except IndexError:
+            print("Looks like your input was malformed. Try `help migrate_vm`.")
+            return
+
+        if not esx_name:
+            print("No target esx name given. Try `help migrate_vm`.")
+            return
+
+        try:
+            # TODO use esx from cache, allows for better error messages (eg no fqdn)
+            esx_host = self.cache.find_by_dns_name(esx_name)
+        except NotFound:
+            print("Target esx host '{0}' not found, maybe try with FQDN?".format(esx_name))
+            return
+
+        for vm_name in self.compile_and_yield_vm_patterns(patterns):
+            relocate_spec = vim.vm.RelocateSpec(host=esx_host)
+            print("Relocating {0} to {1}".format(vm_name, esx_name))
+            try:
+                self.retrieve_vm(vm_name).Relocate(relocate_spec)
+            except Exception as e:
+                print("Relocation failed: {0}".format(e))
+
+    def do_alarms_vm(self, patterns):
+        """Usage: alarms_vm [pattern1 [pattern2]...]
+        Show alarm information for vms matching the given ORed name patterns.
+
+        Sample usage: `alarms MY_VM_NAME`
+        """
+        for vm_name in self.compile_and_yield_vm_patterns(patterns):
+            print("-" * 70)
+            print("Alarms for {0}".format(vm_name))
+            alarms = self.retrieve_vm(vm_name).triggeredAlarmState
+            for alarm in alarms:
+                print("\talarm_moref: {0}".format(alarm.key.split('.')[0]))
+                print("\talarm status: {0}".format(alarm.overallStatus))
+
+    def do_list_vm(self, patterns):
+        """Usage: list [pattern1 [pattern2]...]
+        List the vm names matching the given ORed name patterns.
+
+        Sample usage:
+        * `list dev.* ...ybc01`
+        * `list`
+        * `list .*`
+        """
+        for vm_name in self.compile_and_yield_vm_patterns(patterns, risky=False):
+            print(vm_name)
+
+    def do_info_vm(self, patterns):
+        """Usage: info_vm [pattern1 [pattern2]...]
+        Show quick info about vms matching the given ORed name patterns.
+
+        Sample usage: `info MY_VM_NAME`
+        """
+        custom_attributes_mapping = self.cache.get_custom_attributes_mapping()
+
+        for vm_name in self.compile_and_yield_vm_patterns(patterns):
+            vm = self.retrieve_vm(vm_name)
+            print("-" * 70)
+            print("Name: {0}".format(vm.name))
+            print("ESXi Host: {0}".format(vm.get_esx_host().name))
+            print("Path to VM: {0}".format(vm.summary.config.vmPathName))
+            print("BIOS UUID: {0}".format(vm.config.uuid))
+            print("CPUs: {0}".format(vm.config.hardware.numCPU))
+            print("MemoryMB: {0}".format(vm.config.hardware.memoryMB))
+            print("Guest PowerState: {0}".format(vm.guest.guestState))
+            print("Guest Full Name: {0}".format(vm.config.guestFullName))
+            print("Guest Container Type: {0}".format(vm.config.guestId))
+            print("Container Version: {0}".format(vm.config.version))
+            for custom_field in vm.customValue:
+                print("{0}: {1}".format(custom_attributes_mapping[custom_field.key], custom_field.value))
+
+            print()
+
+    def do_config_vm(self, patterns):
+        """Usage: config_vm [pattern1 [pattern2]...]
+        Show the full config of vms matching the given ORed name patterns.
+        Careful, there's lots of output!
+
+        Sample usage: `config MY_VM_NAME`
+        """
+        for vm_name in self.compile_and_yield_vm_patterns(patterns):
+            print("-" * 70)
+            print("Config for {0}:".format(vm_name))
+            print(self.retrieve_vm(vm_name).config)
+            print()
+
+    def compile_and_yield_vm_patterns(self, patterns, risky=True):
+        return self.compile_and_yield_generic_patterns(patterns,
+                                                       self.yield_vm_patterns,
+                                                       self.cache.number_of_vms,
+                                                       risky)
+
+    def yield_vm_patterns(self, compiled_patterns):
+        for vm_name in self.cache.list_cached_vms():
+            if any([pattern.match(vm_name) for pattern in compiled_patterns]):
+                yield(vm_name)
+
+    def retrieve_vm(self, vm_name):
+        return self.cache.retrieve_vm(vm_name)
+</code></pre>
+  </div>
+</div>
+
+
+      <div class="class">
+          <h3>Ancestors (in MRO)</h3>
+          <ul class="class_list">
+          <li><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand">VirtualMachineCommand</a></li>
+          <li>isphere.command.core_command.CoreCommand</li>
+          <li>cmd2.Cmd</li>
+          <li>cmd.Cmd</li>
+          </ul>
+          <h3>Class variables</h3>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.abbrev" class="name">var <span class="ident">abbrev</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.blankLinesAllowed" class="name">var <span class="ident">blankLinesAllowed</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.case_insensitive" class="name">var <span class="ident">case_insensitive</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.colorcodes" class="name">var <span class="ident">colorcodes</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.colors" class="name">var <span class="ident">colors</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.commentGrammars" class="name">var <span class="ident">commentGrammars</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.commentInProgress" class="name">var <span class="ident">commentInProgress</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.continuation_prompt" class="name">var <span class="ident">continuation_prompt</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.current_script_dir" class="name">var <span class="ident">current_script_dir</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.debug" class="name">var <span class="ident">debug</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.defaultExtension" class="name">var <span class="ident">defaultExtension</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.default_file_name" class="name">var <span class="ident">default_file_name</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.default_to_shell" class="name">var <span class="ident">default_to_shell</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.doc_header" class="name">var <span class="ident">doc_header</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.doc_leader" class="name">var <span class="ident">doc_leader</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.echo" class="name">var <span class="ident">echo</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.editor" class="name">var <span class="ident">editor</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.excludeFromHistory" class="name">var <span class="ident">excludeFromHistory</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.feedback_to_output" class="name">var <span class="ident">feedback_to_output</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.identchars" class="name">var <span class="ident">identchars</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.intro" class="name">var <span class="ident">intro</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.kept_state" class="name">var <span class="ident">kept_state</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.lastcmd" class="name">var <span class="ident">lastcmd</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.legalChars" class="name">var <span class="ident">legalChars</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.locals_in_py" class="name">var <span class="ident">locals_in_py</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.misc_header" class="name">var <span class="ident">misc_header</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.multilineCommands" class="name">var <span class="ident">multilineCommands</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.noSpecialParse" class="name">var <span class="ident">noSpecialParse</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.nohelp" class="name">var <span class="ident">nohelp</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.prefixParser" class="name">var <span class="ident">prefixParser</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.prompt" class="name">var <span class="ident">prompt</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.quiet" class="name">var <span class="ident">quiet</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.redirector" class="name">var <span class="ident">redirector</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.reserved_words" class="name">var <span class="ident">reserved_words</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.ruler" class="name">var <span class="ident">ruler</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.saveparser" class="name">var <span class="ident">saveparser</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.settable" class="name">var <span class="ident">settable</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.shortcuts" class="name">var <span class="ident">shortcuts</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.terminators" class="name">var <span class="ident">terminators</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.timing" class="name">var <span class="ident">timing</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.undoc_header" class="name">var <span class="ident">undoc_header</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.urlre" class="name">var <span class="ident">urlre</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.command.virtual_machine_command.VirtualMachineCommand.use_rawinput" class="name">var <span class="ident">use_rawinput</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+          <h3>Static methods</h3>
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.compile_and_yield_generic_patterns">
+    <p>def <span class="ident">compile_and_yield_generic_patterns</span>(</p><p>patterns, pattern_generator, item_count, risky=True)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.compile_and_yield_generic_patterns', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.compile_and_yield_generic_patterns" class="source">
+    <pre><code>@staticmethod
+def compile_and_yield_generic_patterns(patterns, pattern_generator, item_count, risky=True):
+    if not patterns and risky:
+        unformatted_message = "No pattern specified - you're doing this to all {count} items. Proceed? (y/N) "
+        message = unformatted_message.format(count=item_count)
+        if not _input(message).lower() == "y":
+            return []
+    actual_patterns = patterns.strip().split(" ")
+    try:
+        compiled_patterns = [re.compile(pattern) for pattern in actual_patterns]
+    except Exception as e:
+        print("Invalid regular expression patterns: {0}".format(e))
+        return []
+    return pattern_generator(compiled_patterns)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.do_EOF">
+    <p>def <span class="ident">do_EOF</span>(</p><p>_)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Exit this prompt.</p>
+<p>Usage: <code>EOF</code> (Ctrl+D also works).</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_EOF', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_EOF" class="source">
+    <pre><code>@staticmethod
+def do_EOF(_):
+    """
+    Exit this prompt.
+    Usage: `EOF` (Ctrl+D also works).
+    """
+    return True
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.eval">
+    <p>def <span class="ident">eval</span>(</p><p>line, item_name_generator, item_retriever, local_name)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.eval', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.eval" class="source">
+    <pre><code>@staticmethod
+def eval(line, item_name_generator, item_retriever, local_name):
+    try:
+        patterns_and_statement = line.split("!", 1)
+        patterns = patterns_and_statement[0]
+        statement = patterns_and_statement[1]
+    except IndexError:
+        print("Looks like your input was malformed. Try `help eval_*`.")
+        return
+    for item_name in item_name_generator(patterns):
+        def guard():
+            raise NoOutput()
+        _globals, _locals = {}, {}
+        try:
+            item = item_retriever(item_name)
+        except NotFound:
+            print("Skipping {item} since it could not be retrieved.".format(item=item_name))
+            continue
+        _locals[local_name] = item
+        _locals["no_output"] = guard
+        _globals[local_name] = item
+        _globals["no_output"] = guard
+        separator = "-"
+        item_name_header = " {name} ".format(
+            name=item_name[:78]).center(
+            80, separator)
+        try:
+            result = eval(statement, _globals, _locals)
+            print(item_name_header)
+            print(result)
+        except NoOutput:
+            pass
+        except Exception as e:
+            print(item_name_header)
+            print("Eval failed for {0}: {1}".format(item_name, e))
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+          <h3>Methods</h3>
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.__init__">
+    <p>def <span class="ident">__init__</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.__init__', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.__init__" class="source">
+    <pre><code>def __init__(self):
+    self.cache = CachingVSphere(self.hostname, self.username, self.password)
+    Cmd.__init__(self)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.cmdloop">
+    <p>def <span class="ident">cmdloop</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.cmdloop', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.cmdloop" class="source">
+    <pre><code>def cmdloop(self):
+    parser = optparse.OptionParser()
+    parser.add_option('-t', '--test', dest='test',
+           action="store_true", 
+           help='Test against transcript(s) in FILE (wildcards OK)')
+    (callopts, callargs) = parser.parse_args()
+    if callopts.test:
+        self.runTranscriptTests(callargs)
+    else:
+        if not self.run_commands_at_invocation(callargs):
+            self._cmdloop()   
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.colorize">
+    <p>def <span class="ident">colorize</span>(</p><p>self, val, color)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Given a string (<code>val</code>), returns that string wrapped in UNIX-style 
+special characters that turn on (and then off) text color and style.
+If the <code>colors</code> environment paramter is <code>False</code>, or the application
+is running on Windows, will return <code>val</code> unchanged.
+<code>color</code> should be one of the supported strings (or styles):
+red/blue/green/cyan/magenta, bold, underline</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.colorize', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.colorize" class="source">
+    <pre><code>def colorize(self, val, color):
+    '''Given a string (``val``), returns that string wrapped in UNIX-style 
+       special characters that turn on (and then off) text color and style.
+       If the ``colors`` environment paramter is ``False``, or the application
+       is running on Windows, will return ``val`` unchanged.
+       ``color`` should be one of the supported strings (or styles):
+       red/blue/green/cyan/magenta, bold, underline'''
+    if self.colors and (self.stdout == self.initial_stdout):
+        return self.colorcodes[color][True] + val + self.colorcodes[color][False]
+    return val
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.columnize">
+    <p>def <span class="ident">columnize</span>(</p><p>self, list, displaywidth=80)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Display a list of strings as a compact set of columns.</p>
+<p>Each column is only as wide as necessary.
+Columns are separated by two spaces (one was not legible enough).</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.columnize', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.columnize" class="source">
+    <pre><code>def columnize(self, list, displaywidth=80):
+    """Display a list of strings as a compact set of columns.
+    Each column is only as wide as necessary.
+    Columns are separated by two spaces (one was not legible enough).
+    """
+    if not list:
+        self.stdout.write("<empty>\n")
+        return
+    nonstrings = [i for i in range(len(list))
+                    if not isinstance(list[i], str)]
+    if nonstrings:
+        raise TypeError, ("list[i] not a string for i in %s" %
+                          ", ".join(map(str, nonstrings)))
+    size = len(list)
+    if size == 1:
+        self.stdout.write('%s\n'%str(list[0]))
+        return
+    # Try every row count from 1 upwards
+    for nrows in range(1, len(list)):
+        ncols = (size+nrows-1) // nrows
+        colwidths = []
+        totwidth = -2
+        for col in range(ncols):
+            colwidth = 0
+            for row in range(nrows):
+                i = row + nrows*col
+                if i >= size:
+                    break
+                x = list[i]
+                colwidth = max(colwidth, len(x))
+            colwidths.append(colwidth)
+            totwidth += colwidth + 2
+            if totwidth > displaywidth:
+                break
+        if totwidth <= displaywidth:
+            break
+    else:
+        nrows = len(list)
+        ncols = 1
+        colwidths = [0]
+    for row in range(nrows):
+        texts = []
+        for col in range(ncols):
+            i = row + nrows*col
+            if i >= size:
+                x = ""
+            else:
+                x = list[i]
+            texts.append(x)
+        while texts and not texts[-1]:
+            del texts[-1]
+        for col in range(len(texts)):
+            texts[col] = texts[col].ljust(colwidths[col])
+        self.stdout.write("%s\n"%str("  ".join(texts)))
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.compile_and_yield_vm_patterns">
+    <p>def <span class="ident">compile_and_yield_vm_patterns</span>(</p><p>self, patterns, risky=True)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.compile_and_yield_vm_patterns', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.compile_and_yield_vm_patterns" class="source">
+    <pre><code>def compile_and_yield_vm_patterns(self, patterns, risky=True):
+    return self.compile_and_yield_generic_patterns(patterns,
+                                                   self.yield_vm_patterns,
+                                                   self.cache.number_of_vms,
+                                                   risky)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.complete">
+    <p>def <span class="ident">complete</span>(</p><p>self, text, state)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Return the next possible completion for 'text'.</p>
+<p>If a command has not been entered, then complete against command list.
+Otherwise try to call complete_<command> to get list of completions.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.complete', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.complete" class="source">
+    <pre><code>def complete(self, text, state):
+    """Return the next possible completion for 'text'.
+    If a command has not been entered, then complete against command list.
+    Otherwise try to call complete_<command> to get list of completions.
+    """
+    if state == 0:
+        import readline
+        origline = readline.get_line_buffer()
+        line = origline.lstrip()
+        stripped = len(origline) - len(line)
+        begidx = readline.get_begidx() - stripped
+        endidx = readline.get_endidx() - stripped
+        if begidx>0:
+            cmd, args, foo = self.parseline(line)
+            if cmd == '':
+                compfunc = self.completedefault
+            else:
+                try:
+                    compfunc = getattr(self, 'complete_' + cmd)
+                except AttributeError:
+                    compfunc = self.completedefault
+        else:
+            compfunc = self.completenames
+        self.completion_matches = compfunc(text, line, begidx, endidx)
+    try:
+        return self.completion_matches[state]
+    except IndexError:
+        return None
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.complete_help">
+    <p>def <span class="ident">complete_help</span>(</p><p>self, *args)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.complete_help', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.complete_help" class="source">
+    <pre><code>def complete_help(self, *args):
+    commands = set(self.completenames(*args))
+    topics = set(a[5:] for a in self.get_names()
+                 if a.startswith('help_' + args[0]))
+    return list(commands | topics)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.complete_statement">
+    <p>def <span class="ident">complete_statement</span>(</p><p>self, line)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Keep accepting lines of input until the command is complete.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.complete_statement', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.complete_statement" class="source">
+    <pre><code>def complete_statement(self, line):
+    """Keep accepting lines of input until the command is complete."""
+    if (not line) or (
+        not pyparsing.Or(self.commentGrammars).
+            setParseAction(lambda x: '').transformString(line)):
+        raise EmptyStatement()
+    statement = self.parsed(line)
+    while statement.parsed.multilineCommand and (statement.parsed.terminator == ''):
+        statement = '%s\n%s' % (statement.parsed.raw, 
+                                self.pseudo_raw_input(self.continuation_prompt))                
+        statement = self.parsed(statement)
+    if not statement.parsed.command:
+        raise EmptyStatement()
+    return statement
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.completedefault">
+    <p>def <span class="ident">completedefault</span>(</p><p>self, *ignored)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Method called to complete an input line when no command-specific
+complete_*() method is available.</p>
+<p>By default, it returns an empty list.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.completedefault', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.completedefault" class="source">
+    <pre><code>def completedefault(self, *ignored):
+    """Method called to complete an input line when no command-specific
+    complete_*() method is available.
+    By default, it returns an empty list.
+    """
+    return []
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.completenames">
+    <p>def <span class="ident">completenames</span>(</p><p>self, text, *ignored)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.completenames', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.completenames" class="source">
+    <pre><code>def completenames(self, text, *ignored):
+    dotext = 'do_'+text
+    return [a[3:] for a in self.get_names() if a.startswith(dotext)]
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.default">
+    <p>def <span class="ident">default</span>(</p><p>self, line)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Called on an input line when the command prefix is not recognized.</p>
+<p>If this method is not overridden, it prints an error message and
+returns.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.default', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.default" class="source">
+    <pre><code>def default(self, line):
+    """Called on an input line when the command prefix is not recognized.
+    If this method is not overridden, it prints an error message and
+    returns.
+    """
+    self.stdout.write('*** Unknown syntax: %s\n'%line)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.do__load">
+    <p>def <span class="ident">do__load</span>(</p><p>self, arg=None)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Runs script of command(s) from a file or URL.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.do__load', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.do__load" class="source">
+    <pre><code>def do_load(self, arg=None):           
+    """Runs script of command(s) from a file or URL."""
+    if arg is None:
+        targetname = self.default_file_name
+    else:
+        arg = arg.split(None, 1)
+        targetname, args = arg[0], (arg[1:] or [''])[0].strip()
+    try:
+        target = self.read_file_or_url(targetname)
+    except IOError as e:
+        self.perror('Problem accessing script from %s: \n%s' % (targetname, e))
+        return
+    keepstate = Statekeeper(self, ('stdin','use_rawinput','prompt',
+                                   'continuation_prompt','current_script_dir'))
+    self.stdin = target    
+    self.use_rawinput = False
+    self.prompt = self.continuation_prompt = ''
+    self.current_script_dir = os.path.split(targetname)[0]
+    stop = self._cmdloop()
+    self.stdin.close()
+    keepstate.restore()
+    self.lastcmd = ''
+    return stop and (stop != self._STOP_SCRIPT_NO_EXIT)    
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.do__relative_load">
+    <p>def <span class="ident">do__relative_load</span>(</p><p>self, arg=None)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Runs commands in script at file or URL; if this is called from within an
+already-running script, the filename will be interpreted relative to the 
+already-running script's directory.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.do__relative_load', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.do__relative_load" class="source">
+    <pre><code>def do__relative_load(self, arg=None):
+    '''
+    Runs commands in script at file or URL; if this is called from within an
+    already-running script, the filename will be interpreted relative to the 
+    already-running script's directory.'''
+    if arg:
+        arg = arg.split(None, 1)
+        targetname, args = arg[0], (arg[1:] or [''])[0]
+        targetname = os.path.join(self.current_script_dir or '', targetname)
+        self.do__load('%s %s' % (targetname, args))
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.do_alarms_vm">
+    <p>def <span class="ident">do_alarms_vm</span>(</p><p>self, patterns)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Usage: alarms_vm [pattern1 [pattern2]...]
+Show alarm information for vms matching the given ORed name patterns.</p>
+<p>Sample usage: <code>alarms MY_VM_NAME</code></p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_alarms_vm', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_alarms_vm" class="source">
+    <pre><code>def do_alarms_vm(self, patterns):
+    """Usage: alarms_vm [pattern1 [pattern2]...]
+    Show alarm information for vms matching the given ORed name patterns.
+    Sample usage: `alarms MY_VM_NAME`
+    """
+    for vm_name in self.compile_and_yield_vm_patterns(patterns):
+        print("-" * 70)
+        print("Alarms for {0}".format(vm_name))
+        alarms = self.retrieve_vm(vm_name).triggeredAlarmState
+        for alarm in alarms:
+            print("\talarm_moref: {0}".format(alarm.key.split('.')[0]))
+            print("\talarm status: {0}".format(alarm.overallStatus))
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.do_cmdenvironment">
+    <p>def <span class="ident">do_cmdenvironment</span>(</p><p>self, args)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Summary report of interactive parameters.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_cmdenvironment', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_cmdenvironment" class="source">
+    <pre><code>def do_cmdenvironment(self, args):
+    '''Summary report of interactive parameters.'''
+    self.stdout.write("""
+    Commands are %(casesensitive)scase-sensitive.
+    Commands may be terminated with: %(terminators)s
+    Settable parameters: %(settable)s\n""" % \
+    { 'casesensitive': (self.case_insensitive and 'not ') or '',
+      'terminators': str(self.terminators),
+      'settable': ' '.join(self.settable)
+    })
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.do_config_vm">
+    <p>def <span class="ident">do_config_vm</span>(</p><p>self, patterns)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Usage: config_vm [pattern1 [pattern2]...]
+Show the full config of vms matching the given ORed name patterns.
+Careful, there's lots of output!</p>
+<p>Sample usage: <code>config MY_VM_NAME</code></p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_config_vm', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_config_vm" class="source">
+    <pre><code>def do_config_vm(self, patterns):
+    """Usage: config_vm [pattern1 [pattern2]...]
+    Show the full config of vms matching the given ORed name patterns.
+    Careful, there's lots of output!
+    Sample usage: `config MY_VM_NAME`
+    """
+    for vm_name in self.compile_and_yield_vm_patterns(patterns):
+        print("-" * 70)
+        print("Config for {0}:".format(vm_name))
+        print(self.retrieve_vm(vm_name).config)
+        print()
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.do_ed">
+    <p>def <span class="ident">do_ed</span>(</p><p>self, arg)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>ed: edit most recent command in text editor
+ed [N]: edit numbered command from history
+ed [filename]: edit specified file name</p>
+<p>commands are run after editor is closed.
+"set edit (program-name)" or set  EDITOR environment variable
+to control which editing program is used.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_ed', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_ed" class="source">
+    <pre><code>def do_ed(self, arg):
+    """ed: edit most recent command in text editor
+    ed [N]: edit numbered command from history
+    ed [filename]: edit specified file name
+    
+    commands are run after editor is closed.
+    "set edit (program-name)" or set  EDITOR environment variable
+    to control which editing program is used."""
+    if not self.editor:
+        raise EnvironmentError("Please use 'set editor' to specify your text editing program of choice.")
+    filename = self.default_file_name
+    if arg:
+        try:
+            buffer = self.last_matching(int(arg))
+        except ValueError:
+            filename = arg
+            buffer = ''
+    else:
+        buffer = self.history[-1]
+    if buffer:
+        f = open(os.path.expanduser(filename), 'w')
+        f.write(buffer or '')
+        f.close()        
+            
+    os.system('%s %s' % (self.editor, filename))
+    self.do__load(filename)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.do_edit">
+    <p>def <span class="ident">do_edit</span>(</p><p>self, arg)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>ed: edit most recent command in text editor
+ed [N]: edit numbered command from history
+ed [filename]: edit specified file name</p>
+<p>commands are run after editor is closed.
+"set edit (program-name)" or set  EDITOR environment variable
+to control which editing program is used.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_edit', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_edit" class="source">
+    <pre><code>def do_ed(self, arg):
+    """ed: edit most recent command in text editor
+    ed [N]: edit numbered command from history
+    ed [filename]: edit specified file name
+    
+    commands are run after editor is closed.
+    "set edit (program-name)" or set  EDITOR environment variable
+    to control which editing program is used."""
+    if not self.editor:
+        raise EnvironmentError("Please use 'set editor' to specify your text editing program of choice.")
+    filename = self.default_file_name
+    if arg:
+        try:
+            buffer = self.last_matching(int(arg))
+        except ValueError:
+            filename = arg
+            buffer = ''
+    else:
+        buffer = self.history[-1]
+    if buffer:
+        f = open(os.path.expanduser(filename), 'w')
+        f.write(buffer or '')
+        f.close()        
+            
+    os.system('%s %s' % (self.editor, filename))
+    self.do__load(filename)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.do_eof">
+    <p>def <span class="ident">do_eof</span>(</p><p>self, arg)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_eof', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_eof" class="source">
+    <pre><code>def do_EOF(self, arg):
+    return self._STOP_SCRIPT_NO_EXIT # End of script; should not exit app
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.do_eval_vm">
+    <p>def <span class="ident">do_eval_vm</span>(</p><p>self, line)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Usage: eval_vm [pattern1 [pattern2]...] ! <statement>
+Evaluate a statement of python code. You can access the
+virtual machine object by using the variable <code>vm</code>.
+Calling the function <code>no_output</code> will not produce any output (use this
+                                                              to filter).</p>
+<p>Sample usage:
+<em> <code>eval MY_VM_NAME ! filter(lambda field_name: callable(getattr(vm, field_name)) and not field_name.startswith("_"), dir(vm))</code>
+  ^ shows 'public' methods we can call on the vm object
+</em> <code>eval MY_VM_NAME ! vm.name</code>
+* <code>eval MY_VM_NAME ! vm.RebootGuest()</code></p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_eval_vm', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_eval_vm" class="source">
+    <pre><code>def do_eval_vm(self, line):
+    """Usage: eval_vm [pattern1 [pattern2]...] ! <statement>
+    Evaluate a statement of python code. You can access the
+    virtual machine object by using the variable `vm`.
+    Calling the function `no_output` will not produce any output (use this
+                                                                  to filter).
+    Sample usage:
+    * `eval MY_VM_NAME ! filter(lambda field_name: callable(getattr(vm, field_name)) and not field_name.startswith("_"), dir(vm))`
+      ^ shows 'public' methods we can call on the vm object
+    * `eval MY_VM_NAME ! vm.name`
+    * `eval MY_VM_NAME ! vm.RebootGuest()`
+    """
+    self.eval(line, self.compile_and_yield_vm_patterns, self.retrieve_vm, "vm")
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.do_exit">
+    <p>def <span class="ident">do_exit</span>(</p><p>self, arg)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_exit', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_exit" class="source">
+    <pre><code>def do_quit(self, arg):
+    return self._STOP_AND_EXIT
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.do_help">
+    <p>def <span class="ident">do_help</span>(</p><p>self, arg)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_help', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_help" class="source">
+    <pre><code>def do_help(self, arg):
+    if arg:
+        funcname = self.func_named(arg)
+        if funcname:
+            fn = getattr(self, funcname)
+            try:
+                fn.optionParser.print_help(file=self.stdout)
+            except AttributeError:
+                cmd.Cmd.do_help(self, funcname[3:])
+    else:
+        cmd.Cmd.do_help(self, arg)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.do_hi">
+    <p>def <span class="ident">do_hi</span>(</p><p>instance, arg)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>history [arg]: lists past commands issued</p>
+<pre><code>    | no arg:         list all
+    | arg is integer: list one history item, by index
+    | arg is string:  string search
+    | arg is /enclosed in forward-slashes/: regular expression search
+</code></pre>
+<p>Usage: history [options] (limit on which commands to include)</p>
+<p>Options:
+  -h, --help    show this help message and exit
+  -s, --script  Script format; no separation lines</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_hi', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_hi" class="source">
+    <pre><code>def new_func(instance, arg):
+    try:
+        opts, newArgList = optionParser.parse_args(arg.split())
+        # Must find the remaining args in the original argument list, but 
+        # mustn't include the command itself
+        #if hasattr(arg, 'parsed') and newArgList[0] == arg.parsed.command:
+        #    newArgList = newArgList[1:]
+        newArgs = remaining_args(arg, newArgList)
+        if isinstance(arg, ParsedString):
+            arg = arg.with_args_replaced(newArgs)
+        else:
+            arg = newArgs
+    except optparse.OptParseError as e:
+        print (e)
+        optionParser.print_help()
+        return
+    if hasattr(opts, '_exit'):
+        return None
+    result = func(instance, arg, opts)                            
+    return result        
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.do_history">
+    <p>def <span class="ident">do_history</span>(</p><p>instance, arg)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>history [arg]: lists past commands issued</p>
+<pre><code>    | no arg:         list all
+    | arg is integer: list one history item, by index
+    | arg is string:  string search
+    | arg is /enclosed in forward-slashes/: regular expression search
+</code></pre>
+<p>Usage: history [options] (limit on which commands to include)</p>
+<p>Options:
+  -h, --help    show this help message and exit
+  -s, --script  Script format; no separation lines</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_history', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_history" class="source">
+    <pre><code>def new_func(instance, arg):
+    try:
+        opts, newArgList = optionParser.parse_args(arg.split())
+        # Must find the remaining args in the original argument list, but 
+        # mustn't include the command itself
+        #if hasattr(arg, 'parsed') and newArgList[0] == arg.parsed.command:
+        #    newArgList = newArgList[1:]
+        newArgs = remaining_args(arg, newArgList)
+        if isinstance(arg, ParsedString):
+            arg = arg.with_args_replaced(newArgs)
+        else:
+            arg = newArgs
+    except optparse.OptParseError as e:
+        print (e)
+        optionParser.print_help()
+        return
+    if hasattr(opts, '_exit'):
+        return None
+    result = func(instance, arg, opts)                            
+    return result        
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.do_info_vm">
+    <p>def <span class="ident">do_info_vm</span>(</p><p>self, patterns)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Usage: info_vm [pattern1 [pattern2]...]
+Show quick info about vms matching the given ORed name patterns.</p>
+<p>Sample usage: <code>info MY_VM_NAME</code></p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_info_vm', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_info_vm" class="source">
+    <pre><code>def do_info_vm(self, patterns):
+    """Usage: info_vm [pattern1 [pattern2]...]
+    Show quick info about vms matching the given ORed name patterns.
+    Sample usage: `info MY_VM_NAME`
+    """
+    custom_attributes_mapping = self.cache.get_custom_attributes_mapping()
+    for vm_name in self.compile_and_yield_vm_patterns(patterns):
+        vm = self.retrieve_vm(vm_name)
+        print("-" * 70)
+        print("Name: {0}".format(vm.name))
+        print("ESXi Host: {0}".format(vm.get_esx_host().name))
+        print("Path to VM: {0}".format(vm.summary.config.vmPathName))
+        print("BIOS UUID: {0}".format(vm.config.uuid))
+        print("CPUs: {0}".format(vm.config.hardware.numCPU))
+        print("MemoryMB: {0}".format(vm.config.hardware.memoryMB))
+        print("Guest PowerState: {0}".format(vm.guest.guestState))
+        print("Guest Full Name: {0}".format(vm.config.guestFullName))
+        print("Guest Container Type: {0}".format(vm.config.guestId))
+        print("Container Version: {0}".format(vm.config.version))
+        for custom_field in vm.customValue:
+            print("{0}: {1}".format(custom_attributes_mapping[custom_field.key], custom_field.value))
+        print()
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.do_l">
+    <p>def <span class="ident">do_l</span>(</p><p>self, arg)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>list [arg]: lists last command issued</p>
+<p>no arg -&gt; list most recent command
+arg is integer -&gt; list one history item, by index
+a..b, a:b, a:, ..b -&gt; list spans from a (or start) to b (or end)
+arg is string -&gt; list all commands matching string search
+arg is /enclosed in forward-slashes/ -&gt; regular expression search</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_l', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_l" class="source">
+    <pre><code>def do_list(self, arg):
+    """list [arg]: lists last command issued
+    
+    no arg -> list most recent command
+    arg is integer -> list one history item, by index
+    a..b, a:b, a:, ..b -> list spans from a (or start) to b (or end)
+    arg is string -> list all commands matching string search
+    arg is /enclosed in forward-slashes/ -> regular expression search
+    """
+    try:
+        history = self.history.span(arg or '-1')
+    except IndexError:
+        history = self.history.search(arg)
+    for hi in history:
+        self.poutput(hi.pr())
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.do_li">
+    <p>def <span class="ident">do_li</span>(</p><p>self, arg)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>list [arg]: lists last command issued</p>
+<p>no arg -&gt; list most recent command
+arg is integer -&gt; list one history item, by index
+a..b, a:b, a:, ..b -&gt; list spans from a (or start) to b (or end)
+arg is string -&gt; list all commands matching string search
+arg is /enclosed in forward-slashes/ -&gt; regular expression search</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_li', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_li" class="source">
+    <pre><code>def do_list(self, arg):
+    """list [arg]: lists last command issued
+    
+    no arg -> list most recent command
+    arg is integer -> list one history item, by index
+    a..b, a:b, a:, ..b -> list spans from a (or start) to b (or end)
+    arg is string -> list all commands matching string search
+    arg is /enclosed in forward-slashes/ -> regular expression search
+    """
+    try:
+        history = self.history.span(arg or '-1')
+    except IndexError:
+        history = self.history.search(arg)
+    for hi in history:
+        self.poutput(hi.pr())
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.do_list">
+    <p>def <span class="ident">do_list</span>(</p><p>self, arg)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>list [arg]: lists last command issued</p>
+<p>no arg -&gt; list most recent command
+arg is integer -&gt; list one history item, by index
+a..b, a:b, a:, ..b -&gt; list spans from a (or start) to b (or end)
+arg is string -&gt; list all commands matching string search
+arg is /enclosed in forward-slashes/ -&gt; regular expression search</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_list', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_list" class="source">
+    <pre><code>def do_list(self, arg):
+    """list [arg]: lists last command issued
+    
+    no arg -> list most recent command
+    arg is integer -> list one history item, by index
+    a..b, a:b, a:, ..b -> list spans from a (or start) to b (or end)
+    arg is string -> list all commands matching string search
+    arg is /enclosed in forward-slashes/ -> regular expression search
+    """
+    try:
+        history = self.history.span(arg or '-1')
+    except IndexError:
+        history = self.history.search(arg)
+    for hi in history:
+        self.poutput(hi.pr())
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.do_list_vm">
+    <p>def <span class="ident">do_list_vm</span>(</p><p>self, patterns)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Usage: list [pattern1 [pattern2]...]
+List the vm names matching the given ORed name patterns.</p>
+<p>Sample usage:
+<em> <code>list dev.* ...ybc01</code>
+</em> <code>list</code>
+* <code>list .*</code></p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_list_vm', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_list_vm" class="source">
+    <pre><code>def do_list_vm(self, patterns):
+    """Usage: list [pattern1 [pattern2]...]
+    List the vm names matching the given ORed name patterns.
+    Sample usage:
+    * `list dev.* ...ybc01`
+    * `list`
+    * `list .*`
+    """
+    for vm_name in self.compile_and_yield_vm_patterns(patterns, risky=False):
+        print(vm_name)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.do_load">
+    <p>def <span class="ident">do_load</span>(</p><p>self, arg=None)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Runs script of command(s) from a file or URL.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_load', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_load" class="source">
+    <pre><code>def do_load(self, arg=None):           
+    """Runs script of command(s) from a file or URL."""
+    if arg is None:
+        targetname = self.default_file_name
+    else:
+        arg = arg.split(None, 1)
+        targetname, args = arg[0], (arg[1:] or [''])[0].strip()
+    try:
+        target = self.read_file_or_url(targetname)
+    except IOError as e:
+        self.perror('Problem accessing script from %s: \n%s' % (targetname, e))
+        return
+    keepstate = Statekeeper(self, ('stdin','use_rawinput','prompt',
+                                   'continuation_prompt','current_script_dir'))
+    self.stdin = target    
+    self.use_rawinput = False
+    self.prompt = self.continuation_prompt = ''
+    self.current_script_dir = os.path.split(targetname)[0]
+    stop = self._cmdloop()
+    self.stdin.close()
+    keepstate.restore()
+    self.lastcmd = ''
+    return stop and (stop != self._STOP_SCRIPT_NO_EXIT)    
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.do_migrate_vm">
+    <p>def <span class="ident">do_migrate_vm</span>(</p><p>self, line)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Usage: migrate_vm [pattern1 [pattern2]...] ! TARGET_ESX_NAME
+Migrate one or several VMs to another ESX host by name.</p>
+<p>Sample usage: <code>migrate MYVNNAME ! ESX_FQDN</code></p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_migrate_vm', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_migrate_vm" class="source">
+    <pre><code>def do_migrate_vm(self, line):
+    """Usage: migrate_vm [pattern1 [pattern2]...] ! TARGET_ESX_NAME
+    Migrate one or several VMs to another ESX host by name.
+    Sample usage: `migrate MYVNNAME ! ESX_FQDN`
+    """
+    try:
+        patterns_and_esx_name = line.split("!", 1)
+        patterns = patterns_and_esx_name[0]
+        esx_name = patterns_and_esx_name[1].strip()
+    except IndexError:
+        print("Looks like your input was malformed. Try `help migrate_vm`.")
+        return
+    if not esx_name:
+        print("No target esx name given. Try `help migrate_vm`.")
+        return
+    try:
+        # TODO use esx from cache, allows for better error messages (eg no fqdn)
+        esx_host = self.cache.find_by_dns_name(esx_name)
+    except NotFound:
+        print("Target esx host '{0}' not found, maybe try with FQDN?".format(esx_name))
+        return
+    for vm_name in self.compile_and_yield_vm_patterns(patterns):
+        relocate_spec = vim.vm.RelocateSpec(host=esx_host)
+        print("Relocating {0} to {1}".format(vm_name, esx_name))
+        try:
+            self.retrieve_vm(vm_name).Relocate(relocate_spec)
+        except Exception as e:
+            print("Relocation failed: {0}".format(e))
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.do_pause">
+    <p>def <span class="ident">do_pause</span>(</p><p>self, arg)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Displays the specified text then waits for the user to press RETURN.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_pause', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_pause" class="source">
+    <pre><code>def do_pause(self, arg):
+    'Displays the specified text then waits for the user to press RETURN.'
+    raw_input(arg + '\n')
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.do_py">
+    <p>def <span class="ident">do_py</span>(</p><p>self, arg)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>py <command>: Executes a Python command.
+py: Enters interactive Python mode.
+End with <code>Ctrl-D</code> (Unix) / <code>Ctrl-Z</code> (Windows), <code>quit()</code>, '`exit()<code>.
+Non-python commands can be issued with</code>cmd("your command")<code>.
+Run python code from external files with</code>run("filename.py")``</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_py', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_py" class="source">
+    <pre><code>def do_py(self, arg):  
+    '''
+    py <command>: Executes a Python command.
+    py: Enters interactive Python mode.
+    End with ``Ctrl-D`` (Unix) / ``Ctrl-Z`` (Windows), ``quit()``, '`exit()``.
+    Non-python commands can be issued with ``cmd("your command")``.
+    Run python code from external files with ``run("filename.py")``
+    '''
+    self.pystate['self'] = self
+    arg = arg.parsed.raw[2:].strip()
+    localvars = (self.locals_in_py and self.pystate) or {}
+    interp = InteractiveConsole(locals=localvars)
+    interp.runcode('import sys, os;sys.path.insert(0, os.getcwd())')
+    if arg.strip():
+        interp.runcode(arg)
+    else:
+        def quit():
+            raise EmbeddedConsoleExit
+        def onecmd_plus_hooks(arg):
+            return self.onecmd_plus_hooks(arg + '\n')
+        def run(arg):
+            try:
+                file = open(arg)
+                interp.runcode(file.read())
+                file.close()
+            except IOError as e:
+                self.perror(e)
+        self.pystate['quit'] = quit
+        self.pystate['exit'] = quit
+        self.pystate['cmd'] = onecmd_plus_hooks
+        self.pystate['run'] = run
+        try:
+            cprt = 'Type "help", "copyright", "credits" or "license" for more information.'        
+            keepstate = Statekeeper(sys, ('stdin','stdout'))
+            sys.stdout = self.stdout
+            sys.stdin = self.stdin
+            interp.interact(banner= "Python %s on %s\n%s\n(%s)\n%s" %
+                   (sys.version, sys.platform, cprt, self.__class__.__name__, self.do_py.__doc__))
+        except EmbeddedConsoleExit:
+            pass
+        keepstate.restore()
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.do_q">
+    <p>def <span class="ident">do_q</span>(</p><p>self, arg)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_q', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_q" class="source">
+    <pre><code>def do_quit(self, arg):
+    return self._STOP_AND_EXIT
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.do_quit">
+    <p>def <span class="ident">do_quit</span>(</p><p>self, arg)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_quit', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_quit" class="source">
+    <pre><code>def do_quit(self, arg):
+    return self._STOP_AND_EXIT
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.do_r">
+    <p>def <span class="ident">do_r</span>(</p><p>self, arg)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>run [arg]: re-runs an earlier command</p>
+<p>no arg -&gt; run most recent command
+arg is integer -&gt; run one history item, by index
+arg is string -&gt; run most recent command by string search
+arg is /enclosed in forward-slashes/ -&gt; run most recent by regex</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_r', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_r" class="source">
+    <pre><code>def do_run(self, arg):
+    """run [arg]: re-runs an earlier command
+    
+    no arg -> run most recent command
+    arg is integer -> run one history item, by index
+    arg is string -> run most recent command by string search
+    arg is /enclosed in forward-slashes/ -> run most recent by regex
+    """        
+    'run [N]: runs the SQL that was run N commands ago'
+    runme = self.last_matching(arg)
+    self.pfeedback(runme)
+    if runme:
+        stop = self.onecmd_plus_hooks(runme)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.do_reboot_vm">
+    <p>def <span class="ident">do_reboot_vm</span>(</p><p>self, patterns)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Usage: reboot_vm [pattern1 [pattern2]...]
+Soft reboot vms matching the given ORed name patterns.</p>
+<p>Sample usage: <code>reboot MY_VM_NAME</code></p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_reboot_vm', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_reboot_vm" class="source">
+    <pre><code>def do_reboot_vm(self, patterns):
+    """Usage: reboot_vm [pattern1 [pattern2]...]
+    Soft reboot vms matching the given ORed name patterns.
+    Sample usage: `reboot MY_VM_NAME`
+    """
+    for vm_name in self.compile_and_yield_vm_patterns(patterns):
+        print("Asking {0} to reboot".format(vm_name))
+        self.retrieve_vm(vm_name).RebootGuest()
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.do_reload">
+    <p>def <span class="ident">do_reload</span>(</p><p>self, _)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Usage: reload
+Reload VM cache from the vSphere server.</p>
+<p>Sample usage: <code>reload</code></p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_reload', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_reload" class="source">
+    <pre><code>def do_reload(self, _):
+    """Usage: reload
+    Reload VM cache from the vSphere server.
+    Sample usage: `reload`
+    """
+    self.preloop()
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.do_reset_vm">
+    <p>def <span class="ident">do_reset_vm</span>(</p><p>self, patterns)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Usage: reset_vm [pattern1 [pattern2]...]
+Reset vms matching the given ORed name patterns.</p>
+<p>Sample usage: <code>reset MY_VM_NAME OTHERNAME</code></p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_reset_vm', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_reset_vm" class="source">
+    <pre><code>def do_reset_vm(self, patterns):
+    """Usage: reset_vm [pattern1 [pattern2]...]
+    Reset vms matching the given ORed name patterns.
+    Sample usage: `reset MY_VM_NAME OTHERNAME`
+    """
+    reset_tasks = []
+    for vm_name in self.compile_and_yield_vm_patterns(patterns):
+        print("Launching reset task for {0}".format(vm_name))
+        reset_task = self.retrieve_vm(vm_name).ResetVM_Task()
+        reset_tasks.append(reset_task)
+    print("Waiting for {0} reset tasks to complete".format(len(reset_tasks)))
+    self.cache.wait_for_tasks(reset_tasks)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.do_run">
+    <p>def <span class="ident">do_run</span>(</p><p>self, arg)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>run [arg]: re-runs an earlier command</p>
+<p>no arg -&gt; run most recent command
+arg is integer -&gt; run one history item, by index
+arg is string -&gt; run most recent command by string search
+arg is /enclosed in forward-slashes/ -&gt; run most recent by regex</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_run', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_run" class="source">
+    <pre><code>def do_run(self, arg):
+    """run [arg]: re-runs an earlier command
+    
+    no arg -> run most recent command
+    arg is integer -> run one history item, by index
+    arg is string -> run most recent command by string search
+    arg is /enclosed in forward-slashes/ -> run most recent by regex
+    """        
+    'run [N]: runs the SQL that was run N commands ago'
+    runme = self.last_matching(arg)
+    self.pfeedback(runme)
+    if runme:
+        stop = self.onecmd_plus_hooks(runme)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.do_save">
+    <p>def <span class="ident">do_save</span>(</p><p>self, arg)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p><code>save [N] [filename.ext]</code></p>
+<p>Saves command from history to file.</p>
+<p>| N =&gt; Number of command (from history), or <code>*</code>; 
+|      most recent command if omitted</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_save', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_save" class="source">
+    <pre><code>def do_save(self, arg):
+    """`save [N] [filename.ext]`
+    Saves command from history to file.
+    | N => Number of command (from history), or `*`; 
+    |      most recent command if omitted"""
+    try:
+        args = self.saveparser.parseString(arg)
+    except pyparsing.ParseException:
+        self.perror('Could not understand save target %s' % arg)
+        raise SyntaxError(self.do_save.__doc__)
+    fname = args.fname or self.default_file_name
+    if args.idx == '*':
+        saveme = '\n\n'.join(self.history[:])
+    elif args.idx:
+        saveme = self.history[int(args.idx)-1]
+    else:
+        saveme = self.history[-1]
+    try:
+        f = open(os.path.expanduser(fname), 'w')
+        f.write(saveme)
+        f.close()
+        self.pfeedback('Saved to %s' % (fname))
+    except Exception as e:
+        self.perror('Error saving %s' % (fname))
+        raise
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.do_set">
+    <p>def <span class="ident">do_set</span>(</p><p>self, arg)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Sets a cmd2 parameter.  Accepts abbreviated parameter names so long
+as there is no ambiguity.  Call without arguments for a list of 
+settable parameters with their values.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_set', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_set" class="source">
+    <pre><code>def do_set(self, arg):
+    '''
+    Sets a cmd2 parameter.  Accepts abbreviated parameter names so long
+    as there is no ambiguity.  Call without arguments for a list of 
+    settable parameters with their values.'''
+    try:
+        statement, paramName, val = arg.parsed.raw.split(None, 2)
+        val = val.strip()
+        paramName = paramName.strip().lower()
+        if paramName not in self.settable:
+            hits = [p for p in self.settable if p.startswith(paramName)]
+            if len(hits) == 1:
+                paramName = hits[0]
+            else:
+                return self.do_show(paramName)
+        currentVal = getattr(self, paramName)
+        if (val[0] == val[-1]) and val[0] in ("'", '"'):
+            val = val[1:-1]
+        else:                
+            val = cast(currentVal, val)
+        setattr(self, paramName, val)
+        self.stdout.write('%s - was: %s\nnow: %s\n' % (paramName, currentVal, val))
+        if currentVal != val:
+            try:
+                onchange_hook = getattr(self, '_onchange_%s' % paramName)
+                onchange_hook(old=currentVal, new=val)
+            except AttributeError:
+                pass
+    except (ValueError, AttributeError, NotSettableError) as e:
+        self.do_show(arg)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.do_shell">
+    <p>def <span class="ident">do_shell</span>(</p><p>self, arg)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>execute a command as if at the OS prompt.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_shell', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_shell" class="source">
+    <pre><code>def do_shell(self, arg):
+    'execute a command as if at the OS prompt.'
+    os.system(arg)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.do_shortcuts">
+    <p>def <span class="ident">do_shortcuts</span>(</p><p>self, args)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Lists single-key shortcuts available.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_shortcuts', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_shortcuts" class="source">
+    <pre><code>def do_shortcuts(self, args):
+    """Lists single-key shortcuts available."""
+    result = "\n".join('%s: %s' % (sc[0], sc[1]) for sc in sorted(self.shortcuts))
+    self.stdout.write("Single-key shortcuts for other commands:\n%s\n" % (result))
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.do_show">
+    <p>def <span class="ident">do_show</span>(</p><p>instance, arg)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Shows value of a parameter.
+Usage: show [options] arg</p>
+<p>Options:
+  -h, --help  show this help message and exit
+  -l, --long  describe function of parameter</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_show', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.do_show" class="source">
+    <pre><code>def new_func(instance, arg):
+    try:
+        opts, newArgList = optionParser.parse_args(arg.split())
+        # Must find the remaining args in the original argument list, but 
+        # mustn't include the command itself
+        #if hasattr(arg, 'parsed') and newArgList[0] == arg.parsed.command:
+        #    newArgList = newArgList[1:]
+        newArgs = remaining_args(arg, newArgList)
+        if isinstance(arg, ParsedString):
+            arg = arg.with_args_replaced(newArgs)
+        else:
+            arg = newArgs
+    except optparse.OptParseError as e:
+        print (e)
+        optionParser.print_help()
+        return
+    if hasattr(opts, '_exit'):
+        return None
+    result = func(instance, arg, opts)                            
+    return result        
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.emptyline">
+    <p>def <span class="ident">emptyline</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Called when an empty line is entered in response to the prompt.</p>
+<p>If this method is not overridden, it repeats the last nonempty
+command entered.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.emptyline', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.emptyline" class="source">
+    <pre><code>def emptyline(self):
+    """Called when an empty line is entered in response to the prompt.
+    If this method is not overridden, it repeats the last nonempty
+    command entered.
+    """
+    if self.lastcmd:
+        return self.onecmd(self.lastcmd)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.fileimport">
+    <p>def <span class="ident">fileimport</span>(</p><p>self, statement, source)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.fileimport', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.fileimport" class="source">
+    <pre><code>def fileimport(self, statement, source):
+    try:
+        f = open(os.path.expanduser(source))
+    except IOError:
+        self.stdout.write("Couldn't read from file %s\n" % source)
+        return ''
+    data = f.read()
+    f.close()
+    return data
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.func_named">
+    <p>def <span class="ident">func_named</span>(</p><p>self, arg)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.func_named', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.func_named" class="source">
+    <pre><code>def func_named(self, arg):
+    result = None
+    target = 'do_' + arg
+    if target in dir(self):
+        result = target
+    else:
+        if self.abbrev:   # accept shortened versions of commands
+            funcs = [fname for fname in self.keywords if fname.startswith(arg)]
+            if len(funcs) == 1:
+                result = 'do_' + funcs[0]
+    return result
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.get_names">
+    <p>def <span class="ident">get_names</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.get_names', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.get_names" class="source">
+    <pre><code>def get_names(self):
+    # This method used to pull in base class attributes
+    # at a time dir() didn't do it yet.
+    return dir(self.__class__)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.last_matching">
+    <p>def <span class="ident">last_matching</span>(</p><p>self, arg)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.last_matching', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.last_matching" class="source">
+    <pre><code>def last_matching(self, arg):
+    try:
+        if arg:
+            return self.history.get(arg)[-1]
+        else:
+            return self.history[-1]
+    except IndexError:
+        return None        
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.onecmd">
+    <p>def <span class="ident">onecmd</span>(</p><p>self, line)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Interpret the argument as though it had been typed in response
+to the prompt.</p>
+<p>This may be overridden, but should not normally need to be;
+see the precmd() and postcmd() methods for useful execution hooks.
+The return value is a flag indicating whether interpretation of
+commands by the interpreter should stop.</p>
+<p>This (<code>cmd2</code>) version of <code>onecmd</code> already override's <code>cmd</code>'s <code>onecmd</code>.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.onecmd', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.onecmd" class="source">
+    <pre><code>def onecmd(self, line):
+    """Interpret the argument as though it had been typed in response
+    to the prompt.
+    This may be overridden, but should not normally need to be;
+    see the precmd() and postcmd() methods for useful execution hooks.
+    The return value is a flag indicating whether interpretation of
+    commands by the interpreter should stop.
+    
+    This (`cmd2`) version of `onecmd` already override's `cmd`'s `onecmd`.
+    """
+    statement = self.parsed(line)
+    self.lastcmd = statement.parsed.raw   
+    funcname = self.func_named(statement.parsed.command)
+    if not funcname:
+        return self._default(statement)
+    try:
+        func = getattr(self, funcname)
+    except AttributeError:
+        return self._default(statement)
+    stop = func(statement) 
+    return stop                
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.onecmd_plus_hooks">
+    <p>def <span class="ident">onecmd_plus_hooks</span>(</p><p>self, line)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.onecmd_plus_hooks', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.onecmd_plus_hooks" class="source">
+    <pre><code>def onecmd_plus_hooks(self, line):
+    # The outermost level of try/finally nesting can be condensed once
+    # Python 2.4 support can be dropped.
+    stop = 0
+    try:
+        try:
+            statement = self.complete_statement(line)
+            (stop, statement) = self.postparsing_precmd(statement)
+            if stop:
+                return self.postparsing_postcmd(stop)
+            if statement.parsed.command not in self.excludeFromHistory:
+                self.history.append(statement.parsed.raw)      
+            try:
+                self.redirect_output(statement)
+                timestart = datetime.datetime.now()
+                statement = self.precmd(statement)
+                stop = self.onecmd(statement)
+                stop = self.postcmd(stop, statement)
+                if self.timing:
+                    self.pfeedback('Elapsed: %s' % str(datetime.datetime.now() - timestart))
+            finally:
+                self.restore_output(statement)
+        except EmptyStatement:
+            return 0
+        except Exception as e:
+            self.perror(str(e), statement)            
+    finally:
+        return self.postparsing_postcmd(stop)        
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.parsed">
+    <p>def <span class="ident">parsed</span>(</p><p>self, raw, **kwargs)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.parsed', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.parsed" class="source">
+    <pre><code>def parsed(self, raw, **kwargs):
+    if isinstance(raw, ParsedString):
+        p = raw
+    else:
+        # preparse is an overridable hook; default makes no changes
+        s = self.preparse(raw, **kwargs)
+        s = self.inputParser.transformString(s.lstrip())
+        s = self.commentGrammars.transformString(s)
+        for (shortcut, expansion) in self.shortcuts:
+            if s.lower().startswith(shortcut):
+                s = s.replace(shortcut, expansion + ' ', 1)
+                break
+        result = self.parser.parseString(s)
+        result['raw'] = raw            
+        result['command'] = result.multilineCommand or result.command        
+        result = self.postparse(result)
+        p = ParsedString(result.args)
+        p.parsed = result
+        p.parser = self.parsed
+    for (key, val) in kwargs.items():
+        p.parsed[key] = val
+    return p
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.parseline">
+    <p>def <span class="ident">parseline</span>(</p><p>self, line)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Parse the line into a command name and a string containing
+the arguments.  Returns a tuple containing (command, args, line).
+'command' and 'args' may be None if the line couldn't be parsed.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.parseline', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.parseline" class="source">
+    <pre><code>def parseline(self, line):
+    """Parse the line into a command name and a string containing
+    the arguments.  Returns a tuple containing (command, args, line).
+    'command' and 'args' may be None if the line couldn't be parsed.
+    """
+    line = line.strip()
+    if not line:
+        return None, None, line
+    elif line[0] == '?':
+        line = 'help ' + line[1:]
+    elif line[0] == '!':
+        if hasattr(self, 'do_shell'):
+            line = 'shell ' + line[1:]
+        else:
+            return None, None, line
+    i, n = 0, len(line)
+    while i < n and line[i] in self.identchars: i = i+1
+    cmd, arg = line[:i], line[i:].strip()
+    return cmd, arg, line
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.perror">
+    <p>def <span class="ident">perror</span>(</p><p>self, errmsg, statement=None)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.perror', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.perror" class="source">
+    <pre><code>def perror(self, errmsg, statement=None):
+    if self.debug:
+        traceback.print_exc()
+    print (str(errmsg))
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.pfeedback">
+    <p>def <span class="ident">pfeedback</span>(</p><p>self, msg)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>For printing nonessential feedback.  Can be silenced with <code>quiet</code>.
+Inclusion in redirected output is controlled by <code>feedback_to_output</code>.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.pfeedback', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.pfeedback" class="source">
+    <pre><code>def pfeedback(self, msg):
+    """For printing nonessential feedback.  Can be silenced with `quiet`.
+       Inclusion in redirected output is controlled by `feedback_to_output`."""
+    if not self.quiet:
+        if self.feedback_to_output:
+            self.poutput(msg)
+        else:
+            print (msg)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.postcmd">
+    <p>def <span class="ident">postcmd</span>(</p><p>self, stop, line)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Hook method executed just after a command dispatch is finished.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.postcmd', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.postcmd" class="source">
+    <pre><code>def postcmd(self, stop, line):
+    """Hook method executed just after a command dispatch is finished."""
+    return stop
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.postloop">
+    <p>def <span class="ident">postloop</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Hook method executed once when the cmdloop() method is about to
+return.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.postloop', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.postloop" class="source">
+    <pre><code>def postloop(self):
+    """Hook method executed once when the cmdloop() method is about to
+    return.
+    """
+    pass
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.postparse">
+    <p>def <span class="ident">postparse</span>(</p><p>self, parseResult)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.postparse', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.postparse" class="source">
+    <pre><code>def postparse(self, parseResult):
+    return parseResult
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.postparsing_postcmd">
+    <p>def <span class="ident">postparsing_postcmd</span>(</p><p>self, stop)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.postparsing_postcmd', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.postparsing_postcmd" class="source">
+    <pre><code>def postparsing_postcmd(self, stop):
+    return stop
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.postparsing_precmd">
+    <p>def <span class="ident">postparsing_precmd</span>(</p><p>self, statement)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.postparsing_precmd', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.postparsing_precmd" class="source">
+    <pre><code>def postparsing_precmd(self, statement):
+    stop = 0
+    return stop, statement
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.poutput">
+    <p>def <span class="ident">poutput</span>(</p><p>self, msg)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Convenient shortcut for self.stdout.write(); adds newline if necessary.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.poutput', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.poutput" class="source">
+    <pre><code>def poutput(self, msg):
+    '''Convenient shortcut for self.stdout.write(); adds newline if necessary.'''
+    if msg:
+        self.stdout.write(msg)
+        if msg[-1] != '\n':
+            self.stdout.write('\n')
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.precmd">
+    <p>def <span class="ident">precmd</span>(</p><p>self, line)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Hook method executed just before the command line is
+interpreted, but after the input prompt is generated and issued.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.precmd', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.precmd" class="source">
+    <pre><code>def precmd(self, line):
+    """Hook method executed just before the command line is
+    interpreted, but after the input prompt is generated and issued.
+    """
+    return line
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.preloop">
+    <p>def <span class="ident">preloop</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.preloop', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.preloop" class="source">
+    <pre><code>def preloop(self):
+    self.cache.fill()
+    print("{0} VMs on {1} ESXis available.".format(self.cache.number_of_vms,
+                                                   self.cache.number_of_esxis))
+    print("{0} Distributed Virtual Switches configured.".format(
+          self.cache.number_of_dvses))
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.preparse">
+    <p>def <span class="ident">preparse</span>(</p><p>self, raw, **kwargs)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.preparse', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.preparse" class="source">
+    <pre><code>def preparse(self, raw, **kwargs):
+    return raw
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.print_topics">
+    <p>def <span class="ident">print_topics</span>(</p><p>self, header, cmds, cmdlen, maxcol)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.print_topics', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.print_topics" class="source">
+    <pre><code>def print_topics(self, header, cmds, cmdlen, maxcol):
+    if cmds:
+        self.stdout.write("%s\n"%str(header))
+        if self.ruler:
+            self.stdout.write("%s\n"%str(self.ruler * len(header)))
+        self.columnize(cmds, maxcol-1)
+        self.stdout.write("\n")
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.pseudo_raw_input">
+    <p>def <span class="ident">pseudo_raw_input</span>(</p><p>self, prompt)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>copied from cmd's cmdloop; like raw_input, but accounts for changed stdin, stdout</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.pseudo_raw_input', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.pseudo_raw_input" class="source">
+    <pre><code>def pseudo_raw_input(self, prompt):
+    """copied from cmd's cmdloop; like raw_input, but accounts for changed stdin, stdout"""
+    
+    if self.use_rawinput:
+        try:
+            line = raw_input(prompt)
+        except EOFError:
+            line = 'EOF'
+    else:
+        self.stdout.write(prompt)
+        self.stdout.flush()
+        line = self.stdin.readline()
+        if not len(line):
+            line = 'EOF'
+        else:
+            if line[-1] == '\n': # this was always true in Cmd
+                line = line[:-1] 
+    return line
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.read_file_or_url">
+    <p>def <span class="ident">read_file_or_url</span>(</p><p>self, fname)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.read_file_or_url', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.read_file_or_url" class="source">
+    <pre><code>def read_file_or_url(self, fname):
+    # TODO: not working on localhost
+    if isinstance(fname, file):
+        result = open(fname, 'r')
+    else:
+        match = self.urlre.match(fname)
+        if match:
+            result = urllib.urlopen(match.group(1))
+        else:
+            fname = os.path.expanduser(fname)
+            try:
+                result = open(os.path.expanduser(fname), 'r')
+            except IOError:                    
+                result = open('%s.%s' % (os.path.expanduser(fname), 
+                                         self.defaultExtension), 'r')
+    return result
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.redirect_output">
+    <p>def <span class="ident">redirect_output</span>(</p><p>self, statement)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.redirect_output', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.redirect_output" class="source">
+    <pre><code>def redirect_output(self, statement):
+    if statement.parsed.pipeTo:
+        self.kept_state = Statekeeper(self, ('stdout',))
+        self.kept_sys = Statekeeper(sys, ('stdout',))
+        self.redirect = subprocess.Popen(statement.parsed.pipeTo, shell=True, stdout=subprocess.PIPE, stdin=subprocess.PIPE)
+        sys.stdout = self.stdout = self.redirect.stdin
+    elif statement.parsed.output:
+        if (not statement.parsed.outputTo) and (not can_clip):
+            raise EnvironmentError('Cannot redirect to paste buffer; install ``xclip`` and re-run to enable')
+        self.kept_state = Statekeeper(self, ('stdout',))            
+        self.kept_sys = Statekeeper(sys, ('stdout',))
+        if statement.parsed.outputTo:
+            mode = 'w'
+            if statement.parsed.output == 2 * self.redirector:
+                mode = 'a'
+            sys.stdout = self.stdout = open(os.path.expanduser(statement.parsed.outputTo), mode)                            
+        else:
+            sys.stdout = self.stdout = tempfile.TemporaryFile(mode="w+")
+            if statement.parsed.output == '>>':
+                self.stdout.write(get_paste_buffer())
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.restore_output">
+    <p>def <span class="ident">restore_output</span>(</p><p>self, statement)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.restore_output', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.restore_output" class="source">
+    <pre><code>def restore_output(self, statement):
+    if self.kept_state:
+        if statement.parsed.output:
+            if not statement.parsed.outputTo:
+                self.stdout.seek(0)
+                write_to_paste_buffer(self.stdout.read())
+        elif statement.parsed.pipeTo:
+            for result in self.redirect.communicate():              
+                self.kept_state.stdout.write(result or '')                        
+        self.stdout.close()
+        self.kept_state.restore()  
+        self.kept_sys.restore()
+        self.kept_state = None                        
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.retrieve_vm">
+    <p>def <span class="ident">retrieve_vm</span>(</p><p>self, vm_name)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.retrieve_vm', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.retrieve_vm" class="source">
+    <pre><code>def retrieve_vm(self, vm_name):
+    return self.cache.retrieve_vm(vm_name)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.runTranscriptTests">
+    <p>def <span class="ident">runTranscriptTests</span>(</p><p>self, callargs)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.runTranscriptTests', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.runTranscriptTests" class="source">
+    <pre><code>def runTranscriptTests(self, callargs):
+    class TestMyAppCase(Cmd2TestCase):
+        CmdApp = self.__class__        
+    self.__class__.testfiles = callargs
+    sys.argv = [sys.argv[0]] # the --test argument upsets unittest.main()
+    testcase = TestMyAppCase()
+    runner = unittest.TextTestRunner()
+    result = runner.run(testcase)
+    result.printErrors()
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.run_commands_at_invocation">
+    <p>def <span class="ident">run_commands_at_invocation</span>(</p><p>self, callargs)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.run_commands_at_invocation', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.run_commands_at_invocation" class="source">
+    <pre><code>def run_commands_at_invocation(self, callargs):
+    for initial_command in callargs:
+        if self.onecmd_plus_hooks(initial_command + '\n'):
+            return self._STOP_AND_EXIT
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.select">
+    <p>def <span class="ident">select</span>(</p><p>self, options, prompt=&#39;Your choice? &#39;)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Presents a numbered menu to the user.  Modelled after
+the bash shell's SELECT.  Returns the item chosen.</p>
+<p>Argument <code>options</code> can be:</p>
+<p>| a single string -&gt; will be split into one-word options
+  | a list of strings -&gt; will be offered as options
+  | a list of tuples -&gt; interpreted as (value, text), so 
+                        that the return value can differ from
+                        the text advertised to the user</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.select', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.select" class="source">
+    <pre><code>def select(self, options, prompt='Your choice? '):
+    '''Presents a numbered menu to the user.  Modelled after
+       the bash shell's SELECT.  Returns the item chosen.
+       
+       Argument ``options`` can be:
+         | a single string -> will be split into one-word options
+         | a list of strings -> will be offered as options
+         | a list of tuples -> interpreted as (value, text), so 
+                               that the return value can differ from
+                               the text advertised to the user '''
+    if isinstance(options, basestring):
+        options = zip(options.split(), options.split())
+    fulloptions = []
+    for opt in options:
+        if isinstance(opt, basestring):
+            fulloptions.append((opt, opt))
+        else:
+            try:
+                fulloptions.append((opt[0], opt[1]))
+            except IndexError:
+                fulloptions.append((opt[0], opt[0]))
+    for (idx, (value, text)) in enumerate(fulloptions):
+        self.poutput('  %2d. %s\n' % (idx+1, text))
+    while True:
+        response = raw_input(prompt)
+        try:
+            response = int(response)
+            result = fulloptions[response - 1][0]
+            break
+        except ValueError:
+            pass # loop and ask again
+    return result
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.yield_vm_patterns">
+    <p>def <span class="ident">yield_vm_patterns</span>(</p><p>self, compiled_patterns)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.yield_vm_patterns', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.yield_vm_patterns" class="source">
+    <pre><code>def yield_vm_patterns(self, compiled_patterns):
+    for vm_name in self.cache.list_cached_vms():
+        if any([pattern.match(vm_name) for pattern in compiled_patterns]):
+            yield(vm_name)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      </div>
+      </div>
+
+  </section>
+
+    </article>
+  <div class="clear"> </div>
+  <footer id="footer">
+    <p>
+      Documentation generated by
+      <a href="https://github.com/BurntSushi/pdoc">pdoc 0.3.1</a>
+    </p>
+
+    <p>pdoc is in the public domain with the
+      <a href="http://unlicense.org">UNLICENSE</a></p>
+
+    <p>Design by <a href="http://nadh.in">Kailash Nadh</a></p>
+  </footer>
+</div>
+</body>
+</html>
