@@ -71,6 +71,9 @@ class VVC(object):
         raise NotFound("Service {0} not found".format(service_name))
 
     def get_custom_attributes_mapping(self):
+        """
+        Returns a dictionary that maps custom field keys to custom field names.
+        """
         custom_attributes_mapping = {}
         for field in self.get_service("customFieldsManager").field:
             custom_attributes_mapping[field.key] = field.name
@@ -97,26 +100,47 @@ class VVC(object):
         return item
 
     def get_vm_by_uuid(self, uuid):
+        """
+        Returns a VM by searching for its UUID.
+        An exception will be raised if the VM cannot be found.
+
+        - `uuid` (str) is the UUID of the desired VM.
+        """
         vm = self.get_service("searchIndex").FindByUuid(uuid=uuid, vmSearch=True)
         if not vm:
             raise NotFound("VM with uuid {0} not found".format(uuid))
         return VM(vm)
 
     def get_all_vms(self):
+        """
+        Returns a generator for all virtual machines on this vCenter.
+        """
         for vm in self.get_all_by_type([vim.VirtualMachine]):
             yield VM(vm)
 
     def get_all_by_type(self, types):
+        """
+        Returns a list of all matching item types.
+
+        - `types` (type[]) is a list of desired types. The types should be
+          attributes of the `pyVmomi.vim` module, for example `pyVmomi.vim.VirtualMachine`
+        """
         view = self.view_for(types)
         all_items = view.view
         view.Destroy()
         return all_items
 
     def get_all_esx(self):
+        """
+        Returns a generator for all ESXi host systems on this vCenter.
+        """
         for esx in self.get_all_by_type([vim.HostSystem]):
             yield ESX(esx)
 
     def get_all_dvs(self):
+        """
+        Returns a generator for all distributed virtual switches on this vCenter.
+        """
         for dvs in self.get_all_by_type([vim.VmwareDistributedVirtualSwitch]):
             yield DVS(dvs)
 
@@ -127,9 +151,29 @@ class VVC(object):
             True)
 
     def get_restricted_view_on_vms(self, properties):
+        """
+        Returns a list of all virtual machines.
+        The VMs will only have the specified properties but retrieval will be
+        insanely fast. The properties must exist on the pyVmomi.vim.VirtualMachine
+        object, of course.
+
+        - `properties` (str[]) is a list of desired properties.
+          For example using `properties=["name", "runtime.host"]` will return
+          objects that have only the attributes `name` and `runtime.host`.
+        """
         return self.get_restricted_view_on_items(properties, [vim.VirtualMachine])
 
     def get_restricted_view_on_host_systems(self, properties):
+        """
+        Returns a list of all ESXi host systems.
+        The ESXis will only have the specified properties but retrieval will be
+        insanely fast. The properties must exist on the pyVmomi.vim.HostSystem
+        object, of course.
+
+        - `properties` (str[]) is a list of desired properties.
+          For example using `properties=["name", "hardware.memorySize"]` will return
+          objects that have only the attributes `name` and `hardware.memorySize`.
+        """
         return self.get_restricted_view_on_items(properties, [vim.HostSystem])
 
     def get_restricted_view_on_items(self, properties, types):
