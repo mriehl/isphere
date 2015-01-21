@@ -6,7 +6,7 @@
 
 from __future__ import print_function
 
-from cmd import Cmd
+from cmd2 import Cmd
 import re
 
 from isphere.connection import CachingVSphere

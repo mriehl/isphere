@@ -4,7 +4,7 @@
 #  as published by Sam Hocevar. See the COPYING.wtfpl file for more details.
 #
 
-import cmd
+import cmd2 as cmd
 
 from isphere.command.core_command import CoreCommand
 from isphere.command.esx_command import EsxCommand

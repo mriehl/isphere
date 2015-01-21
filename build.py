@@ -33,6 +33,7 @@ default_task = ['clean', 'analyze', 'publish']
 def set_properties(project):
     project.depends_on('pyvmomi')
     project.depends_on('docopt')
+    project.depends_on('cmd2')
     project.build_depends_on('mock')
 
     project.set_property('verbose', True)
