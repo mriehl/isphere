@@ -1,0 +1,2537 @@
+<!doctype html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+
+    <title>isphere.interactive_wrapper API documentation</title>
+    <meta name="description" content="" />
+
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300' rel='stylesheet' type='text/css'>
+  
+  <style type="text/css">
+  
+* {
+  box-sizing: border-box;
+}
+/*! normalize.css v1.1.1 | MIT License | git.io/normalize */
+
+/* ==========================================================================
+   HTML5 display definitions
+   ========================================================================== */
+
+/**
+ * Correct `block` display not defined in IE 6/7/8/9 and Firefox 3.
+ */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+    display: block;
+}
+
+/**
+ * Correct `inline-block` display not defined in IE 6/7/8/9 and Firefox 3.
+ */
+
+audio,
+canvas,
+video {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+}
+
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+
+audio:not([controls]) {
+    display: none;
+    height: 0;
+}
+
+/**
+ * Address styling not present in IE 7/8/9, Firefox 3, and Safari 4.
+ * Known issue: no IE 6 support.
+ */
+
+[hidden] {
+    display: none;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+/**
+ * 1. Prevent system color scheme's background color being used in Firefox, IE,
+ *    and Opera.
+ * 2. Prevent system color scheme's text color being used in Firefox, IE, and
+ *    Opera.
+ * 3. Correct text resizing oddly in IE 6/7 when body `font-size` is set using
+ *    `em` units.
+ * 4. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ */
+
+html {
+    background: #fff; /* 1 */
+    color: #000; /* 2 */
+    font-size: 100%; /* 3 */
+    -webkit-text-size-adjust: 100%; /* 4 */
+    -ms-text-size-adjust: 100%; /* 4 */
+}
+
+/**
+ * Address `font-family` inconsistency between `textarea` and other form
+ * elements.
+ */
+
+html,
+button,
+input,
+select,
+textarea {
+    font-family: sans-serif;
+}
+
+/**
+ * Address margins handled incorrectly in IE 6/7.
+ */
+
+body {
+    margin: 0;
+}
+
+/* ==========================================================================
+   Links
+   ========================================================================== */
+
+/**
+ * Address `outline` inconsistency between Chrome and other browsers.
+ */
+
+a:focus {
+    outline: thin dotted;
+}
+
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+
+a:active,
+a:hover {
+    outline: 0;
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+/**
+ * Address font sizes and margins set differently in IE 6/7.
+ * Address font sizes within `section` and `article` in Firefox 4+, Safari 5,
+ * and Chrome.
+ */
+
+h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin: 0.83em 0;
+}
+
+h3 {
+    font-size: 1.17em;
+    margin: 1em 0;
+}
+
+h4 {
+    font-size: 1em;
+    margin: 1.33em 0;
+}
+
+h5 {
+    font-size: 0.83em;
+    margin: 1.67em 0;
+}
+
+h6 {
+    font-size: 0.67em;
+    margin: 2.33em 0;
+}
+
+/**
+ * Address styling not present in IE 7/8/9, Safari 5, and Chrome.
+ */
+
+abbr[title] {
+    border-bottom: 1px dotted;
+}
+
+/**
+ * Address style set to `bolder` in Firefox 3+, Safari 4/5, and Chrome.
+ */
+
+b,
+strong {
+    font-weight: bold;
+}
+
+blockquote {
+    margin: 1em 40px;
+}
+
+/**
+ * Address styling not present in Safari 5 and Chrome.
+ */
+
+dfn {
+    font-style: italic;
+}
+
+/**
+ * Address differences between Firefox and other browsers.
+ * Known issue: no IE 6/7 normalization.
+ */
+
+hr {
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 0;
+}
+
+/**
+ * Address styling not present in IE 6/7/8/9.
+ */
+
+mark {
+    background: #ff0;
+    color: #000;
+}
+
+/**
+ * Address margins set differently in IE 6/7.
+ */
+
+p,
+pre {
+    margin: 1em 0;
+}
+
+/**
+ * Correct font family set oddly in IE 6, Safari 4/5, and Chrome.
+ */
+
+code,
+kbd,
+pre,
+samp {
+    font-family: monospace, serif;
+    _font-family: 'courier new', monospace;
+    font-size: 1em;
+}
+
+/**
+ * Improve readability of pre-formatted text in all browsers.
+ */
+
+pre {
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/**
+ * Address CSS quotes not supported in IE 6/7.
+ */
+
+q {
+    quotes: none;
+}
+
+/**
+ * Address `quotes` property not supported in Safari 4.
+ */
+
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+
+small {
+    font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sup {
+    top: -0.5em;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+/* ==========================================================================
+   Lists
+   ========================================================================== */
+
+/**
+ * Address margins set differently in IE 6/7.
+ */
+
+dl,
+menu,
+ol,
+ul {
+    margin: 1em 0;
+}
+
+dd {
+    margin: 0 0 0 40px;
+}
+
+/**
+ * Address paddings set differently in IE 6/7.
+ */
+
+menu,
+ol,
+ul {
+    padding: 0 0 0 40px;
+}
+
+/**
+ * Correct list images handled incorrectly in IE 7.
+ */
+
+nav ul,
+nav ol {
+    list-style: none;
+    list-style-image: none;
+}
+
+/* ==========================================================================
+   Embedded content
+   ========================================================================== */
+
+/**
+ * 1. Remove border when inside `a` element in IE 6/7/8/9 and Firefox 3.
+ * 2. Improve image quality when scaled in IE 7.
+ */
+
+img {
+    border: 0; /* 1 */
+    -ms-interpolation-mode: bicubic; /* 2 */
+}
+
+/**
+ * Correct overflow displayed oddly in IE 9.
+ */
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   Figures
+   ========================================================================== */
+
+/**
+ * Address margin not present in IE 6/7/8/9, Safari 5, and Opera 11.
+ */
+
+figure {
+    margin: 0;
+}
+
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+
+/**
+ * Correct margin displayed oddly in IE 6/7.
+ */
+
+form {
+    margin: 0;
+}
+
+/**
+ * Define consistent border, margin, and padding.
+ */
+
+fieldset {
+    border: 1px solid #c0c0c0;
+    margin: 0 2px;
+    padding: 0.35em 0.625em 0.75em;
+}
+
+/**
+ * 1. Correct color not being inherited in IE 6/7/8/9.
+ * 2. Correct text not wrapping in Firefox 3.
+ * 3. Correct alignment displayed oddly in IE 6/7.
+ */
+
+legend {
+    border: 0; /* 1 */
+    padding: 0;
+    white-space: normal; /* 2 */
+    *margin-left: -7px; /* 3 */
+}
+
+/**
+ * 1. Correct font size not being inherited in all browsers.
+ * 2. Address margins set differently in IE 6/7, Firefox 3+, Safari 5,
+ *    and Chrome.
+ * 3. Improve appearance and consistency in all browsers.
+ */
+
+button,
+input,
+select,
+textarea {
+    font-size: 100%; /* 1 */
+    margin: 0; /* 2 */
+    vertical-align: baseline; /* 3 */
+    *vertical-align: middle; /* 3 */
+}
+
+/**
+ * Address Firefox 3+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+
+button,
+input {
+    line-height: normal;
+}
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Chrome, Safari 5+, and IE 6+.
+ * Correct `select` style inheritance in Firefox 4+ and Opera.
+ */
+
+button,
+select {
+    text-transform: none;
+}
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ * 4. Remove inner spacing in IE 7 without affecting normal text inputs.
+ *    Known issue: inner spacing remains in IE 6.
+ */
+
+button,
+html input[type="button"], /* 1 */
+input[type="reset"],
+input[type="submit"] {
+    -webkit-appearance: button; /* 2 */
+    cursor: pointer; /* 3 */
+    *overflow: visible;  /* 4 */
+}
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+
+button[disabled],
+html input[disabled] {
+    cursor: default;
+}
+
+/**
+ * 1. Address box sizing set to content-box in IE 8/9.
+ * 2. Remove excess padding in IE 8/9.
+ * 3. Remove excess padding in IE 7.
+ *    Known issue: excess padding remains in IE 6.
+ */
+
+input[type="checkbox"],
+input[type="radio"] {
+    box-sizing: border-box; /* 1 */
+    padding: 0; /* 2 */
+    *height: 13px; /* 3 */
+    *width: 13px; /* 3 */
+}
+
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
+ *    (include `-moz` to future-proof).
+ */
+
+input[type="search"] {
+    -webkit-appearance: textfield; /* 1 */
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box; /* 2 */
+    box-sizing: content-box;
+}
+
+/**
+ * Remove inner padding and search cancel button in Safari 5 and Chrome
+ * on OS X.
+ */
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+
+/**
+ * Remove inner padding and border in Firefox 3+.
+ */
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+/**
+ * 1. Remove default vertical scrollbar in IE 6/7/8/9.
+ * 2. Improve readability and alignment in all browsers.
+ */
+
+textarea {
+    overflow: auto; /* 1 */
+    vertical-align: top; /* 2 */
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+
+/**
+ * Remove most spacing between table cells.
+ */
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+  </style>
+
+  <style type="text/css">
+  
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  body {
+    background: #fff;
+    font-family: "Source Sans Pro", "Helvetica Neueue", Helvetica, sans;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.6em;
+  }
+  #content {
+    width: 70%;
+    max-width: 850px;
+    float: left;
+    padding: 30px 60px;
+    border-left: 1px solid #ddd;
+  }
+  #sidebar {
+    width: 25%;
+    float: left;
+    padding: 30px;
+    overflow: hidden;
+  }
+  #nav {
+    font-size: 130%;
+    margin: 0 0 15px 0;
+  }
+
+  #top {
+    display: block;
+    position: fixed;
+    bottom: 5px;
+    left: 5px;
+    font-size: .85em;
+    text-transform: uppercase;
+  }
+
+  #footer {
+    font-size: .75em;
+    padding: 5px 30px;
+    border-top: 1px solid #ddd;
+    text-align: right;
+  }
+    #footer p {
+      margin: 0 0 0 30px;
+      display: inline-block;
+    }
+
+  h1, h2, h3, h4, h5 {
+    font-weight: 300;
+  }
+  h1 {
+    font-size: 2.5em;
+    line-height: 1.1em;
+    margin: 0 0 .50em 0;
+  }
+
+  h2 {
+    font-size: 1.75em;
+    margin: 1em 0 .50em 0;
+  }
+
+  h3 {
+    margin: 25px 0 10px 0;
+  }
+
+  h4 {
+    margin: 0;
+    font-size: 105%;
+  }
+
+  a {
+    color: #058;
+    text-decoration: none;
+    transition: color .3s ease-in-out;
+  }
+
+  a:hover {
+    color: #e08524;
+    transition: color .3s ease-in-out;
+  }
+
+  pre, code, .mono, .name {
+    font-family: "Ubuntu Mono", "Cousine", "DejaVu Sans Mono", monospace;
+  }
+
+  .title .name {
+    font-weight: bold;
+  }
+  .section-title {
+    margin-top: 2em;
+  }
+  .ident {
+    color: #900;
+  }
+
+  code {
+    background: #f9f9f9;
+  } 
+
+  pre {
+    background: #fefefe;
+    border: 1px solid #ddd;
+    box-shadow: 2px 2px 0 #f3f3f3;
+    margin: 0 30px;
+    padding: 15px 30px;
+  }
+
+  .codehilite {
+    margin: 0 30px 10px 30px;
+  }
+
+    .codehilite pre {
+      margin: 0;
+    }
+    .codehilite .err { background: #ff3300; color: #fff !important; } 
+
+  table#module-list {
+    font-size: 110%;
+  }
+
+    table#module-list tr td:first-child {
+      padding-right: 10px;
+      white-space: nowrap;
+    }
+
+    table#module-list td {
+      vertical-align: top;
+      padding-bottom: 8px;
+    }
+
+      table#module-list td p {
+        margin: 0 0 7px 0;
+      }
+
+  .def {
+    display: table;
+  }
+
+    .def p {
+      display: table-cell;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    .def p:first-child {
+      white-space: nowrap;
+    }
+
+    .def p:last-child {
+      width: 100%;
+    }
+
+
+  #index {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+    ul#index .class_name {
+      /* font-size: 110%; */
+      font-weight: bold;
+    }
+    #index ul {
+      margin: 0;
+    }
+
+  .item {
+    margin: 0 0 15px 0;
+  }
+
+    .item .class {
+      margin: 0 0 25px 30px;
+    }
+
+      .item .class ul.class_list {
+        margin: 0 0 20px 0;
+      }
+
+    .item .name {
+      background: #fafafa;
+      margin: 0;
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 3px;
+      display: inline-block;
+      min-width: 40%;
+    }
+      .item .name:hover {
+        background: #f6f6f6;
+      }
+
+    .item .empty_desc {
+      margin: 0 0 5px 0;
+      padding: 0;
+    }
+
+    .item .inheritance {
+      margin: 3px 0 0 30px;
+    }
+
+    .item .inherited {
+      color: #666;
+    }
+
+    .item .desc {
+      padding: 0 8px;
+      margin: 0;
+    }
+
+      .item .desc p {
+        margin: 0 0 10px 0;
+      }
+
+    .source_cont {
+      margin: 0;
+      padding: 0;
+    }
+
+    .source_link a {
+      background: #ffc300;
+      font-weight: 400;
+      font-size: .75em;
+      text-transform: uppercase;
+      color: #fff;
+      text-shadow: 1px 1px 0 #f4b700;
+      
+      padding: 3px 8px;
+      border-radius: 2px;
+      transition: background .3s ease-in-out;
+    }
+      .source_link a:hover {
+        background: #FF7200;
+        text-shadow: none;
+        transition: background .3s ease-in-out;
+      }
+
+    .source {
+      display: none;
+      max-height: 600px;
+      overflow-y: scroll;
+      margin-bottom: 15px;
+    }
+
+      .source .codehilite {
+        margin: 0;
+      }
+
+  .desc h1, .desc h2, .desc h3 {
+    font-size: 100% !important;
+  }
+  .clear {
+    clear: both;
+  }
+
+  @media all and (max-width: 950px) {
+    #sidebar {
+      width: 35%;
+    }
+    #content {
+      width: 65%;
+    }
+  }
+  @media all and (max-width: 650px) {
+    #top {
+      display: none;
+    }
+    #sidebar {
+      float: none;
+      width: auto;
+    }
+    #content {
+      float: none;
+      width: auto;
+      padding: 30px;
+    }
+
+    #index ul {
+      padding: 0;
+      margin-bottom: 15px;
+    }
+    #index ul li {
+      display: inline-block;
+      margin-right: 30px;
+    }
+    #footer {
+      text-align: left;
+    }
+    #footer p {
+      display: block;
+      margin: inherit;
+    }
+  }
+
+  /*****************************/
+
+  </style>
+
+
+  <style type="text/css">
+  
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+    /* Style adjustments for viewports that meet the condition */
+}
+
+@media print,
+       (-o-min-device-pixel-ratio: 5/4),
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 120dpi) {
+    /* Style adjustments for high resolution devices */
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid required HTTP connection: h5bp.com/r
+   ========================================================================== */
+
+@media print {
+    * {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster: h5bp.com/s */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links for images, or javascript/internal links
+     */
+
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group; /* h5bp.com/t */
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    @page {
+        margin: 0.5cm;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
+
+  </style>
+
+  <script type="text/javascript">
+  function toggle(id, $link) {
+    $node = document.getElementById(id);
+    if (!$node)
+    return;
+    if (!$node.style.display || $node.style.display == 'none') {
+    $node.style.display = 'block';
+    $link.innerHTML = 'Hide source &nequiv;';
+    } else {
+    $node.style.display = 'none';
+    $link.innerHTML = 'Show source &equiv;';
+    }
+  }
+  </script>
+</head>
+<body>
+<a href="#" id="top">Top</a>
+
+<div id="container">
+    
+  
+  <div id="sidebar">
+    <h1>Index</h1>
+    <ul id="index">
+
+    <li class="set"><h3><a href="#header-functions">Functions</a></h3>
+      
+  <ul>
+    <li class="mono"><a href="#isphere.interactive_wrapper.build_property_collector_specs">build_property_collector_specs</a></li>
+    <li class="mono"><a href="#isphere.interactive_wrapper.get_all_vms_in_folder">get_all_vms_in_folder</a></li>
+  </ul>
+
+    </li>
+
+    <li class="set"><h3><a href="#header-classes">Classes</a></h3>
+      <ul>
+        <li class="mono">
+        <span class="class_name"><a href="#isphere.interactive_wrapper.DVS">DVS</a></span>
+        
+          
+  <ul>
+    <li class="mono"><a href="#isphere.interactive_wrapper.DVS.__init__">__init__</a></li>
+  </ul>
+
+        </li>
+        <li class="mono">
+        <span class="class_name"><a href="#isphere.interactive_wrapper.ESX">ESX</a></span>
+        
+          
+  <ul>
+    <li class="mono"><a href="#isphere.interactive_wrapper.ESX.__init__">__init__</a></li>
+    <li class="mono"><a href="#isphere.interactive_wrapper.ESX.get_number_of_cores">get_number_of_cores</a></li>
+  </ul>
+
+        </li>
+        <li class="mono">
+        <span class="class_name"><a href="#isphere.interactive_wrapper.ItemContainer">ItemContainer</a></span>
+        
+          
+  <ul>
+    <li class="mono"><a href="#isphere.interactive_wrapper.ItemContainer.set_path_value">set_path_value</a></li>
+  </ul>
+
+        </li>
+        <li class="mono">
+        <span class="class_name"><a href="#isphere.interactive_wrapper.NotFound">NotFound</a></span>
+        
+        </li>
+        <li class="mono">
+        <span class="class_name"><a href="#isphere.interactive_wrapper.VM">VM</a></span>
+        
+          
+  <ul>
+    <li class="mono"><a href="#isphere.interactive_wrapper.VM.__init__">__init__</a></li>
+    <li class="mono"><a href="#isphere.interactive_wrapper.VM.get_esx_host">get_esx_host</a></li>
+    <li class="mono"><a href="#isphere.interactive_wrapper.VM.get_first_network_interface_matching">get_first_network_interface_matching</a></li>
+  </ul>
+
+        </li>
+        <li class="mono">
+        <span class="class_name"><a href="#isphere.interactive_wrapper.VVC">VVC</a></span>
+        
+          
+  <ul>
+    <li class="mono"><a href="#isphere.interactive_wrapper.VVC.__init__">__init__</a></li>
+    <li class="mono"><a href="#isphere.interactive_wrapper.VVC.connect">connect</a></li>
+    <li class="mono"><a href="#isphere.interactive_wrapper.VVC.find_by_dns_name">find_by_dns_name</a></li>
+    <li class="mono"><a href="#isphere.interactive_wrapper.VVC.get_all_by_type">get_all_by_type</a></li>
+    <li class="mono"><a href="#isphere.interactive_wrapper.VVC.get_all_dvs">get_all_dvs</a></li>
+    <li class="mono"><a href="#isphere.interactive_wrapper.VVC.get_all_esx">get_all_esx</a></li>
+    <li class="mono"><a href="#isphere.interactive_wrapper.VVC.get_all_vms">get_all_vms</a></li>
+    <li class="mono"><a href="#isphere.interactive_wrapper.VVC.get_custom_attributes_mapping">get_custom_attributes_mapping</a></li>
+    <li class="mono"><a href="#isphere.interactive_wrapper.VVC.get_first_level_of_vm_folders">get_first_level_of_vm_folders</a></li>
+    <li class="mono"><a href="#isphere.interactive_wrapper.VVC.get_restricted_view_on_host_systems">get_restricted_view_on_host_systems</a></li>
+    <li class="mono"><a href="#isphere.interactive_wrapper.VVC.get_restricted_view_on_items">get_restricted_view_on_items</a></li>
+    <li class="mono"><a href="#isphere.interactive_wrapper.VVC.get_restricted_view_on_vms">get_restricted_view_on_vms</a></li>
+    <li class="mono"><a href="#isphere.interactive_wrapper.VVC.get_service">get_service</a></li>
+    <li class="mono"><a href="#isphere.interactive_wrapper.VVC.get_vm_by_uuid">get_vm_by_uuid</a></li>
+    <li class="mono"><a href="#isphere.interactive_wrapper.VVC.view_for">view_for</a></li>
+  </ul>
+
+        </li>
+      </ul>
+    </li>
+
+    </ul>
+  </div>
+
+    <article id="content">
+      
+  
+
+  
+
+
+  <header id="section-intro">
+  <h1 class="title"><span class="name">isphere.interactive_wrapper</span> module</h1>
+  
+  
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.interactive_wrapper" class="source">
+    <pre><code>#  Copyright (c) 2014-2015 Maximilien Riehl <max@riehl.io>
+#  This work is free. You can redistribute it and/or modify it under the
+#  terms of the Do What The Fuck You Want To Public License, Version 2,
+#  as published by Sam Hocevar. See the COPYING.wtfpl file for more details.
+#
+
+import atexit
+from getpass import getpass
+
+from pyVim import connect
+from pyVmomi import vim, vmodl
+
+"""
+This module overlays the pyVmomi library to make its use in a
+python shell or short program more enjoyable.
+Starting point is instantiating a vCenter Host (VVC) in order
+to get all VMs.
+"""
+
+
+class NotFound(BaseException):
+
+    """
+    To be raised when a requested item was not found.
+    """
+    pass
+
+
+class VVC(object):
+
+    """
+    A vCenter host.
+    """
+
+    def __init__(self, hostname):
+        """
+        Creates a VVC instance.
+
+        - `hostname` (str) is the name of the vCenter host.
+        """
+        self.hostname = hostname
+        self.service_instance = None
+        self.service_instance_content = None
+
+    def connect(self, username, password=None):
+        """
+        Connects to the vCenter host encapsulated by this VVC instance.
+
+        - `username` (str) is the username to use for authentication.
+        - `password` (str) is the password to use for authentication.
+          If the password is not specified, a getpass prompt will be used.
+        """
+        if not password:
+            password = getpass("Password for {0}@{1}: ".format(username, self.hostname))
+        self.service_instance = connect.SmartConnect(host=self.hostname,
+                                                     user=username,
+                                                     pwd=password,
+                                                     port=443)
+        self.service_instance_content = self.service_instance.RetrieveContent()
+        atexit.register(connect.Disconnect, self.service_instance)
+
+    def get_first_level_of_vm_folders(self):
+        children = self.service_instance_content.rootFolder.childEntity
+        for child in children:
+            if hasattr(child, "vmFolder"):
+                yield child.vmFolder
+
+    def get_service(self, service_name):
+        if hasattr(self.service_instance_content, service_name):
+            return getattr(self.service_instance_content, service_name)
+        raise NotFound("Service {0} not found".format(service_name))
+
+    def get_custom_attributes_mapping(self):
+        custom_attributes_mapping = {}
+        for field in self.get_service("customFieldsManager").field:
+            custom_attributes_mapping[field.key] = field.name
+
+        return custom_attributes_mapping
+
+    def find_by_dns_name(self, dns_name, search_for_vms=False):
+        """
+        Returns an item by searching for its DNS name.
+        An exception will be raised if the item cannot be found.
+
+        - `dns_name` (str) is the DNS name of the desired item.
+        - `search_for_vms` (boolean) (default False) indicates if VMs should
+          be included in the search.
+        """
+        search_index = self.service_instance.RetrieveContent().searchIndex
+        item = search_index.FindByDnsName(dnsName=dns_name, vmSearch=search_for_vms)
+        if not item:
+            raise NotFound(
+                "Item with dns name {0} not found (search_for_vms: {1})".format(
+                    dns_name,
+                    search_for_vms))
+
+        return item
+
+    def get_vm_by_uuid(self, uuid):
+        vm = self.get_service("searchIndex").FindByUuid(uuid=uuid, vmSearch=True)
+        if not vm:
+            raise NotFound("VM with uuid {0} not found".format(uuid))
+        return VM(vm)
+
+    def get_all_vms(self):
+        for vm in self.get_all_by_type([vim.VirtualMachine]):
+            yield VM(vm)
+
+    def get_all_by_type(self, types):
+        view = self.view_for(types)
+        all_items = view.view
+        view.Destroy()
+        return all_items
+
+    def get_all_esx(self):
+        for esx in self.get_all_by_type([vim.HostSystem]):
+            yield ESX(esx)
+
+    def get_all_dvs(self):
+        for dvs in self.get_all_by_type([vim.VmwareDistributedVirtualSwitch]):
+            yield DVS(dvs)
+
+    def view_for(self, types):
+        return self.get_service("viewManager").CreateContainerView(
+            self.service_instance_content.rootFolder,
+            types,
+            True)
+
+    def get_restricted_view_on_vms(self, properties):
+        return self.get_restricted_view_on_items(properties, [vim.VirtualMachine])
+
+    def get_restricted_view_on_host_systems(self, properties):
+        return self.get_restricted_view_on_items(properties, [vim.HostSystem])
+
+    def get_restricted_view_on_items(self, properties, types):
+        """
+        Returns a restricted view on a specific item type collection.
+        The items are restricted in the sense that only properties which were
+        specified upon retrieval can be accessed.
+
+        The return value will be a list of items that have the desired properties
+        as attributes.
+        Note that recursing properties (e.G. summary.config) will be stored under
+        their full name (item.summary.config).
+
+        - `properties` (str[]) is a list of properties that should be fetched.
+          Recursing properties can be separated by dots, e.G. "summary.config".
+        - `types` (type[]) is a list of types to restrict the items that are given
+          back. The types must be attributes of the pyVmomi.vim module.
+        """
+        unrestricted_view = self.view_for(types)
+        collector_spec = build_property_collector_specs(unrestricted_view, properties)
+
+        retrieved_contents = self.get_service("propertyCollector").RetrieveContents(collector_spec)
+        items = []
+        for item in retrieved_contents:
+            item_instance = ItemContainer()
+            for item_property in item.propSet:
+                if item_property.name in properties:
+                    item_instance.set_path_value(item_property.name, item_property.val)
+            items.append(item_instance)
+        return items
+
+
+class ItemContainer(object):
+
+    def set_path_value(self, path, value):
+        part_names = path.split(".")
+        self._inner_set_path_value(part_names, value)
+
+    def _inner_set_path_value(self, part_names, value, current_item=None):
+        if not part_names:
+            return
+        current_item = self if not current_item else current_item
+        current_part = part_names.pop(0)
+        need_to_set_value = not part_names  # if part_names is empty we're done with the path and can set the value
+        if need_to_set_value:
+            setattr(current_item, current_part, value)
+            return
+        else:
+            if not hasattr(current_item, current_part):
+                part_container = ItemContainer()
+                setattr(current_item, current_part, part_container)
+            else:
+                part_container = getattr(current_item, current_part)
+            part_container._inner_set_path_value(part_names, value, part_container)
+
+
+class ESX(object):
+
+    """
+    An ESX instance.
+    """
+
+    def __init__(self, raw_esx):
+        self.raw_esx = raw_esx
+        self.name = raw_esx.name
+
+    def __eq__(self, other):
+        return self.name == other.name
+
+    def __hash__(self):
+        return int("".join((str(ord(c)) for c in self.name)))
+
+    def __getattr__(self, attribute):
+        return getattr(self.raw_esx, attribute)
+
+    def __dir__(self):
+        return dir(self.raw_esx)
+
+    def get_number_of_cores(self):
+        """
+        Returns the number of CPU cores (type long) on this ESX.
+        """
+        resources_on_esx = self.raw_esx.licensableResource.resource
+        for resource in resources_on_esx:
+            if resource.key == "numCpuCores":
+                return resource.value
+        message = "{0} has no resource numCpuCores.\n Available resources: {1}"
+        raise RuntimeError(message.format(self.name, resources_on_esx))
+
+
+class VM(object):
+
+    """
+    A virtual machine.
+    """
+
+    def __init__(self, raw_vm):
+        self.raw_vm = raw_vm
+        self.name = raw_vm.name
+
+    def __getattr__(self, attribute):
+        return getattr(self.raw_vm, attribute)
+
+    def __dir__(self):
+        return dir(self.raw_vm)
+
+    def get_first_network_interface_matching(self, predicate):
+        """
+        Returns the first network interface of this VM that matches the given
+        predicate.
+
+        - `predicate` (callable) is a function that takes a network and returns
+          True (return this network) or False (skip this network).
+        """
+        for network in self.raw_vm.network:
+            if predicate(network):
+                return network
+        return None
+
+    def get_esx_host(self):
+        return ESX(self.raw_vm.runtime.host)
+
+
+class DVS(object):
+
+    """
+    A DistributedVirtualSwitch
+    """
+
+    def __init__(self, raw_dvs):
+        self.raw_dvs = raw_dvs
+        self.name = raw_dvs.name
+
+    def __eq__(self, other):
+        return self.name == other.name
+
+    def __dir__(self):
+        return dir(self.raw_dvs)
+
+    def __getattr__(self, attribute):
+        return getattr(self.raw_dvs, attribute)
+
+
+def get_all_vms_in_folder(folder):
+    vm_or_folders = folder.childEntity
+    for vm_or_folder in vm_or_folders:
+        if hasattr(vm_or_folder, "childEntity"):
+            # it's still a folder, look deeper
+            for vm in get_all_vms_in_folder(vm_or_folder):
+                yield vm  # it's now a VM
+        else:
+            yield VM(vm_or_folder)  # it's a VM
+
+
+def build_property_collector_specs(view, item_properties):
+    obj_spec = vmodl.query.PropertyCollector.ObjectSpec()
+    obj_spec.obj = view
+    obj_spec.skip = True
+
+    traversal_spec = vmodl.query.PropertyCollector.TraversalSpec()
+    traversal_spec.name = 'traverseEntities'
+    traversal_spec.path = 'view'
+    traversal_spec.skip = False
+    traversal_spec.type = view.__class__
+    obj_spec.selectSet = [traversal_spec]
+
+    property_spec = vmodl.query.PropertyCollector.PropertySpec()
+    property_spec.type = getattr(vim, view.type[0])
+    property_spec.pathSet = item_properties
+
+    filter_spec = vmodl.query.PropertyCollector.FilterSpec()
+    filter_spec.objectSet = [obj_spec]
+    filter_spec.propSet = [property_spec]
+    return [filter_spec]
+</code></pre>
+  </div>
+
+  </header>
+
+  <section id="section-items">
+
+    <h2 class="section-title" id="header-functions">Functions</h2>
+      
+  <div class="item">
+    <div class="name def" id="isphere.interactive_wrapper.build_property_collector_specs">
+    <p>def <span class="ident">build_property_collector_specs</span>(</p><p>view, item_properties)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.build_property_collector_specs', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.interactive_wrapper.build_property_collector_specs" class="source">
+    <pre><code>def build_property_collector_specs(view, item_properties):
+    obj_spec = vmodl.query.PropertyCollector.ObjectSpec()
+    obj_spec.obj = view
+    obj_spec.skip = True
+
+    traversal_spec = vmodl.query.PropertyCollector.TraversalSpec()
+    traversal_spec.name = 'traverseEntities'
+    traversal_spec.path = 'view'
+    traversal_spec.skip = False
+    traversal_spec.type = view.__class__
+    obj_spec.selectSet = [traversal_spec]
+
+    property_spec = vmodl.query.PropertyCollector.PropertySpec()
+    property_spec.type = getattr(vim, view.type[0])
+    property_spec.pathSet = item_properties
+
+    filter_spec = vmodl.query.PropertyCollector.FilterSpec()
+    filter_spec.objectSet = [obj_spec]
+    filter_spec.propSet = [property_spec]
+    return [filter_spec]
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      
+  <div class="item">
+    <div class="name def" id="isphere.interactive_wrapper.get_all_vms_in_folder">
+    <p>def <span class="ident">get_all_vms_in_folder</span>(</p><p>folder)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.get_all_vms_in_folder', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.interactive_wrapper.get_all_vms_in_folder" class="source">
+    <pre><code>def get_all_vms_in_folder(folder):
+    vm_or_folders = folder.childEntity
+    for vm_or_folder in vm_or_folders:
+        if hasattr(vm_or_folder, "childEntity"):
+            # it's still a folder, look deeper
+            for vm in get_all_vms_in_folder(vm_or_folder):
+                yield vm  # it's now a VM
+        else:
+            yield VM(vm_or_folder)  # it's a VM
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+
+    <h2 class="section-title" id="header-classes">Classes</h2>
+      
+      <div class="item">
+      <p id="isphere.interactive_wrapper.DVS" class="name">class <span class="ident">DVS</span></p>
+      
+  
+    <div class="desc"><p>A DistributedVirtualSwitch</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.DVS', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.interactive_wrapper.DVS" class="source">
+    <pre><code>class DVS(object):
+
+    """
+    A DistributedVirtualSwitch
+    """
+
+    def __init__(self, raw_dvs):
+        self.raw_dvs = raw_dvs
+        self.name = raw_dvs.name
+
+    def __eq__(self, other):
+        return self.name == other.name
+
+    def __dir__(self):
+        return dir(self.raw_dvs)
+
+    def __getattr__(self, attribute):
+        return getattr(self.raw_dvs, attribute)
+</code></pre>
+  </div>
+</div>
+
+
+      <div class="class">
+          <h3>Ancestors (in MRO)</h3>
+          <ul class="class_list">
+          <li><a href="#isphere.interactive_wrapper.DVS">DVS</a></li>
+          <li>__builtin__.object</li>
+          </ul>
+          <h3>Instance variables</h3>
+            <div class="item">
+            <p id="isphere.interactive_wrapper.DVS.name" class="name">var <span class="ident">name</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.interactive_wrapper.DVS.raw_dvs" class="name">var <span class="ident">raw_dvs</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+          <h3>Methods</h3>
+            
+  <div class="item">
+    <div class="name def" id="isphere.interactive_wrapper.DVS.__init__">
+    <p>def <span class="ident">__init__</span>(</p><p>self, raw_dvs)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.DVS.__init__', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.interactive_wrapper.DVS.__init__" class="source">
+    <pre><code>def __init__(self, raw_dvs):
+    self.raw_dvs = raw_dvs
+    self.name = raw_dvs.name
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      </div>
+      </div>
+      
+      <div class="item">
+      <p id="isphere.interactive_wrapper.ESX" class="name">class <span class="ident">ESX</span></p>
+      
+  
+    <div class="desc"><p>An ESX instance.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.ESX', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.interactive_wrapper.ESX" class="source">
+    <pre><code>class ESX(object):
+
+    """
+    An ESX instance.
+    """
+
+    def __init__(self, raw_esx):
+        self.raw_esx = raw_esx
+        self.name = raw_esx.name
+
+    def __eq__(self, other):
+        return self.name == other.name
+
+    def __hash__(self):
+        return int("".join((str(ord(c)) for c in self.name)))
+
+    def __getattr__(self, attribute):
+        return getattr(self.raw_esx, attribute)
+
+    def __dir__(self):
+        return dir(self.raw_esx)
+
+    def get_number_of_cores(self):
+        """
+        Returns the number of CPU cores (type long) on this ESX.
+        """
+        resources_on_esx = self.raw_esx.licensableResource.resource
+        for resource in resources_on_esx:
+            if resource.key == "numCpuCores":
+                return resource.value
+        message = "{0} has no resource numCpuCores.\n Available resources: {1}"
+        raise RuntimeError(message.format(self.name, resources_on_esx))
+</code></pre>
+  </div>
+</div>
+
+
+      <div class="class">
+          <h3>Ancestors (in MRO)</h3>
+          <ul class="class_list">
+          <li><a href="#isphere.interactive_wrapper.ESX">ESX</a></li>
+          <li>__builtin__.object</li>
+          </ul>
+          <h3>Instance variables</h3>
+            <div class="item">
+            <p id="isphere.interactive_wrapper.ESX.name" class="name">var <span class="ident">name</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.interactive_wrapper.ESX.raw_esx" class="name">var <span class="ident">raw_esx</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+          <h3>Methods</h3>
+            
+  <div class="item">
+    <div class="name def" id="isphere.interactive_wrapper.ESX.__init__">
+    <p>def <span class="ident">__init__</span>(</p><p>self, raw_esx)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.ESX.__init__', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.interactive_wrapper.ESX.__init__" class="source">
+    <pre><code>def __init__(self, raw_esx):
+    self.raw_esx = raw_esx
+    self.name = raw_esx.name
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.interactive_wrapper.ESX.get_number_of_cores">
+    <p>def <span class="ident">get_number_of_cores</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Returns the number of CPU cores (type long) on this ESX.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.ESX.get_number_of_cores', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.interactive_wrapper.ESX.get_number_of_cores" class="source">
+    <pre><code>def get_number_of_cores(self):
+    """
+    Returns the number of CPU cores (type long) on this ESX.
+    """
+    resources_on_esx = self.raw_esx.licensableResource.resource
+    for resource in resources_on_esx:
+        if resource.key == "numCpuCores":
+            return resource.value
+    message = "{0} has no resource numCpuCores.\n Available resources: {1}"
+    raise RuntimeError(message.format(self.name, resources_on_esx))
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      </div>
+      </div>
+      
+      <div class="item">
+      <p id="isphere.interactive_wrapper.ItemContainer" class="name">class <span class="ident">ItemContainer</span></p>
+      
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.ItemContainer', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.interactive_wrapper.ItemContainer" class="source">
+    <pre><code>class ItemContainer(object):
+
+    def set_path_value(self, path, value):
+        part_names = path.split(".")
+        self._inner_set_path_value(part_names, value)
+
+    def _inner_set_path_value(self, part_names, value, current_item=None):
+        if not part_names:
+            return
+        current_item = self if not current_item else current_item
+        current_part = part_names.pop(0)
+        need_to_set_value = not part_names  # if part_names is empty we're done with the path and can set the value
+        if need_to_set_value:
+            setattr(current_item, current_part, value)
+            return
+        else:
+            if not hasattr(current_item, current_part):
+                part_container = ItemContainer()
+                setattr(current_item, current_part, part_container)
+            else:
+                part_container = getattr(current_item, current_part)
+            part_container._inner_set_path_value(part_names, value, part_container)
+</code></pre>
+  </div>
+</div>
+
+
+      <div class="class">
+          <h3>Ancestors (in MRO)</h3>
+          <ul class="class_list">
+          <li><a href="#isphere.interactive_wrapper.ItemContainer">ItemContainer</a></li>
+          <li>__builtin__.object</li>
+          </ul>
+          <h3>Methods</h3>
+            
+  <div class="item">
+    <div class="name def" id="isphere.interactive_wrapper.ItemContainer.set_path_value">
+    <p>def <span class="ident">set_path_value</span>(</p><p>self, path, value)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.ItemContainer.set_path_value', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.interactive_wrapper.ItemContainer.set_path_value" class="source">
+    <pre><code>def set_path_value(self, path, value):
+    part_names = path.split(".")
+    self._inner_set_path_value(part_names, value)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      </div>
+      </div>
+      
+      <div class="item">
+      <p id="isphere.interactive_wrapper.NotFound" class="name">class <span class="ident">NotFound</span></p>
+      
+  
+    <div class="desc"><p>To be raised when a requested item was not found.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.NotFound', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.interactive_wrapper.NotFound" class="source">
+    <pre><code>class NotFound(BaseException):
+
+    """
+    To be raised when a requested item was not found.
+    """
+    pass
+</code></pre>
+  </div>
+</div>
+
+
+      <div class="class">
+          <h3>Ancestors (in MRO)</h3>
+          <ul class="class_list">
+          <li><a href="#isphere.interactive_wrapper.NotFound">NotFound</a></li>
+          <li>exceptions.BaseException</li>
+          <li>__builtin__.object</li>
+          </ul>
+          <h3>Class variables</h3>
+            <div class="item">
+            <p id="isphere.interactive_wrapper.NotFound.args" class="name">var <span class="ident">args</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.interactive_wrapper.NotFound.message" class="name">var <span class="ident">message</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+      </div>
+      </div>
+      
+      <div class="item">
+      <p id="isphere.interactive_wrapper.VM" class="name">class <span class="ident">VM</span></p>
+      
+  
+    <div class="desc"><p>A virtual machine.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VM', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.interactive_wrapper.VM" class="source">
+    <pre><code>class VM(object):
+
+    """
+    A virtual machine.
+    """
+
+    def __init__(self, raw_vm):
+        self.raw_vm = raw_vm
+        self.name = raw_vm.name
+
+    def __getattr__(self, attribute):
+        return getattr(self.raw_vm, attribute)
+
+    def __dir__(self):
+        return dir(self.raw_vm)
+
+    def get_first_network_interface_matching(self, predicate):
+        """
+        Returns the first network interface of this VM that matches the given
+        predicate.
+
+        - `predicate` (callable) is a function that takes a network and returns
+          True (return this network) or False (skip this network).
+        """
+        for network in self.raw_vm.network:
+            if predicate(network):
+                return network
+        return None
+
+    def get_esx_host(self):
+        return ESX(self.raw_vm.runtime.host)
+</code></pre>
+  </div>
+</div>
+
+
+      <div class="class">
+          <h3>Ancestors (in MRO)</h3>
+          <ul class="class_list">
+          <li><a href="#isphere.interactive_wrapper.VM">VM</a></li>
+          <li>__builtin__.object</li>
+          </ul>
+          <h3>Instance variables</h3>
+            <div class="item">
+            <p id="isphere.interactive_wrapper.VM.name" class="name">var <span class="ident">name</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.interactive_wrapper.VM.raw_vm" class="name">var <span class="ident">raw_vm</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+          <h3>Methods</h3>
+            
+  <div class="item">
+    <div class="name def" id="isphere.interactive_wrapper.VM.__init__">
+    <p>def <span class="ident">__init__</span>(</p><p>self, raw_vm)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VM.__init__', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.interactive_wrapper.VM.__init__" class="source">
+    <pre><code>def __init__(self, raw_vm):
+    self.raw_vm = raw_vm
+    self.name = raw_vm.name
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.interactive_wrapper.VM.get_esx_host">
+    <p>def <span class="ident">get_esx_host</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VM.get_esx_host', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.interactive_wrapper.VM.get_esx_host" class="source">
+    <pre><code>def get_esx_host(self):
+    return ESX(self.raw_vm.runtime.host)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.interactive_wrapper.VM.get_first_network_interface_matching">
+    <p>def <span class="ident">get_first_network_interface_matching</span>(</p><p>self, predicate)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Returns the first network interface of this VM that matches the given
+predicate.</p>
+<ul>
+<li><code>predicate</code> (callable) is a function that takes a network and returns
+  True (return this network) or False (skip this network).</li>
+</ul></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VM.get_first_network_interface_matching', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.interactive_wrapper.VM.get_first_network_interface_matching" class="source">
+    <pre><code>def get_first_network_interface_matching(self, predicate):
+    """
+    Returns the first network interface of this VM that matches the given
+    predicate.
+    - `predicate` (callable) is a function that takes a network and returns
+      True (return this network) or False (skip this network).
+    """
+    for network in self.raw_vm.network:
+        if predicate(network):
+            return network
+    return None
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      </div>
+      </div>
+      
+      <div class="item">
+      <p id="isphere.interactive_wrapper.VVC" class="name">class <span class="ident">VVC</span></p>
+      
+  
+    <div class="desc"><p>A vCenter host.</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.interactive_wrapper.VVC" class="source">
+    <pre><code>class VVC(object):
+
+    """
+    A vCenter host.
+    """
+
+    def __init__(self, hostname):
+        """
+        Creates a VVC instance.
+
+        - `hostname` (str) is the name of the vCenter host.
+        """
+        self.hostname = hostname
+        self.service_instance = None
+        self.service_instance_content = None
+
+    def connect(self, username, password=None):
+        """
+        Connects to the vCenter host encapsulated by this VVC instance.
+
+        - `username` (str) is the username to use for authentication.
+        - `password` (str) is the password to use for authentication.
+          If the password is not specified, a getpass prompt will be used.
+        """
+        if not password:
+            password = getpass("Password for {0}@{1}: ".format(username, self.hostname))
+        self.service_instance = connect.SmartConnect(host=self.hostname,
+                                                     user=username,
+                                                     pwd=password,
+                                                     port=443)
+        self.service_instance_content = self.service_instance.RetrieveContent()
+        atexit.register(connect.Disconnect, self.service_instance)
+
+    def get_first_level_of_vm_folders(self):
+        children = self.service_instance_content.rootFolder.childEntity
+        for child in children:
+            if hasattr(child, "vmFolder"):
+                yield child.vmFolder
+
+    def get_service(self, service_name):
+        if hasattr(self.service_instance_content, service_name):
+            return getattr(self.service_instance_content, service_name)
+        raise NotFound("Service {0} not found".format(service_name))
+
+    def get_custom_attributes_mapping(self):
+        custom_attributes_mapping = {}
+        for field in self.get_service("customFieldsManager").field:
+            custom_attributes_mapping[field.key] = field.name
+
+        return custom_attributes_mapping
+
+    def find_by_dns_name(self, dns_name, search_for_vms=False):
+        """
+        Returns an item by searching for its DNS name.
+        An exception will be raised if the item cannot be found.
+
+        - `dns_name` (str) is the DNS name of the desired item.
+        - `search_for_vms` (boolean) (default False) indicates if VMs should
+          be included in the search.
+        """
+        search_index = self.service_instance.RetrieveContent().searchIndex
+        item = search_index.FindByDnsName(dnsName=dns_name, vmSearch=search_for_vms)
+        if not item:
+            raise NotFound(
+                "Item with dns name {0} not found (search_for_vms: {1})".format(
+                    dns_name,
+                    search_for_vms))
+
+        return item
+
+    def get_vm_by_uuid(self, uuid):
+        vm = self.get_service("searchIndex").FindByUuid(uuid=uuid, vmSearch=True)
+        if not vm:
+            raise NotFound("VM with uuid {0} not found".format(uuid))
+        return VM(vm)
+
+    def get_all_vms(self):
+        for vm in self.get_all_by_type([vim.VirtualMachine]):
+            yield VM(vm)
+
+    def get_all_by_type(self, types):
+        view = self.view_for(types)
+        all_items = view.view
+        view.Destroy()
+        return all_items
+
+    def get_all_esx(self):
+        for esx in self.get_all_by_type([vim.HostSystem]):
+            yield ESX(esx)
+
+    def get_all_dvs(self):
+        for dvs in self.get_all_by_type([vim.VmwareDistributedVirtualSwitch]):
+            yield DVS(dvs)
+
+    def view_for(self, types):
+        return self.get_service("viewManager").CreateContainerView(
+            self.service_instance_content.rootFolder,
+            types,
+            True)
+
+    def get_restricted_view_on_vms(self, properties):
+        return self.get_restricted_view_on_items(properties, [vim.VirtualMachine])
+
+    def get_restricted_view_on_host_systems(self, properties):
+        return self.get_restricted_view_on_items(properties, [vim.HostSystem])
+
+    def get_restricted_view_on_items(self, properties, types):
+        """
+        Returns a restricted view on a specific item type collection.
+        The items are restricted in the sense that only properties which were
+        specified upon retrieval can be accessed.
+
+        The return value will be a list of items that have the desired properties
+        as attributes.
+        Note that recursing properties (e.G. summary.config) will be stored under
+        their full name (item.summary.config).
+
+        - `properties` (str[]) is a list of properties that should be fetched.
+          Recursing properties can be separated by dots, e.G. "summary.config".
+        - `types` (type[]) is a list of types to restrict the items that are given
+          back. The types must be attributes of the pyVmomi.vim module.
+        """
+        unrestricted_view = self.view_for(types)
+        collector_spec = build_property_collector_specs(unrestricted_view, properties)
+
+        retrieved_contents = self.get_service("propertyCollector").RetrieveContents(collector_spec)
+        items = []
+        for item in retrieved_contents:
+            item_instance = ItemContainer()
+            for item_property in item.propSet:
+                if item_property.name in properties:
+                    item_instance.set_path_value(item_property.name, item_property.val)
+            items.append(item_instance)
+        return items
+</code></pre>
+  </div>
+</div>
+
+
+      <div class="class">
+          <h3>Ancestors (in MRO)</h3>
+          <ul class="class_list">
+          <li><a href="#isphere.interactive_wrapper.VVC">VVC</a></li>
+          <li>__builtin__.object</li>
+          </ul>
+          <h3>Instance variables</h3>
+            <div class="item">
+            <p id="isphere.interactive_wrapper.VVC.hostname" class="name">var <span class="ident">hostname</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.interactive_wrapper.VVC.service_instance" class="name">var <span class="ident">service_instance</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+            <div class="item">
+            <p id="isphere.interactive_wrapper.VVC.service_instance_content" class="name">var <span class="ident">service_instance_content</span></p>
+            
+
+            
+  
+  <div class="source_cont">
+</div>
+
+            </div>
+          <h3>Methods</h3>
+            
+  <div class="item">
+    <div class="name def" id="isphere.interactive_wrapper.VVC.__init__">
+    <p>def <span class="ident">__init__</span>(</p><p>self, hostname)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Creates a VVC instance.</p>
+<ul>
+<li><code>hostname</code> (str) is the name of the vCenter host.</li>
+</ul></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC.__init__', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.interactive_wrapper.VVC.__init__" class="source">
+    <pre><code>def __init__(self, hostname):
+    """
+    Creates a VVC instance.
+    - `hostname` (str) is the name of the vCenter host.
+    """
+    self.hostname = hostname
+    self.service_instance = None
+    self.service_instance_content = None
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.interactive_wrapper.VVC.connect">
+    <p>def <span class="ident">connect</span>(</p><p>self, username, password=None)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Connects to the vCenter host encapsulated by this VVC instance.</p>
+<ul>
+<li><code>username</code> (str) is the username to use for authentication.</li>
+<li><code>password</code> (str) is the password to use for authentication.
+  If the password is not specified, a getpass prompt will be used.</li>
+</ul></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC.connect', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.interactive_wrapper.VVC.connect" class="source">
+    <pre><code>def connect(self, username, password=None):
+    """
+    Connects to the vCenter host encapsulated by this VVC instance.
+    - `username` (str) is the username to use for authentication.
+    - `password` (str) is the password to use for authentication.
+      If the password is not specified, a getpass prompt will be used.
+    """
+    if not password:
+        password = getpass("Password for {0}@{1}: ".format(username, self.hostname))
+    self.service_instance = connect.SmartConnect(host=self.hostname,
+                                                 user=username,
+                                                 pwd=password,
+                                                 port=443)
+    self.service_instance_content = self.service_instance.RetrieveContent()
+    atexit.register(connect.Disconnect, self.service_instance)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.interactive_wrapper.VVC.find_by_dns_name">
+    <p>def <span class="ident">find_by_dns_name</span>(</p><p>self, dns_name, search_for_vms=False)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Returns an item by searching for its DNS name.
+An exception will be raised if the item cannot be found.</p>
+<ul>
+<li><code>dns_name</code> (str) is the DNS name of the desired item.</li>
+<li><code>search_for_vms</code> (boolean) (default False) indicates if VMs should
+  be included in the search.</li>
+</ul></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC.find_by_dns_name', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.interactive_wrapper.VVC.find_by_dns_name" class="source">
+    <pre><code>def find_by_dns_name(self, dns_name, search_for_vms=False):
+    """
+    Returns an item by searching for its DNS name.
+    An exception will be raised if the item cannot be found.
+    - `dns_name` (str) is the DNS name of the desired item.
+    - `search_for_vms` (boolean) (default False) indicates if VMs should
+      be included in the search.
+    """
+    search_index = self.service_instance.RetrieveContent().searchIndex
+    item = search_index.FindByDnsName(dnsName=dns_name, vmSearch=search_for_vms)
+    if not item:
+        raise NotFound(
+            "Item with dns name {0} not found (search_for_vms: {1})".format(
+                dns_name,
+                search_for_vms))
+    return item
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.interactive_wrapper.VVC.get_all_by_type">
+    <p>def <span class="ident">get_all_by_type</span>(</p><p>self, types)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC.get_all_by_type', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.interactive_wrapper.VVC.get_all_by_type" class="source">
+    <pre><code>def get_all_by_type(self, types):
+    view = self.view_for(types)
+    all_items = view.view
+    view.Destroy()
+    return all_items
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.interactive_wrapper.VVC.get_all_dvs">
+    <p>def <span class="ident">get_all_dvs</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC.get_all_dvs', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.interactive_wrapper.VVC.get_all_dvs" class="source">
+    <pre><code>def get_all_dvs(self):
+    for dvs in self.get_all_by_type([vim.VmwareDistributedVirtualSwitch]):
+        yield DVS(dvs)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.interactive_wrapper.VVC.get_all_esx">
+    <p>def <span class="ident">get_all_esx</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC.get_all_esx', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.interactive_wrapper.VVC.get_all_esx" class="source">
+    <pre><code>def get_all_esx(self):
+    for esx in self.get_all_by_type([vim.HostSystem]):
+        yield ESX(esx)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.interactive_wrapper.VVC.get_all_vms">
+    <p>def <span class="ident">get_all_vms</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC.get_all_vms', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.interactive_wrapper.VVC.get_all_vms" class="source">
+    <pre><code>def get_all_vms(self):
+    for vm in self.get_all_by_type([vim.VirtualMachine]):
+        yield VM(vm)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.interactive_wrapper.VVC.get_custom_attributes_mapping">
+    <p>def <span class="ident">get_custom_attributes_mapping</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC.get_custom_attributes_mapping', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.interactive_wrapper.VVC.get_custom_attributes_mapping" class="source">
+    <pre><code>def get_custom_attributes_mapping(self):
+    custom_attributes_mapping = {}
+    for field in self.get_service("customFieldsManager").field:
+        custom_attributes_mapping[field.key] = field.name
+    return custom_attributes_mapping
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.interactive_wrapper.VVC.get_first_level_of_vm_folders">
+    <p>def <span class="ident">get_first_level_of_vm_folders</span>(</p><p>self)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC.get_first_level_of_vm_folders', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.interactive_wrapper.VVC.get_first_level_of_vm_folders" class="source">
+    <pre><code>def get_first_level_of_vm_folders(self):
+    children = self.service_instance_content.rootFolder.childEntity
+    for child in children:
+        if hasattr(child, "vmFolder"):
+            yield child.vmFolder
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.interactive_wrapper.VVC.get_restricted_view_on_host_systems">
+    <p>def <span class="ident">get_restricted_view_on_host_systems</span>(</p><p>self, properties)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC.get_restricted_view_on_host_systems', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.interactive_wrapper.VVC.get_restricted_view_on_host_systems" class="source">
+    <pre><code>def get_restricted_view_on_host_systems(self, properties):
+    return self.get_restricted_view_on_items(properties, [vim.HostSystem])
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.interactive_wrapper.VVC.get_restricted_view_on_items">
+    <p>def <span class="ident">get_restricted_view_on_items</span>(</p><p>self, properties, types)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Returns a restricted view on a specific item type collection.
+The items are restricted in the sense that only properties which were
+specified upon retrieval can be accessed.</p>
+<p>The return value will be a list of items that have the desired properties
+as attributes.
+Note that recursing properties (e.G. summary.config) will be stored under
+their full name (item.summary.config).</p>
+<ul>
+<li><code>properties</code> (str[]) is a list of properties that should be fetched.
+  Recursing properties can be separated by dots, e.G. "summary.config".</li>
+<li><code>types</code> (type[]) is a list of types to restrict the items that are given
+  back. The types must be attributes of the pyVmomi.vim module.</li>
+</ul></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC.get_restricted_view_on_items', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.interactive_wrapper.VVC.get_restricted_view_on_items" class="source">
+    <pre><code>def get_restricted_view_on_items(self, properties, types):
+    """
+    Returns a restricted view on a specific item type collection.
+    The items are restricted in the sense that only properties which were
+    specified upon retrieval can be accessed.
+    The return value will be a list of items that have the desired properties
+    as attributes.
+    Note that recursing properties (e.G. summary.config) will be stored under
+    their full name (item.summary.config).
+    - `properties` (str[]) is a list of properties that should be fetched.
+      Recursing properties can be separated by dots, e.G. "summary.config".
+    - `types` (type[]) is a list of types to restrict the items that are given
+      back. The types must be attributes of the pyVmomi.vim module.
+    """
+    unrestricted_view = self.view_for(types)
+    collector_spec = build_property_collector_specs(unrestricted_view, properties)
+    retrieved_contents = self.get_service("propertyCollector").RetrieveContents(collector_spec)
+    items = []
+    for item in retrieved_contents:
+        item_instance = ItemContainer()
+        for item_property in item.propSet:
+            if item_property.name in properties:
+                item_instance.set_path_value(item_property.name, item_property.val)
+        items.append(item_instance)
+    return items
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.interactive_wrapper.VVC.get_restricted_view_on_vms">
+    <p>def <span class="ident">get_restricted_view_on_vms</span>(</p><p>self, properties)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC.get_restricted_view_on_vms', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.interactive_wrapper.VVC.get_restricted_view_on_vms" class="source">
+    <pre><code>def get_restricted_view_on_vms(self, properties):
+    return self.get_restricted_view_on_items(properties, [vim.VirtualMachine])
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.interactive_wrapper.VVC.get_service">
+    <p>def <span class="ident">get_service</span>(</p><p>self, service_name)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC.get_service', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.interactive_wrapper.VVC.get_service" class="source">
+    <pre><code>def get_service(self, service_name):
+    if hasattr(self.service_instance_content, service_name):
+        return getattr(self.service_instance_content, service_name)
+    raise NotFound("Service {0} not found".format(service_name))
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.interactive_wrapper.VVC.get_vm_by_uuid">
+    <p>def <span class="ident">get_vm_by_uuid</span>(</p><p>self, uuid)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC.get_vm_by_uuid', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.interactive_wrapper.VVC.get_vm_by_uuid" class="source">
+    <pre><code>def get_vm_by_uuid(self, uuid):
+    vm = self.get_service("searchIndex").FindByUuid(uuid=uuid, vmSearch=True)
+    if not vm:
+        raise NotFound("VM with uuid {0} not found".format(uuid))
+    return VM(vm)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.interactive_wrapper.VVC.view_for">
+    <p>def <span class="ident">view_for</span>(</p><p>self, types)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC.view_for', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.interactive_wrapper.VVC.view_for" class="source">
+    <pre><code>def view_for(self, types):
+    return self.get_service("viewManager").CreateContainerView(
+        self.service_instance_content.rootFolder,
+        types,
+        True)
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+      </div>
+      </div>
+
+  </section>
+
+    </article>
+  <div class="clear"> </div>
+  <footer id="footer">
+    <p>
+      Documentation generated by
+      <a href="https://github.com/BurntSushi/pdoc">pdoc 0.3.1</a>
+    </p>
+
+    <p>pdoc is in the public domain with the
+      <a href="http://unlicense.org">UNLICENSE</a></p>
+
+    <p>Design by <a href="http://nadh.in">Kailash Nadh</a></p>
+  </footer>
+</div>
+</body>
+</html>

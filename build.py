@@ -1,3 +1,7 @@
+import os
+import subprocess
+
+from pybuilder.utils import assert_can_execute
 from pybuilder.core import use_plugin, init, Author, task
 
 use_plugin('python.core')
@@ -47,7 +51,6 @@ def set_properties(project):
     project.set_property('frosted_ignore', [FROSTED_BARE_EXCEPT_WARNING])
     project.set_property('frosted_include_test_sources', True)
 
-
     project.set_property('coverage_threshold_warn', 50)
     project.set_property('coverage_break_build', False)
     project.set_property('coverage_exceptions', ['thirdparty.tasks'])
@@ -67,15 +70,15 @@ def set_properties(project):
         'Topic :: System :: Systems Administration'
     ])
 
-    project.set_property('pybuilder_header_plugin_break_build', False) # embedded 3rd-party sources
+    project.set_property('pybuilder_header_plugin_break_build', False)  # embedded 3rd-party sources
     project.set_property('pybuilder_header_plugin_expected_header',
                          ('#  Copyright (c) 2014-2015 Maximilien Riehl <max@riehl.io>\n'
-                         '#  This work is free. You can redistribute it and/or modify it under the\n'
-                         '#  terms of the Do What The Fuck You Want To Public License, Version 2,\n'
-                         '#  as published by Sam Hocevar. See the COPYING.wtfpl file for more details.\n'
-                         '#\n'))
+                          '#  This work is free. You can redistribute it and/or modify it under the\n'
+                          '#  terms of the Do What The Fuck You Want To Public License, Version 2,\n'
+                          '#  as published by Sam Hocevar. See the COPYING.wtfpl file for more details.\n'
+                          '#\n'))
 
-    project.set_property('distutils_console_scripts',['isphere.exe = isphere.cli:main'])
+    project.set_property('distutils_console_scripts', ['isphere.exe = isphere.cli:main'])
 
 
 @init(environments='teamcity')
@@ -87,3 +90,18 @@ def set_properties_for_teamcity_builds(project):
     project.set_property('install_dependencies_index_url', os.environ.get('PYPIPROXY_URL'))
     project.set_property('install_dependencies_use_mirrors', False)
     project.rpm_release = os.environ.get('RPM_RELEASE', 0)
+
+
+@task("pdoc_generate_documentation", "Generates HTML documentation tree with pdoc")
+def pdoc_generate(project, logger):
+    assert_can_execute(command_and_arguments=["pdoc", "--version"],
+                       prerequisite="pdoc",
+                       caller=pdoc_generate.__name__)
+
+    logger.info("Generating pdoc documentation")
+    command_and_arguments = ["pdoc", "--html", "isphere", "--all-submodules", "--overwrite", "--html-dir", "api-doc"]
+    source_directory = project.get_property("dir_source_main_python")
+    environment = {"PYTHONPATH": source_directory,
+                   "PATH": os.environ["PATH"]}
+
+    subprocess.check_call(command_and_arguments, shell=False, env=environment)
