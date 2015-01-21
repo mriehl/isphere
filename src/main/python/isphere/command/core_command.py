@@ -55,7 +55,7 @@ class CoreCommand(Cmd):
             patterns = patterns_and_statement[0]
             statement = patterns_and_statement[1]
         except IndexError:
-            print(self.colorize("Looks like your input was malformed. Try `help eval_*`."), "red")
+            print(self.colorize("Looks like your input was malformed. Try `help eval_*`.", "red"))
             return
 
         for item_name in item_name_generator(patterns):
@@ -84,7 +84,7 @@ class CoreCommand(Cmd):
             except NoOutput:
                 pass
             except Exception as e:
-                print(item_name_header)
+                print(self.colorize(item_name_header, "red"))
                 print(self.colorize("Eval failed for {0}: {1}".format(item_name, e), "red"))
 
     def compile_and_yield_generic_patterns(self, patterns, pattern_generator, item_count, risky=True):
