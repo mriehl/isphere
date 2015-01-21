@@ -978,13 +978,12 @@ table {
         
           
   <ul>
-    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.compile_and_yield_generic_patterns">compile_and_yield_generic_patterns</a></li>
     <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.do_EOF">do_EOF</a></li>
-    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.eval">eval</a></li>
     <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.__init__">__init__</a></li>
     <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.cmdloop">cmdloop</a></li>
     <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.colorize">colorize</a></li>
     <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.columnize">columnize</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.compile_and_yield_generic_patterns">compile_and_yield_generic_patterns</a></li>
     <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.compile_and_yield_vm_patterns">compile_and_yield_vm_patterns</a></li>
     <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.complete">complete</a></li>
     <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.complete_help">complete_help</a></li>
@@ -1027,6 +1026,7 @@ table {
     <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.do_shortcuts">do_shortcuts</a></li>
     <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.do_show">do_show</a></li>
     <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.emptyline">emptyline</a></li>
+    <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.eval">eval</a></li>
     <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.fileimport">fileimport</a></li>
     <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.func_named">func_named</a></li>
     <li class="mono"><a href="#isphere.command.virtual_machine_command.VirtualMachineCommand.get_names">get_names</a></li>
@@ -1862,38 +1862,6 @@ class VirtualMachineCommand(CoreCommand):
           <h3>Static methods</h3>
             
   <div class="item">
-    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.compile_and_yield_generic_patterns">
-    <p>def <span class="ident">compile_and_yield_generic_patterns</span>(</p><p>patterns, pattern_generator, item_count, risky=True)</p>
-    </div>
-    
-
-    
-  
-  <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.compile_and_yield_generic_patterns', this);">Show source &equiv;</a></p>
-  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.compile_and_yield_generic_patterns" class="source">
-    <pre><code>@staticmethod
-def compile_and_yield_generic_patterns(patterns, pattern_generator, item_count, risky=True):
-    if not patterns and risky:
-        unformatted_message = "No pattern specified - you're doing this to all {count} items. Proceed? (y/N) "
-        message = unformatted_message.format(count=item_count)
-        if not _input(message).lower() == "y":
-            return []
-    actual_patterns = patterns.strip().split(" ")
-    try:
-        compiled_patterns = [re.compile(pattern) for pattern in actual_patterns]
-    except Exception as e:
-        print("Invalid regular expression patterns: {0}".format(e))
-        return []
-    return pattern_generator(compiled_patterns)
-</code></pre>
-  </div>
-</div>
-
-  </div>
-  
-            
-  <div class="item">
     <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.do_EOF">
     <p>def <span class="ident">do_EOF</span>(</p><p>_)</p>
     </div>
@@ -1919,59 +1887,6 @@ def do_EOF(_):
 
   </div>
   
-            
-  <div class="item">
-    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.eval">
-    <p>def <span class="ident">eval</span>(</p><p>line, item_name_generator, item_retriever, local_name)</p>
-    </div>
-    
-
-    
-  
-  <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.eval', this);">Show source &equiv;</a></p>
-  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.eval" class="source">
-    <pre><code>@staticmethod
-def eval(line, item_name_generator, item_retriever, local_name):
-    try:
-        patterns_and_statement = line.split("!", 1)
-        patterns = patterns_and_statement[0]
-        statement = patterns_and_statement[1]
-    except IndexError:
-        print("Looks like your input was malformed. Try `help eval_*`.")
-        return
-    for item_name in item_name_generator(patterns):
-        def guard():
-            raise NoOutput()
-        _globals, _locals = {}, {}
-        try:
-            item = item_retriever(item_name)
-        except NotFound:
-            print("Skipping {item} since it could not be retrieved.".format(item=item_name))
-            continue
-        _locals[local_name] = item
-        _locals["no_output"] = guard
-        _globals[local_name] = item
-        _globals["no_output"] = guard
-        separator = "-"
-        item_name_header = " {name} ".format(
-            name=item_name[:78]).center(
-            80, separator)
-        try:
-            result = eval(statement, _globals, _locals)
-            print(item_name_header)
-            print(result)
-        except NoOutput:
-            pass
-        except Exception as e:
-            print(item_name_header)
-            print("Eval failed for {0}: {1}".format(item_name, e))
-</code></pre>
-  </div>
-</div>
-
-  </div>
-  
           <h3>Methods</h3>
             
   <div class="item">
@@ -1988,6 +1903,7 @@ def eval(line, item_name_generator, item_retriever, local_name):
     <pre><code>def __init__(self):
     self.cache = CachingVSphere(self.hostname, self.username, self.password)
     Cmd.__init__(self)
+    self.prompt = self.colorize("isphere > ", "green")
 </code></pre>
   </div>
 </div>
@@ -2126,6 +2042,37 @@ Columns are separated by two spaces (one was not legible enough).</p></div>
         for col in range(len(texts)):
             texts[col] = texts[col].ljust(colwidths[col])
         self.stdout.write("%s\n"%str("  ".join(texts)))
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.compile_and_yield_generic_patterns">
+    <p>def <span class="ident">compile_and_yield_generic_patterns</span>(</p><p>self, patterns, pattern_generator, item_count, risky=True)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.compile_and_yield_generic_patterns', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.compile_and_yield_generic_patterns" class="source">
+    <pre><code>def compile_and_yield_generic_patterns(self, patterns, pattern_generator, item_count, risky=True):
+    if not patterns and risky:
+        unformatted_message = "No pattern specified - you're doing this to all {count} items. Proceed? (y/N) "
+        message = unformatted_message.format(count=self.colorize(str(item_count), "red"))
+        if not _input(message).lower() == "y":
+            return []
+    actual_patterns = patterns.strip().split(" ")
+    try:
+        compiled_patterns = [re.compile(pattern) for pattern in actual_patterns]
+    except Exception as e:
+        print(self.colorize("Invalid regular expression patterns: {0}".format(e), "red"))
+        return []
+    return pattern_generator(compiled_patterns)
 </code></pre>
   </div>
 </div>
@@ -3597,6 +3544,58 @@ command entered.</p></div>
   
             
   <div class="item">
+    <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.eval">
+    <p>def <span class="ident">eval</span>(</p><p>self, line, item_name_generator, item_retriever, local_name)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.virtual_machine_command.VirtualMachineCommand.eval', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.eval" class="source">
+    <pre><code>def eval(self, line, item_name_generator, item_retriever, local_name):
+    try:
+        patterns_and_statement = line.split("!", 1)
+        patterns = patterns_and_statement[0]
+        statement = patterns_and_statement[1]
+    except IndexError:
+        print(self.colorize("Looks like your input was malformed. Try `help eval_*`.", "red"))
+        return
+    for item_name in item_name_generator(patterns):
+        def guard():
+            raise NoOutput()
+        _globals, _locals = {}, {}
+        try:
+            item = item_retriever(item_name)
+        except NotFound:
+            print(self.colorize("Skipping {item} since it could not be retrieved.".format(item=item_name), "red"))
+            continue
+        _locals[local_name] = item
+        _locals["no_output"] = guard
+        _globals[local_name] = item
+        _globals["no_output"] = guard
+        separator = "-"
+        item_name_header = " {name} ".format(
+            name=item_name[:78]).center(
+            80, separator)
+        try:
+            result = eval(statement, _globals, _locals)
+            print(self.colorize(item_name_header, "blue"))
+            print(result)
+        except NoOutput:
+            pass
+        except Exception as e:
+            print(self.colorize(item_name_header, "red"))
+            print(self.colorize("Eval failed for {0}: {1}".format(item_name, e), "red"))
+</code></pre>
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
     <div class="name def" id="isphere.command.virtual_machine_command.VirtualMachineCommand.fileimport">
     <p>def <span class="ident">fileimport</span>(</p><p>self, statement, source)</p>
     </div>
@@ -4093,10 +4092,14 @@ interpreted, but after the input prompt is generated and issued.</p></div>
   <div id="source-isphere.command.virtual_machine_command.VirtualMachineCommand.preloop" class="source">
     <pre><code>def preloop(self):
     self.cache.fill()
-    print("{0} VMs on {1} ESXis available.".format(self.cache.number_of_vms,
-                                                   self.cache.number_of_esxis))
-    print("{0} Distributed Virtual Switches configured.".format(
-          self.cache.number_of_dvses))
+    print(
+        self.colorize("{0} VMs on {1} ESXis available.".format(self.cache.number_of_vms,
+                                                               self.cache.number_of_esxis),
+                      "blue"))
+    print(
+        self.colorize("{0} Distributed Virtual Switches configured.".format(
+            self.cache.number_of_dvses),
+            "blue"))
 </code></pre>
   </div>
 </div>

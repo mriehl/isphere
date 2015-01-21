@@ -1139,6 +1139,9 @@ class VVC(object):
         raise NotFound("Service {0} not found".format(service_name))
 
     def get_custom_attributes_mapping(self):
+        """
+        Returns a dictionary that maps custom field keys to custom field names.
+        """
         custom_attributes_mapping = {}
         for field in self.get_service("customFieldsManager").field:
             custom_attributes_mapping[field.key] = field.name
@@ -1165,26 +1168,47 @@ class VVC(object):
         return item
 
     def get_vm_by_uuid(self, uuid):
+        """
+        Returns a VM by searching for its UUID.
+        An exception will be raised if the VM cannot be found.
+
+        - `uuid` (str) is the UUID of the desired VM.
+        """
         vm = self.get_service("searchIndex").FindByUuid(uuid=uuid, vmSearch=True)
         if not vm:
             raise NotFound("VM with uuid {0} not found".format(uuid))
         return VM(vm)
 
     def get_all_vms(self):
+        """
+        Returns a generator for all virtual machines on this vCenter.
+        """
         for vm in self.get_all_by_type([vim.VirtualMachine]):
             yield VM(vm)
 
     def get_all_by_type(self, types):
+        """
+        Returns a list of all matching item types.
+
+        - `types` (type[]) is a list of desired types. The types should be
+          attributes of the `pyVmomi.vim` module, for example `pyVmomi.vim.VirtualMachine`
+        """
         view = self.view_for(types)
         all_items = view.view
         view.Destroy()
         return all_items
 
     def get_all_esx(self):
+        """
+        Returns a generator for all ESXi host systems on this vCenter.
+        """
         for esx in self.get_all_by_type([vim.HostSystem]):
             yield ESX(esx)
 
     def get_all_dvs(self):
+        """
+        Returns a generator for all distributed virtual switches on this vCenter.
+        """
         for dvs in self.get_all_by_type([vim.VmwareDistributedVirtualSwitch]):
             yield DVS(dvs)
 
@@ -1195,9 +1219,29 @@ class VVC(object):
             True)
 
     def get_restricted_view_on_vms(self, properties):
+        """
+        Returns a list of all virtual machines.
+        The VMs will only have the specified properties but retrieval will be
+        insanely fast. The properties must exist on the pyVmomi.vim.VirtualMachine
+        object, of course.
+
+        - `properties` (str[]) is a list of desired properties.
+          For example using `properties=["name", "runtime.host"]` will return
+          objects that have only the attributes `name` and `runtime.host`.
+        """
         return self.get_restricted_view_on_items(properties, [vim.VirtualMachine])
 
     def get_restricted_view_on_host_systems(self, properties):
+        """
+        Returns a list of all ESXi host systems.
+        The ESXis will only have the specified properties but retrieval will be
+        insanely fast. The properties must exist on the pyVmomi.vim.HostSystem
+        object, of course.
+
+        - `properties` (str[]) is a list of desired properties.
+          For example using `properties=["name", "hardware.memorySize"]` will return
+          objects that have only the attributes `name` and `hardware.memorySize`.
+        """
         return self.get_restricted_view_on_items(properties, [vim.HostSystem])
 
     def get_restricted_view_on_items(self, properties, types):
@@ -1976,6 +2020,9 @@ predicate.</p>
         raise NotFound("Service {0} not found".format(service_name))
 
     def get_custom_attributes_mapping(self):
+        """
+        Returns a dictionary that maps custom field keys to custom field names.
+        """
         custom_attributes_mapping = {}
         for field in self.get_service("customFieldsManager").field:
             custom_attributes_mapping[field.key] = field.name
@@ -2002,26 +2049,47 @@ predicate.</p>
         return item
 
     def get_vm_by_uuid(self, uuid):
+        """
+        Returns a VM by searching for its UUID.
+        An exception will be raised if the VM cannot be found.
+
+        - `uuid` (str) is the UUID of the desired VM.
+        """
         vm = self.get_service("searchIndex").FindByUuid(uuid=uuid, vmSearch=True)
         if not vm:
             raise NotFound("VM with uuid {0} not found".format(uuid))
         return VM(vm)
 
     def get_all_vms(self):
+        """
+        Returns a generator for all virtual machines on this vCenter.
+        """
         for vm in self.get_all_by_type([vim.VirtualMachine]):
             yield VM(vm)
 
     def get_all_by_type(self, types):
+        """
+        Returns a list of all matching item types.
+
+        - `types` (type[]) is a list of desired types. The types should be
+          attributes of the `pyVmomi.vim` module, for example `pyVmomi.vim.VirtualMachine`
+        """
         view = self.view_for(types)
         all_items = view.view
         view.Destroy()
         return all_items
 
     def get_all_esx(self):
+        """
+        Returns a generator for all ESXi host systems on this vCenter.
+        """
         for esx in self.get_all_by_type([vim.HostSystem]):
             yield ESX(esx)
 
     def get_all_dvs(self):
+        """
+        Returns a generator for all distributed virtual switches on this vCenter.
+        """
         for dvs in self.get_all_by_type([vim.VmwareDistributedVirtualSwitch]):
             yield DVS(dvs)
 
@@ -2032,9 +2100,29 @@ predicate.</p>
             True)
 
     def get_restricted_view_on_vms(self, properties):
+        """
+        Returns a list of all virtual machines.
+        The VMs will only have the specified properties but retrieval will be
+        insanely fast. The properties must exist on the pyVmomi.vim.VirtualMachine
+        object, of course.
+
+        - `properties` (str[]) is a list of desired properties.
+          For example using `properties=["name", "runtime.host"]` will return
+          objects that have only the attributes `name` and `runtime.host`.
+        """
         return self.get_restricted_view_on_items(properties, [vim.VirtualMachine])
 
     def get_restricted_view_on_host_systems(self, properties):
+        """
+        Returns a list of all ESXi host systems.
+        The ESXis will only have the specified properties but retrieval will be
+        insanely fast. The properties must exist on the pyVmomi.vim.HostSystem
+        object, of course.
+
+        - `properties` (str[]) is a list of desired properties.
+          For example using `properties=["name", "hardware.memorySize"]` will return
+          objects that have only the attributes `name` and `hardware.memorySize`.
+        """
         return self.get_restricted_view_on_items(properties, [vim.HostSystem])
 
     def get_restricted_view_on_items(self, properties, types):
@@ -2227,10 +2315,20 @@ An exception will be raised if the item cannot be found.</p>
 
     
   
+    <div class="desc"><p>Returns a list of all matching item types.</p>
+<ul>
+<li><code>types</code> (type[]) is a list of desired types. The types should be
+  attributes of the <code>pyVmomi.vim</code> module, for example <code>pyVmomi.vim.VirtualMachine</code></li>
+</ul></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC.get_all_by_type', this);">Show source &equiv;</a></p>
   <div id="source-isphere.interactive_wrapper.VVC.get_all_by_type" class="source">
     <pre><code>def get_all_by_type(self, types):
+    """
+    Returns a list of all matching item types.
+    - `types` (type[]) is a list of desired types. The types should be
+      attributes of the `pyVmomi.vim` module, for example `pyVmomi.vim.VirtualMachine`
+    """
     view = self.view_for(types)
     all_items = view.view
     view.Destroy()
@@ -2250,10 +2348,14 @@ An exception will be raised if the item cannot be found.</p>
 
     
   
+    <div class="desc"><p>Returns a generator for all distributed virtual switches on this vCenter.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC.get_all_dvs', this);">Show source &equiv;</a></p>
   <div id="source-isphere.interactive_wrapper.VVC.get_all_dvs" class="source">
     <pre><code>def get_all_dvs(self):
+    """
+    Returns a generator for all distributed virtual switches on this vCenter.
+    """
     for dvs in self.get_all_by_type([vim.VmwareDistributedVirtualSwitch]):
         yield DVS(dvs)
 </code></pre>
@@ -2271,10 +2373,14 @@ An exception will be raised if the item cannot be found.</p>
 
     
   
+    <div class="desc"><p>Returns a generator for all ESXi host systems on this vCenter.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC.get_all_esx', this);">Show source &equiv;</a></p>
   <div id="source-isphere.interactive_wrapper.VVC.get_all_esx" class="source">
     <pre><code>def get_all_esx(self):
+    """
+    Returns a generator for all ESXi host systems on this vCenter.
+    """
     for esx in self.get_all_by_type([vim.HostSystem]):
         yield ESX(esx)
 </code></pre>
@@ -2292,10 +2398,14 @@ An exception will be raised if the item cannot be found.</p>
 
     
   
+    <div class="desc"><p>Returns a generator for all virtual machines on this vCenter.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC.get_all_vms', this);">Show source &equiv;</a></p>
   <div id="source-isphere.interactive_wrapper.VVC.get_all_vms" class="source">
     <pre><code>def get_all_vms(self):
+    """
+    Returns a generator for all virtual machines on this vCenter.
+    """
     for vm in self.get_all_by_type([vim.VirtualMachine]):
         yield VM(vm)
 </code></pre>
@@ -2313,10 +2423,14 @@ An exception will be raised if the item cannot be found.</p>
 
     
   
+    <div class="desc"><p>Returns a dictionary that maps custom field keys to custom field names.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC.get_custom_attributes_mapping', this);">Show source &equiv;</a></p>
   <div id="source-isphere.interactive_wrapper.VVC.get_custom_attributes_mapping" class="source">
     <pre><code>def get_custom_attributes_mapping(self):
+    """
+    Returns a dictionary that maps custom field keys to custom field names.
+    """
     custom_attributes_mapping = {}
     for field in self.get_service("customFieldsManager").field:
         custom_attributes_mapping[field.key] = field.name
@@ -2359,10 +2473,28 @@ An exception will be raised if the item cannot be found.</p>
 
     
   
+    <div class="desc"><p>Returns a list of all ESXi host systems.
+The ESXis will only have the specified properties but retrieval will be
+insanely fast. The properties must exist on the pyVmomi.vim.HostSystem
+object, of course.</p>
+<ul>
+<li><code>properties</code> (str[]) is a list of desired properties.
+  For example using <code>properties=["name", "hardware.memorySize"]</code> will return
+  objects that have only the attributes <code>name</code> and <code>hardware.memorySize</code>.</li>
+</ul></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC.get_restricted_view_on_host_systems', this);">Show source &equiv;</a></p>
   <div id="source-isphere.interactive_wrapper.VVC.get_restricted_view_on_host_systems" class="source">
     <pre><code>def get_restricted_view_on_host_systems(self, properties):
+    """
+    Returns a list of all ESXi host systems.
+    The ESXis will only have the specified properties but retrieval will be
+    insanely fast. The properties must exist on the pyVmomi.vim.HostSystem
+    object, of course.
+    - `properties` (str[]) is a list of desired properties.
+      For example using `properties=["name", "hardware.memorySize"]` will return
+      objects that have only the attributes `name` and `hardware.memorySize`.
+    """
     return self.get_restricted_view_on_items(properties, [vim.HostSystem])
 </code></pre>
   </div>
@@ -2435,10 +2567,28 @@ their full name (item.summary.config).</p>
 
     
   
+    <div class="desc"><p>Returns a list of all virtual machines.
+The VMs will only have the specified properties but retrieval will be
+insanely fast. The properties must exist on the pyVmomi.vim.VirtualMachine
+object, of course.</p>
+<ul>
+<li><code>properties</code> (str[]) is a list of desired properties.
+  For example using <code>properties=["name", "runtime.host"]</code> will return
+  objects that have only the attributes <code>name</code> and <code>runtime.host</code>.</li>
+</ul></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC.get_restricted_view_on_vms', this);">Show source &equiv;</a></p>
   <div id="source-isphere.interactive_wrapper.VVC.get_restricted_view_on_vms" class="source">
     <pre><code>def get_restricted_view_on_vms(self, properties):
+    """
+    Returns a list of all virtual machines.
+    The VMs will only have the specified properties but retrieval will be
+    insanely fast. The properties must exist on the pyVmomi.vim.VirtualMachine
+    object, of course.
+    - `properties` (str[]) is a list of desired properties.
+      For example using `properties=["name", "runtime.host"]` will return
+      objects that have only the attributes `name` and `runtime.host`.
+    """
     return self.get_restricted_view_on_items(properties, [vim.VirtualMachine])
 </code></pre>
   </div>
@@ -2477,10 +2627,20 @@ their full name (item.summary.config).</p>
 
     
   
+    <div class="desc"><p>Returns a VM by searching for its UUID.
+An exception will be raised if the VM cannot be found.</p>
+<ul>
+<li><code>uuid</code> (str) is the UUID of the desired VM.</li>
+</ul></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC.get_vm_by_uuid', this);">Show source &equiv;</a></p>
   <div id="source-isphere.interactive_wrapper.VVC.get_vm_by_uuid" class="source">
     <pre><code>def get_vm_by_uuid(self, uuid):
+    """
+    Returns a VM by searching for its UUID.
+    An exception will be raised if the VM cannot be found.
+    - `uuid` (str) is the UUID of the desired VM.
+    """
     vm = self.get_service("searchIndex").FindByUuid(uuid=uuid, vmSearch=True)
     if not vm:
         raise NotFound("VM with uuid {0} not found".format(uuid))
