@@ -4,10 +4,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 
     <title>isphere API documentation</title>
-    <meta name="description" content="The isphere package.
+    <meta name="description" content="# The isphere package.
 
 - `isphere.command`: a subpackage defining REPL commands.
-- `isphere.cli`: a m..." />
+- `isphere.cli`: a..." />
 
   <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300' rel='stylesheet' type='text/css'>
   
@@ -1061,7 +1061,7 @@ table {
 
   <header id="section-intro">
   <h1 class="title"><span class="name">isphere</span> module</h1>
-  <p>The isphere package.</p>
+  <h1>The isphere package.</h1>
 <ul>
 <li><a href="command/index.html"><code>isphere.command</code></a>: a subpackage defining REPL commands.</li>
 <li><a href="cli.m.html"><code>isphere.cli</code></a>: a module for command line entrypoints.
@@ -1071,6 +1071,24 @@ _ <a href="interactive_wrapper.m.html"><code>isphere.interactive_wrapper</code><
   <a href="interactive_wrapper.m.html"><code>isphere.interactive_wrapper</code></a>.</li>
 <li><a href="input.m.html"><code>isphere.input</code></a>: a module for user input capabilities.</li>
 </ul>
+<h2>Full retrieval API quickstart</h2>
+<div class="codehilite"><pre><span class="kn">from</span> <span class="nn">isphere.interactive_wrapper</span> <span class="kn">import</span> <span class="n">VVC</span>
+<span class="n">vvc</span> <span class="o">=</span> <span class="n">VVC</span><span class="p">(</span><span class="n">hostname</span><span class="p">)</span>
+<span class="n">vvc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">vm</span> <span class="ow">in</span> <span class="n">vvc</span><span class="o">.</span><span class="n">get_all_vms</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;{vm_name} on {host_system}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">vm_name</span><span class="o">=</span><span class="n">vm</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">host_system</span><span class="o">=</span><span class="n">vm</span><span class="o">.</span><span class="n">runtime</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+</pre></div>
+
+
+<h2>Selective retrieval API (faster)</h2>
+<div class="codehilite"><pre><span class="kn">from</span> <span class="nn">isphere.interactive_wrapper</span> <span class="kn">import</span> <span class="n">VVC</span>
+<span class="n">vvc</span> <span class="o">=</span> <span class="n">VVC</span><span class="p">(</span><span class="n">hostname</span><span class="p">)</span>
+<span class="n">vvc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">vm</span> <span class="ow">in</span> <span class="n">vvc</span><span class="o">.</span><span class="n">get_restricted_view_on_vms</span><span class="p">([</span><span class="s">&quot;name&quot;</span><span class="p">,</span> <span class="s">&quot;runtime.host.name&quot;</span><span class="p">]):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;{vm_name} on {host_system}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">vm_name</span><span class="o">=</span><span class="n">vm</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">host_system</span><span class="o">=</span><span class="n">vm</span><span class="o">.</span><span class="n">runtime</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+</pre></div>
   
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere', this);">Show source &equiv;</a></p>
   <div id="source-isphere" class="source">
@@ -1081,7 +1099,7 @@ _ <a href="interactive_wrapper.m.html"><code>isphere.interactive_wrapper</code><
 <span class="c">#</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">The isphere package.</span>
+<span class="sd"># The isphere package.</span>
 
 <span class="sd">- `isphere.command`: a subpackage defining REPL commands.</span>
 <span class="sd">- `isphere.cli`: a module for command line entrypoints.</span>
@@ -1090,6 +1108,26 @@ _ <a href="interactive_wrapper.m.html"><code>isphere.interactive_wrapper</code><
 <span class="sd">- `isphere.connection`: A connection and caching abstraction over</span>
 <span class="sd">  `isphere.interactive_wrapper`.</span>
 <span class="sd">- `isphere.input`: a module for user input capabilities.</span>
+
+
+<span class="sd">## Full retrieval API quickstart</span>
+
+<span class="sd">    from isphere.interactive_wrapper import VVC</span>
+<span class="sd">    vvc = VVC(hostname)</span>
+<span class="sd">    vvc.connect(username, password)</span>
+
+<span class="sd">    for vm in vvc.get_all_vms():</span>
+<span class="sd">        print(&quot;{vm_name} on {host_system}&quot;.format(vm_name=vm.name, host_system=vm.runtime.host.name))</span>
+
+<span class="sd">## Selective retrieval API (faster)</span>
+
+<span class="sd">    from isphere.interactive_wrapper import VVC</span>
+<span class="sd">    vvc = VVC(hostname)</span>
+<span class="sd">    vvc.connect(username, password)</span>
+
+<span class="sd">    for vm in vvc.get_restricted_view_on_vms([&quot;name&quot;, &quot;runtime.host.name&quot;]):</span>
+<span class="sd">        print(&quot;{vm_name} on {host_system}&quot;.format(vm_name=vm.name, host_system=vm.runtime.host.name))</span>
+
 <span class="sd">&quot;&quot;&quot;</span>
 </pre></div>
 
