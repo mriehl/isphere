@@ -22,7 +22,7 @@ Usage
 
 ## Installation
 
-`pip install isphere`
+`pip install isphere` (python 2.6-3.4)
 
 Optionally, build from source with [pybuilder](http://pybuilder.github.io/)
 
