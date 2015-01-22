@@ -7,7 +7,7 @@ REPL to work with vmware vsphere
 Why does this exist?
 --------------------
 
-* The web interface for vSphere is in flash and does some version pinning - this it does not work on my linux computer with firefox.
+* The web interface for vSphere is in flash and does some version pinning - thus it does not work on my linux computer with firefox.
 * Web interfaces are awkward to use for batch operations
 * Because it's easy, fast, tested and extensible. While the primary targeted use is interactive, everything you do interactively can be automated easily, since isphere also exposes an easy to use [python API](http://max.riehl.io/isphere/) with exactly the same capabilities and usage.
 
