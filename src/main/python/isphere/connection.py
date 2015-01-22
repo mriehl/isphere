@@ -4,6 +4,16 @@
 #  as published by Sam Hocevar. See the COPYING.wtfpl file for more details.
 #
 
+"""
+Provides VMWare vSphere connection abstractions.
+The `isphere.connection.AutoEstablishingConnection` is a connection that is
+automatically established when used.
+
+The `isphere.connection.CachingVSphere` encapsulates a
+`isphere.connection.AutoEstablishingConnection` and provides caching capabilities
+on top.
+"""
+
 from functools import wraps
 
 from isphere.interactive_wrapper import VVC
@@ -18,8 +28,15 @@ except ImportError:
 except AttributeError:
     pass
 
+__all__ = ["memoized", "CachingVSphere", "AutoEstablishingConnection"]
+
 
 def memoized(function):
+    """
+    Memoizes a function.
+    Calls will be cached based on the args/kwargs. The cache is public
+    (`func.cached_calls`) so it can be cleared or used from the outside.
+    """
     cached_calls = function.cached_calls = {}
 
     @wraps(function)
@@ -33,8 +50,22 @@ def memoized(function):
 
 
 class CachingVSphere(object):
+    """
+    Encapsulates a `isphere.connection.AutoEstablishingConnection` and provides
+    a caching layer on top.
+    """
 
     def __init__(self, hostname, username, password):
+        """
+        Create a new caching vSphere connection.
+
+        - hostname (type `str`) is the vCenter host name. Can be `None` and will
+          result in a prompt.
+        - username (type `str`) is the vCenter user name. Can be `None` and will
+          result in a prompt.
+        - password (type `str`) is the vCenter password. Can be `None` and will
+          result in a prompt.
+        """
         self._connection = AutoEstablishingConnection(hostname, username, password)
         self.vm_name_to_uuid_mapping = {}
         self.esx_mapping = {}
@@ -42,17 +73,35 @@ class CachingVSphere(object):
 
     @property
     def vvc(self):
+        """
+        The encapsulated vCenter connection.
+        """
         return self._connection.ensure_established()
 
     @memoized
     def find_by_dns_name(self, dns_name, search_for_vms=False):
+        """
+        Returns an item by searching for its DNS name.
+        Raises an exception if the item cannot be found.
+
+        - dns_name (type `str`): The dns name of the desired item.
+        - search_for_vms (type `bool`): Whether to search for virtual machines or not.
+        """
         return self.vvc.find_by_dns_name(dns_name, search_for_vms)
 
     @memoized
     def get_custom_attributes_mapping(self):
+        """
+        Returns a dictionary with the mapping from custom attribute keys to
+        custom attribute names (not values!).
+        """
         return self.vvc.get_custom_attributes_mapping()
 
     def fill(self):
+        """
+        Fill the item cache. Makes listing item names available and retrieving
+        items available.
+        """
         self.find_by_dns_name.__func__.cached_calls = {}
         self.get_custom_attributes_mapping.__func__.cached_calls = {}
         self.retrieve_vm.__func__.cached_calls = {}
@@ -67,37 +116,78 @@ class CachingVSphere(object):
             self.dvs_mapping[dvs.name] = dvs
 
     def list_cached_vms(self):
+        """
+        List the names of the virtual machines.
+        This requires `fill()` to have been called since it operates on the cache.
+        """
         return self.vm_name_to_uuid_mapping.keys()
 
     def list_cached_esxis(self):
+        """
+        List the names of the ESXi host systems.
+        This requires `fill()` to have been called since it operates on the cache.
+        """
         return self.esx_mapping.keys()
 
     def list_cached_dvses(self):
+        """
+        List the names of the distributed virtual switches.
+        This requires `fill()` to have been called since it operates on the cache.
+        """
         return self.dvs_mapping.keys()
 
     @memoized
     def retrieve_vm(self, vm_name):
+        """
+        Retrieve a virtual machine by its name. The name must be in the cache.
+
+        - vm_name (type `str`): The virtual machine name from the cache.
+        """
         return self.vvc.get_vm_by_uuid(self.vm_name_to_uuid_mapping[vm_name])
 
     def retrieve_esx(self, esx_name):
+        """
+        Retrieve an ESXi host system by its name. The name must be in the cache.
+
+        - esx_name (type `str`): The ESX name from the cache.
+        """
         return self.esx_mapping[esx_name]
 
     def retrieve_dvs(self, dvs_name):
+        """
+        Retrieve a DVS by its name. The name must be in the cache.
+
+        - dvs_name (type `str`): The DVS name from the cache.
+        """
         return self.dvs_mapping[dvs_name]
 
     @property
     def number_of_vms(self):
+        """
+        The number of virtual machines available in the cache.
+        """
         return len(self.vm_name_to_uuid_mapping)
 
     @property
     def number_of_esxis(self):
+        """
+        The number of ESXi available in the cache.
+        """
         return len(self.esx_mapping)
 
     @property
     def number_of_dvses(self):
+        """
+        The number of DVS available in the cache.
+        """
         return len(self.dvs_mapping)
 
     def wait_for_tasks(self, tasks):
+        """
+        Wait until a collection of tasks completes.
+
+        - tasks (type `Task`[]): The tasks which should complete.
+        """
         return thirdparty_tasks.wait_for_tasks(self.vvc.service_instance, tasks)
 
 

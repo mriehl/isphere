@@ -4,18 +4,20 @@
 #  as published by Sam Hocevar. See the COPYING.wtfpl file for more details.
 #
 
-import atexit
-from getpass import getpass
-
-from pyVim import connect
-from pyVmomi import vim, vmodl
-
 """
 This module overlays the pyVmomi library to make its use in a
 python shell or short program more enjoyable.
 Starting point is instantiating a vCenter Host (VVC) in order
 to get all VMs.
 """
+
+import atexit
+from getpass import getpass
+
+from pyVim import connect
+from pyVmomi import vim, vmodl
+
+__all__ = ["NotFound", "VVC", "ESX", "VM", "DVS"]
 
 
 class NotFound(BaseException):
@@ -154,7 +156,7 @@ class VVC(object):
         """
         Returns a list of all virtual machines.
         The VMs will only have the specified properties but retrieval will be
-        insanely fast. The properties must exist on the pyVmomi.vim.VirtualMachine
+        insanely fast. The properties must exist on the `pyVmomi.vim.VirtualMachine`
         object, of course.
 
         - `properties` (str[]) is a list of desired properties.
@@ -167,7 +169,7 @@ class VVC(object):
         """
         Returns a list of all ESXi host systems.
         The ESXis will only have the specified properties but retrieval will be
-        insanely fast. The properties must exist on the pyVmomi.vim.HostSystem
+        insanely fast. The properties must exist on the `pyVmomi.vim.HostSystem`
         object, of course.
 
         - `properties` (str[]) is a list of desired properties.
@@ -190,7 +192,7 @@ class VVC(object):
         - `properties` (str[]) is a list of properties that should be fetched.
           Recursing properties can be separated by dots, e.G. "summary.config".
         - `types` (type[]) is a list of types to restrict the items that are given
-          back. The types must be attributes of the pyVmomi.vim module.
+          back. The types must be attributes of the `pyVmomi.vim` module.
         """
         unrestricted_view = self.view_for(types)
         collector_spec = build_property_collector_specs(unrestricted_view, properties)
