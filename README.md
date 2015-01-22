@@ -20,6 +20,12 @@ This is a platform independent REPL (mac, windows, linux) thanks to the [pyVmomi
 Usage
 -----
 
+## Installation
+
+`pip install isphere`
+
+Optionally, build from source with [pybuilder](http://pybuilder.github.io/)
+
 ## How does it work?
 
 Starting the application loads up a REPL (read eval print loop). You can see what's possible by running
@@ -157,7 +163,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> devytc98_vm.ResetVM()
 ```
 
-Note that the python shell is persistent in an isphere session. So quitting the python shell above with Ctrl+D, I would be able to relaunch a python shell and continue using the variable "devytc98_vm".
+Note that the python shell is persistent in an isphere session. So quitting the python shell above with Ctrl+D, I would be able to relaunch a python shell and continue using the variable `devytc98_vm`.
 
 ### History saving, loading
 
