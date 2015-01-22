@@ -50,6 +50,7 @@ def memoized(function):
 
 
 class CachingVSphere(object):
+
     """
     Encapsulates a `isphere.connection.AutoEstablishingConnection` and provides
     a caching layer on top.
@@ -186,20 +187,38 @@ class CachingVSphere(object):
         """
         Wait until a collection of tasks completes.
 
-        - tasks (type `Task`[]): The tasks which should complete.
+        - tasks (type `vim.Task[]`): The tasks which should complete.
         """
         return thirdparty_tasks.wait_for_tasks(self.vvc.service_instance, tasks)
 
 
 class AutoEstablishingConnection(object):
 
+    """
+    A vCenter connection that establishes when used.
+    """
+
     def __init__(self, hostname, username, password):
+        """
+        Create a new connection.
+
+        - hostname (type `str`) is the vCenter host name. Can be `None` and will
+          result in a prompt.
+        - username (type `str`) is the vCenter user name. Can be `None` and will
+          result in a prompt.
+        - password (type `str`) is the vCenter password. Can be `None` and will
+          result in a prompt.
+        """
         self.vvc = None
         self.username = username
         self.hostname = hostname
         self.password = password
 
     def ensure_established(self):
+        """
+        Returns the connection encapsulated by this class. Establishes the connection
+        if necessary and might prompt for missing information.
+        """
         return self.vvc or self._connect()
 
     def _connect(self):

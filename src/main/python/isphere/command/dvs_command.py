@@ -4,6 +4,10 @@
 #  as published by Sam Hocevar. See the COPYING.wtfpl file for more details.
 #
 
+"""
+Distributed virtual switch specific REPL commands.
+"""
+
 from __future__ import print_function
 
 from isphere.command.core_command import CoreCommand
