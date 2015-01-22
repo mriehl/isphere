@@ -1,4 +1,4 @@
-isphere
+isphere [API](http://max.riehl.io/isphere/), [![Build Status](https://travis-ci.org/mriehl/isphere.svg?branch=master)](https://travis-ci.org/mriehl/isphere)
 =======
 
 REPL to work with vmware vsphere
