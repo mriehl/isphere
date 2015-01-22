@@ -8,18 +8,28 @@
 The isphere command classes.
 """
 
-import cmd2 as cmd
+import cmd
+
+import cmd2
 
 from isphere.command.core_command import CoreCommand
 from isphere.command.esx_command import EsxCommand
 from isphere.command.virtual_machine_command import VirtualMachineCommand
 from isphere.command.dvs_command import DvsCommand
 
+__pdoc__ = {}
+
 
 class VSphereREPL(EsxCommand, VirtualMachineCommand, DvsCommand):
+
     """
     The isphere REPL command class.
     """
+
+    for field in cmd.Cmd.__dict__.keys():
+        __pdoc__['VSphereREPL.%s' % field] = None
+    for field in cmd2.Cmd.__dict__.keys():
+        __pdoc__['VSphereREPL.%s' % field] = None
 
     def __init__(self, hostname=None, username=None, password=None):
         """
@@ -42,7 +52,7 @@ class VSphereREPL(EsxCommand, VirtualMachineCommand, DvsCommand):
         Launches a REPL and swallows `KeyboardInterrupt`s.
         """
         try:
-            cmd.Cmd.cmdloop(self, **kwargs)
+            cmd2.Cmd.cmdloop(self, **kwargs)
         except KeyboardInterrupt:
             print("Quit with Ctrl+D or `EOF`.")
             self.cmdloop(**kwargs)
