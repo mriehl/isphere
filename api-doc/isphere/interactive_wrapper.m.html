@@ -852,71 +852,6 @@ table {
 
   </style>
 
-  <style type="text/css">
-  .codehilite .hll { background-color: #ffffcc }
-.codehilite  { background: #f8f8f8; }
-.codehilite .c { color: #408080; font-style: italic } /* Comment */
-.codehilite .err { border: 1px solid #FF0000 } /* Error */
-.codehilite .k { color: #008000; font-weight: bold } /* Keyword */
-.codehilite .o { color: #666666 } /* Operator */
-.codehilite .cm { color: #408080; font-style: italic } /* Comment.Multiline */
-.codehilite .cp { color: #BC7A00 } /* Comment.Preproc */
-.codehilite .c1 { color: #408080; font-style: italic } /* Comment.Single */
-.codehilite .cs { color: #408080; font-style: italic } /* Comment.Special */
-.codehilite .gd { color: #A00000 } /* Generic.Deleted */
-.codehilite .ge { font-style: italic } /* Generic.Emph */
-.codehilite .gr { color: #FF0000 } /* Generic.Error */
-.codehilite .gh { color: #000080; font-weight: bold } /* Generic.Heading */
-.codehilite .gi { color: #00A000 } /* Generic.Inserted */
-.codehilite .go { color: #888888 } /* Generic.Output */
-.codehilite .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
-.codehilite .gs { font-weight: bold } /* Generic.Strong */
-.codehilite .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
-.codehilite .gt { color: #0044DD } /* Generic.Traceback */
-.codehilite .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
-.codehilite .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
-.codehilite .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
-.codehilite .kp { color: #008000 } /* Keyword.Pseudo */
-.codehilite .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
-.codehilite .kt { color: #B00040 } /* Keyword.Type */
-.codehilite .m { color: #666666 } /* Literal.Number */
-.codehilite .s { color: #BA2121 } /* Literal.String */
-.codehilite .na { color: #7D9029 } /* Name.Attribute */
-.codehilite .nb { color: #008000 } /* Name.Builtin */
-.codehilite .nc { color: #0000FF; font-weight: bold } /* Name.Class */
-.codehilite .no { color: #880000 } /* Name.Constant */
-.codehilite .nd { color: #AA22FF } /* Name.Decorator */
-.codehilite .ni { color: #999999; font-weight: bold } /* Name.Entity */
-.codehilite .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
-.codehilite .nf { color: #0000FF } /* Name.Function */
-.codehilite .nl { color: #A0A000 } /* Name.Label */
-.codehilite .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
-.codehilite .nt { color: #008000; font-weight: bold } /* Name.Tag */
-.codehilite .nv { color: #19177C } /* Name.Variable */
-.codehilite .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
-.codehilite .w { color: #bbbbbb } /* Text.Whitespace */
-.codehilite .mb { color: #666666 } /* Literal.Number.Bin */
-.codehilite .mf { color: #666666 } /* Literal.Number.Float */
-.codehilite .mh { color: #666666 } /* Literal.Number.Hex */
-.codehilite .mi { color: #666666 } /* Literal.Number.Integer */
-.codehilite .mo { color: #666666 } /* Literal.Number.Oct */
-.codehilite .sb { color: #BA2121 } /* Literal.String.Backtick */
-.codehilite .sc { color: #BA2121 } /* Literal.String.Char */
-.codehilite .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
-.codehilite .s2 { color: #BA2121 } /* Literal.String.Double */
-.codehilite .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
-.codehilite .sh { color: #BA2121 } /* Literal.String.Heredoc */
-.codehilite .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
-.codehilite .sx { color: #008000 } /* Literal.String.Other */
-.codehilite .sr { color: #BB6688 } /* Literal.String.Regex */
-.codehilite .s1 { color: #BA2121 } /* Literal.String.Single */
-.codehilite .ss { color: #19177C } /* Literal.String.Symbol */
-.codehilite .bp { color: #008000 } /* Name.Builtin.Pseudo */
-.codehilite .vc { color: #19177C } /* Name.Variable.Class */
-.codehilite .vg { color: #19177C } /* Name.Variable.Global */
-.codehilite .vi { color: #19177C } /* Name.Variable.Instance */
-.codehilite .il { color: #666666 } /* Literal.Number.Integer.Long */
-  </style>
 
   <style type="text/css">
   
@@ -1092,6 +1027,7 @@ table {
     <li class="mono"><a href="#isphere.interactive_wrapper.VVC.get_restricted_view_on_vms">get_restricted_view_on_vms</a></li>
     <li class="mono"><a href="#isphere.interactive_wrapper.VVC.get_service">get_service</a></li>
     <li class="mono"><a href="#isphere.interactive_wrapper.VVC.get_vm_by_uuid">get_vm_by_uuid</a></li>
+    <li class="mono"><a href="#isphere.interactive_wrapper.VVC.set_custom_attribute">set_custom_attribute</a></li>
     <li class="mono"><a href="#isphere.interactive_wrapper.VVC.view_for">view_for</a></li>
   </ul>
 
@@ -1118,360 +1054,372 @@ to get all VMs.</p>
   
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper', this);">Show source &equiv;</a></p>
   <div id="source-isphere.interactive_wrapper" class="source">
-    <div class="codehilite"><pre><span class="c">#  Copyright (c) 2014-2015 Maximilien Riehl &lt;max@riehl.io&gt;</span>
-<span class="c">#  This work is free. You can redistribute it and/or modify it under the</span>
-<span class="c">#  terms of the Do What The Fuck You Want To Public License, Version 2,</span>
-<span class="c">#  as published by Sam Hocevar. See the COPYING.wtfpl file for more details.</span>
-<span class="c">#</span>
-
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">This module overlays the pyVmomi library to make its use in a</span>
-<span class="sd">python shell or short program more enjoyable.</span>
-<span class="sd">Starting point is instantiating a vCenter Host (VVC) in order</span>
-<span class="sd">to get all VMs.</span>
-<span class="sd">&quot;&quot;&quot;</span>
-
-<span class="kn">import</span> <span class="nn">atexit</span>
-<span class="kn">from</span> <span class="nn">getpass</span> <span class="kn">import</span> <span class="n">getpass</span>
-
-<span class="kn">from</span> <span class="nn">pyVim</span> <span class="kn">import</span> <span class="n">connect</span>
-<span class="kn">from</span> <span class="nn">pyVmomi</span> <span class="kn">import</span> <span class="n">vim</span><span class="p">,</span> <span class="n">vmodl</span>
-
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;NotFound&quot;</span><span class="p">,</span> <span class="s">&quot;VVC&quot;</span><span class="p">,</span> <span class="s">&quot;ESX&quot;</span><span class="p">,</span> <span class="s">&quot;VM&quot;</span><span class="p">,</span> <span class="s">&quot;DVS&quot;</span><span class="p">]</span>
-
-
-<span class="k">class</span> <span class="nc">NotFound</span><span class="p">(</span><span class="ne">BaseException</span><span class="p">):</span>
-
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    To be raised when a requested item was not found.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span>
-
-
-<span class="k">class</span> <span class="nc">VVC</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A vCenter host.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hostname</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Creates a VVC instance.</span>
-
-<span class="sd">        - `hostname` (str) is the name of the vCenter host.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">hostname</span> <span class="o">=</span> <span class="n">hostname</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">service_instance</span> <span class="o">=</span> <span class="bp">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">service_instance_content</span> <span class="o">=</span> <span class="bp">None</span>
-
-    <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Connects to the vCenter host encapsulated by this VVC instance.</span>
-
-<span class="sd">        - `username` (str) is the username to use for authentication.</span>
-<span class="sd">        - `password` (str) is the password to use for authentication.</span>
-<span class="sd">          If the password is not specified, a getpass prompt will be used.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">password</span><span class="p">:</span>
-            <span class="n">password</span> <span class="o">=</span> <span class="n">getpass</span><span class="p">(</span><span class="s">&quot;Password for {0}@{1}: &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hostname</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">service_instance</span> <span class="o">=</span> <span class="n">connect</span><span class="o">.</span><span class="n">SmartConnect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">hostname</span><span class="p">,</span>
-                                                     <span class="n">user</span><span class="o">=</span><span class="n">username</span><span class="p">,</span>
-                                                     <span class="n">pwd</span><span class="o">=</span><span class="n">password</span><span class="p">,</span>
-                                                     <span class="n">port</span><span class="o">=</span><span class="mi">443</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">service_instance_content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">service_instance</span><span class="o">.</span><span class="n">RetrieveContent</span><span class="p">()</span>
-        <span class="n">atexit</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">connect</span><span class="o">.</span><span class="n">Disconnect</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">service_instance</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">get_first_level_of_vm_folders</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">children</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">service_instance_content</span><span class="o">.</span><span class="n">rootFolder</span><span class="o">.</span><span class="n">childEntity</span>
-        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">children</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="s">&quot;vmFolder&quot;</span><span class="p">):</span>
-                <span class="k">yield</span> <span class="n">child</span><span class="o">.</span><span class="n">vmFolder</span>
-
-    <span class="k">def</span> <span class="nf">get_service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service_name</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">service_instance_content</span><span class="p">,</span> <span class="n">service_name</span><span class="p">):</span>
-            <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">service_instance_content</span><span class="p">,</span> <span class="n">service_name</span><span class="p">)</span>
-        <span class="k">raise</span> <span class="n">NotFound</span><span class="p">(</span><span class="s">&quot;Service {0} not found&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">service_name</span><span class="p">))</span>
-
-    <span class="k">def</span> <span class="nf">get_custom_attributes_mapping</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns a dictionary that maps custom field keys to custom field names.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">custom_attributes_mapping</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_service</span><span class="p">(</span><span class="s">&quot;customFieldsManager&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">field</span><span class="p">:</span>
-            <span class="n">custom_attributes_mapping</span><span class="p">[</span><span class="n">field</span><span class="o">.</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="o">.</span><span class="n">name</span>
-
-        <span class="k">return</span> <span class="n">custom_attributes_mapping</span>
-
-    <span class="k">def</span> <span class="nf">find_by_dns_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dns_name</span><span class="p">,</span> <span class="n">search_for_vms</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns an item by searching for its DNS name.</span>
-<span class="sd">        An exception will be raised if the item cannot be found.</span>
-
-<span class="sd">        - `dns_name` (str) is the DNS name of the desired item.</span>
-<span class="sd">        - `search_for_vms` (boolean) (default False) indicates if VMs should</span>
-<span class="sd">          be included in the search.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">search_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">service_instance</span><span class="o">.</span><span class="n">RetrieveContent</span><span class="p">()</span><span class="o">.</span><span class="n">searchIndex</span>
-        <span class="n">item</span> <span class="o">=</span> <span class="n">search_index</span><span class="o">.</span><span class="n">FindByDnsName</span><span class="p">(</span><span class="n">dnsName</span><span class="o">=</span><span class="n">dns_name</span><span class="p">,</span> <span class="n">vmSearch</span><span class="o">=</span><span class="n">search_for_vms</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">item</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">NotFound</span><span class="p">(</span>
-                <span class="s">&quot;Item with dns name {0} not found (search_for_vms: {1})&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                    <span class="n">dns_name</span><span class="p">,</span>
-                    <span class="n">search_for_vms</span><span class="p">))</span>
-
-        <span class="k">return</span> <span class="n">item</span>
-
-    <span class="k">def</span> <span class="nf">get_vm_by_uuid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uuid</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns a VM by searching for its UUID.</span>
-<span class="sd">        An exception will be raised if the VM cannot be found.</span>
-
-<span class="sd">        - `uuid` (str) is the UUID of the desired VM.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">vm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_service</span><span class="p">(</span><span class="s">&quot;searchIndex&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">FindByUuid</span><span class="p">(</span><span class="n">uuid</span><span class="o">=</span><span class="n">uuid</span><span class="p">,</span> <span class="n">vmSearch</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">vm</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">NotFound</span><span class="p">(</span><span class="s">&quot;VM with uuid {0} not found&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">uuid</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">VM</span><span class="p">(</span><span class="n">vm</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">get_all_vms</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns a generator for all virtual machines on this vCenter.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">for</span> <span class="n">vm</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_all_by_type</span><span class="p">([</span><span class="n">vim</span><span class="o">.</span><span class="n">VirtualMachine</span><span class="p">]):</span>
-            <span class="k">yield</span> <span class="n">VM</span><span class="p">(</span><span class="n">vm</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">get_all_by_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">types</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns a list of all matching item types.</span>
-
-<span class="sd">        - `types` (type[]) is a list of desired types. The types should be</span>
-<span class="sd">          attributes of the `pyVmomi.vim` module, for example `pyVmomi.vim.VirtualMachine`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">view</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">view_for</span><span class="p">(</span><span class="n">types</span><span class="p">)</span>
-        <span class="n">all_items</span> <span class="o">=</span> <span class="n">view</span><span class="o">.</span><span class="n">view</span>
-        <span class="n">view</span><span class="o">.</span><span class="n">Destroy</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">all_items</span>
-
-    <span class="k">def</span> <span class="nf">get_all_esx</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns a generator for all ESXi host systems on this vCenter.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">for</span> <span class="n">esx</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_all_by_type</span><span class="p">([</span><span class="n">vim</span><span class="o">.</span><span class="n">HostSystem</span><span class="p">]):</span>
-            <span class="k">yield</span> <span class="n">ESX</span><span class="p">(</span><span class="n">esx</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">get_all_dvs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns a generator for all distributed virtual switches on this vCenter.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">for</span> <span class="n">dvs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_all_by_type</span><span class="p">([</span><span class="n">vim</span><span class="o">.</span><span class="n">VmwareDistributedVirtualSwitch</span><span class="p">]):</span>
-            <span class="k">yield</span> <span class="n">DVS</span><span class="p">(</span><span class="n">dvs</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">view_for</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">types</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_service</span><span class="p">(</span><span class="s">&quot;viewManager&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">CreateContainerView</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">service_instance_content</span><span class="o">.</span><span class="n">rootFolder</span><span class="p">,</span>
-            <span class="n">types</span><span class="p">,</span>
-            <span class="bp">True</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">get_restricted_view_on_vms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">properties</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns a list of all virtual machines.</span>
-<span class="sd">        The VMs will only have the specified properties but retrieval will be</span>
-<span class="sd">        insanely fast. The properties must exist on the `pyVmomi.vim.VirtualMachine`</span>
-<span class="sd">        object, of course.</span>
-
-<span class="sd">        - `properties` (str[]) is a list of desired properties.</span>
-<span class="sd">          For example using `properties=[&quot;name&quot;, &quot;runtime.host&quot;]` will return</span>
-<span class="sd">          objects that have only the attributes `name` and `runtime.host`.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_restricted_view_on_items</span><span class="p">(</span><span class="n">properties</span><span class="p">,</span> <span class="p">[</span><span class="n">vim</span><span class="o">.</span><span class="n">VirtualMachine</span><span class="p">])</span>
-
-    <span class="k">def</span> <span class="nf">get_restricted_view_on_host_systems</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">properties</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns a list of all ESXi host systems.</span>
-<span class="sd">        The ESXis will only have the specified properties but retrieval will be</span>
-<span class="sd">        insanely fast. The properties must exist on the `pyVmomi.vim.HostSystem`</span>
-<span class="sd">        object, of course.</span>
-
-<span class="sd">        - `properties` (str[]) is a list of desired properties.</span>
-<span class="sd">          For example using `properties=[&quot;name&quot;, &quot;hardware.memorySize&quot;]` will return</span>
-<span class="sd">          objects that have only the attributes `name` and `hardware.memorySize`.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_restricted_view_on_items</span><span class="p">(</span><span class="n">properties</span><span class="p">,</span> <span class="p">[</span><span class="n">vim</span><span class="o">.</span><span class="n">HostSystem</span><span class="p">])</span>
-
-    <span class="k">def</span> <span class="nf">get_restricted_view_on_items</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">properties</span><span class="p">,</span> <span class="n">types</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns a restricted view on a specific item type collection.</span>
-<span class="sd">        The items are restricted in the sense that only properties which were</span>
-<span class="sd">        specified upon retrieval can be accessed.</span>
-
-<span class="sd">        The return value will be a list of items that have the desired properties</span>
-<span class="sd">        as attributes.</span>
-<span class="sd">        Note that recursing properties (e.G. summary.config) will be stored under</span>
-<span class="sd">        their full name (item.summary.config).</span>
-
-<span class="sd">        - `properties` (str[]) is a list of properties that should be fetched.</span>
-<span class="sd">          Recursing properties can be separated by dots, e.G. &quot;summary.config&quot;.</span>
-<span class="sd">        - `types` (type[]) is a list of types to restrict the items that are given</span>
-<span class="sd">          back. The types must be attributes of the `pyVmomi.vim` module.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">unrestricted_view</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">view_for</span><span class="p">(</span><span class="n">types</span><span class="p">)</span>
-        <span class="n">collector_spec</span> <span class="o">=</span> <span class="n">build_property_collector_specs</span><span class="p">(</span><span class="n">unrestricted_view</span><span class="p">,</span> <span class="n">properties</span><span class="p">)</span>
-
-        <span class="n">retrieved_contents</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_service</span><span class="p">(</span><span class="s">&quot;propertyCollector&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">RetrieveContents</span><span class="p">(</span><span class="n">collector_spec</span><span class="p">)</span>
-        <span class="n">items</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">retrieved_contents</span><span class="p">:</span>
-            <span class="n">item_instance</span> <span class="o">=</span> <span class="n">ItemContainer</span><span class="p">()</span>
-            <span class="k">for</span> <span class="n">item_property</span> <span class="ow">in</span> <span class="n">item</span><span class="o">.</span><span class="n">propSet</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">item_property</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">properties</span><span class="p">:</span>
-                    <span class="n">item_instance</span><span class="o">.</span><span class="n">set_path_value</span><span class="p">(</span><span class="n">item_property</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">item_property</span><span class="o">.</span><span class="n">val</span><span class="p">)</span>
-            <span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item_instance</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">items</span>
-
-
-<span class="k">class</span> <span class="nc">ItemContainer</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-
-    <span class="k">def</span> <span class="nf">set_path_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-        <span class="n">part_names</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;.&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_inner_set_path_value</span><span class="p">(</span><span class="n">part_names</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">_inner_set_path_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">part_names</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">current_item</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">part_names</span><span class="p">:</span>
-            <span class="k">return</span>
-        <span class="n">current_item</span> <span class="o">=</span> <span class="bp">self</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">current_item</span> <span class="k">else</span> <span class="n">current_item</span>
-        <span class="n">current_part</span> <span class="o">=</span> <span class="n">part_names</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-        <span class="n">need_to_set_value</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">part_names</span>  <span class="c"># if part_names is empty we&#39;re done with the path and can set the value</span>
-        <span class="k">if</span> <span class="n">need_to_set_value</span><span class="p">:</span>
-            <span class="nb">setattr</span><span class="p">(</span><span class="n">current_item</span><span class="p">,</span> <span class="n">current_part</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-            <span class="k">return</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">current_item</span><span class="p">,</span> <span class="n">current_part</span><span class="p">):</span>
-                <span class="n">part_container</span> <span class="o">=</span> <span class="n">ItemContainer</span><span class="p">()</span>
-                <span class="nb">setattr</span><span class="p">(</span><span class="n">current_item</span><span class="p">,</span> <span class="n">current_part</span><span class="p">,</span> <span class="n">part_container</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">part_container</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">current_item</span><span class="p">,</span> <span class="n">current_part</span><span class="p">)</span>
-            <span class="n">part_container</span><span class="o">.</span><span class="n">_inner_set_path_value</span><span class="p">(</span><span class="n">part_names</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">part_container</span><span class="p">)</span>
-
-
-<span class="k">class</span> <span class="nc">ESX</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    An ESX instance.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_esx</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">raw_esx</span> <span class="o">=</span> <span class="n">raw_esx</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">raw_esx</span><span class="o">.</span><span class="n">name</span>
-
-    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">name</span>
-
-    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="nb">str</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">c</span><span class="p">))</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)))</span>
-
-    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">raw_esx</span><span class="p">,</span> <span class="n">attribute</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">__dir__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">dir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">raw_esx</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">get_number_of_cores</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns the number of CPU cores (type long) on this ESX.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">resources_on_esx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">raw_esx</span><span class="o">.</span><span class="n">licensableResource</span><span class="o">.</span><span class="n">resource</span>
-        <span class="k">for</span> <span class="n">resource</span> <span class="ow">in</span> <span class="n">resources_on_esx</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">resource</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="s">&quot;numCpuCores&quot;</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">resource</span><span class="o">.</span><span class="n">value</span>
-        <span class="n">message</span> <span class="o">=</span> <span class="s">&quot;{0} has no resource numCpuCores.</span><span class="se">\n</span><span class="s"> Available resources: {1}&quot;</span>
-        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">resources_on_esx</span><span class="p">))</span>
-
-
-<span class="k">class</span> <span class="nc">VM</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A virtual machine.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_vm</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">raw_vm</span> <span class="o">=</span> <span class="n">raw_vm</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">raw_vm</span><span class="o">.</span><span class="n">name</span>
-
-    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">raw_vm</span><span class="p">,</span> <span class="n">attribute</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">__dir__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">dir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">raw_vm</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">get_first_network_interface_matching</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">predicate</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns the first network interface of this VM that matches the given</span>
-<span class="sd">        predicate.</span>
-
-<span class="sd">        - `predicate` (callable) is a function that takes a network and returns</span>
-<span class="sd">          True (return this network) or False (skip this network).</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">for</span> <span class="n">network</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">raw_vm</span><span class="o">.</span><span class="n">network</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">predicate</span><span class="p">(</span><span class="n">network</span><span class="p">):</span>
-                <span class="k">return</span> <span class="n">network</span>
-        <span class="k">return</span> <span class="bp">None</span>
-
-    <span class="k">def</span> <span class="nf">get_esx_host</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">ESX</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">raw_vm</span><span class="o">.</span><span class="n">runtime</span><span class="o">.</span><span class="n">host</span><span class="p">)</span>
-
-
-<span class="k">class</span> <span class="nc">DVS</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A DistributedVirtualSwitch</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_dvs</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">raw_dvs</span> <span class="o">=</span> <span class="n">raw_dvs</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">raw_dvs</span><span class="o">.</span><span class="n">name</span>
-
-    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">name</span>
-
-    <span class="k">def</span> <span class="nf">__dir__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">dir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">raw_dvs</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">raw_dvs</span><span class="p">,</span> <span class="n">attribute</span><span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">get_all_vms_in_folder</span><span class="p">(</span><span class="n">folder</span><span class="p">):</span>
-    <span class="n">vm_or_folders</span> <span class="o">=</span> <span class="n">folder</span><span class="o">.</span><span class="n">childEntity</span>
-    <span class="k">for</span> <span class="n">vm_or_folder</span> <span class="ow">in</span> <span class="n">vm_or_folders</span><span class="p">:</span>
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">vm_or_folder</span><span class="p">,</span> <span class="s">&quot;childEntity&quot;</span><span class="p">):</span>
-            <span class="c"># it&#39;s still a folder, look deeper</span>
-            <span class="k">for</span> <span class="n">vm</span> <span class="ow">in</span> <span class="n">get_all_vms_in_folder</span><span class="p">(</span><span class="n">vm_or_folder</span><span class="p">):</span>
-                <span class="k">yield</span> <span class="n">vm</span>  <span class="c"># it&#39;s now a VM</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">yield</span> <span class="n">VM</span><span class="p">(</span><span class="n">vm_or_folder</span><span class="p">)</span>  <span class="c"># it&#39;s a VM</span>
-
-
-<span class="k">def</span> <span class="nf">build_property_collector_specs</span><span class="p">(</span><span class="n">view</span><span class="p">,</span> <span class="n">item_properties</span><span class="p">):</span>
-    <span class="n">obj_spec</span> <span class="o">=</span> <span class="n">vmodl</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">PropertyCollector</span><span class="o">.</span><span class="n">ObjectSpec</span><span class="p">()</span>
-    <span class="n">obj_spec</span><span class="o">.</span><span class="n">obj</span> <span class="o">=</span> <span class="n">view</span>
-    <span class="n">obj_spec</span><span class="o">.</span><span class="n">skip</span> <span class="o">=</span> <span class="bp">True</span>
-
-    <span class="n">traversal_spec</span> <span class="o">=</span> <span class="n">vmodl</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">PropertyCollector</span><span class="o">.</span><span class="n">TraversalSpec</span><span class="p">()</span>
-    <span class="n">traversal_spec</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;traverseEntities&#39;</span>
-    <span class="n">traversal_spec</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="s">&#39;view&#39;</span>
-    <span class="n">traversal_spec</span><span class="o">.</span><span class="n">skip</span> <span class="o">=</span> <span class="bp">False</span>
-    <span class="n">traversal_spec</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">view</span><span class="o">.</span><span class="n">__class__</span>
-    <span class="n">obj_spec</span><span class="o">.</span><span class="n">selectSet</span> <span class="o">=</span> <span class="p">[</span><span class="n">traversal_spec</span><span class="p">]</span>
-
-    <span class="n">property_spec</span> <span class="o">=</span> <span class="n">vmodl</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">PropertyCollector</span><span class="o">.</span><span class="n">PropertySpec</span><span class="p">()</span>
-    <span class="n">property_spec</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">vim</span><span class="p">,</span> <span class="n">view</span><span class="o">.</span><span class="n">type</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">property_spec</span><span class="o">.</span><span class="n">pathSet</span> <span class="o">=</span> <span class="n">item_properties</span>
-
-    <span class="n">filter_spec</span> <span class="o">=</span> <span class="n">vmodl</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">PropertyCollector</span><span class="o">.</span><span class="n">FilterSpec</span><span class="p">()</span>
-    <span class="n">filter_spec</span><span class="o">.</span><span class="n">objectSet</span> <span class="o">=</span> <span class="p">[</span><span class="n">obj_spec</span><span class="p">]</span>
-    <span class="n">filter_spec</span><span class="o">.</span><span class="n">propSet</span> <span class="o">=</span> <span class="p">[</span><span class="n">property_spec</span><span class="p">]</span>
-    <span class="k">return</span> <span class="p">[</span><span class="n">filter_spec</span><span class="p">]</span>
-</pre></div>
-
+    <pre><code>#  Copyright (c) 2014-2015 Maximilien Riehl <max@riehl.io>
+#  This work is free. You can redistribute it and/or modify it under the
+#  terms of the Do What The Fuck You Want To Public License, Version 2,
+#  as published by Sam Hocevar. See the COPYING.wtfpl file for more details.
+#
+
+"""
+This module overlays the pyVmomi library to make its use in a
+python shell or short program more enjoyable.
+Starting point is instantiating a vCenter Host (VVC) in order
+to get all VMs.
+"""
+
+import atexit
+from getpass import getpass
+
+from pyVim import connect
+from pyVmomi import vim, vmodl
+
+__all__ = ["NotFound", "VVC", "ESX", "VM", "DVS"]
+
+
+class NotFound(Exception):
+
+    """
+    To be raised when a requested item was not found.
+    """
+    pass
+
+
+class VVC(object):
+
+    """
+    A vCenter host.
+    """
+
+    def __init__(self, hostname):
+        """
+        Creates a VVC instance.
+
+        - `hostname` (str) is the name of the vCenter host.
+        """
+        self.hostname = hostname
+        self.service_instance = None
+        self.service_instance_content = None
+
+    def connect(self, username, password=None):
+        """
+        Connects to the vCenter host encapsulated by this VVC instance.
+
+        - `username` (str) is the username to use for authentication.
+        - `password` (str) is the password to use for authentication.
+          If the password is not specified, a getpass prompt will be used.
+        """
+        if not password:
+            password = getpass("Password for {0}@{1}: ".format(username, self.hostname))
+        self.service_instance = connect.SmartConnect(host=self.hostname,
+                                                     user=username,
+                                                     pwd=password,
+                                                     port=443)
+        self.service_instance_content = self.service_instance.RetrieveContent()
+        atexit.register(connect.Disconnect, self.service_instance)
+
+    def get_first_level_of_vm_folders(self):
+        children = self.service_instance_content.rootFolder.childEntity
+        for child in children:
+            if hasattr(child, "vmFolder"):
+                yield child.vmFolder
+
+    def get_service(self, service_name):
+        if hasattr(self.service_instance_content, service_name):
+            return getattr(self.service_instance_content, service_name)
+        raise NotFound("Service {0} not found".format(service_name))
+
+    def get_custom_attributes_mapping(self):
+        """
+        Returns a dictionary that maps custom field keys to custom field names.
+        """
+        custom_attributes_mapping = {}
+        for field in self.get_service("customFieldsManager").field:
+            custom_attributes_mapping[field.key] = field.name
+
+        return custom_attributes_mapping
+
+    def set_custom_attribute(self, item, attribute_name, attribute_value):
+        attribute_mapping = self.get_custom_attributes_mapping()
+        attribute_key = None
+        for actual_attribute_key, actual_attribute_name in attribute_mapping.items():
+            if actual_attribute_name == attribute_name:
+                attribute_key = actual_attribute_key
+
+        if not attribute_key:
+            raise NotFound("No custom attribute '{name}' found. Available names: {available_names}".format(
+                name=attribute_name, available_names=attribute_mapping.values()))
+
+        self.get_service("customFieldsManager").SetField(entity=item, key=attribute_key, value=attribute_value)
+
+    def find_by_dns_name(self, dns_name, search_for_vms=False):
+        """
+        Returns an item by searching for its DNS name.
+        An exception will be raised if the item cannot be found.
+
+        - `dns_name` (str) is the DNS name of the desired item.
+        - `search_for_vms` (boolean) (default False) indicates if VMs should
+          be included in the search.
+        """
+        search_index = self.service_instance.RetrieveContent().searchIndex
+        item = search_index.FindByDnsName(dnsName=dns_name, vmSearch=search_for_vms)
+        if not item:
+            raise NotFound(
+                "Item with dns name {0} not found (search_for_vms: {1})".format(
+                    dns_name,
+                    search_for_vms))
+
+        return item
+
+    def get_vm_by_uuid(self, uuid):
+        """
+        Returns a VM by searching for its UUID.
+        An exception will be raised if the VM cannot be found.
+
+        - `uuid` (str) is the UUID of the desired VM.
+        """
+        vm = self.get_service("searchIndex").FindByUuid(uuid=uuid, vmSearch=True)
+        if not vm:
+            raise NotFound("VM with uuid {0} not found".format(uuid))
+        return VM(vm)
+
+    def get_all_vms(self):
+        """
+        Returns a generator for all virtual machines on this vCenter.
+        """
+        for vm in self.get_all_by_type([vim.VirtualMachine]):
+            yield VM(vm)
+
+    def get_all_by_type(self, types):
+        """
+        Returns a list of all matching item types.
+
+        - `types` (type[]) is a list of desired types. The types should be
+          attributes of the `pyVmomi.vim` module, for example `pyVmomi.vim.VirtualMachine`
+        """
+        view = self.view_for(types)
+        all_items = view.view
+        view.Destroy()
+        return all_items
+
+    def get_all_esx(self):
+        """
+        Returns a generator for all ESXi host systems on this vCenter.
+        """
+        for esx in self.get_all_by_type([vim.HostSystem]):
+            yield ESX(esx)
+
+    def get_all_dvs(self):
+        """
+        Returns a generator for all distributed virtual switches on this vCenter.
+        """
+        for dvs in self.get_all_by_type([vim.VmwareDistributedVirtualSwitch]):
+            yield DVS(dvs)
+
+    def view_for(self, types):
+        return self.get_service("viewManager").CreateContainerView(
+            self.service_instance_content.rootFolder,
+            types,
+            True)
+
+    def get_restricted_view_on_vms(self, properties):
+        """
+        Returns a list of all virtual machines.
+        The VMs will only have the specified properties but retrieval will be
+        insanely fast. The properties must exist on the `pyVmomi.vim.VirtualMachine`
+        object, of course.
+
+        - `properties` (str[]) is a list of desired properties.
+          For example using `properties=["name", "runtime.host"]` will return
+          objects that have only the attributes `name` and `runtime.host`.
+        """
+        return self.get_restricted_view_on_items(properties, [vim.VirtualMachine])
+
+    def get_restricted_view_on_host_systems(self, properties):
+        """
+        Returns a list of all ESXi host systems.
+        The ESXis will only have the specified properties but retrieval will be
+        insanely fast. The properties must exist on the `pyVmomi.vim.HostSystem`
+        object, of course.
+
+        - `properties` (str[]) is a list of desired properties.
+          For example using `properties=["name", "hardware.memorySize"]` will return
+          objects that have only the attributes `name` and `hardware.memorySize`.
+        """
+        return self.get_restricted_view_on_items(properties, [vim.HostSystem])
+
+    def get_restricted_view_on_items(self, properties, types):
+        """
+        Returns a restricted view on a specific item type collection.
+        The items are restricted in the sense that only properties which were
+        specified upon retrieval can be accessed.
+
+        The return value will be a list of items that have the desired properties
+        as attributes.
+        Note that recursing properties (e.G. summary.config) will be stored under
+        their full name (item.summary.config).
+
+        - `properties` (str[]) is a list of properties that should be fetched.
+          Recursing properties can be separated by dots, e.G. "summary.config".
+        - `types` (type[]) is a list of types to restrict the items that are given
+          back. The types must be attributes of the `pyVmomi.vim` module.
+        """
+        unrestricted_view = self.view_for(types)
+        collector_spec = build_property_collector_specs(unrestricted_view, properties)
+
+        retrieved_contents = self.get_service("propertyCollector").RetrieveContents(collector_spec)
+        items = []
+        for item in retrieved_contents:
+            item_instance = ItemContainer()
+            for item_property in item.propSet:
+                if item_property.name in properties:
+                    item_instance.set_path_value(item_property.name, item_property.val)
+            items.append(item_instance)
+        return items
+
+
+class ItemContainer(object):
+
+    def set_path_value(self, path, value):
+        part_names = path.split(".")
+        self._inner_set_path_value(part_names, value)
+
+    def _inner_set_path_value(self, part_names, value, current_item=None):
+        if not part_names:
+            return
+        current_item = self if not current_item else current_item
+        current_part = part_names.pop(0)
+        need_to_set_value = not part_names  # if part_names is empty we're done with the path and can set the value
+        if need_to_set_value:
+            setattr(current_item, current_part, value)
+            return
+        else:
+            if not hasattr(current_item, current_part):
+                part_container = ItemContainer()
+                setattr(current_item, current_part, part_container)
+            else:
+                part_container = getattr(current_item, current_part)
+            part_container._inner_set_path_value(part_names, value, part_container)
+
+
+class ESX(object):
+
+    """
+    An ESX instance.
+    """
+
+    def __init__(self, raw_esx):
+        self.raw_esx = raw_esx
+        self.name = raw_esx.name
+
+    def __eq__(self, other):
+        return self.name == other.name
+
+    def __hash__(self):
+        return int("".join((str(ord(c)) for c in self.name)))
+
+    def __getattr__(self, attribute):
+        return getattr(self.raw_esx, attribute)
+
+    def __dir__(self):
+        return dir(self.raw_esx)
+
+    def get_number_of_cores(self):
+        """
+        Returns the number of CPU cores (type long) on this ESX.
+        """
+        resources_on_esx = self.raw_esx.licensableResource.resource
+        for resource in resources_on_esx:
+            if resource.key == "numCpuCores":
+                return resource.value
+        message = "{0} has no resource numCpuCores.\n Available resources: {1}"
+        raise RuntimeError(message.format(self.name, resources_on_esx))
+
+
+class VM(object):
+
+    """
+    A virtual machine.
+    """
+
+    def __init__(self, raw_vm):
+        self.raw_vm = raw_vm
+        self.name = raw_vm.name
+
+    def __getattr__(self, attribute):
+        return getattr(self.raw_vm, attribute)
+
+    def __dir__(self):
+        return dir(self.raw_vm)
+
+    def get_first_network_interface_matching(self, predicate):
+        """
+        Returns the first network interface of this VM that matches the given
+        predicate.
+
+        - `predicate` (callable) is a function that takes a network and returns
+          True (return this network) or False (skip this network).
+        """
+        for network in self.raw_vm.network:
+            if predicate(network):
+                return network
+        return None
+
+    def get_esx_host(self):
+        return ESX(self.raw_vm.runtime.host)
+
+
+class DVS(object):
+
+    """
+    A DistributedVirtualSwitch
+    """
+
+    def __init__(self, raw_dvs):
+        self.raw_dvs = raw_dvs
+        self.name = raw_dvs.name
+
+    def __eq__(self, other):
+        return self.name == other.name
+
+    def __dir__(self):
+        return dir(self.raw_dvs)
+
+    def __getattr__(self, attribute):
+        return getattr(self.raw_dvs, attribute)
+
+
+def get_all_vms_in_folder(folder):
+    vm_or_folders = folder.childEntity
+    for vm_or_folder in vm_or_folders:
+        if hasattr(vm_or_folder, "childEntity"):
+            # it's still a folder, look deeper
+            for vm in get_all_vms_in_folder(vm_or_folder):
+                yield vm  # it's now a VM
+        else:
+            yield VM(vm_or_folder)  # it's a VM
+
+
+def build_property_collector_specs(view, item_properties):
+    obj_spec = vmodl.query.PropertyCollector.ObjectSpec()
+    obj_spec.obj = view
+    obj_spec.skip = True
+
+    traversal_spec = vmodl.query.PropertyCollector.TraversalSpec()
+    traversal_spec.name = 'traverseEntities'
+    traversal_spec.path = 'view'
+    traversal_spec.skip = False
+    traversal_spec.type = view.__class__
+    obj_spec.selectSet = [traversal_spec]
+
+    property_spec = vmodl.query.PropertyCollector.PropertySpec()
+    property_spec.type = getattr(vim, view.type[0])
+    property_spec.pathSet = item_properties
+
+    filter_spec = vmodl.query.PropertyCollector.FilterSpec()
+    filter_spec.objectSet = [obj_spec]
+    filter_spec.propSet = [property_spec]
+    return [filter_spec]
+</code></pre>
   </div>
 
   </header>
@@ -1489,26 +1437,25 @@ to get all VMs.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.DVS', this);">Show source &equiv;</a></p>
   <div id="source-isphere.interactive_wrapper.DVS" class="source">
-    <div class="codehilite"><pre><span class="k">class</span> <span class="nc">DVS</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <pre><code>class DVS(object):
 
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A DistributedVirtualSwitch</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+    """
+    A DistributedVirtualSwitch
+    """
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_dvs</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">raw_dvs</span> <span class="o">=</span> <span class="n">raw_dvs</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">raw_dvs</span><span class="o">.</span><span class="n">name</span>
+    def __init__(self, raw_dvs):
+        self.raw_dvs = raw_dvs
+        self.name = raw_dvs.name
 
-    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">name</span>
+    def __eq__(self, other):
+        return self.name == other.name
 
-    <span class="k">def</span> <span class="nf">__dir__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">dir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">raw_dvs</span><span class="p">)</span>
+    def __dir__(self):
+        return dir(self.raw_dvs)
 
-    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">raw_dvs</span><span class="p">,</span> <span class="n">attribute</span><span class="p">)</span>
-</pre></div>
-
+    def __getattr__(self, attribute):
+        return getattr(self.raw_dvs, attribute)
+</code></pre>
   </div>
 </div>
 
@@ -1553,11 +1500,10 @@ to get all VMs.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.DVS.__init__', this);">Show source &equiv;</a></p>
   <div id="source-isphere.interactive_wrapper.DVS.__init__" class="source">
-    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_dvs</span><span class="p">):</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">raw_dvs</span> <span class="o">=</span> <span class="n">raw_dvs</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">raw_dvs</span><span class="o">.</span><span class="n">name</span>
-</pre></div>
-
+    <pre><code>def __init__(self, raw_dvs):
+    self.raw_dvs = raw_dvs
+    self.name = raw_dvs.name
+</code></pre>
   </div>
 </div>
 
@@ -1574,40 +1520,39 @@ to get all VMs.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.ESX', this);">Show source &equiv;</a></p>
   <div id="source-isphere.interactive_wrapper.ESX" class="source">
-    <div class="codehilite"><pre><span class="k">class</span> <span class="nc">ESX</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <pre><code>class ESX(object):
 
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    An ESX instance.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+    """
+    An ESX instance.
+    """
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_esx</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">raw_esx</span> <span class="o">=</span> <span class="n">raw_esx</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">raw_esx</span><span class="o">.</span><span class="n">name</span>
+    def __init__(self, raw_esx):
+        self.raw_esx = raw_esx
+        self.name = raw_esx.name
 
-    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">name</span>
+    def __eq__(self, other):
+        return self.name == other.name
 
-    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="nb">str</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">c</span><span class="p">))</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)))</span>
+    def __hash__(self):
+        return int("".join((str(ord(c)) for c in self.name)))
 
-    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">raw_esx</span><span class="p">,</span> <span class="n">attribute</span><span class="p">)</span>
+    def __getattr__(self, attribute):
+        return getattr(self.raw_esx, attribute)
 
-    <span class="k">def</span> <span class="nf">__dir__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">dir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">raw_esx</span><span class="p">)</span>
+    def __dir__(self):
+        return dir(self.raw_esx)
 
-    <span class="k">def</span> <span class="nf">get_number_of_cores</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns the number of CPU cores (type long) on this ESX.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">resources_on_esx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">raw_esx</span><span class="o">.</span><span class="n">licensableResource</span><span class="o">.</span><span class="n">resource</span>
-        <span class="k">for</span> <span class="n">resource</span> <span class="ow">in</span> <span class="n">resources_on_esx</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">resource</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="s">&quot;numCpuCores&quot;</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">resource</span><span class="o">.</span><span class="n">value</span>
-        <span class="n">message</span> <span class="o">=</span> <span class="s">&quot;{0} has no resource numCpuCores.</span><span class="se">\n</span><span class="s"> Available resources: {1}&quot;</span>
-        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">resources_on_esx</span><span class="p">))</span>
-</pre></div>
-
+    def get_number_of_cores(self):
+        """
+        Returns the number of CPU cores (type long) on this ESX.
+        """
+        resources_on_esx = self.raw_esx.licensableResource.resource
+        for resource in resources_on_esx:
+            if resource.key == "numCpuCores":
+                return resource.value
+        message = "{0} has no resource numCpuCores.\n Available resources: {1}"
+        raise RuntimeError(message.format(self.name, resources_on_esx))
+</code></pre>
   </div>
 </div>
 
@@ -1652,11 +1597,10 @@ to get all VMs.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.ESX.__init__', this);">Show source &equiv;</a></p>
   <div id="source-isphere.interactive_wrapper.ESX.__init__" class="source">
-    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_esx</span><span class="p">):</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">raw_esx</span> <span class="o">=</span> <span class="n">raw_esx</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">raw_esx</span><span class="o">.</span><span class="n">name</span>
-</pre></div>
-
+    <pre><code>def __init__(self, raw_esx):
+    self.raw_esx = raw_esx
+    self.name = raw_esx.name
+</code></pre>
   </div>
 </div>
 
@@ -1675,18 +1619,17 @@ to get all VMs.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.ESX.get_number_of_cores', this);">Show source &equiv;</a></p>
   <div id="source-isphere.interactive_wrapper.ESX.get_number_of_cores" class="source">
-    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">get_number_of_cores</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Returns the number of CPU cores (type long) on this ESX.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">resources_on_esx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">raw_esx</span><span class="o">.</span><span class="n">licensableResource</span><span class="o">.</span><span class="n">resource</span>
-    <span class="k">for</span> <span class="n">resource</span> <span class="ow">in</span> <span class="n">resources_on_esx</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">resource</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="s">&quot;numCpuCores&quot;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">resource</span><span class="o">.</span><span class="n">value</span>
-    <span class="n">message</span> <span class="o">=</span> <span class="s">&quot;{0} has no resource numCpuCores.</span><span class="se">\n</span><span class="s"> Available resources: {1}&quot;</span>
-    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">resources_on_esx</span><span class="p">))</span>
-</pre></div>
-
+    <pre><code>def get_number_of_cores(self):
+    """
+    Returns the number of CPU cores (type long) on this ESX.
+    """
+    resources_on_esx = self.raw_esx.licensableResource.resource
+    for resource in resources_on_esx:
+        if resource.key == "numCpuCores":
+            return resource.value
+    message = "{0} has no resource numCpuCores.\n Available resources: {1}"
+    raise RuntimeError(message.format(self.name, resources_on_esx))
+</code></pre>
   </div>
 </div>
 
@@ -1703,14 +1646,13 @@ to get all VMs.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.NotFound', this);">Show source &equiv;</a></p>
   <div id="source-isphere.interactive_wrapper.NotFound" class="source">
-    <div class="codehilite"><pre><span class="k">class</span> <span class="nc">NotFound</span><span class="p">(</span><span class="ne">BaseException</span><span class="p">):</span>
+    <pre><code>class NotFound(Exception):
 
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    To be raised when a requested item was not found.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span>
-</pre></div>
-
+    """
+    To be raised when a requested item was not found.
+    """
+    pass
+</code></pre>
   </div>
 </div>
 
@@ -1719,6 +1661,7 @@ to get all VMs.</p>
           <h3>Ancestors (in MRO)</h3>
           <ul class="class_list">
           <li><a href="#isphere.interactive_wrapper.NotFound">NotFound</a></li>
+          <li>exceptions.Exception</li>
           <li>exceptions.BaseException</li>
           <li>__builtin__.object</li>
           </ul>
@@ -1754,39 +1697,38 @@ to get all VMs.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VM', this);">Show source &equiv;</a></p>
   <div id="source-isphere.interactive_wrapper.VM" class="source">
-    <div class="codehilite"><pre><span class="k">class</span> <span class="nc">VM</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <pre><code>class VM(object):
 
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A virtual machine.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+    """
+    A virtual machine.
+    """
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_vm</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">raw_vm</span> <span class="o">=</span> <span class="n">raw_vm</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">raw_vm</span><span class="o">.</span><span class="n">name</span>
+    def __init__(self, raw_vm):
+        self.raw_vm = raw_vm
+        self.name = raw_vm.name
 
-    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">raw_vm</span><span class="p">,</span> <span class="n">attribute</span><span class="p">)</span>
+    def __getattr__(self, attribute):
+        return getattr(self.raw_vm, attribute)
 
-    <span class="k">def</span> <span class="nf">__dir__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">dir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">raw_vm</span><span class="p">)</span>
+    def __dir__(self):
+        return dir(self.raw_vm)
 
-    <span class="k">def</span> <span class="nf">get_first_network_interface_matching</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">predicate</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns the first network interface of this VM that matches the given</span>
-<span class="sd">        predicate.</span>
+    def get_first_network_interface_matching(self, predicate):
+        """
+        Returns the first network interface of this VM that matches the given
+        predicate.
 
-<span class="sd">        - `predicate` (callable) is a function that takes a network and returns</span>
-<span class="sd">          True (return this network) or False (skip this network).</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">for</span> <span class="n">network</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">raw_vm</span><span class="o">.</span><span class="n">network</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">predicate</span><span class="p">(</span><span class="n">network</span><span class="p">):</span>
-                <span class="k">return</span> <span class="n">network</span>
-        <span class="k">return</span> <span class="bp">None</span>
+        - `predicate` (callable) is a function that takes a network and returns
+          True (return this network) or False (skip this network).
+        """
+        for network in self.raw_vm.network:
+            if predicate(network):
+                return network
+        return None
 
-    <span class="k">def</span> <span class="nf">get_esx_host</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">ESX</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">raw_vm</span><span class="o">.</span><span class="n">runtime</span><span class="o">.</span><span class="n">host</span><span class="p">)</span>
-</pre></div>
-
+    def get_esx_host(self):
+        return ESX(self.raw_vm.runtime.host)
+</code></pre>
   </div>
 </div>
 
@@ -1831,11 +1773,10 @@ to get all VMs.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VM.__init__', this);">Show source &equiv;</a></p>
   <div id="source-isphere.interactive_wrapper.VM.__init__" class="source">
-    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_vm</span><span class="p">):</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">raw_vm</span> <span class="o">=</span> <span class="n">raw_vm</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">raw_vm</span><span class="o">.</span><span class="n">name</span>
-</pre></div>
-
+    <pre><code>def __init__(self, raw_vm):
+    self.raw_vm = raw_vm
+    self.name = raw_vm.name
+</code></pre>
   </div>
 </div>
 
@@ -1853,10 +1794,9 @@ to get all VMs.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VM.get_esx_host', this);">Show source &equiv;</a></p>
   <div id="source-isphere.interactive_wrapper.VM.get_esx_host" class="source">
-    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">get_esx_host</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">ESX</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">raw_vm</span><span class="o">.</span><span class="n">runtime</span><span class="o">.</span><span class="n">host</span><span class="p">)</span>
-</pre></div>
-
+    <pre><code>def get_esx_host(self):
+    return ESX(self.raw_vm.runtime.host)
+</code></pre>
   </div>
 </div>
 
@@ -1880,19 +1820,18 @@ predicate.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VM.get_first_network_interface_matching', this);">Show source &equiv;</a></p>
   <div id="source-isphere.interactive_wrapper.VM.get_first_network_interface_matching" class="source">
-    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">get_first_network_interface_matching</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">predicate</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Returns the first network interface of this VM that matches the given</span>
-<span class="sd">    predicate.</span>
-<span class="sd">    - `predicate` (callable) is a function that takes a network and returns</span>
-<span class="sd">      True (return this network) or False (skip this network).</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">for</span> <span class="n">network</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">raw_vm</span><span class="o">.</span><span class="n">network</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">predicate</span><span class="p">(</span><span class="n">network</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">network</span>
-    <span class="k">return</span> <span class="bp">None</span>
-</pre></div>
-
+    <pre><code>def get_first_network_interface_matching(self, predicate):
+    """
+    Returns the first network interface of this VM that matches the given
+    predicate.
+    - `predicate` (callable) is a function that takes a network and returns
+      True (return this network) or False (skip this network).
+    """
+    for network in self.raw_vm.network:
+        if predicate(network):
+            return network
+    return None
+</code></pre>
   </div>
 </div>
 
@@ -1909,186 +1848,198 @@ predicate.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC', this);">Show source &equiv;</a></p>
   <div id="source-isphere.interactive_wrapper.VVC" class="source">
-    <div class="codehilite"><pre><span class="k">class</span> <span class="nc">VVC</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <pre><code>class VVC(object):
 
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A vCenter host.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+    """
+    A vCenter host.
+    """
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hostname</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Creates a VVC instance.</span>
+    def __init__(self, hostname):
+        """
+        Creates a VVC instance.
 
-<span class="sd">        - `hostname` (str) is the name of the vCenter host.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">hostname</span> <span class="o">=</span> <span class="n">hostname</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">service_instance</span> <span class="o">=</span> <span class="bp">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">service_instance_content</span> <span class="o">=</span> <span class="bp">None</span>
+        - `hostname` (str) is the name of the vCenter host.
+        """
+        self.hostname = hostname
+        self.service_instance = None
+        self.service_instance_content = None
 
-    <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Connects to the vCenter host encapsulated by this VVC instance.</span>
+    def connect(self, username, password=None):
+        """
+        Connects to the vCenter host encapsulated by this VVC instance.
 
-<span class="sd">        - `username` (str) is the username to use for authentication.</span>
-<span class="sd">        - `password` (str) is the password to use for authentication.</span>
-<span class="sd">          If the password is not specified, a getpass prompt will be used.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">password</span><span class="p">:</span>
-            <span class="n">password</span> <span class="o">=</span> <span class="n">getpass</span><span class="p">(</span><span class="s">&quot;Password for {0}@{1}: &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hostname</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">service_instance</span> <span class="o">=</span> <span class="n">connect</span><span class="o">.</span><span class="n">SmartConnect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">hostname</span><span class="p">,</span>
-                                                     <span class="n">user</span><span class="o">=</span><span class="n">username</span><span class="p">,</span>
-                                                     <span class="n">pwd</span><span class="o">=</span><span class="n">password</span><span class="p">,</span>
-                                                     <span class="n">port</span><span class="o">=</span><span class="mi">443</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">service_instance_content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">service_instance</span><span class="o">.</span><span class="n">RetrieveContent</span><span class="p">()</span>
-        <span class="n">atexit</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">connect</span><span class="o">.</span><span class="n">Disconnect</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">service_instance</span><span class="p">)</span>
+        - `username` (str) is the username to use for authentication.
+        - `password` (str) is the password to use for authentication.
+          If the password is not specified, a getpass prompt will be used.
+        """
+        if not password:
+            password = getpass("Password for {0}@{1}: ".format(username, self.hostname))
+        self.service_instance = connect.SmartConnect(host=self.hostname,
+                                                     user=username,
+                                                     pwd=password,
+                                                     port=443)
+        self.service_instance_content = self.service_instance.RetrieveContent()
+        atexit.register(connect.Disconnect, self.service_instance)
 
-    <span class="k">def</span> <span class="nf">get_first_level_of_vm_folders</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">children</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">service_instance_content</span><span class="o">.</span><span class="n">rootFolder</span><span class="o">.</span><span class="n">childEntity</span>
-        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">children</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="s">&quot;vmFolder&quot;</span><span class="p">):</span>
-                <span class="k">yield</span> <span class="n">child</span><span class="o">.</span><span class="n">vmFolder</span>
+    def get_first_level_of_vm_folders(self):
+        children = self.service_instance_content.rootFolder.childEntity
+        for child in children:
+            if hasattr(child, "vmFolder"):
+                yield child.vmFolder
 
-    <span class="k">def</span> <span class="nf">get_service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service_name</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">service_instance_content</span><span class="p">,</span> <span class="n">service_name</span><span class="p">):</span>
-            <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">service_instance_content</span><span class="p">,</span> <span class="n">service_name</span><span class="p">)</span>
-        <span class="k">raise</span> <span class="n">NotFound</span><span class="p">(</span><span class="s">&quot;Service {0} not found&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">service_name</span><span class="p">))</span>
+    def get_service(self, service_name):
+        if hasattr(self.service_instance_content, service_name):
+            return getattr(self.service_instance_content, service_name)
+        raise NotFound("Service {0} not found".format(service_name))
 
-    <span class="k">def</span> <span class="nf">get_custom_attributes_mapping</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns a dictionary that maps custom field keys to custom field names.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">custom_attributes_mapping</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_service</span><span class="p">(</span><span class="s">&quot;customFieldsManager&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">field</span><span class="p">:</span>
-            <span class="n">custom_attributes_mapping</span><span class="p">[</span><span class="n">field</span><span class="o">.</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="o">.</span><span class="n">name</span>
+    def get_custom_attributes_mapping(self):
+        """
+        Returns a dictionary that maps custom field keys to custom field names.
+        """
+        custom_attributes_mapping = {}
+        for field in self.get_service("customFieldsManager").field:
+            custom_attributes_mapping[field.key] = field.name
 
-        <span class="k">return</span> <span class="n">custom_attributes_mapping</span>
+        return custom_attributes_mapping
 
-    <span class="k">def</span> <span class="nf">find_by_dns_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dns_name</span><span class="p">,</span> <span class="n">search_for_vms</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns an item by searching for its DNS name.</span>
-<span class="sd">        An exception will be raised if the item cannot be found.</span>
+    def set_custom_attribute(self, item, attribute_name, attribute_value):
+        attribute_mapping = self.get_custom_attributes_mapping()
+        attribute_key = None
+        for actual_attribute_key, actual_attribute_name in attribute_mapping.items():
+            if actual_attribute_name == attribute_name:
+                attribute_key = actual_attribute_key
 
-<span class="sd">        - `dns_name` (str) is the DNS name of the desired item.</span>
-<span class="sd">        - `search_for_vms` (boolean) (default False) indicates if VMs should</span>
-<span class="sd">          be included in the search.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">search_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">service_instance</span><span class="o">.</span><span class="n">RetrieveContent</span><span class="p">()</span><span class="o">.</span><span class="n">searchIndex</span>
-        <span class="n">item</span> <span class="o">=</span> <span class="n">search_index</span><span class="o">.</span><span class="n">FindByDnsName</span><span class="p">(</span><span class="n">dnsName</span><span class="o">=</span><span class="n">dns_name</span><span class="p">,</span> <span class="n">vmSearch</span><span class="o">=</span><span class="n">search_for_vms</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">item</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">NotFound</span><span class="p">(</span>
-                <span class="s">&quot;Item with dns name {0} not found (search_for_vms: {1})&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                    <span class="n">dns_name</span><span class="p">,</span>
-                    <span class="n">search_for_vms</span><span class="p">))</span>
+        if not attribute_key:
+            raise NotFound("No custom attribute '{name}' found. Available names: {available_names}".format(
+                name=attribute_name, available_names=attribute_mapping.values()))
 
-        <span class="k">return</span> <span class="n">item</span>
+        self.get_service("customFieldsManager").SetField(entity=item, key=attribute_key, value=attribute_value)
 
-    <span class="k">def</span> <span class="nf">get_vm_by_uuid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uuid</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns a VM by searching for its UUID.</span>
-<span class="sd">        An exception will be raised if the VM cannot be found.</span>
+    def find_by_dns_name(self, dns_name, search_for_vms=False):
+        """
+        Returns an item by searching for its DNS name.
+        An exception will be raised if the item cannot be found.
 
-<span class="sd">        - `uuid` (str) is the UUID of the desired VM.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">vm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_service</span><span class="p">(</span><span class="s">&quot;searchIndex&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">FindByUuid</span><span class="p">(</span><span class="n">uuid</span><span class="o">=</span><span class="n">uuid</span><span class="p">,</span> <span class="n">vmSearch</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">vm</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">NotFound</span><span class="p">(</span><span class="s">&quot;VM with uuid {0} not found&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">uuid</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">VM</span><span class="p">(</span><span class="n">vm</span><span class="p">)</span>
+        - `dns_name` (str) is the DNS name of the desired item.
+        - `search_for_vms` (boolean) (default False) indicates if VMs should
+          be included in the search.
+        """
+        search_index = self.service_instance.RetrieveContent().searchIndex
+        item = search_index.FindByDnsName(dnsName=dns_name, vmSearch=search_for_vms)
+        if not item:
+            raise NotFound(
+                "Item with dns name {0} not found (search_for_vms: {1})".format(
+                    dns_name,
+                    search_for_vms))
 
-    <span class="k">def</span> <span class="nf">get_all_vms</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns a generator for all virtual machines on this vCenter.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">for</span> <span class="n">vm</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_all_by_type</span><span class="p">([</span><span class="n">vim</span><span class="o">.</span><span class="n">VirtualMachine</span><span class="p">]):</span>
-            <span class="k">yield</span> <span class="n">VM</span><span class="p">(</span><span class="n">vm</span><span class="p">)</span>
+        return item
 
-    <span class="k">def</span> <span class="nf">get_all_by_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">types</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns a list of all matching item types.</span>
+    def get_vm_by_uuid(self, uuid):
+        """
+        Returns a VM by searching for its UUID.
+        An exception will be raised if the VM cannot be found.
 
-<span class="sd">        - `types` (type[]) is a list of desired types. The types should be</span>
-<span class="sd">          attributes of the `pyVmomi.vim` module, for example `pyVmomi.vim.VirtualMachine`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">view</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">view_for</span><span class="p">(</span><span class="n">types</span><span class="p">)</span>
-        <span class="n">all_items</span> <span class="o">=</span> <span class="n">view</span><span class="o">.</span><span class="n">view</span>
-        <span class="n">view</span><span class="o">.</span><span class="n">Destroy</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">all_items</span>
+        - `uuid` (str) is the UUID of the desired VM.
+        """
+        vm = self.get_service("searchIndex").FindByUuid(uuid=uuid, vmSearch=True)
+        if not vm:
+            raise NotFound("VM with uuid {0} not found".format(uuid))
+        return VM(vm)
 
-    <span class="k">def</span> <span class="nf">get_all_esx</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns a generator for all ESXi host systems on this vCenter.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">for</span> <span class="n">esx</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_all_by_type</span><span class="p">([</span><span class="n">vim</span><span class="o">.</span><span class="n">HostSystem</span><span class="p">]):</span>
-            <span class="k">yield</span> <span class="n">ESX</span><span class="p">(</span><span class="n">esx</span><span class="p">)</span>
+    def get_all_vms(self):
+        """
+        Returns a generator for all virtual machines on this vCenter.
+        """
+        for vm in self.get_all_by_type([vim.VirtualMachine]):
+            yield VM(vm)
 
-    <span class="k">def</span> <span class="nf">get_all_dvs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns a generator for all distributed virtual switches on this vCenter.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">for</span> <span class="n">dvs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_all_by_type</span><span class="p">([</span><span class="n">vim</span><span class="o">.</span><span class="n">VmwareDistributedVirtualSwitch</span><span class="p">]):</span>
-            <span class="k">yield</span> <span class="n">DVS</span><span class="p">(</span><span class="n">dvs</span><span class="p">)</span>
+    def get_all_by_type(self, types):
+        """
+        Returns a list of all matching item types.
 
-    <span class="k">def</span> <span class="nf">view_for</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">types</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_service</span><span class="p">(</span><span class="s">&quot;viewManager&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">CreateContainerView</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">service_instance_content</span><span class="o">.</span><span class="n">rootFolder</span><span class="p">,</span>
-            <span class="n">types</span><span class="p">,</span>
-            <span class="bp">True</span><span class="p">)</span>
+        - `types` (type[]) is a list of desired types. The types should be
+          attributes of the `pyVmomi.vim` module, for example `pyVmomi.vim.VirtualMachine`
+        """
+        view = self.view_for(types)
+        all_items = view.view
+        view.Destroy()
+        return all_items
 
-    <span class="k">def</span> <span class="nf">get_restricted_view_on_vms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">properties</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns a list of all virtual machines.</span>
-<span class="sd">        The VMs will only have the specified properties but retrieval will be</span>
-<span class="sd">        insanely fast. The properties must exist on the `pyVmomi.vim.VirtualMachine`</span>
-<span class="sd">        object, of course.</span>
+    def get_all_esx(self):
+        """
+        Returns a generator for all ESXi host systems on this vCenter.
+        """
+        for esx in self.get_all_by_type([vim.HostSystem]):
+            yield ESX(esx)
 
-<span class="sd">        - `properties` (str[]) is a list of desired properties.</span>
-<span class="sd">          For example using `properties=[&quot;name&quot;, &quot;runtime.host&quot;]` will return</span>
-<span class="sd">          objects that have only the attributes `name` and `runtime.host`.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_restricted_view_on_items</span><span class="p">(</span><span class="n">properties</span><span class="p">,</span> <span class="p">[</span><span class="n">vim</span><span class="o">.</span><span class="n">VirtualMachine</span><span class="p">])</span>
+    def get_all_dvs(self):
+        """
+        Returns a generator for all distributed virtual switches on this vCenter.
+        """
+        for dvs in self.get_all_by_type([vim.VmwareDistributedVirtualSwitch]):
+            yield DVS(dvs)
 
-    <span class="k">def</span> <span class="nf">get_restricted_view_on_host_systems</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">properties</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns a list of all ESXi host systems.</span>
-<span class="sd">        The ESXis will only have the specified properties but retrieval will be</span>
-<span class="sd">        insanely fast. The properties must exist on the `pyVmomi.vim.HostSystem`</span>
-<span class="sd">        object, of course.</span>
+    def view_for(self, types):
+        return self.get_service("viewManager").CreateContainerView(
+            self.service_instance_content.rootFolder,
+            types,
+            True)
 
-<span class="sd">        - `properties` (str[]) is a list of desired properties.</span>
-<span class="sd">          For example using `properties=[&quot;name&quot;, &quot;hardware.memorySize&quot;]` will return</span>
-<span class="sd">          objects that have only the attributes `name` and `hardware.memorySize`.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_restricted_view_on_items</span><span class="p">(</span><span class="n">properties</span><span class="p">,</span> <span class="p">[</span><span class="n">vim</span><span class="o">.</span><span class="n">HostSystem</span><span class="p">])</span>
+    def get_restricted_view_on_vms(self, properties):
+        """
+        Returns a list of all virtual machines.
+        The VMs will only have the specified properties but retrieval will be
+        insanely fast. The properties must exist on the `pyVmomi.vim.VirtualMachine`
+        object, of course.
 
-    <span class="k">def</span> <span class="nf">get_restricted_view_on_items</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">properties</span><span class="p">,</span> <span class="n">types</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns a restricted view on a specific item type collection.</span>
-<span class="sd">        The items are restricted in the sense that only properties which were</span>
-<span class="sd">        specified upon retrieval can be accessed.</span>
+        - `properties` (str[]) is a list of desired properties.
+          For example using `properties=["name", "runtime.host"]` will return
+          objects that have only the attributes `name` and `runtime.host`.
+        """
+        return self.get_restricted_view_on_items(properties, [vim.VirtualMachine])
 
-<span class="sd">        The return value will be a list of items that have the desired properties</span>
-<span class="sd">        as attributes.</span>
-<span class="sd">        Note that recursing properties (e.G. summary.config) will be stored under</span>
-<span class="sd">        their full name (item.summary.config).</span>
+    def get_restricted_view_on_host_systems(self, properties):
+        """
+        Returns a list of all ESXi host systems.
+        The ESXis will only have the specified properties but retrieval will be
+        insanely fast. The properties must exist on the `pyVmomi.vim.HostSystem`
+        object, of course.
 
-<span class="sd">        - `properties` (str[]) is a list of properties that should be fetched.</span>
-<span class="sd">          Recursing properties can be separated by dots, e.G. &quot;summary.config&quot;.</span>
-<span class="sd">        - `types` (type[]) is a list of types to restrict the items that are given</span>
-<span class="sd">          back. The types must be attributes of the `pyVmomi.vim` module.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">unrestricted_view</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">view_for</span><span class="p">(</span><span class="n">types</span><span class="p">)</span>
-        <span class="n">collector_spec</span> <span class="o">=</span> <span class="n">build_property_collector_specs</span><span class="p">(</span><span class="n">unrestricted_view</span><span class="p">,</span> <span class="n">properties</span><span class="p">)</span>
+        - `properties` (str[]) is a list of desired properties.
+          For example using `properties=["name", "hardware.memorySize"]` will return
+          objects that have only the attributes `name` and `hardware.memorySize`.
+        """
+        return self.get_restricted_view_on_items(properties, [vim.HostSystem])
 
-        <span class="n">retrieved_contents</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_service</span><span class="p">(</span><span class="s">&quot;propertyCollector&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">RetrieveContents</span><span class="p">(</span><span class="n">collector_spec</span><span class="p">)</span>
-        <span class="n">items</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">retrieved_contents</span><span class="p">:</span>
-            <span class="n">item_instance</span> <span class="o">=</span> <span class="n">ItemContainer</span><span class="p">()</span>
-            <span class="k">for</span> <span class="n">item_property</span> <span class="ow">in</span> <span class="n">item</span><span class="o">.</span><span class="n">propSet</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">item_property</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">properties</span><span class="p">:</span>
-                    <span class="n">item_instance</span><span class="o">.</span><span class="n">set_path_value</span><span class="p">(</span><span class="n">item_property</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">item_property</span><span class="o">.</span><span class="n">val</span><span class="p">)</span>
-            <span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item_instance</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">items</span>
-</pre></div>
+    def get_restricted_view_on_items(self, properties, types):
+        """
+        Returns a restricted view on a specific item type collection.
+        The items are restricted in the sense that only properties which were
+        specified upon retrieval can be accessed.
 
+        The return value will be a list of items that have the desired properties
+        as attributes.
+        Note that recursing properties (e.G. summary.config) will be stored under
+        their full name (item.summary.config).
+
+        - `properties` (str[]) is a list of properties that should be fetched.
+          Recursing properties can be separated by dots, e.G. "summary.config".
+        - `types` (type[]) is a list of types to restrict the items that are given
+          back. The types must be attributes of the `pyVmomi.vim` module.
+        """
+        unrestricted_view = self.view_for(types)
+        collector_spec = build_property_collector_specs(unrestricted_view, properties)
+
+        retrieved_contents = self.get_service("propertyCollector").RetrieveContents(collector_spec)
+        items = []
+        for item in retrieved_contents:
+            item_instance = ItemContainer()
+            for item_property in item.propSet:
+                if item_property.name in properties:
+                    item_instance.set_path_value(item_property.name, item_property.val)
+            items.append(item_instance)
+        return items
+</code></pre>
   </div>
 </div>
 
@@ -2147,16 +2098,15 @@ predicate.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC.__init__', this);">Show source &equiv;</a></p>
   <div id="source-isphere.interactive_wrapper.VVC.__init__" class="source">
-    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hostname</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Creates a VVC instance.</span>
-<span class="sd">    - `hostname` (str) is the name of the vCenter host.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">hostname</span> <span class="o">=</span> <span class="n">hostname</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">service_instance</span> <span class="o">=</span> <span class="bp">None</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">service_instance_content</span> <span class="o">=</span> <span class="bp">None</span>
-</pre></div>
-
+    <pre><code>def __init__(self, hostname):
+    """
+    Creates a VVC instance.
+    - `hostname` (str) is the name of the vCenter host.
+    """
+    self.hostname = hostname
+    self.service_instance = None
+    self.service_instance_content = None
+</code></pre>
   </div>
 </div>
 
@@ -2180,23 +2130,22 @@ predicate.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC.connect', this);">Show source &equiv;</a></p>
   <div id="source-isphere.interactive_wrapper.VVC.connect" class="source">
-    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Connects to the vCenter host encapsulated by this VVC instance.</span>
-<span class="sd">    - `username` (str) is the username to use for authentication.</span>
-<span class="sd">    - `password` (str) is the password to use for authentication.</span>
-<span class="sd">      If the password is not specified, a getpass prompt will be used.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">password</span><span class="p">:</span>
-        <span class="n">password</span> <span class="o">=</span> <span class="n">getpass</span><span class="p">(</span><span class="s">&quot;Password for {0}@{1}: &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hostname</span><span class="p">))</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">service_instance</span> <span class="o">=</span> <span class="n">connect</span><span class="o">.</span><span class="n">SmartConnect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">hostname</span><span class="p">,</span>
-                                                 <span class="n">user</span><span class="o">=</span><span class="n">username</span><span class="p">,</span>
-                                                 <span class="n">pwd</span><span class="o">=</span><span class="n">password</span><span class="p">,</span>
-                                                 <span class="n">port</span><span class="o">=</span><span class="mi">443</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">service_instance_content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">service_instance</span><span class="o">.</span><span class="n">RetrieveContent</span><span class="p">()</span>
-    <span class="n">atexit</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">connect</span><span class="o">.</span><span class="n">Disconnect</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">service_instance</span><span class="p">)</span>
-</pre></div>
-
+    <pre><code>def connect(self, username, password=None):
+    """
+    Connects to the vCenter host encapsulated by this VVC instance.
+    - `username` (str) is the username to use for authentication.
+    - `password` (str) is the password to use for authentication.
+      If the password is not specified, a getpass prompt will be used.
+    """
+    if not password:
+        password = getpass("Password for {0}@{1}: ".format(username, self.hostname))
+    self.service_instance = connect.SmartConnect(host=self.hostname,
+                                                 user=username,
+                                                 pwd=password,
+                                                 port=443)
+    self.service_instance_content = self.service_instance.RetrieveContent()
+    atexit.register(connect.Disconnect, self.service_instance)
+</code></pre>
   </div>
 </div>
 
@@ -2221,24 +2170,23 @@ An exception will be raised if the item cannot be found.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC.find_by_dns_name', this);">Show source &equiv;</a></p>
   <div id="source-isphere.interactive_wrapper.VVC.find_by_dns_name" class="source">
-    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">find_by_dns_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dns_name</span><span class="p">,</span> <span class="n">search_for_vms</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Returns an item by searching for its DNS name.</span>
-<span class="sd">    An exception will be raised if the item cannot be found.</span>
-<span class="sd">    - `dns_name` (str) is the DNS name of the desired item.</span>
-<span class="sd">    - `search_for_vms` (boolean) (default False) indicates if VMs should</span>
-<span class="sd">      be included in the search.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">search_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">service_instance</span><span class="o">.</span><span class="n">RetrieveContent</span><span class="p">()</span><span class="o">.</span><span class="n">searchIndex</span>
-    <span class="n">item</span> <span class="o">=</span> <span class="n">search_index</span><span class="o">.</span><span class="n">FindByDnsName</span><span class="p">(</span><span class="n">dnsName</span><span class="o">=</span><span class="n">dns_name</span><span class="p">,</span> <span class="n">vmSearch</span><span class="o">=</span><span class="n">search_for_vms</span><span class="p">)</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">item</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">NotFound</span><span class="p">(</span>
-            <span class="s">&quot;Item with dns name {0} not found (search_for_vms: {1})&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">dns_name</span><span class="p">,</span>
-                <span class="n">search_for_vms</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">item</span>
-</pre></div>
-
+    <pre><code>def find_by_dns_name(self, dns_name, search_for_vms=False):
+    """
+    Returns an item by searching for its DNS name.
+    An exception will be raised if the item cannot be found.
+    - `dns_name` (str) is the DNS name of the desired item.
+    - `search_for_vms` (boolean) (default False) indicates if VMs should
+      be included in the search.
+    """
+    search_index = self.service_instance.RetrieveContent().searchIndex
+    item = search_index.FindByDnsName(dnsName=dns_name, vmSearch=search_for_vms)
+    if not item:
+        raise NotFound(
+            "Item with dns name {0} not found (search_for_vms: {1})".format(
+                dns_name,
+                search_for_vms))
+    return item
+</code></pre>
   </div>
 </div>
 
@@ -2261,18 +2209,17 @@ An exception will be raised if the item cannot be found.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC.get_all_by_type', this);">Show source &equiv;</a></p>
   <div id="source-isphere.interactive_wrapper.VVC.get_all_by_type" class="source">
-    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">get_all_by_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">types</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Returns a list of all matching item types.</span>
-<span class="sd">    - `types` (type[]) is a list of desired types. The types should be</span>
-<span class="sd">      attributes of the `pyVmomi.vim` module, for example `pyVmomi.vim.VirtualMachine`</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">view</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">view_for</span><span class="p">(</span><span class="n">types</span><span class="p">)</span>
-    <span class="n">all_items</span> <span class="o">=</span> <span class="n">view</span><span class="o">.</span><span class="n">view</span>
-    <span class="n">view</span><span class="o">.</span><span class="n">Destroy</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">all_items</span>
-</pre></div>
-
+    <pre><code>def get_all_by_type(self, types):
+    """
+    Returns a list of all matching item types.
+    - `types` (type[]) is a list of desired types. The types should be
+      attributes of the `pyVmomi.vim` module, for example `pyVmomi.vim.VirtualMachine`
+    """
+    view = self.view_for(types)
+    all_items = view.view
+    view.Destroy()
+    return all_items
+</code></pre>
   </div>
 </div>
 
@@ -2291,14 +2238,13 @@ An exception will be raised if the item cannot be found.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC.get_all_dvs', this);">Show source &equiv;</a></p>
   <div id="source-isphere.interactive_wrapper.VVC.get_all_dvs" class="source">
-    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">get_all_dvs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Returns a generator for all distributed virtual switches on this vCenter.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">for</span> <span class="n">dvs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_all_by_type</span><span class="p">([</span><span class="n">vim</span><span class="o">.</span><span class="n">VmwareDistributedVirtualSwitch</span><span class="p">]):</span>
-        <span class="k">yield</span> <span class="n">DVS</span><span class="p">(</span><span class="n">dvs</span><span class="p">)</span>
-</pre></div>
-
+    <pre><code>def get_all_dvs(self):
+    """
+    Returns a generator for all distributed virtual switches on this vCenter.
+    """
+    for dvs in self.get_all_by_type([vim.VmwareDistributedVirtualSwitch]):
+        yield DVS(dvs)
+</code></pre>
   </div>
 </div>
 
@@ -2317,14 +2263,13 @@ An exception will be raised if the item cannot be found.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC.get_all_esx', this);">Show source &equiv;</a></p>
   <div id="source-isphere.interactive_wrapper.VVC.get_all_esx" class="source">
-    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">get_all_esx</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Returns a generator for all ESXi host systems on this vCenter.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">for</span> <span class="n">esx</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_all_by_type</span><span class="p">([</span><span class="n">vim</span><span class="o">.</span><span class="n">HostSystem</span><span class="p">]):</span>
-        <span class="k">yield</span> <span class="n">ESX</span><span class="p">(</span><span class="n">esx</span><span class="p">)</span>
-</pre></div>
-
+    <pre><code>def get_all_esx(self):
+    """
+    Returns a generator for all ESXi host systems on this vCenter.
+    """
+    for esx in self.get_all_by_type([vim.HostSystem]):
+        yield ESX(esx)
+</code></pre>
   </div>
 </div>
 
@@ -2343,14 +2288,13 @@ An exception will be raised if the item cannot be found.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC.get_all_vms', this);">Show source &equiv;</a></p>
   <div id="source-isphere.interactive_wrapper.VVC.get_all_vms" class="source">
-    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">get_all_vms</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Returns a generator for all virtual machines on this vCenter.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">for</span> <span class="n">vm</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_all_by_type</span><span class="p">([</span><span class="n">vim</span><span class="o">.</span><span class="n">VirtualMachine</span><span class="p">]):</span>
-        <span class="k">yield</span> <span class="n">VM</span><span class="p">(</span><span class="n">vm</span><span class="p">)</span>
-</pre></div>
-
+    <pre><code>def get_all_vms(self):
+    """
+    Returns a generator for all virtual machines on this vCenter.
+    """
+    for vm in self.get_all_by_type([vim.VirtualMachine]):
+        yield VM(vm)
+</code></pre>
   </div>
 </div>
 
@@ -2369,16 +2313,15 @@ An exception will be raised if the item cannot be found.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC.get_custom_attributes_mapping', this);">Show source &equiv;</a></p>
   <div id="source-isphere.interactive_wrapper.VVC.get_custom_attributes_mapping" class="source">
-    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">get_custom_attributes_mapping</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Returns a dictionary that maps custom field keys to custom field names.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">custom_attributes_mapping</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_service</span><span class="p">(</span><span class="s">&quot;customFieldsManager&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">field</span><span class="p">:</span>
-        <span class="n">custom_attributes_mapping</span><span class="p">[</span><span class="n">field</span><span class="o">.</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="o">.</span><span class="n">name</span>
-    <span class="k">return</span> <span class="n">custom_attributes_mapping</span>
-</pre></div>
-
+    <pre><code>def get_custom_attributes_mapping(self):
+    """
+    Returns a dictionary that maps custom field keys to custom field names.
+    """
+    custom_attributes_mapping = {}
+    for field in self.get_service("customFieldsManager").field:
+        custom_attributes_mapping[field.key] = field.name
+    return custom_attributes_mapping
+</code></pre>
   </div>
 </div>
 
@@ -2396,13 +2339,12 @@ An exception will be raised if the item cannot be found.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC.get_first_level_of_vm_folders', this);">Show source &equiv;</a></p>
   <div id="source-isphere.interactive_wrapper.VVC.get_first_level_of_vm_folders" class="source">
-    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">get_first_level_of_vm_folders</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="n">children</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">service_instance_content</span><span class="o">.</span><span class="n">rootFolder</span><span class="o">.</span><span class="n">childEntity</span>
-    <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">children</span><span class="p">:</span>
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="s">&quot;vmFolder&quot;</span><span class="p">):</span>
-            <span class="k">yield</span> <span class="n">child</span><span class="o">.</span><span class="n">vmFolder</span>
-</pre></div>
-
+    <pre><code>def get_first_level_of_vm_folders(self):
+    children = self.service_instance_content.rootFolder.childEntity
+    for child in children:
+        if hasattr(child, "vmFolder"):
+            yield child.vmFolder
+</code></pre>
   </div>
 </div>
 
@@ -2429,19 +2371,18 @@ object, of course.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC.get_restricted_view_on_host_systems', this);">Show source &equiv;</a></p>
   <div id="source-isphere.interactive_wrapper.VVC.get_restricted_view_on_host_systems" class="source">
-    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">get_restricted_view_on_host_systems</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">properties</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Returns a list of all ESXi host systems.</span>
-<span class="sd">    The ESXis will only have the specified properties but retrieval will be</span>
-<span class="sd">    insanely fast. The properties must exist on the `pyVmomi.vim.HostSystem`</span>
-<span class="sd">    object, of course.</span>
-<span class="sd">    - `properties` (str[]) is a list of desired properties.</span>
-<span class="sd">      For example using `properties=[&quot;name&quot;, &quot;hardware.memorySize&quot;]` will return</span>
-<span class="sd">      objects that have only the attributes `name` and `hardware.memorySize`.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_restricted_view_on_items</span><span class="p">(</span><span class="n">properties</span><span class="p">,</span> <span class="p">[</span><span class="n">vim</span><span class="o">.</span><span class="n">HostSystem</span><span class="p">])</span>
-</pre></div>
-
+    <pre><code>def get_restricted_view_on_host_systems(self, properties):
+    """
+    Returns a list of all ESXi host systems.
+    The ESXis will only have the specified properties but retrieval will be
+    insanely fast. The properties must exist on the `pyVmomi.vim.HostSystem`
+    object, of course.
+    - `properties` (str[]) is a list of desired properties.
+      For example using `properties=["name", "hardware.memorySize"]` will return
+      objects that have only the attributes `name` and `hardware.memorySize`.
+    """
+    return self.get_restricted_view_on_items(properties, [vim.HostSystem])
+</code></pre>
   </div>
 </div>
 
@@ -2472,33 +2413,32 @@ their full name (item.summary.config).</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC.get_restricted_view_on_items', this);">Show source &equiv;</a></p>
   <div id="source-isphere.interactive_wrapper.VVC.get_restricted_view_on_items" class="source">
-    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">get_restricted_view_on_items</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">properties</span><span class="p">,</span> <span class="n">types</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Returns a restricted view on a specific item type collection.</span>
-<span class="sd">    The items are restricted in the sense that only properties which were</span>
-<span class="sd">    specified upon retrieval can be accessed.</span>
-<span class="sd">    The return value will be a list of items that have the desired properties</span>
-<span class="sd">    as attributes.</span>
-<span class="sd">    Note that recursing properties (e.G. summary.config) will be stored under</span>
-<span class="sd">    their full name (item.summary.config).</span>
-<span class="sd">    - `properties` (str[]) is a list of properties that should be fetched.</span>
-<span class="sd">      Recursing properties can be separated by dots, e.G. &quot;summary.config&quot;.</span>
-<span class="sd">    - `types` (type[]) is a list of types to restrict the items that are given</span>
-<span class="sd">      back. The types must be attributes of the `pyVmomi.vim` module.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">unrestricted_view</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">view_for</span><span class="p">(</span><span class="n">types</span><span class="p">)</span>
-    <span class="n">collector_spec</span> <span class="o">=</span> <span class="n">build_property_collector_specs</span><span class="p">(</span><span class="n">unrestricted_view</span><span class="p">,</span> <span class="n">properties</span><span class="p">)</span>
-    <span class="n">retrieved_contents</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_service</span><span class="p">(</span><span class="s">&quot;propertyCollector&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">RetrieveContents</span><span class="p">(</span><span class="n">collector_spec</span><span class="p">)</span>
-    <span class="n">items</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">retrieved_contents</span><span class="p">:</span>
-        <span class="n">item_instance</span> <span class="o">=</span> <span class="n">ItemContainer</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">item_property</span> <span class="ow">in</span> <span class="n">item</span><span class="o">.</span><span class="n">propSet</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">item_property</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">properties</span><span class="p">:</span>
-                <span class="n">item_instance</span><span class="o">.</span><span class="n">set_path_value</span><span class="p">(</span><span class="n">item_property</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">item_property</span><span class="o">.</span><span class="n">val</span><span class="p">)</span>
-        <span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item_instance</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">items</span>
-</pre></div>
-
+    <pre><code>def get_restricted_view_on_items(self, properties, types):
+    """
+    Returns a restricted view on a specific item type collection.
+    The items are restricted in the sense that only properties which were
+    specified upon retrieval can be accessed.
+    The return value will be a list of items that have the desired properties
+    as attributes.
+    Note that recursing properties (e.G. summary.config) will be stored under
+    their full name (item.summary.config).
+    - `properties` (str[]) is a list of properties that should be fetched.
+      Recursing properties can be separated by dots, e.G. "summary.config".
+    - `types` (type[]) is a list of types to restrict the items that are given
+      back. The types must be attributes of the `pyVmomi.vim` module.
+    """
+    unrestricted_view = self.view_for(types)
+    collector_spec = build_property_collector_specs(unrestricted_view, properties)
+    retrieved_contents = self.get_service("propertyCollector").RetrieveContents(collector_spec)
+    items = []
+    for item in retrieved_contents:
+        item_instance = ItemContainer()
+        for item_property in item.propSet:
+            if item_property.name in properties:
+                item_instance.set_path_value(item_property.name, item_property.val)
+        items.append(item_instance)
+    return items
+</code></pre>
   </div>
 </div>
 
@@ -2525,19 +2465,18 @@ object, of course.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC.get_restricted_view_on_vms', this);">Show source &equiv;</a></p>
   <div id="source-isphere.interactive_wrapper.VVC.get_restricted_view_on_vms" class="source">
-    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">get_restricted_view_on_vms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">properties</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Returns a list of all virtual machines.</span>
-<span class="sd">    The VMs will only have the specified properties but retrieval will be</span>
-<span class="sd">    insanely fast. The properties must exist on the `pyVmomi.vim.VirtualMachine`</span>
-<span class="sd">    object, of course.</span>
-<span class="sd">    - `properties` (str[]) is a list of desired properties.</span>
-<span class="sd">      For example using `properties=[&quot;name&quot;, &quot;runtime.host&quot;]` will return</span>
-<span class="sd">      objects that have only the attributes `name` and `runtime.host`.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_restricted_view_on_items</span><span class="p">(</span><span class="n">properties</span><span class="p">,</span> <span class="p">[</span><span class="n">vim</span><span class="o">.</span><span class="n">VirtualMachine</span><span class="p">])</span>
-</pre></div>
-
+    <pre><code>def get_restricted_view_on_vms(self, properties):
+    """
+    Returns a list of all virtual machines.
+    The VMs will only have the specified properties but retrieval will be
+    insanely fast. The properties must exist on the `pyVmomi.vim.VirtualMachine`
+    object, of course.
+    - `properties` (str[]) is a list of desired properties.
+      For example using `properties=["name", "runtime.host"]` will return
+      objects that have only the attributes `name` and `runtime.host`.
+    """
+    return self.get_restricted_view_on_items(properties, [vim.VirtualMachine])
+</code></pre>
   </div>
 </div>
 
@@ -2555,12 +2494,11 @@ object, of course.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC.get_service', this);">Show source &equiv;</a></p>
   <div id="source-isphere.interactive_wrapper.VVC.get_service" class="source">
-    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">get_service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service_name</span><span class="p">):</span>
-    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">service_instance_content</span><span class="p">,</span> <span class="n">service_name</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">service_instance_content</span><span class="p">,</span> <span class="n">service_name</span><span class="p">)</span>
-    <span class="k">raise</span> <span class="n">NotFound</span><span class="p">(</span><span class="s">&quot;Service {0} not found&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">service_name</span><span class="p">))</span>
-</pre></div>
-
+    <pre><code>def get_service(self, service_name):
+    if hasattr(self.service_instance_content, service_name):
+        return getattr(self.service_instance_content, service_name)
+    raise NotFound("Service {0} not found".format(service_name))
+</code></pre>
   </div>
 </div>
 
@@ -2583,18 +2521,45 @@ An exception will be raised if the VM cannot be found.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC.get_vm_by_uuid', this);">Show source &equiv;</a></p>
   <div id="source-isphere.interactive_wrapper.VVC.get_vm_by_uuid" class="source">
-    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">get_vm_by_uuid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uuid</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Returns a VM by searching for its UUID.</span>
-<span class="sd">    An exception will be raised if the VM cannot be found.</span>
-<span class="sd">    - `uuid` (str) is the UUID of the desired VM.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">vm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_service</span><span class="p">(</span><span class="s">&quot;searchIndex&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">FindByUuid</span><span class="p">(</span><span class="n">uuid</span><span class="o">=</span><span class="n">uuid</span><span class="p">,</span> <span class="n">vmSearch</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">vm</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">NotFound</span><span class="p">(</span><span class="s">&quot;VM with uuid {0} not found&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">uuid</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">VM</span><span class="p">(</span><span class="n">vm</span><span class="p">)</span>
-</pre></div>
+    <pre><code>def get_vm_by_uuid(self, uuid):
+    """
+    Returns a VM by searching for its UUID.
+    An exception will be raised if the VM cannot be found.
+    - `uuid` (str) is the UUID of the desired VM.
+    """
+    vm = self.get_service("searchIndex").FindByUuid(uuid=uuid, vmSearch=True)
+    if not vm:
+        raise NotFound("VM with uuid {0} not found".format(uuid))
+    return VM(vm)
+</code></pre>
+  </div>
+</div>
 
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.interactive_wrapper.VVC.set_custom_attribute">
+    <p>def <span class="ident">set_custom_attribute</span>(</p><p>self, item, attribute_name, attribute_value)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC.set_custom_attribute', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.interactive_wrapper.VVC.set_custom_attribute" class="source">
+    <pre><code>def set_custom_attribute(self, item, attribute_name, attribute_value):
+    attribute_mapping = self.get_custom_attributes_mapping()
+    attribute_key = None
+    for actual_attribute_key, actual_attribute_name in attribute_mapping.items():
+        if actual_attribute_name == attribute_name:
+            attribute_key = actual_attribute_key
+    if not attribute_key:
+        raise NotFound("No custom attribute '{name}' found. Available names: {available_names}".format(
+            name=attribute_name, available_names=attribute_mapping.values()))
+    self.get_service("customFieldsManager").SetField(entity=item, key=attribute_key, value=attribute_value)
+</code></pre>
   </div>
 </div>
 
@@ -2612,13 +2577,12 @@ An exception will be raised if the VM cannot be found.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC.view_for', this);">Show source &equiv;</a></p>
   <div id="source-isphere.interactive_wrapper.VVC.view_for" class="source">
-    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">view_for</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">types</span><span class="p">):</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_service</span><span class="p">(</span><span class="s">&quot;viewManager&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">CreateContainerView</span><span class="p">(</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">service_instance_content</span><span class="o">.</span><span class="n">rootFolder</span><span class="p">,</span>
-        <span class="n">types</span><span class="p">,</span>
-        <span class="bp">True</span><span class="p">)</span>
-</pre></div>
-
+    <pre><code>def view_for(self, types):
+    return self.get_service("viewManager").CreateContainerView(
+        self.service_instance_content.rootFolder,
+        types,
+        True)
+</code></pre>
   </div>
 </div>
 

@@ -852,71 +852,6 @@ table {
 
   </style>
 
-  <style type="text/css">
-  .codehilite .hll { background-color: #ffffcc }
-.codehilite  { background: #f8f8f8; }
-.codehilite .c { color: #408080; font-style: italic } /* Comment */
-.codehilite .err { border: 1px solid #FF0000 } /* Error */
-.codehilite .k { color: #008000; font-weight: bold } /* Keyword */
-.codehilite .o { color: #666666 } /* Operator */
-.codehilite .cm { color: #408080; font-style: italic } /* Comment.Multiline */
-.codehilite .cp { color: #BC7A00 } /* Comment.Preproc */
-.codehilite .c1 { color: #408080; font-style: italic } /* Comment.Single */
-.codehilite .cs { color: #408080; font-style: italic } /* Comment.Special */
-.codehilite .gd { color: #A00000 } /* Generic.Deleted */
-.codehilite .ge { font-style: italic } /* Generic.Emph */
-.codehilite .gr { color: #FF0000 } /* Generic.Error */
-.codehilite .gh { color: #000080; font-weight: bold } /* Generic.Heading */
-.codehilite .gi { color: #00A000 } /* Generic.Inserted */
-.codehilite .go { color: #888888 } /* Generic.Output */
-.codehilite .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
-.codehilite .gs { font-weight: bold } /* Generic.Strong */
-.codehilite .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
-.codehilite .gt { color: #0044DD } /* Generic.Traceback */
-.codehilite .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
-.codehilite .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
-.codehilite .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
-.codehilite .kp { color: #008000 } /* Keyword.Pseudo */
-.codehilite .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
-.codehilite .kt { color: #B00040 } /* Keyword.Type */
-.codehilite .m { color: #666666 } /* Literal.Number */
-.codehilite .s { color: #BA2121 } /* Literal.String */
-.codehilite .na { color: #7D9029 } /* Name.Attribute */
-.codehilite .nb { color: #008000 } /* Name.Builtin */
-.codehilite .nc { color: #0000FF; font-weight: bold } /* Name.Class */
-.codehilite .no { color: #880000 } /* Name.Constant */
-.codehilite .nd { color: #AA22FF } /* Name.Decorator */
-.codehilite .ni { color: #999999; font-weight: bold } /* Name.Entity */
-.codehilite .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
-.codehilite .nf { color: #0000FF } /* Name.Function */
-.codehilite .nl { color: #A0A000 } /* Name.Label */
-.codehilite .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
-.codehilite .nt { color: #008000; font-weight: bold } /* Name.Tag */
-.codehilite .nv { color: #19177C } /* Name.Variable */
-.codehilite .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
-.codehilite .w { color: #bbbbbb } /* Text.Whitespace */
-.codehilite .mb { color: #666666 } /* Literal.Number.Bin */
-.codehilite .mf { color: #666666 } /* Literal.Number.Float */
-.codehilite .mh { color: #666666 } /* Literal.Number.Hex */
-.codehilite .mi { color: #666666 } /* Literal.Number.Integer */
-.codehilite .mo { color: #666666 } /* Literal.Number.Oct */
-.codehilite .sb { color: #BA2121 } /* Literal.String.Backtick */
-.codehilite .sc { color: #BA2121 } /* Literal.String.Char */
-.codehilite .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
-.codehilite .s2 { color: #BA2121 } /* Literal.String.Double */
-.codehilite .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
-.codehilite .sh { color: #BA2121 } /* Literal.String.Heredoc */
-.codehilite .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
-.codehilite .sx { color: #008000 } /* Literal.String.Other */
-.codehilite .sr { color: #BB6688 } /* Literal.String.Regex */
-.codehilite .s1 { color: #BA2121 } /* Literal.String.Single */
-.codehilite .ss { color: #19177C } /* Literal.String.Symbol */
-.codehilite .bp { color: #008000 } /* Name.Builtin.Pseudo */
-.codehilite .vc { color: #19177C } /* Name.Variable.Class */
-.codehilite .vg { color: #19177C } /* Name.Variable.Global */
-.codehilite .vi { color: #19177C } /* Name.Variable.Instance */
-.codehilite .il { color: #666666 } /* Literal.Number.Integer.Long */
-  </style>
 
   <style type="text/css">
   
@@ -1071,6 +1006,7 @@ table {
     <li class="mono"><a href="#isphere.connection.CachingVSphere.retrieve_dvs">retrieve_dvs</a></li>
     <li class="mono"><a href="#isphere.connection.CachingVSphere.retrieve_esx">retrieve_esx</a></li>
     <li class="mono"><a href="#isphere.connection.CachingVSphere.retrieve_vm">retrieve_vm</a></li>
+    <li class="mono"><a href="#isphere.connection.CachingVSphere.set_custom_attribute">set_custom_attribute</a></li>
     <li class="mono"><a href="#isphere.connection.CachingVSphere.wait_for_tasks">wait_for_tasks</a></li>
   </ul>
 
@@ -1099,238 +1035,240 @@ on top.</p>
   
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.connection', this);">Show source &equiv;</a></p>
   <div id="source-isphere.connection" class="source">
-    <div class="codehilite"><pre><span class="c">#  Copyright (c) 2014-2015 Maximilien Riehl &lt;max@riehl.io&gt;</span>
-<span class="c">#  This work is free. You can redistribute it and/or modify it under the</span>
-<span class="c">#  terms of the Do What The Fuck You Want To Public License, Version 2,</span>
-<span class="c">#  as published by Sam Hocevar. See the COPYING.wtfpl file for more details.</span>
-<span class="c">#</span>
+    <pre><code>#  Copyright (c) 2014-2015 Maximilien Riehl <max@riehl.io>
+#  This work is free. You can redistribute it and/or modify it under the
+#  terms of the Do What The Fuck You Want To Public License, Version 2,
+#  as published by Sam Hocevar. See the COPYING.wtfpl file for more details.
+#
 
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Provides VMWare vSphere connection abstractions.</span>
-<span class="sd">The `isphere.connection.AutoEstablishingConnection` is a connection that is</span>
-<span class="sd">automatically established when used.</span>
+"""
+Provides VMWare vSphere connection abstractions.
+The `isphere.connection.AutoEstablishingConnection` is a connection that is
+automatically established when used.
 
-<span class="sd">The `isphere.connection.CachingVSphere` encapsulates a</span>
-<span class="sd">`isphere.connection.AutoEstablishingConnection` and provides caching capabilities</span>
-<span class="sd">on top.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+The `isphere.connection.CachingVSphere` encapsulates a
+`isphere.connection.AutoEstablishingConnection` and provides caching capabilities
+on top.
+"""
 
-<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
+from functools import wraps
 
-<span class="kn">from</span> <span class="nn">isphere.interactive_wrapper</span> <span class="kn">import</span> <span class="n">VVC</span>
-<span class="kn">from</span> <span class="nn">isphere.input</span> <span class="kn">import</span> <span class="n">killable_input</span>
-<span class="kn">import</span> <span class="nn">thirdparty.tasks</span> <span class="kn">as</span> <span class="nn">thirdparty_tasks</span>
+from isphere.interactive_wrapper import VVC
+from isphere.input import killable_input
+import thirdparty.tasks as thirdparty_tasks
 
-<span class="k">try</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">requests</span>
-    <span class="n">requests</span><span class="o">.</span><span class="n">packages</span><span class="o">.</span><span class="n">urllib3</span><span class="o">.</span><span class="n">disable_warnings</span><span class="p">()</span>
-<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-    <span class="k">pass</span>
-<span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-    <span class="k">pass</span>
+try:
+    import requests
+    requests.packages.urllib3.disable_warnings()
+except ImportError:
+    pass
+except AttributeError:
+    pass
 
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;memoized&quot;</span><span class="p">,</span> <span class="s">&quot;CachingVSphere&quot;</span><span class="p">,</span> <span class="s">&quot;AutoEstablishingConnection&quot;</span><span class="p">]</span>
-
-
-<span class="k">def</span> <span class="nf">memoized</span><span class="p">(</span><span class="n">function</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Memoizes a function.</span>
-<span class="sd">    Calls will be cached based on the args/kwargs. The cache is public</span>
-<span class="sd">    (`func.cached_calls`) so it can be cleared or used from the outside.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">cached_calls</span> <span class="o">=</span> <span class="n">function</span><span class="o">.</span><span class="n">cached_calls</span> <span class="o">=</span> <span class="p">{}</span>
-
-    <span class="nd">@wraps</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">function_with_memoized_calls</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="n">cache_id_for_this_call</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">cache_id_for_this_call</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cached_calls</span><span class="p">:</span>
-            <span class="n">call_result</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-            <span class="n">cached_calls</span><span class="p">[</span><span class="n">cache_id_for_this_call</span><span class="p">]</span> <span class="o">=</span> <span class="n">call_result</span>
-        <span class="k">return</span> <span class="n">cached_calls</span><span class="p">[</span><span class="n">cache_id_for_this_call</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">function_with_memoized_calls</span>
+__all__ = ["memoized", "CachingVSphere", "AutoEstablishingConnection"]
 
 
-<span class="k">class</span> <span class="nc">CachingVSphere</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+def memoized(function):
+    """
+    Memoizes a function.
+    Calls will be cached based on the args/kwargs. The cache is public
+    (`func.cached_calls`) so it can be cleared or used from the outside.
+    """
+    cached_calls = function.cached_calls = {}
 
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Encapsulates a `isphere.connection.AutoEstablishingConnection` and provides</span>
-<span class="sd">    a caching layer on top.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hostname</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Create a new caching vSphere connection.</span>
-
-<span class="sd">        - hostname (type `str`) is the vCenter host name. Can be `None` and will</span>
-<span class="sd">          result in a prompt.</span>
-<span class="sd">        - username (type `str`) is the vCenter user name. Can be `None` and will</span>
-<span class="sd">          result in a prompt.</span>
-<span class="sd">        - password (type `str`) is the vCenter password. Can be `None` and will</span>
-<span class="sd">          result in a prompt.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span> <span class="o">=</span> <span class="n">AutoEstablishingConnection</span><span class="p">(</span><span class="n">hostname</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">vm_name_to_uuid_mapping</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">esx_mapping</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dvs_mapping</span> <span class="o">=</span> <span class="p">{}</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">vvc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The encapsulated vCenter connection.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">ensure_established</span><span class="p">()</span>
-
-    <span class="nd">@memoized</span>
-    <span class="k">def</span> <span class="nf">find_by_dns_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dns_name</span><span class="p">,</span> <span class="n">search_for_vms</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns an item by searching for its DNS name.</span>
-<span class="sd">        Raises an exception if the item cannot be found.</span>
-
-<span class="sd">        - dns_name (type `str`): The dns name of the desired item.</span>
-<span class="sd">        - search_for_vms (type `bool`): Whether to search for virtual machines or not.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span><span class="o">.</span><span class="n">find_by_dns_name</span><span class="p">(</span><span class="n">dns_name</span><span class="p">,</span> <span class="n">search_for_vms</span><span class="p">)</span>
-
-    <span class="nd">@memoized</span>
-    <span class="k">def</span> <span class="nf">get_custom_attributes_mapping</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns a dictionary with the mapping from custom attribute keys to</span>
-<span class="sd">        custom attribute names (not values!).</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span><span class="o">.</span><span class="n">get_custom_attributes_mapping</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">fill</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Fill the item cache. Makes listing item names available and retrieving</span>
-<span class="sd">        items available.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">find_by_dns_name</span><span class="o">.</span><span class="n">__func__</span><span class="o">.</span><span class="n">cached_calls</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">get_custom_attributes_mapping</span><span class="o">.</span><span class="n">__func__</span><span class="o">.</span><span class="n">cached_calls</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">retrieve_vm</span><span class="o">.</span><span class="n">__func__</span><span class="o">.</span><span class="n">cached_calls</span> <span class="o">=</span> <span class="p">{}</span>
-
-        <span class="k">for</span> <span class="n">vm</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span><span class="o">.</span><span class="n">get_restricted_view_on_vms</span><span class="p">([</span><span class="s">&quot;name&quot;</span><span class="p">,</span> <span class="s">&quot;config.uuid&quot;</span><span class="p">]):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">vm_name_to_uuid_mapping</span><span class="p">[</span><span class="n">vm</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">vm</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">uuid</span>
-
-        <span class="k">for</span> <span class="n">esx</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span><span class="o">.</span><span class="n">get_all_esx</span><span class="p">():</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">esx_mapping</span><span class="p">[</span><span class="n">esx</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">esx</span>
-
-        <span class="k">for</span> <span class="n">dvs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span><span class="o">.</span><span class="n">get_all_dvs</span><span class="p">():</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">dvs_mapping</span><span class="p">[</span><span class="n">dvs</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">dvs</span>
-
-    <span class="k">def</span> <span class="nf">list_cached_vms</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        List the names of the virtual machines.</span>
-<span class="sd">        This requires `fill()` to have been called since it operates on the cache.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vm_name_to_uuid_mapping</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">list_cached_esxis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        List the names of the ESXi host systems.</span>
-<span class="sd">        This requires `fill()` to have been called since it operates on the cache.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">esx_mapping</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">list_cached_dvses</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        List the names of the distributed virtual switches.</span>
-<span class="sd">        This requires `fill()` to have been called since it operates on the cache.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dvs_mapping</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-
-    <span class="nd">@memoized</span>
-    <span class="k">def</span> <span class="nf">retrieve_vm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vm_name</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Retrieve a virtual machine by its name. The name must be in the cache.</span>
-
-<span class="sd">        - vm_name (type `str`): The virtual machine name from the cache.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span><span class="o">.</span><span class="n">get_vm_by_uuid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vm_name_to_uuid_mapping</span><span class="p">[</span><span class="n">vm_name</span><span class="p">])</span>
-
-    <span class="k">def</span> <span class="nf">retrieve_esx</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">esx_name</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Retrieve an ESXi host system by its name. The name must be in the cache.</span>
-
-<span class="sd">        - esx_name (type `str`): The ESX name from the cache.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">esx_mapping</span><span class="p">[</span><span class="n">esx_name</span><span class="p">]</span>
-
-    <span class="k">def</span> <span class="nf">retrieve_dvs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dvs_name</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Retrieve a DVS by its name. The name must be in the cache.</span>
-
-<span class="sd">        - dvs_name (type `str`): The DVS name from the cache.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dvs_mapping</span><span class="p">[</span><span class="n">dvs_name</span><span class="p">]</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">number_of_vms</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The number of virtual machines available in the cache.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vm_name_to_uuid_mapping</span><span class="p">)</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">number_of_esxis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The number of ESXi available in the cache.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">esx_mapping</span><span class="p">)</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">number_of_dvses</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The number of DVS available in the cache.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dvs_mapping</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">wait_for_tasks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tasks</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Wait until a collection of tasks completes.</span>
-
-<span class="sd">        - tasks (type `vim.Task[]`): The tasks which should complete.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">thirdparty_tasks</span><span class="o">.</span><span class="n">wait_for_tasks</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vvc</span><span class="o">.</span><span class="n">service_instance</span><span class="p">,</span> <span class="n">tasks</span><span class="p">)</span>
+    @wraps(function)
+    def function_with_memoized_calls(*args, **kwargs):
+        cache_id_for_this_call = str(args) + str(kwargs)
+        if cache_id_for_this_call not in cached_calls:
+            call_result = function(*args, **kwargs)
+            cached_calls[cache_id_for_this_call] = call_result
+        return cached_calls[cache_id_for_this_call]
+    return function_with_memoized_calls
 
 
-<span class="k">class</span> <span class="nc">AutoEstablishingConnection</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+class CachingVSphere(object):
 
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A vCenter connection that establishes when used.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+    """
+    Encapsulates a `isphere.connection.AutoEstablishingConnection` and provides
+    a caching layer on top.
+    """
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hostname</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Create a new connection.</span>
+    def __init__(self, hostname, username, password):
+        """
+        Create a new caching vSphere connection.
 
-<span class="sd">        - hostname (type `str`) is the vCenter host name. Can be `None` and will</span>
-<span class="sd">          result in a prompt.</span>
-<span class="sd">        - username (type `str`) is the vCenter user name. Can be `None` and will</span>
-<span class="sd">          result in a prompt.</span>
-<span class="sd">        - password (type `str`) is the vCenter password. Can be `None` and will</span>
-<span class="sd">          result in a prompt.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span> <span class="o">=</span> <span class="bp">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">username</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">hostname</span> <span class="o">=</span> <span class="n">hostname</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="n">password</span>
+        - hostname (type `str`) is the vCenter host name. Can be `None` and will
+          result in a prompt.
+        - username (type `str`) is the vCenter user name. Can be `None` and will
+          result in a prompt.
+        - password (type `str`) is the vCenter password. Can be `None` and will
+          result in a prompt.
+        """
+        self._connection = AutoEstablishingConnection(hostname, username, password)
+        self.vm_name_to_uuid_mapping = {}
+        self.esx_mapping = {}
+        self.dvs_mapping = {}
 
-    <span class="k">def</span> <span class="nf">ensure_established</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns the connection encapsulated by this class. Establishes the connection</span>
-<span class="sd">        if necessary and might prompt for missing information.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connect</span><span class="p">()</span>
+    @property
+    def vvc(self):
+        """
+        The encapsulated vCenter connection.
+        """
+        return self._connection.ensure_established()
 
-    <span class="k">def</span> <span class="nf">_connect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">hostname</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hostname</span> <span class="ow">or</span> <span class="n">killable_input</span><span class="p">(</span><span class="s">&quot;Remote vsphere hostname: &quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">username</span> <span class="ow">or</span> <span class="n">killable_input</span><span class="p">(</span><span class="s">&quot;User name for {0}: &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hostname</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span> <span class="o">=</span> <span class="n">VVC</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hostname</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">)</span>
+    @memoized
+    def find_by_dns_name(self, dns_name, search_for_vms=False):
+        """
+        Returns an item by searching for its DNS name.
+        Raises an exception if the item cannot be found.
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span>
-</pre></div>
+        - dns_name (type `str`): The dns name of the desired item.
+        - search_for_vms (type `bool`): Whether to search for virtual machines or not.
+        """
+        return self.vvc.find_by_dns_name(dns_name, search_for_vms)
 
+    @memoized
+    def get_custom_attributes_mapping(self):
+        """
+        Returns a dictionary with the mapping from custom attribute keys to
+        custom attribute names (not values!).
+        """
+        return self.vvc.get_custom_attributes_mapping()
+
+    def set_custom_attribute(self, item, attribute_name, attribute_value):
+        self.vvc.set_custom_attribute(item, attribute_name, attribute_value)
+
+    def fill(self):
+        """
+        Fill the item cache. Makes listing item names available and retrieving
+        items available.
+        """
+        self.find_by_dns_name.__func__.cached_calls = {}
+        self.get_custom_attributes_mapping.__func__.cached_calls = {}
+        self.retrieve_vm.__func__.cached_calls = {}
+
+        for vm in self.vvc.get_restricted_view_on_vms(["name", "config.uuid"]):
+            self.vm_name_to_uuid_mapping[vm.name] = vm.config.uuid
+
+        for esx in self.vvc.get_all_esx():
+            self.esx_mapping[esx.name] = esx
+
+        for dvs in self.vvc.get_all_dvs():
+            self.dvs_mapping[dvs.name] = dvs
+
+    def list_cached_vms(self):
+        """
+        List the names of the virtual machines.
+        This requires `fill()` to have been called since it operates on the cache.
+        """
+        return self.vm_name_to_uuid_mapping.keys()
+
+    def list_cached_esxis(self):
+        """
+        List the names of the ESXi host systems.
+        This requires `fill()` to have been called since it operates on the cache.
+        """
+        return self.esx_mapping.keys()
+
+    def list_cached_dvses(self):
+        """
+        List the names of the distributed virtual switches.
+        This requires `fill()` to have been called since it operates on the cache.
+        """
+        return self.dvs_mapping.keys()
+
+    @memoized
+    def retrieve_vm(self, vm_name):
+        """
+        Retrieve a virtual machine by its name. The name must be in the cache.
+
+        - vm_name (type `str`): The virtual machine name from the cache.
+        """
+        return self.vvc.get_vm_by_uuid(self.vm_name_to_uuid_mapping[vm_name])
+
+    def retrieve_esx(self, esx_name):
+        """
+        Retrieve an ESXi host system by its name. The name must be in the cache.
+
+        - esx_name (type `str`): The ESX name from the cache.
+        """
+        return self.esx_mapping[esx_name]
+
+    def retrieve_dvs(self, dvs_name):
+        """
+        Retrieve a DVS by its name. The name must be in the cache.
+
+        - dvs_name (type `str`): The DVS name from the cache.
+        """
+        return self.dvs_mapping[dvs_name]
+
+    @property
+    def number_of_vms(self):
+        """
+        The number of virtual machines available in the cache.
+        """
+        return len(self.vm_name_to_uuid_mapping)
+
+    @property
+    def number_of_esxis(self):
+        """
+        The number of ESXi available in the cache.
+        """
+        return len(self.esx_mapping)
+
+    @property
+    def number_of_dvses(self):
+        """
+        The number of DVS available in the cache.
+        """
+        return len(self.dvs_mapping)
+
+    def wait_for_tasks(self, tasks):
+        """
+        Wait until a collection of tasks completes.
+
+        - tasks (type `vim.Task[]`): The tasks which should complete.
+        """
+        return thirdparty_tasks.wait_for_tasks(self.vvc.service_instance, tasks)
+
+
+class AutoEstablishingConnection(object):
+
+    """
+    A vCenter connection that establishes when used.
+    """
+
+    def __init__(self, hostname, username, password):
+        """
+        Create a new connection.
+
+        - hostname (type `str`) is the vCenter host name. Can be `None` and will
+          result in a prompt.
+        - username (type `str`) is the vCenter user name. Can be `None` and will
+          result in a prompt.
+        - password (type `str`) is the vCenter password. Can be `None` and will
+          result in a prompt.
+        """
+        self.vvc = None
+        self.username = username
+        self.hostname = hostname
+        self.password = password
+
+    def ensure_established(self):
+        """
+        Returns the connection encapsulated by this class. Establishes the connection
+        if necessary and might prompt for missing information.
+        """
+        return self.vvc or self._connect()
+
+    def _connect(self):
+        self.hostname = self.hostname or killable_input("Remote vsphere hostname: ")
+        self.username = self.username or killable_input("User name for {0}: ".format(self.hostname))
+        self.vvc = VVC(self.hostname)
+        self.vvc.connect(self.username)
+
+        return self.vvc
+</code></pre>
   </div>
 
   </header>
@@ -1353,24 +1291,23 @@ Calls will be cached based on the args/kwargs. The cache is public
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.connection.memoized', this);">Show source &equiv;</a></p>
   <div id="source-isphere.connection.memoized" class="source">
-    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">memoized</span><span class="p">(</span><span class="n">function</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Memoizes a function.</span>
-<span class="sd">    Calls will be cached based on the args/kwargs. The cache is public</span>
-<span class="sd">    (`func.cached_calls`) so it can be cleared or used from the outside.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">cached_calls</span> <span class="o">=</span> <span class="n">function</span><span class="o">.</span><span class="n">cached_calls</span> <span class="o">=</span> <span class="p">{}</span>
+    <pre><code>def memoized(function):
+    """
+    Memoizes a function.
+    Calls will be cached based on the args/kwargs. The cache is public
+    (`func.cached_calls`) so it can be cleared or used from the outside.
+    """
+    cached_calls = function.cached_calls = {}
 
-    <span class="nd">@wraps</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">function_with_memoized_calls</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="n">cache_id_for_this_call</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">cache_id_for_this_call</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cached_calls</span><span class="p">:</span>
-            <span class="n">call_result</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-            <span class="n">cached_calls</span><span class="p">[</span><span class="n">cache_id_for_this_call</span><span class="p">]</span> <span class="o">=</span> <span class="n">call_result</span>
-        <span class="k">return</span> <span class="n">cached_calls</span><span class="p">[</span><span class="n">cache_id_for_this_call</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">function_with_memoized_calls</span>
-</pre></div>
-
+    @wraps(function)
+    def function_with_memoized_calls(*args, **kwargs):
+        cache_id_for_this_call = str(args) + str(kwargs)
+        if cache_id_for_this_call not in cached_calls:
+            call_result = function(*args, **kwargs)
+            cached_calls[cache_id_for_this_call] = call_result
+        return cached_calls[cache_id_for_this_call]
+    return function_with_memoized_calls
+</code></pre>
   </div>
 </div>
 
@@ -1387,44 +1324,43 @@ Calls will be cached based on the args/kwargs. The cache is public
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.connection.AutoEstablishingConnection', this);">Show source &equiv;</a></p>
   <div id="source-isphere.connection.AutoEstablishingConnection" class="source">
-    <div class="codehilite"><pre><span class="k">class</span> <span class="nc">AutoEstablishingConnection</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <pre><code>class AutoEstablishingConnection(object):
 
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A vCenter connection that establishes when used.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+    """
+    A vCenter connection that establishes when used.
+    """
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hostname</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Create a new connection.</span>
+    def __init__(self, hostname, username, password):
+        """
+        Create a new connection.
 
-<span class="sd">        - hostname (type `str`) is the vCenter host name. Can be `None` and will</span>
-<span class="sd">          result in a prompt.</span>
-<span class="sd">        - username (type `str`) is the vCenter user name. Can be `None` and will</span>
-<span class="sd">          result in a prompt.</span>
-<span class="sd">        - password (type `str`) is the vCenter password. Can be `None` and will</span>
-<span class="sd">          result in a prompt.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span> <span class="o">=</span> <span class="bp">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">username</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">hostname</span> <span class="o">=</span> <span class="n">hostname</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="n">password</span>
+        - hostname (type `str`) is the vCenter host name. Can be `None` and will
+          result in a prompt.
+        - username (type `str`) is the vCenter user name. Can be `None` and will
+          result in a prompt.
+        - password (type `str`) is the vCenter password. Can be `None` and will
+          result in a prompt.
+        """
+        self.vvc = None
+        self.username = username
+        self.hostname = hostname
+        self.password = password
 
-    <span class="k">def</span> <span class="nf">ensure_established</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns the connection encapsulated by this class. Establishes the connection</span>
-<span class="sd">        if necessary and might prompt for missing information.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connect</span><span class="p">()</span>
+    def ensure_established(self):
+        """
+        Returns the connection encapsulated by this class. Establishes the connection
+        if necessary and might prompt for missing information.
+        """
+        return self.vvc or self._connect()
 
-    <span class="k">def</span> <span class="nf">_connect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">hostname</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hostname</span> <span class="ow">or</span> <span class="n">killable_input</span><span class="p">(</span><span class="s">&quot;Remote vsphere hostname: &quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">username</span> <span class="ow">or</span> <span class="n">killable_input</span><span class="p">(</span><span class="s">&quot;User name for {0}: &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hostname</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span> <span class="o">=</span> <span class="n">VVC</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hostname</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">)</span>
+    def _connect(self):
+        self.hostname = self.hostname or killable_input("Remote vsphere hostname: ")
+        self.username = self.username or killable_input("User name for {0}: ".format(self.hostname))
+        self.vvc = VVC(self.hostname)
+        self.vvc.connect(self.username)
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span>
-</pre></div>
-
+        return self.vvc
+</code></pre>
   </div>
 </div>
 
@@ -1498,22 +1434,21 @@ Calls will be cached based on the args/kwargs. The cache is public
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.connection.AutoEstablishingConnection.__init__', this);">Show source &equiv;</a></p>
   <div id="source-isphere.connection.AutoEstablishingConnection.__init__" class="source">
-    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hostname</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Create a new connection.</span>
-<span class="sd">    - hostname (type `str`) is the vCenter host name. Can be `None` and will</span>
-<span class="sd">      result in a prompt.</span>
-<span class="sd">    - username (type `str`) is the vCenter user name. Can be `None` and will</span>
-<span class="sd">      result in a prompt.</span>
-<span class="sd">    - password (type `str`) is the vCenter password. Can be `None` and will</span>
-<span class="sd">      result in a prompt.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span> <span class="o">=</span> <span class="bp">None</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">username</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">hostname</span> <span class="o">=</span> <span class="n">hostname</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="n">password</span>
-</pre></div>
-
+    <pre><code>def __init__(self, hostname, username, password):
+    """
+    Create a new connection.
+    - hostname (type `str`) is the vCenter host name. Can be `None` and will
+      result in a prompt.
+    - username (type `str`) is the vCenter user name. Can be `None` and will
+      result in a prompt.
+    - password (type `str`) is the vCenter password. Can be `None` and will
+      result in a prompt.
+    """
+    self.vvc = None
+    self.username = username
+    self.hostname = hostname
+    self.password = password
+</code></pre>
   </div>
 </div>
 
@@ -1533,14 +1468,13 @@ if necessary and might prompt for missing information.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.connection.AutoEstablishingConnection.ensure_established', this);">Show source &equiv;</a></p>
   <div id="source-isphere.connection.AutoEstablishingConnection.ensure_established" class="source">
-    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">ensure_established</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Returns the connection encapsulated by this class. Establishes the connection</span>
-<span class="sd">    if necessary and might prompt for missing information.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connect</span><span class="p">()</span>
-</pre></div>
-
+    <pre><code>def ensure_established(self):
+    """
+    Returns the connection encapsulated by this class. Establishes the connection
+    if necessary and might prompt for missing information.
+    """
+    return self.vvc or self._connect()
+</code></pre>
   </div>
 </div>
 
@@ -1558,149 +1492,151 @@ a caching layer on top.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.connection.CachingVSphere', this);">Show source &equiv;</a></p>
   <div id="source-isphere.connection.CachingVSphere" class="source">
-    <div class="codehilite"><pre><span class="k">class</span> <span class="nc">CachingVSphere</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <pre><code>class CachingVSphere(object):
 
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Encapsulates a `isphere.connection.AutoEstablishingConnection` and provides</span>
-<span class="sd">    a caching layer on top.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+    """
+    Encapsulates a `isphere.connection.AutoEstablishingConnection` and provides
+    a caching layer on top.
+    """
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hostname</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Create a new caching vSphere connection.</span>
+    def __init__(self, hostname, username, password):
+        """
+        Create a new caching vSphere connection.
 
-<span class="sd">        - hostname (type `str`) is the vCenter host name. Can be `None` and will</span>
-<span class="sd">          result in a prompt.</span>
-<span class="sd">        - username (type `str`) is the vCenter user name. Can be `None` and will</span>
-<span class="sd">          result in a prompt.</span>
-<span class="sd">        - password (type `str`) is the vCenter password. Can be `None` and will</span>
-<span class="sd">          result in a prompt.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span> <span class="o">=</span> <span class="n">AutoEstablishingConnection</span><span class="p">(</span><span class="n">hostname</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">vm_name_to_uuid_mapping</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">esx_mapping</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dvs_mapping</span> <span class="o">=</span> <span class="p">{}</span>
+        - hostname (type `str`) is the vCenter host name. Can be `None` and will
+          result in a prompt.
+        - username (type `str`) is the vCenter user name. Can be `None` and will
+          result in a prompt.
+        - password (type `str`) is the vCenter password. Can be `None` and will
+          result in a prompt.
+        """
+        self._connection = AutoEstablishingConnection(hostname, username, password)
+        self.vm_name_to_uuid_mapping = {}
+        self.esx_mapping = {}
+        self.dvs_mapping = {}
 
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">vvc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The encapsulated vCenter connection.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span><span class="o">.</span><span class="n">ensure_established</span><span class="p">()</span>
+    @property
+    def vvc(self):
+        """
+        The encapsulated vCenter connection.
+        """
+        return self._connection.ensure_established()
 
-    <span class="nd">@memoized</span>
-    <span class="k">def</span> <span class="nf">find_by_dns_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dns_name</span><span class="p">,</span> <span class="n">search_for_vms</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns an item by searching for its DNS name.</span>
-<span class="sd">        Raises an exception if the item cannot be found.</span>
+    @memoized
+    def find_by_dns_name(self, dns_name, search_for_vms=False):
+        """
+        Returns an item by searching for its DNS name.
+        Raises an exception if the item cannot be found.
 
-<span class="sd">        - dns_name (type `str`): The dns name of the desired item.</span>
-<span class="sd">        - search_for_vms (type `bool`): Whether to search for virtual machines or not.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span><span class="o">.</span><span class="n">find_by_dns_name</span><span class="p">(</span><span class="n">dns_name</span><span class="p">,</span> <span class="n">search_for_vms</span><span class="p">)</span>
+        - dns_name (type `str`): The dns name of the desired item.
+        - search_for_vms (type `bool`): Whether to search for virtual machines or not.
+        """
+        return self.vvc.find_by_dns_name(dns_name, search_for_vms)
 
-    <span class="nd">@memoized</span>
-    <span class="k">def</span> <span class="nf">get_custom_attributes_mapping</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns a dictionary with the mapping from custom attribute keys to</span>
-<span class="sd">        custom attribute names (not values!).</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span><span class="o">.</span><span class="n">get_custom_attributes_mapping</span><span class="p">()</span>
+    @memoized
+    def get_custom_attributes_mapping(self):
+        """
+        Returns a dictionary with the mapping from custom attribute keys to
+        custom attribute names (not values!).
+        """
+        return self.vvc.get_custom_attributes_mapping()
 
-    <span class="k">def</span> <span class="nf">fill</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Fill the item cache. Makes listing item names available and retrieving</span>
-<span class="sd">        items available.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">find_by_dns_name</span><span class="o">.</span><span class="n">__func__</span><span class="o">.</span><span class="n">cached_calls</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">get_custom_attributes_mapping</span><span class="o">.</span><span class="n">__func__</span><span class="o">.</span><span class="n">cached_calls</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">retrieve_vm</span><span class="o">.</span><span class="n">__func__</span><span class="o">.</span><span class="n">cached_calls</span> <span class="o">=</span> <span class="p">{}</span>
+    def set_custom_attribute(self, item, attribute_name, attribute_value):
+        self.vvc.set_custom_attribute(item, attribute_name, attribute_value)
 
-        <span class="k">for</span> <span class="n">vm</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span><span class="o">.</span><span class="n">get_restricted_view_on_vms</span><span class="p">([</span><span class="s">&quot;name&quot;</span><span class="p">,</span> <span class="s">&quot;config.uuid&quot;</span><span class="p">]):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">vm_name_to_uuid_mapping</span><span class="p">[</span><span class="n">vm</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">vm</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">uuid</span>
+    def fill(self):
+        """
+        Fill the item cache. Makes listing item names available and retrieving
+        items available.
+        """
+        self.find_by_dns_name.__func__.cached_calls = {}
+        self.get_custom_attributes_mapping.__func__.cached_calls = {}
+        self.retrieve_vm.__func__.cached_calls = {}
 
-        <span class="k">for</span> <span class="n">esx</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span><span class="o">.</span><span class="n">get_all_esx</span><span class="p">():</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">esx_mapping</span><span class="p">[</span><span class="n">esx</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">esx</span>
+        for vm in self.vvc.get_restricted_view_on_vms(["name", "config.uuid"]):
+            self.vm_name_to_uuid_mapping[vm.name] = vm.config.uuid
 
-        <span class="k">for</span> <span class="n">dvs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span><span class="o">.</span><span class="n">get_all_dvs</span><span class="p">():</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">dvs_mapping</span><span class="p">[</span><span class="n">dvs</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">dvs</span>
+        for esx in self.vvc.get_all_esx():
+            self.esx_mapping[esx.name] = esx
 
-    <span class="k">def</span> <span class="nf">list_cached_vms</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        List the names of the virtual machines.</span>
-<span class="sd">        This requires `fill()` to have been called since it operates on the cache.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vm_name_to_uuid_mapping</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+        for dvs in self.vvc.get_all_dvs():
+            self.dvs_mapping[dvs.name] = dvs
 
-    <span class="k">def</span> <span class="nf">list_cached_esxis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        List the names of the ESXi host systems.</span>
-<span class="sd">        This requires `fill()` to have been called since it operates on the cache.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">esx_mapping</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+    def list_cached_vms(self):
+        """
+        List the names of the virtual machines.
+        This requires `fill()` to have been called since it operates on the cache.
+        """
+        return self.vm_name_to_uuid_mapping.keys()
 
-    <span class="k">def</span> <span class="nf">list_cached_dvses</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        List the names of the distributed virtual switches.</span>
-<span class="sd">        This requires `fill()` to have been called since it operates on the cache.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dvs_mapping</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+    def list_cached_esxis(self):
+        """
+        List the names of the ESXi host systems.
+        This requires `fill()` to have been called since it operates on the cache.
+        """
+        return self.esx_mapping.keys()
 
-    <span class="nd">@memoized</span>
-    <span class="k">def</span> <span class="nf">retrieve_vm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vm_name</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Retrieve a virtual machine by its name. The name must be in the cache.</span>
+    def list_cached_dvses(self):
+        """
+        List the names of the distributed virtual switches.
+        This requires `fill()` to have been called since it operates on the cache.
+        """
+        return self.dvs_mapping.keys()
 
-<span class="sd">        - vm_name (type `str`): The virtual machine name from the cache.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span><span class="o">.</span><span class="n">get_vm_by_uuid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vm_name_to_uuid_mapping</span><span class="p">[</span><span class="n">vm_name</span><span class="p">])</span>
+    @memoized
+    def retrieve_vm(self, vm_name):
+        """
+        Retrieve a virtual machine by its name. The name must be in the cache.
 
-    <span class="k">def</span> <span class="nf">retrieve_esx</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">esx_name</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Retrieve an ESXi host system by its name. The name must be in the cache.</span>
+        - vm_name (type `str`): The virtual machine name from the cache.
+        """
+        return self.vvc.get_vm_by_uuid(self.vm_name_to_uuid_mapping[vm_name])
 
-<span class="sd">        - esx_name (type `str`): The ESX name from the cache.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">esx_mapping</span><span class="p">[</span><span class="n">esx_name</span><span class="p">]</span>
+    def retrieve_esx(self, esx_name):
+        """
+        Retrieve an ESXi host system by its name. The name must be in the cache.
 
-    <span class="k">def</span> <span class="nf">retrieve_dvs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dvs_name</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Retrieve a DVS by its name. The name must be in the cache.</span>
+        - esx_name (type `str`): The ESX name from the cache.
+        """
+        return self.esx_mapping[esx_name]
 
-<span class="sd">        - dvs_name (type `str`): The DVS name from the cache.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dvs_mapping</span><span class="p">[</span><span class="n">dvs_name</span><span class="p">]</span>
+    def retrieve_dvs(self, dvs_name):
+        """
+        Retrieve a DVS by its name. The name must be in the cache.
 
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">number_of_vms</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The number of virtual machines available in the cache.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vm_name_to_uuid_mapping</span><span class="p">)</span>
+        - dvs_name (type `str`): The DVS name from the cache.
+        """
+        return self.dvs_mapping[dvs_name]
 
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">number_of_esxis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The number of ESXi available in the cache.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">esx_mapping</span><span class="p">)</span>
+    @property
+    def number_of_vms(self):
+        """
+        The number of virtual machines available in the cache.
+        """
+        return len(self.vm_name_to_uuid_mapping)
 
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">number_of_dvses</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The number of DVS available in the cache.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dvs_mapping</span><span class="p">)</span>
+    @property
+    def number_of_esxis(self):
+        """
+        The number of ESXi available in the cache.
+        """
+        return len(self.esx_mapping)
 
-    <span class="k">def</span> <span class="nf">wait_for_tasks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tasks</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Wait until a collection of tasks completes.</span>
+    @property
+    def number_of_dvses(self):
+        """
+        The number of DVS available in the cache.
+        """
+        return len(self.dvs_mapping)
 
-<span class="sd">        - tasks (type `vim.Task[]`): The tasks which should complete.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">thirdparty_tasks</span><span class="o">.</span><span class="n">wait_for_tasks</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vvc</span><span class="o">.</span><span class="n">service_instance</span><span class="p">,</span> <span class="n">tasks</span><span class="p">)</span>
-</pre></div>
+    def wait_for_tasks(self, tasks):
+        """
+        Wait until a collection of tasks completes.
 
+        - tasks (type `vim.Task[]`): The tasks which should complete.
+        """
+        return thirdparty_tasks.wait_for_tasks(self.vvc.service_instance, tasks)
+</code></pre>
   </div>
 </div>
 
@@ -1808,22 +1744,21 @@ a caching layer on top.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.connection.CachingVSphere.__init__', this);">Show source &equiv;</a></p>
   <div id="source-isphere.connection.CachingVSphere.__init__" class="source">
-    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hostname</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Create a new caching vSphere connection.</span>
-<span class="sd">    - hostname (type `str`) is the vCenter host name. Can be `None` and will</span>
-<span class="sd">      result in a prompt.</span>
-<span class="sd">    - username (type `str`) is the vCenter user name. Can be `None` and will</span>
-<span class="sd">      result in a prompt.</span>
-<span class="sd">    - password (type `str`) is the vCenter password. Can be `None` and will</span>
-<span class="sd">      result in a prompt.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span> <span class="o">=</span> <span class="n">AutoEstablishingConnection</span><span class="p">(</span><span class="n">hostname</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">vm_name_to_uuid_mapping</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">esx_mapping</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">dvs_mapping</span> <span class="o">=</span> <span class="p">{}</span>
-</pre></div>
-
+    <pre><code>def __init__(self, hostname, username, password):
+    """
+    Create a new caching vSphere connection.
+    - hostname (type `str`) is the vCenter host name. Can be `None` and will
+      result in a prompt.
+    - username (type `str`) is the vCenter user name. Can be `None` and will
+      result in a prompt.
+    - password (type `str`) is the vCenter password. Can be `None` and will
+      result in a prompt.
+    """
+    self._connection = AutoEstablishingConnection(hostname, username, password)
+    self.vm_name_to_uuid_mapping = {}
+    self.esx_mapping = {}
+    self.dvs_mapping = {}
+</code></pre>
   </div>
 </div>
 
@@ -1843,22 +1778,21 @@ items available.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.connection.CachingVSphere.fill', this);">Show source &equiv;</a></p>
   <div id="source-isphere.connection.CachingVSphere.fill" class="source">
-    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">fill</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Fill the item cache. Makes listing item names available and retrieving</span>
-<span class="sd">    items available.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">find_by_dns_name</span><span class="o">.</span><span class="n">__func__</span><span class="o">.</span><span class="n">cached_calls</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">get_custom_attributes_mapping</span><span class="o">.</span><span class="n">__func__</span><span class="o">.</span><span class="n">cached_calls</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">retrieve_vm</span><span class="o">.</span><span class="n">__func__</span><span class="o">.</span><span class="n">cached_calls</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="k">for</span> <span class="n">vm</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span><span class="o">.</span><span class="n">get_restricted_view_on_vms</span><span class="p">([</span><span class="s">&quot;name&quot;</span><span class="p">,</span> <span class="s">&quot;config.uuid&quot;</span><span class="p">]):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">vm_name_to_uuid_mapping</span><span class="p">[</span><span class="n">vm</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">vm</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">uuid</span>
-    <span class="k">for</span> <span class="n">esx</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span><span class="o">.</span><span class="n">get_all_esx</span><span class="p">():</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">esx_mapping</span><span class="p">[</span><span class="n">esx</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">esx</span>
-    <span class="k">for</span> <span class="n">dvs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span><span class="o">.</span><span class="n">get_all_dvs</span><span class="p">():</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dvs_mapping</span><span class="p">[</span><span class="n">dvs</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">dvs</span>
-</pre></div>
-
+    <pre><code>def fill(self):
+    """
+    Fill the item cache. Makes listing item names available and retrieving
+    items available.
+    """
+    self.find_by_dns_name.__func__.cached_calls = {}
+    self.get_custom_attributes_mapping.__func__.cached_calls = {}
+    self.retrieve_vm.__func__.cached_calls = {}
+    for vm in self.vvc.get_restricted_view_on_vms(["name", "config.uuid"]):
+        self.vm_name_to_uuid_mapping[vm.name] = vm.config.uuid
+    for esx in self.vvc.get_all_esx():
+        self.esx_mapping[esx.name] = esx
+    for dvs in self.vvc.get_all_dvs():
+        self.dvs_mapping[dvs.name] = dvs
+</code></pre>
   </div>
 </div>
 
@@ -1882,15 +1816,14 @@ Raises an exception if the item cannot be found.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.connection.CachingVSphere.find_by_dns_name', this);">Show source &equiv;</a></p>
   <div id="source-isphere.connection.CachingVSphere.find_by_dns_name" class="source">
-    <div class="codehilite"><pre><span class="nd">@wraps</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">function_with_memoized_calls</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="n">cache_id_for_this_call</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">cache_id_for_this_call</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cached_calls</span><span class="p">:</span>
-        <span class="n">call_result</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="n">cached_calls</span><span class="p">[</span><span class="n">cache_id_for_this_call</span><span class="p">]</span> <span class="o">=</span> <span class="n">call_result</span>
-    <span class="k">return</span> <span class="n">cached_calls</span><span class="p">[</span><span class="n">cache_id_for_this_call</span><span class="p">]</span>
-</pre></div>
-
+    <pre><code>@wraps(function)
+def function_with_memoized_calls(*args, **kwargs):
+    cache_id_for_this_call = str(args) + str(kwargs)
+    if cache_id_for_this_call not in cached_calls:
+        call_result = function(*args, **kwargs)
+        cached_calls[cache_id_for_this_call] = call_result
+    return cached_calls[cache_id_for_this_call]
+</code></pre>
   </div>
 </div>
 
@@ -1910,15 +1843,14 @@ custom attribute names (not values!).</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.connection.CachingVSphere.get_custom_attributes_mapping', this);">Show source &equiv;</a></p>
   <div id="source-isphere.connection.CachingVSphere.get_custom_attributes_mapping" class="source">
-    <div class="codehilite"><pre><span class="nd">@wraps</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">function_with_memoized_calls</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="n">cache_id_for_this_call</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">cache_id_for_this_call</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cached_calls</span><span class="p">:</span>
-        <span class="n">call_result</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="n">cached_calls</span><span class="p">[</span><span class="n">cache_id_for_this_call</span><span class="p">]</span> <span class="o">=</span> <span class="n">call_result</span>
-    <span class="k">return</span> <span class="n">cached_calls</span><span class="p">[</span><span class="n">cache_id_for_this_call</span><span class="p">]</span>
-</pre></div>
-
+    <pre><code>@wraps(function)
+def function_with_memoized_calls(*args, **kwargs):
+    cache_id_for_this_call = str(args) + str(kwargs)
+    if cache_id_for_this_call not in cached_calls:
+        call_result = function(*args, **kwargs)
+        cached_calls[cache_id_for_this_call] = call_result
+    return cached_calls[cache_id_for_this_call]
+</code></pre>
   </div>
 </div>
 
@@ -1938,14 +1870,13 @@ This requires <code>fill()</code> to have been called since it operates on the c
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.connection.CachingVSphere.list_cached_dvses', this);">Show source &equiv;</a></p>
   <div id="source-isphere.connection.CachingVSphere.list_cached_dvses" class="source">
-    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">list_cached_dvses</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    List the names of the distributed virtual switches.</span>
-<span class="sd">    This requires `fill()` to have been called since it operates on the cache.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dvs_mapping</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-</pre></div>
-
+    <pre><code>def list_cached_dvses(self):
+    """
+    List the names of the distributed virtual switches.
+    This requires `fill()` to have been called since it operates on the cache.
+    """
+    return self.dvs_mapping.keys()
+</code></pre>
   </div>
 </div>
 
@@ -1965,14 +1896,13 @@ This requires <code>fill()</code> to have been called since it operates on the c
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.connection.CachingVSphere.list_cached_esxis', this);">Show source &equiv;</a></p>
   <div id="source-isphere.connection.CachingVSphere.list_cached_esxis" class="source">
-    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">list_cached_esxis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    List the names of the ESXi host systems.</span>
-<span class="sd">    This requires `fill()` to have been called since it operates on the cache.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">esx_mapping</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-</pre></div>
-
+    <pre><code>def list_cached_esxis(self):
+    """
+    List the names of the ESXi host systems.
+    This requires `fill()` to have been called since it operates on the cache.
+    """
+    return self.esx_mapping.keys()
+</code></pre>
   </div>
 </div>
 
@@ -1992,14 +1922,13 @@ This requires <code>fill()</code> to have been called since it operates on the c
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.connection.CachingVSphere.list_cached_vms', this);">Show source &equiv;</a></p>
   <div id="source-isphere.connection.CachingVSphere.list_cached_vms" class="source">
-    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">list_cached_vms</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    List the names of the virtual machines.</span>
-<span class="sd">    This requires `fill()` to have been called since it operates on the cache.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vm_name_to_uuid_mapping</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-</pre></div>
-
+    <pre><code>def list_cached_vms(self):
+    """
+    List the names of the virtual machines.
+    This requires `fill()` to have been called since it operates on the cache.
+    """
+    return self.vm_name_to_uuid_mapping.keys()
+</code></pre>
   </div>
 </div>
 
@@ -2021,14 +1950,13 @@ This requires <code>fill()</code> to have been called since it operates on the c
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.connection.CachingVSphere.retrieve_dvs', this);">Show source &equiv;</a></p>
   <div id="source-isphere.connection.CachingVSphere.retrieve_dvs" class="source">
-    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">retrieve_dvs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dvs_name</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Retrieve a DVS by its name. The name must be in the cache.</span>
-<span class="sd">    - dvs_name (type `str`): The DVS name from the cache.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dvs_mapping</span><span class="p">[</span><span class="n">dvs_name</span><span class="p">]</span>
-</pre></div>
-
+    <pre><code>def retrieve_dvs(self, dvs_name):
+    """
+    Retrieve a DVS by its name. The name must be in the cache.
+    - dvs_name (type `str`): The DVS name from the cache.
+    """
+    return self.dvs_mapping[dvs_name]
+</code></pre>
   </div>
 </div>
 
@@ -2050,14 +1978,13 @@ This requires <code>fill()</code> to have been called since it operates on the c
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.connection.CachingVSphere.retrieve_esx', this);">Show source &equiv;</a></p>
   <div id="source-isphere.connection.CachingVSphere.retrieve_esx" class="source">
-    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">retrieve_esx</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">esx_name</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Retrieve an ESXi host system by its name. The name must be in the cache.</span>
-<span class="sd">    - esx_name (type `str`): The ESX name from the cache.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">esx_mapping</span><span class="p">[</span><span class="n">esx_name</span><span class="p">]</span>
-</pre></div>
-
+    <pre><code>def retrieve_esx(self, esx_name):
+    """
+    Retrieve an ESXi host system by its name. The name must be in the cache.
+    - esx_name (type `str`): The ESX name from the cache.
+    """
+    return self.esx_mapping[esx_name]
+</code></pre>
   </div>
 </div>
 
@@ -2079,15 +2006,34 @@ This requires <code>fill()</code> to have been called since it operates on the c
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.connection.CachingVSphere.retrieve_vm', this);">Show source &equiv;</a></p>
   <div id="source-isphere.connection.CachingVSphere.retrieve_vm" class="source">
-    <div class="codehilite"><pre><span class="nd">@wraps</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">function_with_memoized_calls</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="n">cache_id_for_this_call</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">cache_id_for_this_call</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cached_calls</span><span class="p">:</span>
-        <span class="n">call_result</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="n">cached_calls</span><span class="p">[</span><span class="n">cache_id_for_this_call</span><span class="p">]</span> <span class="o">=</span> <span class="n">call_result</span>
-    <span class="k">return</span> <span class="n">cached_calls</span><span class="p">[</span><span class="n">cache_id_for_this_call</span><span class="p">]</span>
-</pre></div>
+    <pre><code>@wraps(function)
+def function_with_memoized_calls(*args, **kwargs):
+    cache_id_for_this_call = str(args) + str(kwargs)
+    if cache_id_for_this_call not in cached_calls:
+        call_result = function(*args, **kwargs)
+        cached_calls[cache_id_for_this_call] = call_result
+    return cached_calls[cache_id_for_this_call]
+</code></pre>
+  </div>
+</div>
 
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.connection.CachingVSphere.set_custom_attribute">
+    <p>def <span class="ident">set_custom_attribute</span>(</p><p>self, item, attribute_name, attribute_value)</p>
+    </div>
+    
+
+    
+  
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.connection.CachingVSphere.set_custom_attribute', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.connection.CachingVSphere.set_custom_attribute" class="source">
+    <pre><code>def set_custom_attribute(self, item, attribute_name, attribute_value):
+    self.vvc.set_custom_attribute(item, attribute_name, attribute_value)
+</code></pre>
   </div>
 </div>
 
@@ -2109,14 +2055,13 @@ This requires <code>fill()</code> to have been called since it operates on the c
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.connection.CachingVSphere.wait_for_tasks', this);">Show source &equiv;</a></p>
   <div id="source-isphere.connection.CachingVSphere.wait_for_tasks" class="source">
-    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">wait_for_tasks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tasks</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Wait until a collection of tasks completes.</span>
-<span class="sd">    - tasks (type `vim.Task[]`): The tasks which should complete.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">thirdparty_tasks</span><span class="o">.</span><span class="n">wait_for_tasks</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vvc</span><span class="o">.</span><span class="n">service_instance</span><span class="p">,</span> <span class="n">tasks</span><span class="p">)</span>
-</pre></div>
-
+    <pre><code>def wait_for_tasks(self, tasks):
+    """
+    Wait until a collection of tasks completes.
+    - tasks (type `vim.Task[]`): The tasks which should complete.
+    """
+    return thirdparty_tasks.wait_for_tasks(self.vvc.service_instance, tasks)
+</code></pre>
   </div>
 </div>
 
