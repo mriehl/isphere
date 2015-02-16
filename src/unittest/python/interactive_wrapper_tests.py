@@ -293,6 +293,23 @@ class VVCTests(TestCase):
         actual_item = actual_items[0]
         self.assertEqual("any-value", actual_item.parent.child)
 
+    def test_should_set_custom_attribute(self):
+        self.vvc_mock.get_custom_attributes_mapping.return_value = {1: "foo-attribute",
+                                                                    2: "any-attribute-name"}
+
+        VVC.set_custom_attribute(self.vvc_mock, "any-vim-object", "any-attribute-name", "any-target-value")
+
+        custom_fields_manager = self.vvc_mock.get_service.return_value
+        custom_fields_manager.SetField.assert_called_with(key=2, value='any-target-value', entity='any-vim-object')
+
+    def test_should_raise_when_setting_custom_attribute_to_inexisting_name(self):
+        self.vvc_mock.get_custom_attributes_mapping.return_value = {1: "foo-attribute",
+                                                                    2: "bar-attribute"}
+
+        self.assertRaises(
+            NotFound,
+            VVC.set_custom_attribute, self.vvc_mock, "any-vim-object", "name-not-in-mapping-values", "any-target-value")
+
 
 class ItemContainerTests(TestCase):
 

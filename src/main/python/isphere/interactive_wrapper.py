@@ -82,6 +82,19 @@ class VVC(object):
 
         return custom_attributes_mapping
 
+    def set_custom_attribute(self, item, attribute_name, attribute_value):
+        attribute_mapping = self.get_custom_attributes_mapping()
+        attribute_key = None
+        for actual_attribute_key, actual_attribute_name in attribute_mapping.items():
+            if actual_attribute_name == attribute_name:
+                attribute_key = actual_attribute_key
+
+        if not attribute_key:
+            raise NotFound("No custom attribute '{name}' found. Available names: {available_names}".format(
+                name=attribute_name, available_names=attribute_mapping.values()))
+
+        self.get_service("customFieldsManager").SetField(entity=item, key=attribute_key, value=attribute_value)
+
     def find_by_dns_name(self, dns_name, search_for_vms=False):
         """
         Returns an item by searching for its DNS name.

@@ -98,6 +98,9 @@ class CachingVSphere(object):
         """
         return self.vvc.get_custom_attributes_mapping()
 
+    def set_custom_attribute(self, item, attribute_name, attribute_value):
+        self.vvc.set_custom_attribute(item, attribute_name, attribute_value)
+
     def fill(self):
         """
         Fill the item cache. Makes listing item names available and retrieving

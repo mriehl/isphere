@@ -66,6 +66,11 @@ class CachingVSphereTests(TestCase):
         self.assertEqual(actual_item, mock_item)
         self.vvc.find_by_dns_name.assert_called_with("any.dns.name", True)
 
+    def test_should_passthrough_set_custom_attribute(self):
+        self.cache.set_custom_attribute("any-vim-item", "any-name", "any-value")
+
+        self.cache.vvc.set_custom_attribute.assert_called_with('any-vim-item', 'any-name', 'any-value')
+
 
 class ConnectionTests(TestCase):
 
