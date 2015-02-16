@@ -44,6 +44,8 @@ def set_properties(project):
 
     project.set_property('flake8_verbose_output', True)
     project.set_property('flake8_include_test_sources', True)
+    # E501 line too long
+    # E731 do not assign a lambda expression, use a def
     project.set_property('flake8_ignore', 'E501,E731')
     project.set_property('flake8_break_build', True)
 
