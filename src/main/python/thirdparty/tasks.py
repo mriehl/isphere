@@ -8,10 +8,10 @@ http://www.apache.org/licenses/LICENSE-2.0.html
 
 Helper module for task operations.
 """
-__author__ = 'errr'
-
 from pyVmomi import vim
 from pyVmomi import vmodl
+
+__author__ = 'errr'
 
 
 def wait_for_tasks(service_instance, tasks):
