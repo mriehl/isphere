@@ -13,7 +13,7 @@ from __future__ import print_function
 from pyVmomi import vim
 
 from isphere.interactive_wrapper import NotFound
-from isphere.command.core_command import CoreCommand
+from isphere.command.core_command import CoreCommand, _input
 
 
 class VirtualMachineCommand(CoreCommand):
@@ -32,6 +32,38 @@ class VirtualMachineCommand(CoreCommand):
 
         print("Waiting for {0} reset tasks to complete".format(len(reset_tasks)))
         self.cache.wait_for_tasks(reset_tasks)
+
+    def set_custom_attribute_vm(self, patterns):
+        """Usage: set_custom_attribute_vm [pattern1 [pattern2]...]
+        Set custom attributes by name on VMs matching the given ORed name patterns.
+
+        Sample usage: `set_custom_attribute_vm` foo.* ^other-name$
+        """
+        attribute_names = self.cache.get_custom_attributes_mapping().values()
+        formatted_attribute_names = "".join(
+            [
+                "\n\t{attribute_name}".format(attribute_name=attribute_name) for attribute_name in attribute_names
+            ]
+        )
+        print("Available custom attribute names: {names}".format(
+            names=formatted_attribute_names))
+        target_name = _input("Target custom attribute name? ")
+        target_value = _input("Target value for {name}? ".format(
+            name=target_name))
+
+        for vm_name in self.compile_and_yield_vm_patterns(patterns):
+            print("Setting attribute for {vm_name}".format(vm_name=vm_name))
+            try:
+                self.cache.set_custom_attribute(
+                    self.cache.retrieve_vm(vm_name).raw_vm,
+                    target_name,
+                    target_value)
+            except Exception as e:
+                print(self.colorize(
+                    "Got a problem: {problem}".format(problem=e),
+                    "red"))
+                print(self.colorize("Not continuing.", "red"))
+                break
 
     def do_eval_vm(self, line):
         """Usage: eval_vm [pattern1 [pattern2]...] ! <statement>
