@@ -20,7 +20,7 @@ from pyVmomi import vim, vmodl
 __all__ = ["NotFound", "VVC", "ESX", "VM", "DVS"]
 
 
-class NotFound(BaseException):
+class NotFound(Exception):
 
     """
     To be raised when a requested item was not found.
