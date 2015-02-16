@@ -33,7 +33,7 @@ class VirtualMachineCommand(CoreCommand):
         print("Waiting for {0} reset tasks to complete".format(len(reset_tasks)))
         self.cache.wait_for_tasks(reset_tasks)
 
-    def set_custom_attribute_vm(self, patterns):
+    def do_set_custom_attribute_vm(self, patterns):
         """Usage: set_custom_attribute_vm [pattern1 [pattern2]...]
         Set custom attributes by name on VMs matching the given ORed name patterns.
 
