@@ -851,6 +851,71 @@ table {
 
   </style>
 
+  <style type="text/css">
+  .codehilite .hll { background-color: #ffffcc }
+.codehilite  { background: #f8f8f8; }
+.codehilite .c { color: #408080; font-style: italic } /* Comment */
+.codehilite .err { border: 1px solid #FF0000 } /* Error */
+.codehilite .k { color: #008000; font-weight: bold } /* Keyword */
+.codehilite .o { color: #666666 } /* Operator */
+.codehilite .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.codehilite .cp { color: #BC7A00 } /* Comment.Preproc */
+.codehilite .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.codehilite .cs { color: #408080; font-style: italic } /* Comment.Special */
+.codehilite .gd { color: #A00000 } /* Generic.Deleted */
+.codehilite .ge { font-style: italic } /* Generic.Emph */
+.codehilite .gr { color: #FF0000 } /* Generic.Error */
+.codehilite .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.codehilite .gi { color: #00A000 } /* Generic.Inserted */
+.codehilite .go { color: #888888 } /* Generic.Output */
+.codehilite .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.codehilite .gs { font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.codehilite .gt { color: #0044DD } /* Generic.Traceback */
+.codehilite .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.codehilite .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.codehilite .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.codehilite .kp { color: #008000 } /* Keyword.Pseudo */
+.codehilite .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.codehilite .kt { color: #B00040 } /* Keyword.Type */
+.codehilite .m { color: #666666 } /* Literal.Number */
+.codehilite .s { color: #BA2121 } /* Literal.String */
+.codehilite .na { color: #7D9029 } /* Name.Attribute */
+.codehilite .nb { color: #008000 } /* Name.Builtin */
+.codehilite .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.codehilite .no { color: #880000 } /* Name.Constant */
+.codehilite .nd { color: #AA22FF } /* Name.Decorator */
+.codehilite .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.codehilite .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.codehilite .nf { color: #0000FF } /* Name.Function */
+.codehilite .nl { color: #A0A000 } /* Name.Label */
+.codehilite .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.codehilite .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.codehilite .nv { color: #19177C } /* Name.Variable */
+.codehilite .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.codehilite .w { color: #bbbbbb } /* Text.Whitespace */
+.codehilite .mb { color: #666666 } /* Literal.Number.Bin */
+.codehilite .mf { color: #666666 } /* Literal.Number.Float */
+.codehilite .mh { color: #666666 } /* Literal.Number.Hex */
+.codehilite .mi { color: #666666 } /* Literal.Number.Integer */
+.codehilite .mo { color: #666666 } /* Literal.Number.Oct */
+.codehilite .sb { color: #BA2121 } /* Literal.String.Backtick */
+.codehilite .sc { color: #BA2121 } /* Literal.String.Char */
+.codehilite .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.codehilite .s2 { color: #BA2121 } /* Literal.String.Double */
+.codehilite .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.codehilite .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.codehilite .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.codehilite .sx { color: #008000 } /* Literal.String.Other */
+.codehilite .sr { color: #BB6688 } /* Literal.String.Regex */
+.codehilite .s1 { color: #BA2121 } /* Literal.String.Single */
+.codehilite .ss { color: #19177C } /* Literal.String.Symbol */
+.codehilite .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.codehilite .vc { color: #19177C } /* Name.Variable.Class */
+.codehilite .vg { color: #19177C } /* Name.Variable.Global */
+.codehilite .vi { color: #19177C } /* Name.Variable.Instance */
+.codehilite .il { color: #666666 } /* Literal.Number.Integer.Long */
+  </style>
 
   <style type="text/css">
   
@@ -995,11 +1060,11 @@ table {
     <li class="mono"><a href="#isphere.command.VSphereREPL.do_reboot_vm">do_reboot_vm</a></li>
     <li class="mono"><a href="#isphere.command.VSphereREPL.do_reload">do_reload</a></li>
     <li class="mono"><a href="#isphere.command.VSphereREPL.do_reset_vm">do_reset_vm</a></li>
+    <li class="mono"><a href="#isphere.command.VSphereREPL.do_set_custom_attribute_vm">do_set_custom_attribute_vm</a></li>
     <li class="mono"><a href="#isphere.command.VSphereREPL.eval">eval</a></li>
     <li class="mono"><a href="#isphere.command.VSphereREPL.retrieve_dvs">retrieve_dvs</a></li>
     <li class="mono"><a href="#isphere.command.VSphereREPL.retrieve_esx">retrieve_esx</a></li>
     <li class="mono"><a href="#isphere.command.VSphereREPL.retrieve_vm">retrieve_vm</a></li>
-    <li class="mono"><a href="#isphere.command.VSphereREPL.set_custom_attribute_vm">set_custom_attribute_vm</a></li>
     <li class="mono"><a href="#isphere.command.VSphereREPL.yield_dvs_patterns">yield_dvs_patterns</a></li>
     <li class="mono"><a href="#isphere.command.VSphereREPL.yield_esx_patterns">yield_esx_patterns</a></li>
     <li class="mono"><a href="#isphere.command.VSphereREPL.yield_vm_patterns">yield_vm_patterns</a></li>
@@ -1033,65 +1098,66 @@ table {
   
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command', this);">Show source &equiv;</a></p>
   <div id="source-isphere.command" class="source">
-    <pre><code>#  Copyright (c) 2014-2015 Maximilien Riehl <max@riehl.io>
-#  This work is free. You can redistribute it and/or modify it under the
-#  terms of the Do What The Fuck You Want To Public License, Version 2,
-#  as published by Sam Hocevar. See the COPYING.wtfpl file for more details.
-#
+    <div class="codehilite"><pre><span class="c">#  Copyright (c) 2014-2015 Maximilien Riehl &lt;max@riehl.io&gt;</span>
+<span class="c">#  This work is free. You can redistribute it and/or modify it under the</span>
+<span class="c">#  terms of the Do What The Fuck You Want To Public License, Version 2,</span>
+<span class="c">#  as published by Sam Hocevar. See the COPYING.wtfpl file for more details.</span>
+<span class="c">#</span>
 
-"""
-The isphere command classes.
-"""
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">The isphere command classes.</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
-import cmd
+<span class="kn">import</span> <span class="nn">cmd</span>
 
-import cmd2
+<span class="kn">import</span> <span class="nn">cmd2</span>
 
-from isphere.command.core_command import CoreCommand
-from isphere.command.esx_command import EsxCommand
-from isphere.command.virtual_machine_command import VirtualMachineCommand
-from isphere.command.dvs_command import DvsCommand
+<span class="kn">from</span> <span class="nn">isphere.command.core_command</span> <span class="kn">import</span> <span class="n">CoreCommand</span>
+<span class="kn">from</span> <span class="nn">isphere.command.esx_command</span> <span class="kn">import</span> <span class="n">EsxCommand</span>
+<span class="kn">from</span> <span class="nn">isphere.command.virtual_machine_command</span> <span class="kn">import</span> <span class="n">VirtualMachineCommand</span>
+<span class="kn">from</span> <span class="nn">isphere.command.dvs_command</span> <span class="kn">import</span> <span class="n">DvsCommand</span>
 
-__pdoc__ = {}
+<span class="n">__pdoc__</span> <span class="o">=</span> <span class="p">{}</span>
 
 
-class VSphereREPL(EsxCommand, VirtualMachineCommand, DvsCommand):
+<span class="k">class</span> <span class="nc">VSphereREPL</span><span class="p">(</span><span class="n">EsxCommand</span><span class="p">,</span> <span class="n">VirtualMachineCommand</span><span class="p">,</span> <span class="n">DvsCommand</span><span class="p">):</span>
 
-    """
-    The isphere REPL command class.
-    """
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The isphere REPL command class.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-    for field in cmd.Cmd.__dict__.keys():
-        __pdoc__['VSphereREPL.%s' % field] = None
-    for field in cmd2.Cmd.__dict__.keys():
-        __pdoc__['VSphereREPL.%s' % field] = None
+    <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">cmd</span><span class="o">.</span><span class="n">Cmd</span><span class="o">.</span><span class="n">__dict__</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">__pdoc__</span><span class="p">[</span><span class="s">&#39;VSphereREPL.</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">field</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">cmd2</span><span class="o">.</span><span class="n">Cmd</span><span class="o">.</span><span class="n">__dict__</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">__pdoc__</span><span class="p">[</span><span class="s">&#39;VSphereREPL.</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">field</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
 
-    def __init__(self, hostname=None, username=None, password=None):
-        """
-        Create a new REPL that connects to a vmware vCenter.
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hostname</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a new REPL that connects to a vmware vCenter.</span>
 
-        - hostname (type `str`) is the vCenter host name. Can be `None` and will
-          result in a prompt.
-        - username (type `str`) is the vCenter user name. Can be `None` and will
-          result in a prompt.
-        - password (type `str`) is the vCenter password. Can be `None` and will
-          result in a prompt.
-        """
-        self.hostname = hostname
-        self.username = username
-        self.password = password
-        CoreCommand.__init__(self)
+<span class="sd">        - hostname (type `str`) is the vCenter host name. Can be `None` and will</span>
+<span class="sd">          result in a prompt.</span>
+<span class="sd">        - username (type `str`) is the vCenter user name. Can be `None` and will</span>
+<span class="sd">          result in a prompt.</span>
+<span class="sd">        - password (type `str`) is the vCenter password. Can be `None` and will</span>
+<span class="sd">          result in a prompt.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hostname</span> <span class="o">=</span> <span class="n">hostname</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">username</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="n">password</span>
+        <span class="n">CoreCommand</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
-    def cmdloop(self, **kwargs):
-        """
-        Launches a REPL and swallows `KeyboardInterrupt`s.
-        """
-        try:
-            cmd2.Cmd.cmdloop(self, **kwargs)
-        except KeyboardInterrupt:
-            print("Quit with Ctrl+D or `EOF`.")
-            self.cmdloop(**kwargs)
-</code></pre>
+    <span class="k">def</span> <span class="nf">cmdloop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Launches a REPL and swallows `KeyboardInterrupt`s.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">cmd2</span><span class="o">.</span><span class="n">Cmd</span><span class="o">.</span><span class="n">cmdloop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot;Quit with Ctrl+D or `EOF`.&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cmdloop</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+
   </div>
 
   </header>
@@ -1109,43 +1175,44 @@ class VSphereREPL(EsxCommand, VirtualMachineCommand, DvsCommand):
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.VSphereREPL', this);">Show source &equiv;</a></p>
   <div id="source-isphere.command.VSphereREPL" class="source">
-    <pre><code>class VSphereREPL(EsxCommand, VirtualMachineCommand, DvsCommand):
+    <div class="codehilite"><pre><span class="k">class</span> <span class="nc">VSphereREPL</span><span class="p">(</span><span class="n">EsxCommand</span><span class="p">,</span> <span class="n">VirtualMachineCommand</span><span class="p">,</span> <span class="n">DvsCommand</span><span class="p">):</span>
 
-    """
-    The isphere REPL command class.
-    """
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The isphere REPL command class.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-    for field in cmd.Cmd.__dict__.keys():
-        __pdoc__['VSphereREPL.%s' % field] = None
-    for field in cmd2.Cmd.__dict__.keys():
-        __pdoc__['VSphereREPL.%s' % field] = None
+    <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">cmd</span><span class="o">.</span><span class="n">Cmd</span><span class="o">.</span><span class="n">__dict__</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">__pdoc__</span><span class="p">[</span><span class="s">&#39;VSphereREPL.</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">field</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">cmd2</span><span class="o">.</span><span class="n">Cmd</span><span class="o">.</span><span class="n">__dict__</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">__pdoc__</span><span class="p">[</span><span class="s">&#39;VSphereREPL.</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">field</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
 
-    def __init__(self, hostname=None, username=None, password=None):
-        """
-        Create a new REPL that connects to a vmware vCenter.
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hostname</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a new REPL that connects to a vmware vCenter.</span>
 
-        - hostname (type `str`) is the vCenter host name. Can be `None` and will
-          result in a prompt.
-        - username (type `str`) is the vCenter user name. Can be `None` and will
-          result in a prompt.
-        - password (type `str`) is the vCenter password. Can be `None` and will
-          result in a prompt.
-        """
-        self.hostname = hostname
-        self.username = username
-        self.password = password
-        CoreCommand.__init__(self)
+<span class="sd">        - hostname (type `str`) is the vCenter host name. Can be `None` and will</span>
+<span class="sd">          result in a prompt.</span>
+<span class="sd">        - username (type `str`) is the vCenter user name. Can be `None` and will</span>
+<span class="sd">          result in a prompt.</span>
+<span class="sd">        - password (type `str`) is the vCenter password. Can be `None` and will</span>
+<span class="sd">          result in a prompt.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hostname</span> <span class="o">=</span> <span class="n">hostname</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">username</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="n">password</span>
+        <span class="n">CoreCommand</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
-    def cmdloop(self, **kwargs):
-        """
-        Launches a REPL and swallows `KeyboardInterrupt`s.
-        """
-        try:
-            cmd2.Cmd.cmdloop(self, **kwargs)
-        except KeyboardInterrupt:
-            print("Quit with Ctrl+D or `EOF`.")
-            self.cmdloop(**kwargs)
-</code></pre>
+    <span class="k">def</span> <span class="nf">cmdloop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Launches a REPL and swallows `KeyboardInterrupt`s.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">cmd2</span><span class="o">.</span><span class="n">Cmd</span><span class="o">.</span><span class="n">cmdloop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot;Quit with Ctrl+D or `EOF`.&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cmdloop</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+
   </div>
 </div>
 
@@ -1218,9 +1285,10 @@ class VSphereREPL(EsxCommand, VirtualMachineCommand, DvsCommand):
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.VSphereREPL.compile_and_yield_dvs_patterns', this);">Show source &equiv;</a></p>
   <div id="source-isphere.command.VSphereREPL.compile_and_yield_dvs_patterns" class="source">
-    <pre><code>def compile_and_yield_dvs_patterns(self, patterns, risky=True):
-    return self.compile_and_yield_generic_patterns(patterns, self.yield_dvs_patterns, self.cache.number_of_dvses, risky)
-</code></pre>
+    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">compile_and_yield_dvs_patterns</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">patterns</span><span class="p">,</span> <span class="n">risky</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">compile_and_yield_generic_patterns</span><span class="p">(</span><span class="n">patterns</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">yield_dvs_patterns</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">number_of_dvses</span><span class="p">,</span> <span class="n">risky</span><span class="p">)</span>
+</pre></div>
+
   </div>
 </div>
 
@@ -1242,12 +1310,13 @@ class VSphereREPL(EsxCommand, VirtualMachineCommand, DvsCommand):
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.VSphereREPL.compile_and_yield_esx_patterns', this);">Show source &equiv;</a></p>
   <div id="source-isphere.command.VSphereREPL.compile_and_yield_esx_patterns" class="source">
-    <pre><code>def compile_and_yield_esx_patterns(self, patterns, risky=True):
-    return self.compile_and_yield_generic_patterns(patterns,
-                                                   self.yield_esx_patterns,
-                                                   self.cache.number_of_esxis,
-                                                   risky)
-</code></pre>
+    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">compile_and_yield_esx_patterns</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">patterns</span><span class="p">,</span> <span class="n">risky</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">compile_and_yield_generic_patterns</span><span class="p">(</span><span class="n">patterns</span><span class="p">,</span>
+                                                   <span class="bp">self</span><span class="o">.</span><span class="n">yield_esx_patterns</span><span class="p">,</span>
+                                                   <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">number_of_esxis</span><span class="p">,</span>
+                                                   <span class="n">risky</span><span class="p">)</span>
+</pre></div>
+
   </div>
 </div>
 
@@ -1281,32 +1350,33 @@ Optionally (yes by default), warns and prompts in case no pattern was given.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.VSphereREPL.compile_and_yield_generic_patterns', this);">Show source &equiv;</a></p>
   <div id="source-isphere.command.VSphereREPL.compile_and_yield_generic_patterns" class="source">
-    <pre><code>def compile_and_yield_generic_patterns(self, patterns, pattern_generator, item_count, risky=True):
-    """
-    Compiles and returns regular expression patterns. Swallows the exception
-    and complains if the patterns are invalid.
-    Optionally (yes by default), warns and prompts in case no pattern was given.
-    - patterns (type `str`): A space delimited sequence of regular expression patterns.
-    - pattern_generator (type `callable`): A function that, given a list of patterns,
-      will return matching item names.
-    - item_count (type `int`): The number of available items before pattern
-      matching.
-    - risky (type `bool`, default `True`): Whether to warn when no patterns
-      are given.
-    """
-    if not patterns and risky:
-        unformatted_message = "No pattern specified - you're doing this to all {count} items. Proceed? (y/N) "
-        message = unformatted_message.format(count=self.colorize(str(item_count), "red"))
-        if not _input(message).lower() == "y":
-            return []
-    actual_patterns = patterns.strip().split(" ")
-    try:
-        compiled_patterns = [re.compile(pattern) for pattern in actual_patterns]
-    except Exception as e:
-        print(self.colorize("Invalid regular expression patterns: {0}".format(e), "red"))
-        return []
-    return pattern_generator(compiled_patterns)
-</code></pre>
+    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">compile_and_yield_generic_patterns</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">patterns</span><span class="p">,</span> <span class="n">pattern_generator</span><span class="p">,</span> <span class="n">item_count</span><span class="p">,</span> <span class="n">risky</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compiles and returns regular expression patterns. Swallows the exception</span>
+<span class="sd">    and complains if the patterns are invalid.</span>
+<span class="sd">    Optionally (yes by default), warns and prompts in case no pattern was given.</span>
+<span class="sd">    - patterns (type `str`): A space delimited sequence of regular expression patterns.</span>
+<span class="sd">    - pattern_generator (type `callable`): A function that, given a list of patterns,</span>
+<span class="sd">      will return matching item names.</span>
+<span class="sd">    - item_count (type `int`): The number of available items before pattern</span>
+<span class="sd">      matching.</span>
+<span class="sd">    - risky (type `bool`, default `True`): Whether to warn when no patterns</span>
+<span class="sd">      are given.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">patterns</span> <span class="ow">and</span> <span class="n">risky</span><span class="p">:</span>
+        <span class="n">unformatted_message</span> <span class="o">=</span> <span class="s">&quot;No pattern specified - you&#39;re doing this to all {count} items. Proceed? (y/N) &quot;</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="n">unformatted_message</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">colorize</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">item_count</span><span class="p">),</span> <span class="s">&quot;red&quot;</span><span class="p">))</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">_input</span><span class="p">(</span><span class="n">message</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s">&quot;y&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+    <span class="n">actual_patterns</span> <span class="o">=</span> <span class="n">patterns</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">compiled_patterns</span> <span class="o">=</span> <span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span> <span class="k">for</span> <span class="n">pattern</span> <span class="ow">in</span> <span class="n">actual_patterns</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">colorize</span><span class="p">(</span><span class="s">&quot;Invalid regular expression patterns: {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">),</span> <span class="s">&quot;red&quot;</span><span class="p">))</span>
+        <span class="k">return</span> <span class="p">[]</span>
+    <span class="k">return</span> <span class="n">pattern_generator</span><span class="p">(</span><span class="n">compiled_patterns</span><span class="p">)</span>
+</pre></div>
+
   </div>
 </div>
 
@@ -1328,12 +1398,13 @@ Optionally (yes by default), warns and prompts in case no pattern was given.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.VSphereREPL.compile_and_yield_vm_patterns', this);">Show source &equiv;</a></p>
   <div id="source-isphere.command.VSphereREPL.compile_and_yield_vm_patterns" class="source">
-    <pre><code>def compile_and_yield_vm_patterns(self, patterns, risky=True):
-    return self.compile_and_yield_generic_patterns(patterns,
-                                                   self.yield_vm_patterns,
-                                                   self.cache.number_of_vms,
-                                                   risky)
-</code></pre>
+    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">compile_and_yield_vm_patterns</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">patterns</span><span class="p">,</span> <span class="n">risky</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">compile_and_yield_generic_patterns</span><span class="p">(</span><span class="n">patterns</span><span class="p">,</span>
+                                                   <span class="bp">self</span><span class="o">.</span><span class="n">yield_vm_patterns</span><span class="p">,</span>
+                                                   <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">number_of_vms</span><span class="p">,</span>
+                                                   <span class="n">risky</span><span class="p">)</span>
+</pre></div>
+
   </div>
 </div>
 
@@ -1358,19 +1429,20 @@ Show alarm information for vms matching the given ORed name patterns.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.VSphereREPL.do_alarms_vm', this);">Show source &equiv;</a></p>
   <div id="source-isphere.command.VSphereREPL.do_alarms_vm" class="source">
-    <pre><code>def do_alarms_vm(self, patterns):
-    """Usage: alarms_vm [pattern1 [pattern2]...]
-    Show alarm information for vms matching the given ORed name patterns.
-    Sample usage: `alarms MY_VM_NAME`
-    """
-    for vm_name in self.compile_and_yield_vm_patterns(patterns):
-        print("-" * 70)
-        print("Alarms for {0}".format(vm_name))
-        alarms = self.retrieve_vm(vm_name).triggeredAlarmState
-        for alarm in alarms:
-            print("\talarm_moref: {0}".format(alarm.key.split('.')[0]))
-            print("\talarm status: {0}".format(alarm.overallStatus))
-</code></pre>
+    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">do_alarms_vm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">patterns</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Usage: alarms_vm [pattern1 [pattern2]...]</span>
+<span class="sd">    Show alarm information for vms matching the given ORed name patterns.</span>
+<span class="sd">    Sample usage: `alarms MY_VM_NAME`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">vm_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">compile_and_yield_vm_patterns</span><span class="p">(</span><span class="n">patterns</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">70</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;Alarms for {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">vm_name</span><span class="p">))</span>
+        <span class="n">alarms</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">retrieve_vm</span><span class="p">(</span><span class="n">vm_name</span><span class="p">)</span><span class="o">.</span><span class="n">triggeredAlarmState</span>
+        <span class="k">for</span> <span class="n">alarm</span> <span class="ow">in</span> <span class="n">alarms</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s">alarm_moref: {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">alarm</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;.&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\t</span><span class="s">alarm status: {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">alarm</span><span class="o">.</span><span class="n">overallStatus</span><span class="p">))</span>
+</pre></div>
+
   </div>
 </div>
 
@@ -1396,18 +1468,19 @@ Careful, there's lots of output!</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.VSphereREPL.do_config_vm', this);">Show source &equiv;</a></p>
   <div id="source-isphere.command.VSphereREPL.do_config_vm" class="source">
-    <pre><code>def do_config_vm(self, patterns):
-    """Usage: config_vm [pattern1 [pattern2]...]
-    Show the full config of vms matching the given ORed name patterns.
-    Careful, there's lots of output!
-    Sample usage: `config MY_VM_NAME`
-    """
-    for vm_name in self.compile_and_yield_vm_patterns(patterns):
-        print("-" * 70)
-        print("Config for {0}:".format(vm_name))
-        print(self.retrieve_vm(vm_name).config)
-        print()
-</code></pre>
+    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">do_config_vm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">patterns</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Usage: config_vm [pattern1 [pattern2]...]</span>
+<span class="sd">    Show the full config of vms matching the given ORed name patterns.</span>
+<span class="sd">    Careful, there&#39;s lots of output!</span>
+<span class="sd">    Sample usage: `config MY_VM_NAME`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">vm_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">compile_and_yield_vm_patterns</span><span class="p">(</span><span class="n">patterns</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">70</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;Config for {0}:&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">vm_name</span><span class="p">))</span>
+        <span class="k">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">retrieve_vm</span><span class="p">(</span><span class="n">vm_name</span><span class="p">)</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">()</span>
+</pre></div>
+
   </div>
 </div>
 
@@ -1440,21 +1513,22 @@ dvs object by using the variable <code>dvs</code>.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.VSphereREPL.do_eval_dvs', this);">Show source &equiv;</a></p>
   <div id="source-isphere.command.VSphereREPL.do_eval_dvs" class="source">
-    <pre><code>def do_eval_dvs(self, line):
-    """Usage: eval_dvs [pattern1 [pattern2]...] ! <statement>
-    Evaluate a statement of python code. You can access the
-    dvs object by using the variable `dvs`.
-    Calling the function `no_output` will not produce any output (use this
-                                                                  to filter).
-    Sample usage:
-    * `eval MY_DVS_NAME ! filter(lambda field_name: callable(getattr(dvs, field_name)) and not field_name.startswith("_"), dir(dvs))`
-      ^ shows 'public' methods we can call on the dvs object
-    * `eval MY_DVS_NAME ! dvs.name`
-    * `eval_dvs ! dvs.overallStatus if dvs.overallStatus != "green" else no_output()`
-      ^ shows overall status of dvs hosts unless they have the "green" status
-    """
-    self.eval(line, self.compile_and_yield_dvs_patterns, self.retrieve_dvs, "dvs")
-</code></pre>
+    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">do_eval_dvs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Usage: eval_dvs [pattern1 [pattern2]...] ! &lt;statement&gt;</span>
+<span class="sd">    Evaluate a statement of python code. You can access the</span>
+<span class="sd">    dvs object by using the variable `dvs`.</span>
+<span class="sd">    Calling the function `no_output` will not produce any output (use this</span>
+<span class="sd">                                                                  to filter).</span>
+<span class="sd">    Sample usage:</span>
+<span class="sd">    * `eval MY_DVS_NAME ! filter(lambda field_name: callable(getattr(dvs, field_name)) and not field_name.startswith(&quot;_&quot;), dir(dvs))`</span>
+<span class="sd">      ^ shows &#39;public&#39; methods we can call on the dvs object</span>
+<span class="sd">    * `eval MY_DVS_NAME ! dvs.name`</span>
+<span class="sd">    * `eval_dvs ! dvs.overallStatus if dvs.overallStatus != &quot;green&quot; else no_output()`</span>
+<span class="sd">      ^ shows overall status of dvs hosts unless they have the &quot;green&quot; status</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">compile_and_yield_dvs_patterns</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">retrieve_dvs</span><span class="p">,</span> <span class="s">&quot;dvs&quot;</span><span class="p">)</span>
+</pre></div>
+
   </div>
 </div>
 
@@ -1487,21 +1561,22 @@ esx object by using the variable <code>esx</code>.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.VSphereREPL.do_eval_esx', this);">Show source &equiv;</a></p>
   <div id="source-isphere.command.VSphereREPL.do_eval_esx" class="source">
-    <pre><code>def do_eval_esx(self, line):
-    """Usage: eval_esx [pattern1 [pattern2]...] ! <statement>
-    Evaluate a statement of python code. You can access the
-    esx object by using the variable `esx`.
-    Calling the function `no_output` will not produce any output (use this
-                                                                  to filter).
-    Sample usage:
-    * `eval MY_ESX_NAME ! filter(lambda field_name: callable(getattr(esx, field_name)) and not field_name.startswith("_"), dir(esx))`
-      ^ shows 'public' methods we can call on the esx object
-    * `eval MY_ESX_NAME ! esx.name`
-    * `eval_esx ! esx.overallStatus if esx.overallStatus != "green" else no_output()`
-      ^ shows overall status of esx hosts unless they have the "green" status
-    """
-    self.eval(line, self.compile_and_yield_esx_patterns, self.retrieve_esx, "esx")
-</code></pre>
+    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">do_eval_esx</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Usage: eval_esx [pattern1 [pattern2]...] ! &lt;statement&gt;</span>
+<span class="sd">    Evaluate a statement of python code. You can access the</span>
+<span class="sd">    esx object by using the variable `esx`.</span>
+<span class="sd">    Calling the function `no_output` will not produce any output (use this</span>
+<span class="sd">                                                                  to filter).</span>
+<span class="sd">    Sample usage:</span>
+<span class="sd">    * `eval MY_ESX_NAME ! filter(lambda field_name: callable(getattr(esx, field_name)) and not field_name.startswith(&quot;_&quot;), dir(esx))`</span>
+<span class="sd">      ^ shows &#39;public&#39; methods we can call on the esx object</span>
+<span class="sd">    * `eval MY_ESX_NAME ! esx.name`</span>
+<span class="sd">    * `eval_esx ! esx.overallStatus if esx.overallStatus != &quot;green&quot; else no_output()`</span>
+<span class="sd">      ^ shows overall status of esx hosts unless they have the &quot;green&quot; status</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">compile_and_yield_esx_patterns</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">retrieve_esx</span><span class="p">,</span> <span class="s">&quot;esx&quot;</span><span class="p">)</span>
+</pre></div>
+
   </div>
 </div>
 
@@ -1533,20 +1608,21 @@ Calling the function <code>no_output</code> will not produce any output (use thi
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.VSphereREPL.do_eval_vm', this);">Show source &equiv;</a></p>
   <div id="source-isphere.command.VSphereREPL.do_eval_vm" class="source">
-    <pre><code>def do_eval_vm(self, line):
-    """Usage: eval_vm [pattern1 [pattern2]...] ! <statement>
-    Evaluate a statement of python code. You can access the
-    virtual machine object by using the variable `vm`.
-    Calling the function `no_output` will not produce any output (use this
-                                                                  to filter).
-    Sample usage:
-    * `eval MY_VM_NAME ! filter(lambda field_name: callable(getattr(vm, field_name)) and not field_name.startswith("_"), dir(vm))`
-      ^ shows 'public' methods we can call on the vm object
-    * `eval MY_VM_NAME ! vm.name`
-    * `eval MY_VM_NAME ! vm.RebootGuest()`
-    """
-    self.eval(line, self.compile_and_yield_vm_patterns, self.retrieve_vm, "vm")
-</code></pre>
+    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">do_eval_vm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Usage: eval_vm [pattern1 [pattern2]...] ! &lt;statement&gt;</span>
+<span class="sd">    Evaluate a statement of python code. You can access the</span>
+<span class="sd">    virtual machine object by using the variable `vm`.</span>
+<span class="sd">    Calling the function `no_output` will not produce any output (use this</span>
+<span class="sd">                                                                  to filter).</span>
+<span class="sd">    Sample usage:</span>
+<span class="sd">    * `eval MY_VM_NAME ! filter(lambda field_name: callable(getattr(vm, field_name)) and not field_name.startswith(&quot;_&quot;), dir(vm))`</span>
+<span class="sd">      ^ shows &#39;public&#39; methods we can call on the vm object</span>
+<span class="sd">    * `eval MY_VM_NAME ! vm.name`</span>
+<span class="sd">    * `eval MY_VM_NAME ! vm.RebootGuest()`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">compile_and_yield_vm_patterns</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">retrieve_vm</span><span class="p">,</span> <span class="s">&quot;vm&quot;</span><span class="p">)</span>
+</pre></div>
+
   </div>
 </div>
 
@@ -1571,29 +1647,30 @@ Show quick info about vms matching the given ORed name patterns.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.VSphereREPL.do_info_vm', this);">Show source &equiv;</a></p>
   <div id="source-isphere.command.VSphereREPL.do_info_vm" class="source">
-    <pre><code>def do_info_vm(self, patterns):
-    """Usage: info_vm [pattern1 [pattern2]...]
-    Show quick info about vms matching the given ORed name patterns.
-    Sample usage: `info MY_VM_NAME`
-    """
-    custom_attributes_mapping = self.cache.get_custom_attributes_mapping()
-    for vm_name in self.compile_and_yield_vm_patterns(patterns):
-        vm = self.retrieve_vm(vm_name)
-        print("-" * 70)
-        print("Name: {0}".format(vm.name))
-        print("ESXi Host: {0}".format(vm.get_esx_host().name))
-        print("Path to VM: {0}".format(vm.summary.config.vmPathName))
-        print("BIOS UUID: {0}".format(vm.config.uuid))
-        print("CPUs: {0}".format(vm.config.hardware.numCPU))
-        print("MemoryMB: {0}".format(vm.config.hardware.memoryMB))
-        print("Guest PowerState: {0}".format(vm.guest.guestState))
-        print("Guest Full Name: {0}".format(vm.config.guestFullName))
-        print("Guest Container Type: {0}".format(vm.config.guestId))
-        print("Container Version: {0}".format(vm.config.version))
-        for custom_field in vm.customValue:
-            print("{0}: {1}".format(custom_attributes_mapping[custom_field.key], custom_field.value))
-        print()
-</code></pre>
+    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">do_info_vm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">patterns</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Usage: info_vm [pattern1 [pattern2]...]</span>
+<span class="sd">    Show quick info about vms matching the given ORed name patterns.</span>
+<span class="sd">    Sample usage: `info MY_VM_NAME`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">custom_attributes_mapping</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">get_custom_attributes_mapping</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">vm_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">compile_and_yield_vm_patterns</span><span class="p">(</span><span class="n">patterns</span><span class="p">):</span>
+        <span class="n">vm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">retrieve_vm</span><span class="p">(</span><span class="n">vm_name</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">70</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;Name: {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">vm</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;ESXi Host: {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">vm</span><span class="o">.</span><span class="n">get_esx_host</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;Path to VM: {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">vm</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">vmPathName</span><span class="p">))</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;BIOS UUID: {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">vm</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">uuid</span><span class="p">))</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;CPUs: {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">vm</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">hardware</span><span class="o">.</span><span class="n">numCPU</span><span class="p">))</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;MemoryMB: {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">vm</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">hardware</span><span class="o">.</span><span class="n">memoryMB</span><span class="p">))</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;Guest PowerState: {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">vm</span><span class="o">.</span><span class="n">guest</span><span class="o">.</span><span class="n">guestState</span><span class="p">))</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;Guest Full Name: {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">vm</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">guestFullName</span><span class="p">))</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;Guest Container Type: {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">vm</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">guestId</span><span class="p">))</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;Container Version: {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">vm</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">version</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">custom_field</span> <span class="ow">in</span> <span class="n">vm</span><span class="o">.</span><span class="n">customValue</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot;{0}: {1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">custom_attributes_mapping</span><span class="p">[</span><span class="n">custom_field</span><span class="o">.</span><span class="n">key</span><span class="p">],</span> <span class="n">custom_field</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
+        <span class="k">print</span><span class="p">()</span>
+</pre></div>
+
   </div>
 </div>
 
@@ -1620,16 +1697,17 @@ List the dvs names matching the given ORed name patterns.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.VSphereREPL.do_list_dvs', this);">Show source &equiv;</a></p>
   <div id="source-isphere.command.VSphereREPL.do_list_dvs" class="source">
-    <pre><code>def do_list_dvs(self, patterns):
-    """Usage: list_dvs [pattern1 [pattern2]...]
-    List the dvs names matching the given ORed name patterns.
-    Sample usage:
-    * `list_dvs`
-    * `list_dvs .*`
-    """
-    for dvs_name in self.compile_and_yield_dvs_patterns(patterns, risky=False):
-        print(dvs_name)
-</code></pre>
+    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">do_list_dvs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">patterns</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Usage: list_dvs [pattern1 [pattern2]...]</span>
+<span class="sd">    List the dvs names matching the given ORed name patterns.</span>
+<span class="sd">    Sample usage:</span>
+<span class="sd">    * `list_dvs`</span>
+<span class="sd">    * `list_dvs .*`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">dvs_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">compile_and_yield_dvs_patterns</span><span class="p">(</span><span class="n">patterns</span><span class="p">,</span> <span class="n">risky</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">dvs_name</span><span class="p">)</span>
+</pre></div>
+
   </div>
 </div>
 
@@ -1657,17 +1735,18 @@ List the esx names matching the given ORed name patterns.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.VSphereREPL.do_list_esx', this);">Show source &equiv;</a></p>
   <div id="source-isphere.command.VSphereREPL.do_list_esx" class="source">
-    <pre><code>def do_list_esx(self, patterns):
-    """Usage: list [pattern1 [pattern2]...]
-    List the esx names matching the given ORed name patterns.
-    Sample usage:
-    * `list dev.* ...ybc01`
-    * `list`
-    * `list .*`
-    """
-    for esx_name in self.compile_and_yield_esx_patterns(patterns, risky=False):
-        print(esx_name)
-</code></pre>
+    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">do_list_esx</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">patterns</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Usage: list [pattern1 [pattern2]...]</span>
+<span class="sd">    List the esx names matching the given ORed name patterns.</span>
+<span class="sd">    Sample usage:</span>
+<span class="sd">    * `list dev.* ...ybc01`</span>
+<span class="sd">    * `list`</span>
+<span class="sd">    * `list .*`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">esx_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">compile_and_yield_esx_patterns</span><span class="p">(</span><span class="n">patterns</span><span class="p">,</span> <span class="n">risky</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">esx_name</span><span class="p">)</span>
+</pre></div>
+
   </div>
 </div>
 
@@ -1695,17 +1774,18 @@ List the vm names matching the given ORed name patterns.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.VSphereREPL.do_list_vm', this);">Show source &equiv;</a></p>
   <div id="source-isphere.command.VSphereREPL.do_list_vm" class="source">
-    <pre><code>def do_list_vm(self, patterns):
-    """Usage: list [pattern1 [pattern2]...]
-    List the vm names matching the given ORed name patterns.
-    Sample usage:
-    * `list dev.* ...ybc01`
-    * `list`
-    * `list .*`
-    """
-    for vm_name in self.compile_and_yield_vm_patterns(patterns, risky=False):
-        print(vm_name)
-</code></pre>
+    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">do_list_vm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">patterns</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Usage: list [pattern1 [pattern2]...]</span>
+<span class="sd">    List the vm names matching the given ORed name patterns.</span>
+<span class="sd">    Sample usage:</span>
+<span class="sd">    * `list dev.* ...ybc01`</span>
+<span class="sd">    * `list`</span>
+<span class="sd">    * `list .*`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">vm_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">compile_and_yield_vm_patterns</span><span class="p">(</span><span class="n">patterns</span><span class="p">,</span> <span class="n">risky</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">vm_name</span><span class="p">)</span>
+</pre></div>
+
   </div>
 </div>
 
@@ -1730,35 +1810,36 @@ Migrate one or several VMs to another ESX host by name.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.VSphereREPL.do_migrate_vm', this);">Show source &equiv;</a></p>
   <div id="source-isphere.command.VSphereREPL.do_migrate_vm" class="source">
-    <pre><code>def do_migrate_vm(self, line):
-    """Usage: migrate_vm [pattern1 [pattern2]...] ! TARGET_ESX_NAME
-    Migrate one or several VMs to another ESX host by name.
-    Sample usage: `migrate MYVNNAME ! ESX_FQDN`
-    """
-    try:
-        patterns_and_esx_name = line.split("!", 1)
-        patterns = patterns_and_esx_name[0]
-        esx_name = patterns_and_esx_name[1].strip()
-    except IndexError:
-        print("Looks like your input was malformed. Try `help migrate_vm`.")
-        return
-    if not esx_name:
-        print("No target esx name given. Try `help migrate_vm`.")
-        return
-    try:
-        # TODO use esx from cache, allows for better error messages (eg no fqdn)
-        esx_host = self.cache.find_by_dns_name(esx_name)
-    except NotFound:
-        print("Target esx host '{0}' not found, maybe try with FQDN?".format(esx_name))
-        return
-    for vm_name in self.compile_and_yield_vm_patterns(patterns):
-        relocate_spec = vim.vm.RelocateSpec(host=esx_host)
-        print("Relocating {0} to {1}".format(vm_name, esx_name))
-        try:
-            self.retrieve_vm(vm_name).Relocate(relocate_spec)
-        except Exception as e:
-            print("Relocation failed: {0}".format(e))
-</code></pre>
+    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">do_migrate_vm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Usage: migrate_vm [pattern1 [pattern2]...] ! TARGET_ESX_NAME</span>
+<span class="sd">    Migrate one or several VMs to another ESX host by name.</span>
+<span class="sd">    Sample usage: `migrate MYVNNAME ! ESX_FQDN`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">patterns_and_esx_name</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;!&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">patterns</span> <span class="o">=</span> <span class="n">patterns_and_esx_name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">esx_name</span> <span class="o">=</span> <span class="n">patterns_and_esx_name</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;Looks like your input was malformed. Try `help migrate_vm`.&quot;</span><span class="p">)</span>
+        <span class="k">return</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">esx_name</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;No target esx name given. Try `help migrate_vm`.&quot;</span><span class="p">)</span>
+        <span class="k">return</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c"># TODO use esx from cache, allows for better error messages (eg no fqdn)</span>
+        <span class="n">esx_host</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">find_by_dns_name</span><span class="p">(</span><span class="n">esx_name</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">NotFound</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;Target esx host &#39;{0}&#39; not found, maybe try with FQDN?&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">esx_name</span><span class="p">))</span>
+        <span class="k">return</span>
+    <span class="k">for</span> <span class="n">vm_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">compile_and_yield_vm_patterns</span><span class="p">(</span><span class="n">patterns</span><span class="p">):</span>
+        <span class="n">relocate_spec</span> <span class="o">=</span> <span class="n">vim</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">RelocateSpec</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">esx_host</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;Relocating {0} to {1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">vm_name</span><span class="p">,</span> <span class="n">esx_name</span><span class="p">))</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">retrieve_vm</span><span class="p">(</span><span class="n">vm_name</span><span class="p">)</span><span class="o">.</span><span class="n">Relocate</span><span class="p">(</span><span class="n">relocate_spec</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot;Relocation failed: {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+</pre></div>
+
   </div>
 </div>
 
@@ -1783,15 +1864,16 @@ Soft reboot vms matching the given ORed name patterns.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.VSphereREPL.do_reboot_vm', this);">Show source &equiv;</a></p>
   <div id="source-isphere.command.VSphereREPL.do_reboot_vm" class="source">
-    <pre><code>def do_reboot_vm(self, patterns):
-    """Usage: reboot_vm [pattern1 [pattern2]...]
-    Soft reboot vms matching the given ORed name patterns.
-    Sample usage: `reboot MY_VM_NAME`
-    """
-    for vm_name in self.compile_and_yield_vm_patterns(patterns):
-        print("Asking {0} to reboot".format(vm_name))
-        self.retrieve_vm(vm_name).RebootGuest()
-</code></pre>
+    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">do_reboot_vm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">patterns</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Usage: reboot_vm [pattern1 [pattern2]...]</span>
+<span class="sd">    Soft reboot vms matching the given ORed name patterns.</span>
+<span class="sd">    Sample usage: `reboot MY_VM_NAME`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">vm_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">compile_and_yield_vm_patterns</span><span class="p">(</span><span class="n">patterns</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;Asking {0} to reboot&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">vm_name</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">retrieve_vm</span><span class="p">(</span><span class="n">vm_name</span><span class="p">)</span><span class="o">.</span><span class="n">RebootGuest</span><span class="p">()</span>
+</pre></div>
+
   </div>
 </div>
 
@@ -1816,13 +1898,14 @@ Reload VM cache from the vSphere server.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.VSphereREPL.do_reload', this);">Show source &equiv;</a></p>
   <div id="source-isphere.command.VSphereREPL.do_reload" class="source">
-    <pre><code>def do_reload(self, _):
-    """Usage: reload
-    Reload VM cache from the vSphere server.
-    Sample usage: `reload`
-    """
-    self.preloop()
-</code></pre>
+    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">do_reload</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Usage: reload</span>
+<span class="sd">    Reload VM cache from the vSphere server.</span>
+<span class="sd">    Sample usage: `reload`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">preloop</span><span class="p">()</span>
+</pre></div>
+
   </div>
 </div>
 
@@ -1847,19 +1930,75 @@ Reset vms matching the given ORed name patterns.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.VSphereREPL.do_reset_vm', this);">Show source &equiv;</a></p>
   <div id="source-isphere.command.VSphereREPL.do_reset_vm" class="source">
-    <pre><code>def do_reset_vm(self, patterns):
-    """Usage: reset_vm [pattern1 [pattern2]...]
-    Reset vms matching the given ORed name patterns.
-    Sample usage: `reset MY_VM_NAME OTHERNAME`
-    """
-    reset_tasks = []
-    for vm_name in self.compile_and_yield_vm_patterns(patterns):
-        print("Launching reset task for {0}".format(vm_name))
-        reset_task = self.retrieve_vm(vm_name).ResetVM_Task()
-        reset_tasks.append(reset_task)
-    print("Waiting for {0} reset tasks to complete".format(len(reset_tasks)))
-    self.cache.wait_for_tasks(reset_tasks)
-</code></pre>
+    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">do_reset_vm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">patterns</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Usage: reset_vm [pattern1 [pattern2]...]</span>
+<span class="sd">    Reset vms matching the given ORed name patterns.</span>
+<span class="sd">    Sample usage: `reset MY_VM_NAME OTHERNAME`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">reset_tasks</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">vm_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">compile_and_yield_vm_patterns</span><span class="p">(</span><span class="n">patterns</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;Launching reset task for {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">vm_name</span><span class="p">))</span>
+        <span class="n">reset_task</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">retrieve_vm</span><span class="p">(</span><span class="n">vm_name</span><span class="p">)</span><span class="o">.</span><span class="n">ResetVM_Task</span><span class="p">()</span>
+        <span class="n">reset_tasks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reset_task</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;Waiting for {0} reset tasks to complete&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">reset_tasks</span><span class="p">)))</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">wait_for_tasks</span><span class="p">(</span><span class="n">reset_tasks</span><span class="p">)</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.command.VSphereREPL.do_set_custom_attribute_vm">
+    <p>def <span class="ident">do_set_custom_attribute_vm</span>(</p><p>self, patterns)</p>
+    </div>
+    
+    <p class="inheritance">
+     <strong>Inheritance:</strong>
+       <code><a href="virtual_machine_command.m.html#isphere.command.virtual_machine_command.VirtualMachineCommand">isphere.command.virtual_machine_command.VirtualMachineCommand</a></code>.<code><a href="virtual_machine_command.m.html#isphere.command.virtual_machine_command.VirtualMachineCommand.do_set_custom_attribute_vm">isphere.command.virtual_machine_command.VirtualMachineCommand.do_set_custom_attribute_vm</a></code>
+    </p>
+
+    
+  
+    <div class="desc inherited"><p>Usage: set_custom_attribute_vm [pattern1 [pattern2]...]
+Set custom attributes by name on VMs matching the given ORed name patterns.</p>
+<p>Sample usage: <code>set_custom_attribute_vm</code> foo.* ^other-name$</p></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.VSphereREPL.do_set_custom_attribute_vm', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.command.VSphereREPL.do_set_custom_attribute_vm" class="source">
+    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">do_set_custom_attribute_vm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">patterns</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Usage: set_custom_attribute_vm [pattern1 [pattern2]...]</span>
+<span class="sd">    Set custom attributes by name on VMs matching the given ORed name patterns.</span>
+<span class="sd">    Sample usage: `set_custom_attribute_vm` foo.* ^other-name$</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">attribute_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">get_custom_attributes_mapping</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+    <span class="n">formatted_attribute_names</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="s">&quot;</span><span class="se">\n\t</span><span class="s">{attribute_name}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">attribute_name</span><span class="o">=</span><span class="n">attribute_name</span><span class="p">)</span> <span class="k">for</span> <span class="n">attribute_name</span> <span class="ow">in</span> <span class="n">attribute_names</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;Available custom attribute names: {names}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="n">names</span><span class="o">=</span><span class="n">formatted_attribute_names</span><span class="p">))</span>
+    <span class="n">target_name</span> <span class="o">=</span> <span class="n">_input</span><span class="p">(</span><span class="s">&quot;Target custom attribute name? &quot;</span><span class="p">)</span>
+    <span class="n">target_value</span> <span class="o">=</span> <span class="n">_input</span><span class="p">(</span><span class="s">&quot;Target value for {name}? &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="n">target_name</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">vm_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">compile_and_yield_vm_patterns</span><span class="p">(</span><span class="n">patterns</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;Setting attribute for {vm_name}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">vm_name</span><span class="o">=</span><span class="n">vm_name</span><span class="p">))</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">set_custom_attribute</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">retrieve_vm</span><span class="p">(</span><span class="n">vm_name</span><span class="p">)</span><span class="o">.</span><span class="n">raw_vm</span><span class="p">,</span>
+                <span class="n">target_name</span><span class="p">,</span>
+                <span class="n">target_value</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">colorize</span><span class="p">(</span>
+                <span class="s">&quot;Got a problem: {problem}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">problem</span><span class="o">=</span><span class="n">e</span><span class="p">),</span>
+                <span class="s">&quot;red&quot;</span><span class="p">))</span>
+            <span class="k">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">colorize</span><span class="p">(</span><span class="s">&quot;Not continuing.&quot;</span><span class="p">,</span> <span class="s">&quot;red&quot;</span><span class="p">))</span>
+            <span class="k">break</span>
+</pre></div>
+
   </div>
 </div>
 
@@ -1894,54 +2033,55 @@ be bound to the given name for each of these statements.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.VSphereREPL.eval', this);">Show source &equiv;</a></p>
   <div id="source-isphere.command.VSphereREPL.eval" class="source">
-    <pre><code>def eval(self, line, item_name_generator, item_retriever, local_name):
-    """
-    Run an eval command. This will retrieve items based on given patterns
-    and execute a python statement against each of these items. The item will
-    be bound to the given name for each of these statements.
-    - line (type `str`): The text line provided by the user. The format should
-      be as follows: <patterns> ! <statement>
-    - item_name_generator (type `callable`): A function that should generate
-      an iterable that represents the available item names for pattern matching.
-    - item_retriever (type `callable`): A function that takes an item name
-      generated by `item_name_generator` as input and returns the actual item.
-    - local_name (type `str`): The name to bind the item to when evaluating
-      the statement.
-    """
-    try:
-        patterns_and_statement = line.split("!", 1)
-        patterns = patterns_and_statement[0]
-        statement = patterns_and_statement[1]
-    except IndexError:
-        print(self.colorize("Looks like your input was malformed. Try `help eval_*`.", "red"))
-        return
-    for item_name in item_name_generator(patterns):
-        def guard():
-            raise NoOutput()
-        _globals, _locals = {}, {}
-        try:
-            item = item_retriever(item_name)
-        except NotFound:
-            print(self.colorize("Skipping {item} since it could not be retrieved.".format(item=item_name), "red"))
-            continue
-        _locals[local_name] = item
-        _locals["no_output"] = guard
-        _globals[local_name] = item
-        _globals["no_output"] = guard
-        separator = "-"
-        item_name_header = " {name} ".format(
-            name=item_name[:78]).center(
-            80, separator)
-        try:
-            result = eval(statement, _globals, _locals)
-            print(self.colorize(item_name_header, "blue"))
-            print(result)
-        except NoOutput:
-            pass
-        except Exception as e:
-            print(self.colorize(item_name_header, "red"))
-            print(self.colorize("Eval failed for {0}: {1}".format(item_name, e), "red"))
-</code></pre>
+    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">,</span> <span class="n">item_name_generator</span><span class="p">,</span> <span class="n">item_retriever</span><span class="p">,</span> <span class="n">local_name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Run an eval command. This will retrieve items based on given patterns</span>
+<span class="sd">    and execute a python statement against each of these items. The item will</span>
+<span class="sd">    be bound to the given name for each of these statements.</span>
+<span class="sd">    - line (type `str`): The text line provided by the user. The format should</span>
+<span class="sd">      be as follows: &lt;patterns&gt; ! &lt;statement&gt;</span>
+<span class="sd">    - item_name_generator (type `callable`): A function that should generate</span>
+<span class="sd">      an iterable that represents the available item names for pattern matching.</span>
+<span class="sd">    - item_retriever (type `callable`): A function that takes an item name</span>
+<span class="sd">      generated by `item_name_generator` as input and returns the actual item.</span>
+<span class="sd">    - local_name (type `str`): The name to bind the item to when evaluating</span>
+<span class="sd">      the statement.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">patterns_and_statement</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;!&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">patterns</span> <span class="o">=</span> <span class="n">patterns_and_statement</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">statement</span> <span class="o">=</span> <span class="n">patterns_and_statement</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">colorize</span><span class="p">(</span><span class="s">&quot;Looks like your input was malformed. Try `help eval_*`.&quot;</span><span class="p">,</span> <span class="s">&quot;red&quot;</span><span class="p">))</span>
+        <span class="k">return</span>
+    <span class="k">for</span> <span class="n">item_name</span> <span class="ow">in</span> <span class="n">item_name_generator</span><span class="p">(</span><span class="n">patterns</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">guard</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="n">NoOutput</span><span class="p">()</span>
+        <span class="n">_globals</span><span class="p">,</span> <span class="n">_locals</span> <span class="o">=</span> <span class="p">{},</span> <span class="p">{}</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">item</span> <span class="o">=</span> <span class="n">item_retriever</span><span class="p">(</span><span class="n">item_name</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">NotFound</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">colorize</span><span class="p">(</span><span class="s">&quot;Skipping {item} since it could not be retrieved.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">item</span><span class="o">=</span><span class="n">item_name</span><span class="p">),</span> <span class="s">&quot;red&quot;</span><span class="p">))</span>
+            <span class="k">continue</span>
+        <span class="n">_locals</span><span class="p">[</span><span class="n">local_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span>
+        <span class="n">_locals</span><span class="p">[</span><span class="s">&quot;no_output&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">guard</span>
+        <span class="n">_globals</span><span class="p">[</span><span class="n">local_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span>
+        <span class="n">_globals</span><span class="p">[</span><span class="s">&quot;no_output&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">guard</span>
+        <span class="n">separator</span> <span class="o">=</span> <span class="s">&quot;-&quot;</span>
+        <span class="n">item_name_header</span> <span class="o">=</span> <span class="s">&quot; {name} &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">item_name</span><span class="p">[:</span><span class="mi">78</span><span class="p">])</span><span class="o">.</span><span class="n">center</span><span class="p">(</span>
+            <span class="mi">80</span><span class="p">,</span> <span class="n">separator</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">_globals</span><span class="p">,</span> <span class="n">_locals</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">colorize</span><span class="p">(</span><span class="n">item_name_header</span><span class="p">,</span> <span class="s">&quot;blue&quot;</span><span class="p">))</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">NoOutput</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">colorize</span><span class="p">(</span><span class="n">item_name_header</span><span class="p">,</span> <span class="s">&quot;red&quot;</span><span class="p">))</span>
+            <span class="k">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">colorize</span><span class="p">(</span><span class="s">&quot;Eval failed for {0}: {1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">item_name</span><span class="p">,</span> <span class="n">e</span><span class="p">),</span> <span class="s">&quot;red&quot;</span><span class="p">))</span>
+</pre></div>
+
   </div>
 </div>
 
@@ -1963,9 +2103,10 @@ be bound to the given name for each of these statements.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.VSphereREPL.retrieve_dvs', this);">Show source &equiv;</a></p>
   <div id="source-isphere.command.VSphereREPL.retrieve_dvs" class="source">
-    <pre><code>def retrieve_dvs(self, dvs_name):
-    return self.cache.retrieve_dvs(dvs_name)
-</code></pre>
+    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">retrieve_dvs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dvs_name</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">retrieve_dvs</span><span class="p">(</span><span class="n">dvs_name</span><span class="p">)</span>
+</pre></div>
+
   </div>
 </div>
 
@@ -1987,9 +2128,10 @@ be bound to the given name for each of these statements.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.VSphereREPL.retrieve_esx', this);">Show source &equiv;</a></p>
   <div id="source-isphere.command.VSphereREPL.retrieve_esx" class="source">
-    <pre><code>def retrieve_esx(self, esx_name):
-    return self.cache.retrieve_esx(esx_name)
-</code></pre>
+    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">retrieve_esx</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">esx_name</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">retrieve_esx</span><span class="p">(</span><span class="n">esx_name</span><span class="p">)</span>
+</pre></div>
+
   </div>
 </div>
 
@@ -2011,63 +2153,10 @@ be bound to the given name for each of these statements.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.VSphereREPL.retrieve_vm', this);">Show source &equiv;</a></p>
   <div id="source-isphere.command.VSphereREPL.retrieve_vm" class="source">
-    <pre><code>def retrieve_vm(self, vm_name):
-    return self.cache.retrieve_vm(vm_name)
-</code></pre>
-  </div>
-</div>
+    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">retrieve_vm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vm_name</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">retrieve_vm</span><span class="p">(</span><span class="n">vm_name</span><span class="p">)</span>
+</pre></div>
 
-  </div>
-  
-            
-  <div class="item">
-    <div class="name def" id="isphere.command.VSphereREPL.set_custom_attribute_vm">
-    <p>def <span class="ident">set_custom_attribute_vm</span>(</p><p>self, patterns)</p>
-    </div>
-    
-    <p class="inheritance">
-     <strong>Inheritance:</strong>
-       <code><a href="virtual_machine_command.m.html#isphere.command.virtual_machine_command.VirtualMachineCommand">isphere.command.virtual_machine_command.VirtualMachineCommand</a></code>.<code><a href="virtual_machine_command.m.html#isphere.command.virtual_machine_command.VirtualMachineCommand.set_custom_attribute_vm">isphere.command.virtual_machine_command.VirtualMachineCommand.set_custom_attribute_vm</a></code>
-    </p>
-
-    
-  
-    <div class="desc inherited"><p>Usage: set_custom_attribute_vm [pattern1 [pattern2]...]
-Set custom attributes by name on VMs matching the given ORed name patterns.</p>
-<p>Sample usage: <code>set_custom_attribute_vm</code> foo.* ^other-name$</p></div>
-  <div class="source_cont">
-  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.VSphereREPL.set_custom_attribute_vm', this);">Show source &equiv;</a></p>
-  <div id="source-isphere.command.VSphereREPL.set_custom_attribute_vm" class="source">
-    <pre><code>def set_custom_attribute_vm(self, patterns):
-    """Usage: set_custom_attribute_vm [pattern1 [pattern2]...]
-    Set custom attributes by name on VMs matching the given ORed name patterns.
-    Sample usage: `set_custom_attribute_vm` foo.* ^other-name$
-    """
-    attribute_names = self.cache.get_custom_attributes_mapping().values()
-    formatted_attribute_names = "".join(
-        [
-            "\n\t{attribute_name}".format(attribute_name=attribute_name) for attribute_name in attribute_names
-        ]
-    )
-    print("Available custom attribute names: {names}".format(
-        names=formatted_attribute_names))
-    target_name = _input("Target custom attribute name? ")
-    target_value = _input("Target value for {name}? ".format(
-        name=target_name))
-    for vm_name in self.compile_and_yield_vm_patterns(patterns):
-        print("Setting attribute for {vm_name}".format(vm_name=vm_name))
-        try:
-            self.cache.set_custom_attribute(
-                self.cache.retrieve_vm(vm_name).raw_vm,
-                target_name,
-                target_value)
-        except Exception as e:
-            print(self.colorize(
-                "Got a problem: {problem}".format(problem=e),
-                "red"))
-            print(self.colorize("Not continuing.", "red"))
-            break
-</code></pre>
   </div>
 </div>
 
@@ -2089,11 +2178,12 @@ Set custom attributes by name on VMs matching the given ORed name patterns.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.VSphereREPL.yield_dvs_patterns', this);">Show source &equiv;</a></p>
   <div id="source-isphere.command.VSphereREPL.yield_dvs_patterns" class="source">
-    <pre><code>def yield_dvs_patterns(self, compiled_patterns):
-    for dvs_name in self.cache.list_cached_dvses():
-        if any([pattern.match(dvs_name) for pattern in compiled_patterns]):
-            yield(dvs_name)
-</code></pre>
+    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">yield_dvs_patterns</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">compiled_patterns</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">dvs_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">list_cached_dvses</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nb">any</span><span class="p">([</span><span class="n">pattern</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">dvs_name</span><span class="p">)</span> <span class="k">for</span> <span class="n">pattern</span> <span class="ow">in</span> <span class="n">compiled_patterns</span><span class="p">]):</span>
+            <span class="k">yield</span><span class="p">(</span><span class="n">dvs_name</span><span class="p">)</span>
+</pre></div>
+
   </div>
 </div>
 
@@ -2115,11 +2205,12 @@ Set custom attributes by name on VMs matching the given ORed name patterns.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.VSphereREPL.yield_esx_patterns', this);">Show source &equiv;</a></p>
   <div id="source-isphere.command.VSphereREPL.yield_esx_patterns" class="source">
-    <pre><code>def yield_esx_patterns(self, compiled_patterns):
-    for esx_name in self.cache.list_cached_esxis():
-        if any([pattern.match(esx_name) for pattern in compiled_patterns]):
-            yield(esx_name)
-</code></pre>
+    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">yield_esx_patterns</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">compiled_patterns</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">esx_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">list_cached_esxis</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nb">any</span><span class="p">([</span><span class="n">pattern</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">esx_name</span><span class="p">)</span> <span class="k">for</span> <span class="n">pattern</span> <span class="ow">in</span> <span class="n">compiled_patterns</span><span class="p">]):</span>
+            <span class="k">yield</span><span class="p">(</span><span class="n">esx_name</span><span class="p">)</span>
+</pre></div>
+
   </div>
 </div>
 
@@ -2141,11 +2232,12 @@ Set custom attributes by name on VMs matching the given ORed name patterns.</p>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.command.VSphereREPL.yield_vm_patterns', this);">Show source &equiv;</a></p>
   <div id="source-isphere.command.VSphereREPL.yield_vm_patterns" class="source">
-    <pre><code>def yield_vm_patterns(self, compiled_patterns):
-    for vm_name in self.cache.list_cached_vms():
-        if any([pattern.match(vm_name) for pattern in compiled_patterns]):
-            yield(vm_name)
-</code></pre>
+    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">yield_vm_patterns</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">compiled_patterns</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">vm_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">list_cached_vms</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nb">any</span><span class="p">([</span><span class="n">pattern</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">vm_name</span><span class="p">)</span> <span class="k">for</span> <span class="n">pattern</span> <span class="ow">in</span> <span class="n">compiled_patterns</span><span class="p">]):</span>
+            <span class="k">yield</span><span class="p">(</span><span class="n">vm_name</span><span class="p">)</span>
+</pre></div>
+
   </div>
 </div>
 
