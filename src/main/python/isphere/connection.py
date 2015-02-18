@@ -20,15 +20,13 @@ its name.
 
 Usage:
 
-```
->>> from isphere.connection import CachingVSphere
->>> vsphere_cache = CachingVSphere()
->>> vsphere_cache.fill()
->>> all_vms = vsphere_cache.list_cached_vms()
->>> all_vms[0]
-'some-vm-name'
->>> actual_vm = vsphere_cache.retrieve_vm(all_vms[0])
-```
+    >>> from isphere.connection import CachingVSphere
+    >>> vsphere_cache = CachingVSphere()
+    >>> vsphere_cache.fill()
+    >>> all_vms = vsphere_cache.list_cached_vms()
+    >>> all_vms[0]
+    'some-vm-name'
+    >>> actual_vm = vsphere_cache.retrieve_vm(all_vms[0])
 
 """
 
