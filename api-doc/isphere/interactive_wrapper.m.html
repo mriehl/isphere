@@ -1087,6 +1087,7 @@ table {
     <li class="mono"><a href="#isphere.interactive_wrapper.VVC.get_all_vms">get_all_vms</a></li>
     <li class="mono"><a href="#isphere.interactive_wrapper.VVC.get_custom_attributes_mapping">get_custom_attributes_mapping</a></li>
     <li class="mono"><a href="#isphere.interactive_wrapper.VVC.get_first_level_of_vm_folders">get_first_level_of_vm_folders</a></li>
+    <li class="mono"><a href="#isphere.interactive_wrapper.VVC.get_host_system_by_uuid">get_host_system_by_uuid</a></li>
     <li class="mono"><a href="#isphere.interactive_wrapper.VVC.get_restricted_view_on_host_systems">get_restricted_view_on_host_systems</a></li>
     <li class="mono"><a href="#isphere.interactive_wrapper.VVC.get_restricted_view_on_items">get_restricted_view_on_items</a></li>
     <li class="mono"><a href="#isphere.interactive_wrapper.VVC.get_restricted_view_on_vms">get_restricted_view_on_vms</a></li>
@@ -1246,6 +1247,18 @@ to get all VMs.</p>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">vm</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">NotFound</span><span class="p">(</span><span class="s">&quot;VM with uuid {0} not found&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">uuid</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">VM</span><span class="p">(</span><span class="n">vm</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_host_system_by_uuid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uuid</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns an item by searching for its UUID.</span>
+<span class="sd">        An exception will be raised if the VM cannot be found.</span>
+
+<span class="sd">        - `uuid` (str) is the UUID of the desired VM.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">esx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_service</span><span class="p">(</span><span class="s">&quot;searchIndex&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">FindByUuid</span><span class="p">(</span><span class="n">uuid</span><span class="o">=</span><span class="n">uuid</span><span class="p">,</span> <span class="n">vmSearch</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">esx</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotFound</span><span class="p">(</span><span class="s">&quot;Host system with uuid {0} not found&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">uuid</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">ESX</span><span class="p">(</span><span class="n">esx</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">get_all_vms</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -2022,6 +2035,18 @@ predicate.</p>
             <span class="k">raise</span> <span class="n">NotFound</span><span class="p">(</span><span class="s">&quot;VM with uuid {0} not found&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">uuid</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">VM</span><span class="p">(</span><span class="n">vm</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">get_host_system_by_uuid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uuid</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns an item by searching for its UUID.</span>
+<span class="sd">        An exception will be raised if the VM cannot be found.</span>
+
+<span class="sd">        - `uuid` (str) is the UUID of the desired VM.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">esx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_service</span><span class="p">(</span><span class="s">&quot;searchIndex&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">FindByUuid</span><span class="p">(</span><span class="n">uuid</span><span class="o">=</span><span class="n">uuid</span><span class="p">,</span> <span class="n">vmSearch</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">esx</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotFound</span><span class="p">(</span><span class="s">&quot;Host system with uuid {0} not found&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">uuid</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">ESX</span><span class="p">(</span><span class="n">esx</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">get_all_vms</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns a generator for all virtual machines on this vCenter.</span>
@@ -2429,6 +2454,40 @@ An exception will be raised if the item cannot be found.</p>
     <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">children</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="s">&quot;vmFolder&quot;</span><span class="p">):</span>
             <span class="k">yield</span> <span class="n">child</span><span class="o">.</span><span class="n">vmFolder</span>
+</pre></div>
+
+  </div>
+</div>
+
+  </div>
+  
+            
+  <div class="item">
+    <div class="name def" id="isphere.interactive_wrapper.VVC.get_host_system_by_uuid">
+    <p>def <span class="ident">get_host_system_by_uuid</span>(</p><p>self, uuid)</p>
+    </div>
+    
+
+    
+  
+    <div class="desc"><p>Returns an item by searching for its UUID.
+An exception will be raised if the VM cannot be found.</p>
+<ul>
+<li><code>uuid</code> (str) is the UUID of the desired VM.</li>
+</ul></div>
+  <div class="source_cont">
+  <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.interactive_wrapper.VVC.get_host_system_by_uuid', this);">Show source &equiv;</a></p>
+  <div id="source-isphere.interactive_wrapper.VVC.get_host_system_by_uuid" class="source">
+    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">get_host_system_by_uuid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uuid</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns an item by searching for its UUID.</span>
+<span class="sd">    An exception will be raised if the VM cannot be found.</span>
+<span class="sd">    - `uuid` (str) is the UUID of the desired VM.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">esx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_service</span><span class="p">(</span><span class="s">&quot;searchIndex&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">FindByUuid</span><span class="p">(</span><span class="n">uuid</span><span class="o">=</span><span class="n">uuid</span><span class="p">,</span> <span class="n">vmSearch</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">esx</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">NotFound</span><span class="p">(</span><span class="s">&quot;Host system with uuid {0} not found&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">uuid</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">ESX</span><span class="p">(</span><span class="n">esx</span><span class="p">)</span>
 </pre></div>
 
   </div>
