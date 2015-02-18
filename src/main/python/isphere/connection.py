@@ -5,13 +5,31 @@
 #
 
 """
-Provides VMWare vSphere connection abstractions.
+Provides caching VMWare vSphere connection abstractions.
 The `isphere.connection.AutoEstablishingConnection` is a connection that is
 automatically established when used.
 
 The `isphere.connection.CachingVSphere` encapsulates a
 `isphere.connection.AutoEstablishingConnection` and provides caching capabilities
 on top.
+The cache is filled with names and UUIDs when possible, so it is a very lightweight
+operation. Once the items that need to be actually retrieved have been determined,
+the `retrieve_vm` and similar methods will allow retrieval of the item based on
+its name.
+
+
+Usage:
+
+```
+>>> from isphere.connection import CachingVSphere
+>>> vsphere_cache = CachingVSphere()
+>>> vsphere_cache.fill()
+>>> all_vms = vsphere_cache.list_cached_vms()
+>>> all_vms[0]
+'some-vm-name'
+>>> actual_vm = vsphere_cache.retrieve_vm(all_vms[0])
+```
+
 """
 
 from functools import wraps
@@ -56,7 +74,7 @@ class CachingVSphere(object):
     a caching layer on top.
     """
 
-    def __init__(self, hostname, username, password):
+    def __init__(self, hostname=None, username=None, password=None):
         """
         Create a new caching vSphere connection.
 
