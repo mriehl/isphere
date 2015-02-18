@@ -4,10 +4,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 
     <title>isphere API documentation</title>
-    <meta name="description" content="# The isphere package.
+    <meta name="description" content="# isphere
 
-- `isphere.command`: a subpackage defining REPL commands.
-- `isphere.cli`: a..." />
+isphere (read: *interactive vSphere*) is a platform independent (mac, windows, linux)
+[**..." />
 
   <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300' rel='stylesheet' type='text/css'>
   
@@ -1061,7 +1061,12 @@ table {
 
   <header id="section-intro">
   <h1 class="title"><span class="name">isphere</span> module</h1>
-  <h1>The isphere package.</h1>
+  <h1>isphere</h1>
+<p>isphere (read: <em>interactive vSphere</em>) is a platform independent (mac, windows, linux)
+<a href="https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop"><strong>REPL</strong></a>
+thanks to the <a href="https://pypi.python.org/pypi/pyvmomi">pyVmomi</a>
+library, usable from your favourite terminal.
+It also features an easy to use <strong>API</strong> for programmatic access.</p>
 <ul>
 <li><a href="command/index.html"><code>isphere.command</code></a>: a subpackage defining REPL commands.</li>
 <li><a href="cli.m.html"><code>isphere.cli</code></a>: a module for command line entrypoints.</li>
@@ -1071,7 +1076,11 @@ table {
   <a href="interactive_wrapper.m.html"><code>isphere.interactive_wrapper</code></a>.</li>
 <li><a href="input.m.html"><code>isphere.input</code></a>: a module for user input capabilities.</li>
 </ul>
+<h1>API capabilities</h1>
 <h2>Full retrieval API quickstart</h2>
+<p>The full retrieval API makes it easy to get all items of a certain type.
+It will fully populate the items, which may take some time.
+See <a href="interactive_wrapper.m.html#isphere.interactive_wrapper.VVC"><code>isphere.interactive_wrapper.VVC</code></a> for all the possibilities.</p>
 <div class="codehilite"><pre><span class="kn">from</span> <span class="nn">isphere.interactive_wrapper</span> <span class="kn">import</span> <span class="n">VVC</span>
 <span class="n">vvc</span> <span class="o">=</span> <span class="n">VVC</span><span class="p">(</span><span class="n">hostname</span><span class="p">)</span>
 <span class="n">vvc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
@@ -1082,12 +1091,30 @@ table {
 
 
 <h2>Selective retrieval API (faster)</h2>
+<p>The selective retrieval API is very fast but requires you to know ahead of time
+which attribute you want to access on the API items.
+See <a href="interactive_wrapper.m.html#isphere.interactive_wrapper.VVC"><code>isphere.interactive_wrapper.VVC</code></a> for all the possibilities.</p>
 <div class="codehilite"><pre><span class="kn">from</span> <span class="nn">isphere.interactive_wrapper</span> <span class="kn">import</span> <span class="n">VVC</span>
 <span class="n">vvc</span> <span class="o">=</span> <span class="n">VVC</span><span class="p">(</span><span class="n">hostname</span><span class="p">)</span>
 <span class="n">vvc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">vm</span> <span class="ow">in</span> <span class="n">vvc</span><span class="o">.</span><span class="n">get_restricted_view_on_vms</span><span class="p">([</span><span class="s">&quot;name&quot;</span><span class="p">,</span> <span class="s">&quot;runtime.host.name&quot;</span><span class="p">]):</span>
     <span class="k">print</span><span class="p">(</span><span class="s">&quot;{vm_name} on {host_system}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">vm_name</span><span class="o">=</span><span class="n">vm</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">host_system</span><span class="o">=</span><span class="n">vm</span><span class="o">.</span><span class="n">runtime</span><span class="o">.</span><span class="n">host</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+</pre></div>
+
+
+<h2>Caching API</h2>
+<p>The caching API allows to access all available item names with an optional
+retrieval of the full item. It caches everything very aggressively and is
+especially useful if you need all the item names to decide which ones you want
+to use (for example regex matching).</p>
+<div class="codehilite"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">isphere.connection</span> <span class="kn">import</span> <span class="n">CachingVSphere</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">vsphere_cache</span> <span class="o">=</span> <span class="n">CachingVSphere</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">vsphere_cache</span><span class="o">.</span><span class="n">fill</span><span class="p">()</span> <span class="c"># rerun if you need to update the cache later</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">all_vms</span> <span class="o">=</span> <span class="n">vsphere_cache</span><span class="o">.</span><span class="n">list_cached_vms</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">all_vms</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="s">&#39;some-vm-name&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">actual_vm</span> <span class="o">=</span> <span class="n">vsphere_cache</span><span class="o">.</span><span class="n">retrieve_vm</span><span class="p">(</span><span class="n">all_vms</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
   
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere', this);">Show source &equiv;</a></p>
@@ -1099,7 +1126,14 @@ table {
 <span class="c">#</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd"># The isphere package.</span>
+<span class="sd"># isphere</span>
+
+<span class="sd">isphere (read: *interactive vSphere*) is a platform independent (mac, windows, linux)</span>
+<span class="sd">[**REPL**](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop)</span>
+<span class="sd">thanks to the [pyVmomi](https://pypi.python.org/pypi/pyvmomi)</span>
+<span class="sd">library, usable from your favourite terminal.</span>
+<span class="sd">It also features an easy to use **API** for programmatic access.</span>
+
 
 <span class="sd">- `isphere.command`: a subpackage defining REPL commands.</span>
 <span class="sd">- `isphere.cli`: a module for command line entrypoints.</span>
@@ -1110,7 +1144,13 @@ table {
 <span class="sd">- `isphere.input`: a module for user input capabilities.</span>
 
 
+<span class="sd"># API capabilities</span>
+
 <span class="sd">## Full retrieval API quickstart</span>
+
+<span class="sd">The full retrieval API makes it easy to get all items of a certain type.</span>
+<span class="sd">It will fully populate the items, which may take some time.</span>
+<span class="sd">See `isphere.interactive_wrapper.VVC` for all the possibilities.</span>
 
 <span class="sd">    from isphere.interactive_wrapper import VVC</span>
 <span class="sd">    vvc = VVC(hostname)</span>
@@ -1121,6 +1161,10 @@ table {
 
 <span class="sd">## Selective retrieval API (faster)</span>
 
+<span class="sd">The selective retrieval API is very fast but requires you to know ahead of time</span>
+<span class="sd">which attribute you want to access on the API items.</span>
+<span class="sd">See `isphere.interactive_wrapper.VVC` for all the possibilities.</span>
+
 <span class="sd">    from isphere.interactive_wrapper import VVC</span>
 <span class="sd">    vvc = VVC(hostname)</span>
 <span class="sd">    vvc.connect(username, password)</span>
@@ -1128,6 +1172,20 @@ table {
 <span class="sd">    for vm in vvc.get_restricted_view_on_vms([&quot;name&quot;, &quot;runtime.host.name&quot;]):</span>
 <span class="sd">        print(&quot;{vm_name} on {host_system}&quot;.format(vm_name=vm.name, host_system=vm.runtime.host.name))</span>
 
+<span class="sd">## Caching API</span>
+
+<span class="sd">The caching API allows to access all available item names with an optional</span>
+<span class="sd">retrieval of the full item. It caches everything very aggressively and is</span>
+<span class="sd">especially useful if you need all the item names to decide which ones you want</span>
+<span class="sd">to use (for example regex matching).</span>
+
+<span class="sd">    &gt;&gt;&gt; from isphere.connection import CachingVSphere</span>
+<span class="sd">    &gt;&gt;&gt; vsphere_cache = CachingVSphere()</span>
+<span class="sd">    &gt;&gt;&gt; vsphere_cache.fill() # rerun if you need to update the cache later</span>
+<span class="sd">    &gt;&gt;&gt; all_vms = vsphere_cache.list_cached_vms()</span>
+<span class="sd">    &gt;&gt;&gt; all_vms[0]</span>
+<span class="sd">    &#39;some-vm-name&#39;</span>
+<span class="sd">    &gt;&gt;&gt; actual_vm = vsphere_cache.retrieve_vm(all_vms[0])</span>
 <span class="sd">&quot;&quot;&quot;</span>
 </pre></div>
 
