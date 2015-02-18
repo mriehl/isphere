@@ -149,6 +149,7 @@ class CachingVSphere(object):
         """
         return self.vvc.get_vm_by_uuid(self.vm_name_to_uuid_mapping[vm_name])
 
+    @memoized
     def retrieve_esx(self, esx_name):
         """
         Retrieve an ESXi host system by its name. The name must be in the cache.
