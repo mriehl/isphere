@@ -126,6 +126,18 @@ class VVC(object):
             raise NotFound("VM with uuid {0} not found".format(uuid))
         return VM(vm)
 
+    def get_host_system_by_uuid(self, uuid):
+        """
+        Returns an item by searching for its UUID.
+        An exception will be raised if the VM cannot be found.
+
+        - `uuid` (str) is the UUID of the desired VM.
+        """
+        esx = self.get_service("searchIndex").FindByUuid(uuid=uuid, vmSearch=False)
+        if not esx:
+            raise NotFound("Host system with uuid {0} not found".format(uuid))
+        return ESX(esx)
+
     def get_all_vms(self):
         """
         Returns a generator for all virtual machines on this vCenter.

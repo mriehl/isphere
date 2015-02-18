@@ -202,11 +202,23 @@ class VVCTests(TestCase):
 
     def test_should_get_vm_by_uuid(self):
         mock_vm = Mock()
-        self.vvc_mock.get_service.return_value.FindByUuid.return_value = mock_vm
+        mock_find_by_uuid = self.vvc_mock.get_service.return_value.FindByUuid
+        mock_find_by_uuid.return_value = mock_vm
 
         actual_vm = VVC.get_vm_by_uuid(self.vvc_mock, "any-uuid")
 
         self.assertEqual(mock_vm, actual_vm.raw_vm)
+        mock_find_by_uuid.assert_called_with(vmSearch=True, uuid='any-uuid')
+
+    def test_should_get_host_system_by_uuid(self):
+        mock_esx = Mock()
+        mock_find_by_uuid = self.vvc_mock.get_service.return_value.FindByUuid
+        mock_find_by_uuid.return_value = mock_esx
+
+        actual_esx = VVC.get_host_system_by_uuid(self.vvc_mock, "any-uuid")
+
+        self.assertEqual(mock_esx, actual_esx.raw_esx)
+        mock_find_by_uuid.assert_called_with(vmSearch=False, uuid='any-uuid')
 
     def test_should_raise_when_vm_uuid_not_found(self):
         self.vvc_mock.get_service.return_value.FindByUuid.return_value = None

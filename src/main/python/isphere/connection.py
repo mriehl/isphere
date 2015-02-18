@@ -69,7 +69,7 @@ class CachingVSphere(object):
         """
         self._connection = AutoEstablishingConnection(hostname, username, password)
         self.vm_name_to_uuid_mapping = {}
-        self.esx_mapping = {}
+        self.esx_name_to_uuid_mapping = {}
         self.dvs_mapping = {}
 
     @property
@@ -113,8 +113,8 @@ class CachingVSphere(object):
         for vm in self.vvc.get_restricted_view_on_vms(["name", "config.uuid"]):
             self.vm_name_to_uuid_mapping[vm.name] = vm.config.uuid
 
-        for esx in self.vvc.get_all_esx():
-            self.esx_mapping[esx.name] = esx
+        for esx in self.vvc.get_restricted_view_on_host_systems(["name", "hardware.systemInfo.uuid"]):
+            self.esx_name_to_uuid_mapping[esx.name] = esx.hardware.systemInfo.uuid
 
         for dvs in self.vvc.get_all_dvs():
             self.dvs_mapping[dvs.name] = dvs
@@ -131,7 +131,7 @@ class CachingVSphere(object):
         List the names of the ESXi host systems.
         This requires `fill()` to have been called since it operates on the cache.
         """
-        return self.esx_mapping.keys()
+        return self.esx_name_to_uuid_mapping.keys()
 
     def list_cached_dvses(self):
         """
@@ -155,7 +155,7 @@ class CachingVSphere(object):
 
         - esx_name (type `str`): The ESX name from the cache.
         """
-        return self.esx_mapping[esx_name]
+        return self.vvc.get_host_system_by_uuid(self.esx_name_to_uuid_mapping[esx_name])
 
     def retrieve_dvs(self, dvs_name):
         """
@@ -177,7 +177,7 @@ class CachingVSphere(object):
         """
         The number of ESXi available in the cache.
         """
-        return len(self.esx_mapping)
+        return len(self.esx_name_to_uuid_mapping)
 
     @property
     def number_of_dvses(self):

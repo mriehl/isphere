@@ -27,17 +27,20 @@ class CachingVSphereTests(TestCase):
         vm_2.config.uuid = "vm-2-uuid"
         esx_1, esx_2 = Mock(), Mock()
         esx_1.name = "esx-1"
+        esx_1.hardware.systemInfo.uuid = "esx-1-uuid"
         esx_2.name = "esx-2"
+        esx_2.hardware.systemInfo.uuid = "esx-2-uuid"
         dvs_1, dvs_2 = Mock(), Mock()
         dvs_1.name = "dvs-1"
         dvs_2.name = "dvs-2"
         self.vvc.get_restricted_view_on_vms.return_value = [vm_1, vm_2]
-        self.vvc.get_all_esx.return_value = [esx_1, esx_2]
+        self.vvc.get_restricted_view_on_host_systems.return_value = [esx_1, esx_2]
         self.vvc.get_all_dvs.return_value = [dvs_1, dvs_2]
 
         self.cache.fill()
 
         self.assertEqual(self.cache.vm_name_to_uuid_mapping, {"vm-1": "vm-1-uuid", "vm-2": "vm-2-uuid"})
+        self.assertEqual(self.cache.esx_name_to_uuid_mapping, {"esx-1": "esx-1-uuid", "esx-2": "esx-2-uuid"})
 
     def test_should_passthrough_find_by_dns_name_calls(self):
         mock_item = Mock()
