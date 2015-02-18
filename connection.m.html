@@ -4,8 +4,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 
     <title>isphere.connection API documentation</title>
-    <meta name="description" content="Provides VMWare vSphere connection abstractions.
-The `isphere.connection.AutoEstablishingConnection`..." />
+    <meta name="description" content="Provides caching VMWare vSphere connection abstractions.
+The `isphere.connection.AutoEstablishingCon..." />
 
   <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300' rel='stylesheet' type='text/css'>
   
@@ -1091,12 +1091,25 @@ table {
 
   <header id="section-intro">
   <h1 class="title"><span class="name">isphere.connection</span> module</h1>
-  <p>Provides VMWare vSphere connection abstractions.
+  <p>Provides caching VMWare vSphere connection abstractions.
 The <a href="#isphere.connection.AutoEstablishingConnection"><code>AutoEstablishingConnection</code></a> is a connection that is
 automatically established when used.</p>
 <p>The <a href="#isphere.connection.CachingVSphere"><code>CachingVSphere</code></a> encapsulates a
 <a href="#isphere.connection.AutoEstablishingConnection"><code>AutoEstablishingConnection</code></a> and provides caching capabilities
-on top.</p>
+on top.
+The cache is filled with names and UUIDs when possible, so it is a very lightweight
+operation. Once the items that need to be actually retrieved have been determined,
+the <code>retrieve_vm</code> and similar methods will allow retrieval of the item based on
+its name.</p>
+<p>Usage:</p>
+<div class="codehilite"><pre><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">isphere.connection</span> <span class="kn">import</span> <span class="n">CachingVSphere</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">vsphere_cache</span> <span class="o">=</span> <span class="n">CachingVSphere</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">vsphere_cache</span><span class="o">.</span><span class="n">fill</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">all_vms</span> <span class="o">=</span> <span class="n">vsphere_cache</span><span class="o">.</span><span class="n">list_cached_vms</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">all_vms</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="s">&#39;some-vm-name&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">actual_vm</span> <span class="o">=</span> <span class="n">vsphere_cache</span><span class="o">.</span><span class="n">retrieve_vm</span><span class="p">(</span><span class="n">all_vms</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
   
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.connection', this);">Show source &equiv;</a></p>
   <div id="source-isphere.connection" class="source">
@@ -1107,13 +1120,29 @@ on top.</p>
 <span class="c">#</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Provides VMWare vSphere connection abstractions.</span>
+<span class="sd">Provides caching VMWare vSphere connection abstractions.</span>
 <span class="sd">The `isphere.connection.AutoEstablishingConnection` is a connection that is</span>
 <span class="sd">automatically established when used.</span>
 
 <span class="sd">The `isphere.connection.CachingVSphere` encapsulates a</span>
 <span class="sd">`isphere.connection.AutoEstablishingConnection` and provides caching capabilities</span>
 <span class="sd">on top.</span>
+<span class="sd">The cache is filled with names and UUIDs when possible, so it is a very lightweight</span>
+<span class="sd">operation. Once the items that need to be actually retrieved have been determined,</span>
+<span class="sd">the `retrieve_vm` and similar methods will allow retrieval of the item based on</span>
+<span class="sd">its name.</span>
+
+
+<span class="sd">Usage:</span>
+
+<span class="sd">    &gt;&gt;&gt; from isphere.connection import CachingVSphere</span>
+<span class="sd">    &gt;&gt;&gt; vsphere_cache = CachingVSphere()</span>
+<span class="sd">    &gt;&gt;&gt; vsphere_cache.fill()</span>
+<span class="sd">    &gt;&gt;&gt; all_vms = vsphere_cache.list_cached_vms()</span>
+<span class="sd">    &gt;&gt;&gt; all_vms[0]</span>
+<span class="sd">    &#39;some-vm-name&#39;</span>
+<span class="sd">    &gt;&gt;&gt; actual_vm = vsphere_cache.retrieve_vm(all_vms[0])</span>
+
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
@@ -1158,7 +1187,7 @@ on top.</p>
 <span class="sd">    a caching layer on top.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hostname</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hostname</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a new caching vSphere connection.</span>
 
@@ -1171,7 +1200,7 @@ on top.</p>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span> <span class="o">=</span> <span class="n">AutoEstablishingConnection</span><span class="p">(</span><span class="n">hostname</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">vm_name_to_uuid_mapping</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">esx_mapping</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">esx_name_to_uuid_mapping</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dvs_mapping</span> <span class="o">=</span> <span class="p">{}</span>
 
     <span class="nd">@property</span>
@@ -1215,8 +1244,8 @@ on top.</p>
         <span class="k">for</span> <span class="n">vm</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span><span class="o">.</span><span class="n">get_restricted_view_on_vms</span><span class="p">([</span><span class="s">&quot;name&quot;</span><span class="p">,</span> <span class="s">&quot;config.uuid&quot;</span><span class="p">]):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">vm_name_to_uuid_mapping</span><span class="p">[</span><span class="n">vm</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">vm</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">uuid</span>
 
-        <span class="k">for</span> <span class="n">esx</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span><span class="o">.</span><span class="n">get_all_esx</span><span class="p">():</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">esx_mapping</span><span class="p">[</span><span class="n">esx</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">esx</span>
+        <span class="k">for</span> <span class="n">esx</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span><span class="o">.</span><span class="n">get_restricted_view_on_host_systems</span><span class="p">([</span><span class="s">&quot;name&quot;</span><span class="p">,</span> <span class="s">&quot;hardware.systemInfo.uuid&quot;</span><span class="p">]):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">esx_name_to_uuid_mapping</span><span class="p">[</span><span class="n">esx</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">esx</span><span class="o">.</span><span class="n">hardware</span><span class="o">.</span><span class="n">systemInfo</span><span class="o">.</span><span class="n">uuid</span>
 
         <span class="k">for</span> <span class="n">dvs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span><span class="o">.</span><span class="n">get_all_dvs</span><span class="p">():</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">dvs_mapping</span><span class="p">[</span><span class="n">dvs</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">dvs</span>
@@ -1233,7 +1262,7 @@ on top.</p>
 <span class="sd">        List the names of the ESXi host systems.</span>
 <span class="sd">        This requires `fill()` to have been called since it operates on the cache.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">esx_mapping</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">esx_name_to_uuid_mapping</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">list_cached_dvses</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -1251,13 +1280,14 @@ on top.</p>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span><span class="o">.</span><span class="n">get_vm_by_uuid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vm_name_to_uuid_mapping</span><span class="p">[</span><span class="n">vm_name</span><span class="p">])</span>
 
+    <span class="nd">@memoized</span>
     <span class="k">def</span> <span class="nf">retrieve_esx</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">esx_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Retrieve an ESXi host system by its name. The name must be in the cache.</span>
 
 <span class="sd">        - esx_name (type `str`): The ESX name from the cache.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">esx_mapping</span><span class="p">[</span><span class="n">esx_name</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span><span class="o">.</span><span class="n">get_host_system_by_uuid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">esx_name_to_uuid_mapping</span><span class="p">[</span><span class="n">esx_name</span><span class="p">])</span>
 
     <span class="k">def</span> <span class="nf">retrieve_dvs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dvs_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -1279,7 +1309,7 @@ on top.</p>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The number of ESXi available in the cache.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">esx_mapping</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">esx_name_to_uuid_mapping</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">number_of_dvses</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1569,7 +1599,7 @@ a caching layer on top.</p></div>
 <span class="sd">    a caching layer on top.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hostname</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hostname</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a new caching vSphere connection.</span>
 
@@ -1582,7 +1612,7 @@ a caching layer on top.</p></div>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span> <span class="o">=</span> <span class="n">AutoEstablishingConnection</span><span class="p">(</span><span class="n">hostname</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">vm_name_to_uuid_mapping</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">esx_mapping</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">esx_name_to_uuid_mapping</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dvs_mapping</span> <span class="o">=</span> <span class="p">{}</span>
 
     <span class="nd">@property</span>
@@ -1626,8 +1656,8 @@ a caching layer on top.</p></div>
         <span class="k">for</span> <span class="n">vm</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span><span class="o">.</span><span class="n">get_restricted_view_on_vms</span><span class="p">([</span><span class="s">&quot;name&quot;</span><span class="p">,</span> <span class="s">&quot;config.uuid&quot;</span><span class="p">]):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">vm_name_to_uuid_mapping</span><span class="p">[</span><span class="n">vm</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">vm</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">uuid</span>
 
-        <span class="k">for</span> <span class="n">esx</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span><span class="o">.</span><span class="n">get_all_esx</span><span class="p">():</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">esx_mapping</span><span class="p">[</span><span class="n">esx</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">esx</span>
+        <span class="k">for</span> <span class="n">esx</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span><span class="o">.</span><span class="n">get_restricted_view_on_host_systems</span><span class="p">([</span><span class="s">&quot;name&quot;</span><span class="p">,</span> <span class="s">&quot;hardware.systemInfo.uuid&quot;</span><span class="p">]):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">esx_name_to_uuid_mapping</span><span class="p">[</span><span class="n">esx</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">esx</span><span class="o">.</span><span class="n">hardware</span><span class="o">.</span><span class="n">systemInfo</span><span class="o">.</span><span class="n">uuid</span>
 
         <span class="k">for</span> <span class="n">dvs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span><span class="o">.</span><span class="n">get_all_dvs</span><span class="p">():</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">dvs_mapping</span><span class="p">[</span><span class="n">dvs</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">dvs</span>
@@ -1644,7 +1674,7 @@ a caching layer on top.</p></div>
 <span class="sd">        List the names of the ESXi host systems.</span>
 <span class="sd">        This requires `fill()` to have been called since it operates on the cache.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">esx_mapping</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">esx_name_to_uuid_mapping</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">list_cached_dvses</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -1662,13 +1692,14 @@ a caching layer on top.</p></div>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span><span class="o">.</span><span class="n">get_vm_by_uuid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">vm_name_to_uuid_mapping</span><span class="p">[</span><span class="n">vm_name</span><span class="p">])</span>
 
+    <span class="nd">@memoized</span>
     <span class="k">def</span> <span class="nf">retrieve_esx</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">esx_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Retrieve an ESXi host system by its name. The name must be in the cache.</span>
 
 <span class="sd">        - esx_name (type `str`): The ESX name from the cache.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">esx_mapping</span><span class="p">[</span><span class="n">esx_name</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span><span class="o">.</span><span class="n">get_host_system_by_uuid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">esx_name_to_uuid_mapping</span><span class="p">[</span><span class="n">esx_name</span><span class="p">])</span>
 
     <span class="k">def</span> <span class="nf">retrieve_dvs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dvs_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -1690,7 +1721,7 @@ a caching layer on top.</p></div>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The number of ESXi available in the cache.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">esx_mapping</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">esx_name_to_uuid_mapping</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">number_of_dvses</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1730,7 +1761,7 @@ a caching layer on top.</p></div>
 
             </div>
             <div class="item">
-            <p id="isphere.connection.CachingVSphere.esx_mapping" class="name">var <span class="ident">esx_mapping</span></p>
+            <p id="isphere.connection.CachingVSphere.esx_name_to_uuid_mapping" class="name">var <span class="ident">esx_name_to_uuid_mapping</span></p>
             
 
             
@@ -1797,7 +1828,7 @@ a caching layer on top.</p></div>
             
   <div class="item">
     <div class="name def" id="isphere.connection.CachingVSphere.__init__">
-    <p>def <span class="ident">__init__</span>(</p><p>self, hostname, username, password)</p>
+    <p>def <span class="ident">__init__</span>(</p><p>self, hostname=None, username=None, password=None)</p>
     </div>
     
 
@@ -1815,7 +1846,7 @@ a caching layer on top.</p></div>
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.connection.CachingVSphere.__init__', this);">Show source &equiv;</a></p>
   <div id="source-isphere.connection.CachingVSphere.__init__" class="source">
-    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hostname</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hostname</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create a new caching vSphere connection.</span>
 <span class="sd">    - hostname (type `str`) is the vCenter host name. Can be `None` and will</span>
@@ -1827,7 +1858,7 @@ a caching layer on top.</p></div>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_connection</span> <span class="o">=</span> <span class="n">AutoEstablishingConnection</span><span class="p">(</span><span class="n">hostname</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">vm_name_to_uuid_mapping</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">esx_mapping</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">esx_name_to_uuid_mapping</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">dvs_mapping</span> <span class="o">=</span> <span class="p">{}</span>
 </pre></div>
 
@@ -1860,8 +1891,8 @@ items available.</p></div>
     <span class="bp">self</span><span class="o">.</span><span class="n">retrieve_vm</span><span class="o">.</span><span class="n">__func__</span><span class="o">.</span><span class="n">cached_calls</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">vm</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span><span class="o">.</span><span class="n">get_restricted_view_on_vms</span><span class="p">([</span><span class="s">&quot;name&quot;</span><span class="p">,</span> <span class="s">&quot;config.uuid&quot;</span><span class="p">]):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">vm_name_to_uuid_mapping</span><span class="p">[</span><span class="n">vm</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">vm</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">uuid</span>
-    <span class="k">for</span> <span class="n">esx</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span><span class="o">.</span><span class="n">get_all_esx</span><span class="p">():</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">esx_mapping</span><span class="p">[</span><span class="n">esx</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">esx</span>
+    <span class="k">for</span> <span class="n">esx</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span><span class="o">.</span><span class="n">get_restricted_view_on_host_systems</span><span class="p">([</span><span class="s">&quot;name&quot;</span><span class="p">,</span> <span class="s">&quot;hardware.systemInfo.uuid&quot;</span><span class="p">]):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">esx_name_to_uuid_mapping</span><span class="p">[</span><span class="n">esx</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">esx</span><span class="o">.</span><span class="n">hardware</span><span class="o">.</span><span class="n">systemInfo</span><span class="o">.</span><span class="n">uuid</span>
     <span class="k">for</span> <span class="n">dvs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">vvc</span><span class="o">.</span><span class="n">get_all_dvs</span><span class="p">():</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dvs_mapping</span><span class="p">[</span><span class="n">dvs</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">dvs</span>
 </pre></div>
@@ -1977,7 +2008,7 @@ This requires <code>fill()</code> to have been called since it operates on the c
 <span class="sd">    List the names of the ESXi host systems.</span>
 <span class="sd">    This requires `fill()` to have been called since it operates on the cache.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">esx_mapping</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">esx_name_to_uuid_mapping</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
 </pre></div>
 
   </div>
@@ -2044,7 +2075,7 @@ This requires <code>fill()</code> to have been called since it operates on the c
             
   <div class="item">
     <div class="name def" id="isphere.connection.CachingVSphere.retrieve_esx">
-    <p>def <span class="ident">retrieve_esx</span>(</p><p>self, esx_name)</p>
+    <p>def <span class="ident">retrieve_esx</span>(</p><p>*args, **kwargs)</p>
     </div>
     
 
@@ -2057,12 +2088,13 @@ This requires <code>fill()</code> to have been called since it operates on the c
   <div class="source_cont">
   <p class="source_link"><a href="javascript:void(0);" onclick="toggle('source-isphere.connection.CachingVSphere.retrieve_esx', this);">Show source &equiv;</a></p>
   <div id="source-isphere.connection.CachingVSphere.retrieve_esx" class="source">
-    <div class="codehilite"><pre><span class="k">def</span> <span class="nf">retrieve_esx</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">esx_name</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Retrieve an ESXi host system by its name. The name must be in the cache.</span>
-<span class="sd">    - esx_name (type `str`): The ESX name from the cache.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">esx_mapping</span><span class="p">[</span><span class="n">esx_name</span><span class="p">]</span>
+    <div class="codehilite"><pre><span class="nd">@wraps</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">function_with_memoized_calls</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">cache_id_for_this_call</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">cache_id_for_this_call</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cached_calls</span><span class="p">:</span>
+        <span class="n">call_result</span> <span class="o">=</span> <span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">cached_calls</span><span class="p">[</span><span class="n">cache_id_for_this_call</span><span class="p">]</span> <span class="o">=</span> <span class="n">call_result</span>
+    <span class="k">return</span> <span class="n">cached_calls</span><span class="p">[</span><span class="n">cache_id_for_this_call</span><span class="p">]</span>
 </pre></div>
 
   </div>
