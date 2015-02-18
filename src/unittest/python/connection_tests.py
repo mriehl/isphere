@@ -19,7 +19,7 @@ class CachingVSphereTests(TestCase):
         self.cache._connection = Mock()
         self.vvc = self.cache._connection.ensure_established.return_value
 
-    def test_should_fill_cache_with_vms_and_esxis_returned_by_vvc(self):
+    def test_should_fill_cache_with_vms_dvs_and_esxis_returned_by_vvc(self):
         vm_1, vm_2 = Mock(), Mock()
         vm_1.name = "vm-1"
         vm_1.config.uuid = "vm-1-uuid"
@@ -41,6 +41,7 @@ class CachingVSphereTests(TestCase):
 
         self.assertEqual(self.cache.vm_name_to_uuid_mapping, {"vm-1": "vm-1-uuid", "vm-2": "vm-2-uuid"})
         self.assertEqual(self.cache.esx_name_to_uuid_mapping, {"esx-1": "esx-1-uuid", "esx-2": "esx-2-uuid"})
+        self.assertEqual(self.cache.dvs_mapping, {'dvs-1': dvs_1, 'dvs-2': dvs_2})
 
     def test_should_passthrough_find_by_dns_name_calls(self):
         mock_item = Mock()
