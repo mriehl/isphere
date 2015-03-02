@@ -50,6 +50,31 @@ class EsxCommand(CoreCommand):
                                                        self.cache.number_of_esxis,
                                                        risky)
 
+    def do_enter_maintenance(self, esx_name):
+
+        myesx = self.retrieve_esx(esx_name)
+        if myesx.runtime.inMaintenanceMode == False:
+            maintain_task = myesx.EnterMaintenanceMode(10)
+            self.cache.wait_for_tasks([maintain_task])
+        return
+
+    def do_exit_maintenance(self, esx_name):
+
+        myesx = self.retrieve_esx(esx_name)
+        if myesx.runtime.inMaintenanceMode == True:
+            maintain_task = myesx.ExitMaintenanceMode(10)
+            self.cache.wait_for_tasks([maintain_task])
+        return
+
+    def do_shutdown_esx(self, esx_name):
+
+        myesx = self.retrieve_esx(esx_name)
+        print(myesx.runtime.powerState)
+        print(myesx.capability.shutdownSupported)
+        shutdown_task = myesx.ShutdownHost(True)
+        self.cache.wait_for_tasks([shutdown_task])
+        return
+
     def yield_esx_patterns(self, compiled_patterns):
         for esx_name in self.cache.list_cached_esxis():
             if any([pattern.match(esx_name) for pattern in compiled_patterns]):
