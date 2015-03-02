@@ -53,7 +53,7 @@ class EsxCommand(CoreCommand):
     def do_enter_maintenance(self, esx_name):
 
         myesx = self.retrieve_esx(esx_name)
-        if myesx.runtime.inMaintenanceMode == False:
+        if not myesx.runtime.inMaintenanceMode:
             maintain_task = myesx.EnterMaintenanceMode(10)
             self.cache.wait_for_tasks([maintain_task])
         return
@@ -61,7 +61,7 @@ class EsxCommand(CoreCommand):
     def do_exit_maintenance(self, esx_name):
 
         myesx = self.retrieve_esx(esx_name)
-        if myesx.runtime.inMaintenanceMode == True:
+        if myesx.runtime.inMaintenanceMode:
             maintain_task = myesx.ExitMaintenanceMode(10)
             self.cache.wait_for_tasks([maintain_task])
         return
