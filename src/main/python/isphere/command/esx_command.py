@@ -115,4 +115,3 @@ class EsxCommand(CoreCommand):
 
     def retrieve_esx(self, esx_name):
         return self.cache.retrieve_esx(esx_name)
-    
