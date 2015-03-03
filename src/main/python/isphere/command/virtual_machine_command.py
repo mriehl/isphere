@@ -90,6 +90,30 @@ class VirtualMachineCommand(CoreCommand):
             print("Asking {0} to reboot".format(vm_name))
             self.retrieve_vm(vm_name).RebootGuest()
 
+    def do_shutdown_vm(self, patterns):
+        """Usage: shutdown_vm [pattern1 [pattern2]...]
+        shutdown vms matching the given ORed name patterns.
+
+        Sample usage: `shutdown_vm MY_VM_NAME`
+        """
+
+        for vm_name in self.compile_and_yield_vm_patterns(patterns):
+            print("Asking {0} to shutdown".format(vm_name))
+            self.retrieve_vm(vm_name).ShutdownGuest()
+        return
+
+    def do_startup_vm(self, patterns):
+        """Usage: startup_vm [pattern1 [pattern2]...]
+        start vms matching the given ORed name patterns.
+
+        Sample usage: `startup_vm MY_VM_NAME`
+        """
+
+        for vm_name in self.compile_and_yield_vm_patterns(patterns):
+            print("Asking {0} to start".format(vm_name))
+            self.retrieve_vm(vm_name).PowerOn()
+        return
+
     def do_migrate_vm(self, line):
         """Usage: migrate_vm [pattern1 [pattern2]...] ! TARGET_ESX_NAME
         Migrate one or several VMs to another ESX host by name.
