@@ -9,6 +9,7 @@ ESXi host system specific REPL commands.
 """
 
 from __future__ import print_function
+import re
 
 from isphere.command.core_command import CoreCommand
 
@@ -61,6 +62,11 @@ class EsxCommand(CoreCommand):
             print("No target esx name given. Try `help enter_maintenance`.")
             return
 
+        regex = re.match('^[a-zA-Z]{6}[0-9]{2}\.rz\.is', esx_name)
+        if not regex:
+            print("Please use valid fqdn name")
+            return
+
         myesx = self.retrieve_esx(esx_name)
         if not myesx.runtime.inMaintenanceMode:
             maintain_task = myesx.EnterMaintenanceMode(10)
@@ -79,6 +85,11 @@ class EsxCommand(CoreCommand):
         """
         if not esx_name:
             print("No target esx name given. Try `help exit_maintenance`.")
+            return
+
+        regex = re.match('^[a-zA-Z]{6}[0-9]{2}\.rz\.is', esx_name)
+        if not regex:
+            print("Please use valid fqdn name")
             return
 
         myesx = self.retrieve_esx(esx_name)
@@ -101,10 +112,13 @@ class EsxCommand(CoreCommand):
             print("No target esx name given. Try `help shutdown_esx`.")
             return
 
+        regex = re.match('^[a-zA-Z]{6}[0-9]{2}\.rz\.is', esx_name)
+        if not regex:
+            print("Please use valid fqdn name")
+            return
+
         myesx = self.retrieve_esx(esx_name)
-        print(myesx.runtime.powerState)
-        print(myesx.capability.shutdownSupported)
-        shutdown_task = myesx.ShutdownHost(True)
+        shutdown_task = myesx.Shutdown(True)
         self.cache.wait_for_tasks([shutdown_task])
         return
 
