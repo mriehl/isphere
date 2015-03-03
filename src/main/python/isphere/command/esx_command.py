@@ -62,7 +62,7 @@ class EsxCommand(CoreCommand):
             print("No target esx name given. Try `help enter_maintenance`.")
             return
 
-        regex = re.match('^[a-zA-Z]{6}[0-9]{2}\.rz\.is', esx_name)
+        regex = self.check_esx_validity(esx_name)
         if not regex:
             print("Please use valid fqdn name")
             return
@@ -87,7 +87,7 @@ class EsxCommand(CoreCommand):
             print("No target esx name given. Try `help exit_maintenance`.")
             return
 
-        regex = re.match('^[a-zA-Z]{6}[0-9]{2}\.rz\.is', esx_name)
+        regex = self.check_esx_validity(esx_name)
         if not regex:
             print("Please use valid fqdn name")
             return
@@ -101,6 +101,10 @@ class EsxCommand(CoreCommand):
             return
         return
 
+    def check_esx_validity(self, esx_name):
+        regex = re.match('^[a-zA-Z]{6}[0-9]{2}\.rz\.is', esx_name)
+        return regex
+
     def do_shutdown_esx(self, esx_name):
         """Usage: shutdown_esx <esx.rz.is>
         Shutdown the given esx
@@ -112,7 +116,7 @@ class EsxCommand(CoreCommand):
             print("No target esx name given. Try `help shutdown_esx`.")
             return
 
-        regex = re.match('^[a-zA-Z]{6}[0-9]{2}\.rz\.is', esx_name)
+        regex = self.check_esx_validity(esx_name)
         if not regex:
             print("Please use valid fqdn name")
             return
