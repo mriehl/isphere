@@ -117,7 +117,7 @@ class CoreCommand(Cmd):
                 print(self.colorize(item_name_header, "red"))
                 print(self.colorize("Eval failed for {0}: {1}".format(item_name, e), "red"))
 
-    def compile_and_yield_generic_patterns(self, patterns, pattern_generator, item_count, risky=True):
+    def compile_and_yield_generic_patterns(self, patterns, pattern_generator, item_count, risky=True, ask=False):
         """
         Compiles and returns regular expression patterns. Swallows the exception
         and complains if the patterns are invalid.
@@ -137,7 +137,16 @@ class CoreCommand(Cmd):
             if not _input(message).lower() == "y":
                 return []
 
-        actual_patterns = patterns.strip().split(" ")
+        actual_patterns = patterns.strip().split()
+
+        if ask:
+            if len(actual_patterns) > 50:
+                unformatted_message = "Doing this to {count} items. Proceed? (y/N) "
+                message = unformatted_message.format(count=self.colorize(str(len(actual_patterns)), "red"))
+                if not _input(message).lower() == "y":
+                    return []
+
+
         try:
             compiled_patterns = [re.compile(pattern) for pattern in actual_patterns]
         except Exception as e:
