@@ -137,7 +137,7 @@ class CoreCommand(Cmd):
             if not _input(message).lower() == "y":
                 return []
 
-        actual_patterns = patterns.strip().split(" ")
+        actual_patterns = patterns.strip().split()
         try:
             compiled_patterns = [re.compile(pattern) for pattern in actual_patterns]
         except Exception as e:
