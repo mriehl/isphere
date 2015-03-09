@@ -134,10 +134,11 @@ class CoreCommand(Cmd):
         if not patterns and risky:
             unformatted_message = "No pattern specified - you're doing this to all {count} items. Proceed? (y/N) "
             message = unformatted_message.format(count=self.colorize(str(item_count), "red"))
+            actual_patterns = patterns.strip().split(' ')
             if not _input(message).lower() == "y":
                 return []
-
-        actual_patterns = patterns.strip().split()
+        else:
+            actual_patterns = patterns.strip().split()
         try:
             compiled_patterns = [re.compile(pattern) for pattern in actual_patterns]
         except Exception as e:
