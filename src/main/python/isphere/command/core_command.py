@@ -140,14 +140,12 @@ class CoreCommand(Cmd):
         else:
             actual_patterns = patterns.strip().split()
 
-
         if ask:
             if len(actual_patterns) > 50:
                 unformatted_message = "Doing this to {count} items. Proceed? (y/N) "
                 message = unformatted_message.format(count=self.colorize(str(len(actual_patterns)), "red"))
                 if not _input(message).lower() == "y":
                     return []
-
 
         try:
             compiled_patterns = [re.compile(pattern) for pattern in actual_patterns]
