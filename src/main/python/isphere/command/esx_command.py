@@ -33,6 +33,27 @@ class EsxCommand(CoreCommand):
         """
         self.eval(line, self.compile_and_yield_esx_patterns, self.retrieve_esx, "esx")
 
+    def do_cluster_name(self, esx_name):
+        """Usage: eval_cluster_name <esx.rz.is>
+        The given esx show its cluster name.
+
+        Sample usage:
+        * `cluster_name devesx99.rz.is`
+        """
+        if not esx_name:
+            print("No target esx name given. Try `help enter_maintenance`.")
+            return
+
+        regex = self.check_esx_validity(esx_name)
+        if not regex:
+            print("Please use valid FQDN name")
+            return
+
+        myesx = self.retrieve_esx(esx_name)
+
+        print(myesx.parent.name)
+        return
+
     def do_list_esx(self, patterns):
         """Usage: list [pattern1 [pattern2]...]
         List the esx names matching the given ORed name patterns.
