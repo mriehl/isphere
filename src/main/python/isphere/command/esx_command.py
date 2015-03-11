@@ -52,7 +52,7 @@ class EsxCommand(CoreCommand):
         myesx = self.retrieve_esx(esx_name)
 
         print(myesx.parent.name)
-        return
+        return myesx.parent.name
 
     def do_list_esx(self, patterns):
         """Usage: list [pattern1 [pattern2]...]

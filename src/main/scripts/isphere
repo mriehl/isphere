@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+import isphere
+
 from isphere.cli import main
 
 main()
