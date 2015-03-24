@@ -98,9 +98,7 @@ class VirtualMachineCommand(CoreCommand):
         """
 
         for vm_name in self.compile_and_yield_vm_patterns(patterns, True, ask):
-            task = ['']
-            print("Asking {0} to shutdown".format(vm_name))
-            task = self.retrieve_vm(vm_name).PowerOffVM_Task()
+            self.retrieve_vm(vm_name).ShutdownGuest()
 
         return
 
