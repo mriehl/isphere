@@ -62,11 +62,6 @@ class EsxCommand(CoreCommand):
             print("No target esx name given. Try `help enter_maintenance`.")
             return
 
-        regex = self.check_esx_validity(esx_name)
-        if not regex:
-            print("Please use valid fqdn name")
-            return
-
         myesx = self.retrieve_esx(esx_name)
         if not myesx.runtime.inMaintenanceMode:
             maintain_task = myesx.EnterMaintenanceMode(10)
@@ -87,23 +82,15 @@ class EsxCommand(CoreCommand):
             print("No target esx name given. Try `help exit_maintenance`.")
             return
 
-        regex = self.check_esx_validity(esx_name)
-        if not regex:
-            print("Please use valid fqdn name")
-            return
-
         myesx = self.retrieve_esx(esx_name)
         if myesx.runtime.inMaintenanceMode:
             maintain_task = myesx.ExitMaintenanceMode(10)
             self.cache.wait_for_tasks([maintain_task])
+            print("Esx now in maintenance mode")
         else:
             print("Esx was not in maintenance mode")
             return
         return
-
-    def check_esx_validity(self, esx_name):
-        regex = re.match('^[a-zA-Z]{6}[0-9]{2}\.rz\.is', esx_name)
-        return regex
 
     def do_shutdown_esx(self, esx_name):
         """Usage: shutdown_esx <esx.rz.is>
@@ -114,11 +101,6 @@ class EsxCommand(CoreCommand):
         """
         if not esx_name:
             print("No target esx name given. Try `help shutdown_esx`.")
-            return
-
-        regex = self.check_esx_validity(esx_name)
-        if not regex:
-            print("Please use valid fqdn name")
             return
 
         myesx = self.retrieve_esx(esx_name)
