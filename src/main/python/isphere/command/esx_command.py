@@ -66,6 +66,7 @@ class EsxCommand(CoreCommand):
         if not myesx.runtime.inMaintenanceMode:
             maintain_task = myesx.EnterMaintenanceMode(10)
             self.cache.wait_for_tasks([maintain_task])
+            print("Esx now in maintenance mode")
         else:
             print("Esx already in maintenance mode")
             return
@@ -86,7 +87,7 @@ class EsxCommand(CoreCommand):
         if myesx.runtime.inMaintenanceMode:
             maintain_task = myesx.ExitMaintenanceMode(10)
             self.cache.wait_for_tasks([maintain_task])
-            print("Esx now in maintenance mode")
+            print("Esx left the maintenance mode")
         else:
             print("Esx was not in maintenance mode")
             return
