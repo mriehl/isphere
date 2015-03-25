@@ -9,7 +9,6 @@ ESXi host system specific REPL commands.
 """
 
 from __future__ import print_function
-import re
 
 from isphere.command.core_command import CoreCommand
 
