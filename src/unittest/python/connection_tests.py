@@ -99,7 +99,7 @@ class ConnectionTests(TestCase):
         connection._connect()
 
         vvc.assert_called_with("any-hostname.domain")
-        vvc.return_value.connect.assert_called_with("any-user-name")
+        vvc.return_value.connect.assert_called_with("any-user-name", None)
 
     @patch("isphere.connection.AutoEstablishingConnection._connect")
     def test_should_use_existing_connection(self, connect):
