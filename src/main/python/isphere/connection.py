@@ -245,6 +245,6 @@ class AutoEstablishingConnection(object):
         self.hostname = self.hostname or killable_input("Remote vsphere hostname: ")
         self.username = self.username or killable_input("User name for {0}: ".format(self.hostname))
         self.vvc = VVC(self.hostname)
-        self.vvc.connect(self.username)
+        self.vvc.connect(self.username, self.password)
 
         return self.vvc
