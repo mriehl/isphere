@@ -9,6 +9,7 @@ ESXi host system specific REPL commands.
 """
 
 from __future__ import print_function
+import re
 
 from isphere.command.core_command import CoreCommand
 
@@ -49,6 +50,64 @@ class EsxCommand(CoreCommand):
                                                        self.yield_esx_patterns,
                                                        self.cache.number_of_esxis,
                                                        risky)
+
+    def do_enter_maintenance(self, esx_name):
+        """Usage: enter_maintenance <esx.rz.is>
+        The given esx enters the maintenance mode.
+
+        Sample usage:
+        * `enter_maintenance devesx99.rz.is`
+        """
+        if not esx_name:
+            print("No target esx name given. Try `help enter_maintenance`.")
+            return
+
+        myesx = self.retrieve_esx(esx_name)
+        if not myesx.runtime.inMaintenanceMode:
+            maintain_task = myesx.EnterMaintenanceMode(10)
+            self.cache.wait_for_tasks([maintain_task])
+            print("Esx now in maintenance mode")
+        else:
+            print("Esx already in maintenance mode")
+            return
+        return
+
+    def do_exit_maintenance(self, esx_name):
+        """Usage: exit_maintenance <esx.rz.is>
+        The given esx exits the maintenance mode.
+
+        Sample usage:
+        * `exit_maintenance devesx99.rz.is`
+        """
+        if not esx_name:
+            print("No target esx name given. Try `help exit_maintenance`.")
+            return
+
+        myesx = self.retrieve_esx(esx_name)
+        if myesx.runtime.inMaintenanceMode:
+            maintain_task = myesx.ExitMaintenanceMode(10)
+            self.cache.wait_for_tasks([maintain_task])
+            print("Esx left the maintenance mode")
+        else:
+            print("Esx was not in maintenance mode")
+            return
+        return
+
+    def do_shutdown_esx(self, esx_name):
+        """Usage: shutdown_esx <esx.rz.is>
+        Shutdown the given esx
+
+        Sample usage:
+        * `shutdown_esx devesx99.rz.is`
+        """
+        if not esx_name:
+            print("No target esx name given. Try `help shutdown_esx`.")
+            return
+
+        myesx = self.retrieve_esx(esx_name)
+        shutdown_task = myesx.Shutdown(True)
+        self.cache.wait_for_tasks([shutdown_task])
+        return
 
     def yield_esx_patterns(self, compiled_patterns):
         for esx_name in self.cache.list_cached_esxis():

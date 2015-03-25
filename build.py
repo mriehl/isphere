@@ -17,7 +17,7 @@ use_plugin('python.coverage')
 use_plugin('python.flake8')
 use_plugin('python.frosted')
 
-use_plugin('pypi:pybuilder_header_plugin')
+use_plugin('pybuilder_header_plugin')
 
 
 authors = [Author('Maximilien Riehl', 'max@riehl.io')]
