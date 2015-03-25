@@ -128,7 +128,7 @@ class CoreCommand(Cmd):
           will return matching item names.
         - item_count (type `int`): The number of available items before pattern
           matching.
-        - risky (type `bool`, default `True`): Whether to warn when no patterns
+        - risky (type `bool`, default `True`): Whether to prompt for confirmation when no patterns
           are given.
         """
         if not patterns and risky:
