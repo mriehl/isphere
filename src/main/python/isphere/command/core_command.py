@@ -130,6 +130,8 @@ class CoreCommand(Cmd):
           matching.
         - risky (type `bool`, default `True`): Whether to prompt for confirmation when no patterns
           are given.
+        - ask (type `bool`, default `False`): Whether to prompt for confirmation when the given patterns
+          match more than 50 elements.
         """
         if not patterns and risky:
             unformatted_message = "No pattern specified - you're doing this to all {count} items. Proceed? (y/N) "
