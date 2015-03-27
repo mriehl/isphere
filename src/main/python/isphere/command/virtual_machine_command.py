@@ -40,7 +40,7 @@ class VirtualMachineCommand(CoreCommand):
             retries -= 1
             time.sleep(poll_interval)
 
-        return
+        raise Exception("Timeout occured")
 
     def do_reset_vm(self, patterns):
         """Usage: reset_vm [pattern1 [pattern2]...]
