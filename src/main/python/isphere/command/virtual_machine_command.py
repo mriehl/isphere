@@ -19,21 +19,28 @@ import time
 class VirtualMachineCommand(CoreCommand):
 
     @staticmethod
-    def wait_for_task_to_complete(task, timeout=10):
-        while timeout > 0:
-            if task.info['state'] in ['running', 'queued']:
+    def wait_for_task_to_complete(task, retries=10, poll_interval=1):
+        while retries > 0:
+            if task.info.state in ['running', 'queued']:
                 pass
-            elif task.info['state'] is 'success':
-                return True
-            elif task.info['state'] is 'error':
-                return False
+            elif task.info.state == 'success':
+                return
+            elif task.info.state == 'error':
+                if isinstance(task.info.error, vim.fault.InvalidPowerState):
+                    return
+
+                raise Exception("Error occured at {0} on {1}. Error was: {2}".format(task.info.descriptionId,
+                                                                                     task.info.entityName,
+                                                                                     task.info.error.msg))
             else:
-                raise Exception("Unknown state '{0}' for event '{1}'!".format(task.info['state'], task.info['name']))
+                raise Exception("Unknown state {0} for task {1} on {2}!".format(task.info.state,
+                                                                                task.info.descriptionId,
+                                                                                task.info.entityName))
 
-            timeout -= 1
-            time.sleep(1)
+            retries -= 1
+            time.sleep(poll_interval)
 
-        return False
+        return
 
     def do_reset_vm(self, patterns):
         """Usage: reset_vm [pattern1 [pattern2]...]
@@ -107,45 +114,38 @@ class VirtualMachineCommand(CoreCommand):
             print("Asking {0} to reboot".format(vm_name))
             self.retrieve_vm(vm_name).RebootGuest()
 
-    def do_shutdown_vm(self, patterns, ask=True, wait=False):
+    def do_shutdown_vm(self, patterns, ask=True, wait=True):
         """Usage: shutdown_vm [pattern1 [pattern2]...]
         shutdown vms matching the given ORed name patterns.
 
         Sample usage: `shutdown_vm MY_VM_NAME`
         """
-        errors = 0
 
         for vm_name in self.compile_and_yield_vm_patterns(patterns, True, ask):
             print("Asking {0} to stop".format(vm_name))
             task = self.retrieve_vm(vm_name).ShutdownGuest()
             if wait:
-                if self.wait_for_task_to_complete(task):
-                    print("Success")
-                else:
-                    errors += 1
-                    print("Error")
+                self.wait_for_task_to_complete(task)
+                print("Success")
 
-        return not bool(errors)
+        return
 
-    def do_startup_vm(self, patterns, wait=False):
+    def do_startup_vm(self, patterns, wait=True):
         """Usage: startup_vm [pattern1 [pattern2]...]
         start vms matching the given ORed name patterns.
 
         Sample usage: `startup_vm MY_VM_NAME`
         """
-        errors = 0
 
         for vm_name in self.compile_and_yield_vm_patterns(patterns):
             print("Asking {0} to start".format(vm_name))
             task = self.retrieve_vm(vm_name).PowerOn()
+            print(task.info)
             if wait:
-                if self.wait_for_task_to_complete(task):
-                    print("Success")
-                else:
-                    errors += 1
-                    print("Error")
+                self.wait_for_task_to_complete(task)
+                print("Success")
 
-        return not bool(errors)
+        return
 
     def do_migrate_vm(self, line):
         """Usage: migrate_vm [pattern1 [pattern2]...] ! TARGET_ESX_NAME
