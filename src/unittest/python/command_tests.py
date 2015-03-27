@@ -384,3 +384,23 @@ class VSphereREPLTests(TestCase):
                          [call(host=mock_esx), call(host=mock_esx)])
         mock_vm1.Relocate.assert_called_with(spec_1)
         mock_vm2.Relocate.assert_called_with(spec_2)
+
+    def test_wait_for_task_to_complete_raises_exception_on_unknown_task_state(self):
+        task_mock = Mock()
+        task_mock.info = {'state': 'foo', 'name': 'baa'}
+        self.assertRaises(Exception, lambda: self.repl.wait_for_task_to_complete(task_mock))
+
+    def test_wait_for_task_to_complete_returns_true_on_success(self):
+        task_mock = Mock()
+        task_mock.info = {'state': 'success', 'name': 'foo'}
+        self.assertTrue(self.repl.wait_for_task_to_complete(task_mock))
+
+    def test_wait_for_task_to_complete_returns_false_on_error(self):
+        task_mock = Mock()
+        task_mock.info = {'state': 'error', 'name': 'foo'}
+        self.assertFalse(self.repl.wait_for_task_to_complete(task_mock))
+
+    def test_wait_for_task_to_complete_returns_false_on_timeout(self):
+        task_mock = Mock()
+        task_mock.info = {'state': 'queued', 'name': 'foo'}
+        self.assertFalse(self.repl.wait_for_task_to_complete(task_mock, timeout=1))

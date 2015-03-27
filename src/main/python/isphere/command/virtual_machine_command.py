@@ -7,16 +7,33 @@
 """
 Virtual machine specific REPL commands.
 """
-
 from __future__ import print_function
 
 from pyVmomi import vim
 
 from isphere.interactive_wrapper import NotFound
 from isphere.command.core_command import CoreCommand, _input
+import time
 
 
 class VirtualMachineCommand(CoreCommand):
+
+    @staticmethod
+    def wait_for_task_to_complete(task, timeout=10):
+        while timeout > 0:
+            if task.info['state'] in ['running', 'queued']:
+                pass
+            elif task.info['state'] is 'success':
+                return True
+            elif task.info['state'] is 'error':
+                return False
+            else:
+                raise Exception("Unknown state '{0}' for event '{1}'!".format(task.info['state'], task.info['name']))
+
+            timeout -= 1
+            time.sleep(1)
+
+        return False
 
     def do_reset_vm(self, patterns):
         """Usage: reset_vm [pattern1 [pattern2]...]
@@ -90,7 +107,7 @@ class VirtualMachineCommand(CoreCommand):
             print("Asking {0} to reboot".format(vm_name))
             self.retrieve_vm(vm_name).RebootGuest()
 
-    def do_shutdown_vm(self, patterns, ask=True):
+    def do_shutdown_vm(self, patterns, ask=True, wait=False):
         """Usage: shutdown_vm [pattern1 [pattern2]...]
         shutdown vms matching the given ORed name patterns.
 
@@ -98,11 +115,17 @@ class VirtualMachineCommand(CoreCommand):
         """
 
         for vm_name in self.compile_and_yield_vm_patterns(patterns, True, ask):
-            self.retrieve_vm(vm_name).ShutdownGuest()
+            print("Asking {0} to stop".format(vm_name))
+            task = self.retrieve_vm(vm_name).ShutdownGuest()
+            if wait:
+                if self.wait_for_task_to_complete(task):
+                    print("Success")
+                else:
+                    print("Error")
 
         return
 
-    def do_startup_vm(self, patterns):
+    def do_startup_vm(self, patterns, wait=False):
         """Usage: startup_vm [pattern1 [pattern2]...]
         start vms matching the given ORed name patterns.
 
@@ -111,7 +134,12 @@ class VirtualMachineCommand(CoreCommand):
 
         for vm_name in self.compile_and_yield_vm_patterns(patterns):
             print("Asking {0} to start".format(vm_name))
-            self.retrieve_vm(vm_name).PowerOn()
+            task = self.retrieve_vm(vm_name).PowerOn()
+            if wait:
+                if self.wait_for_task_to_complete(task):
+                    print("Success")
+                else:
+                    print("Error")
         return
 
     def do_migrate_vm(self, line):
