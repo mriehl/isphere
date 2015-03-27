@@ -113,6 +113,7 @@ class VirtualMachineCommand(CoreCommand):
 
         Sample usage: `shutdown_vm MY_VM_NAME`
         """
+        errors = 0
 
         for vm_name in self.compile_and_yield_vm_patterns(patterns, True, ask):
             print("Asking {0} to stop".format(vm_name))
@@ -121,9 +122,10 @@ class VirtualMachineCommand(CoreCommand):
                 if self.wait_for_task_to_complete(task):
                     print("Success")
                 else:
+                    errors += 1
                     print("Error")
 
-        return
+        return not bool(errors)
 
     def do_startup_vm(self, patterns, wait=False):
         """Usage: startup_vm [pattern1 [pattern2]...]
@@ -131,6 +133,7 @@ class VirtualMachineCommand(CoreCommand):
 
         Sample usage: `startup_vm MY_VM_NAME`
         """
+        errors = 0
 
         for vm_name in self.compile_and_yield_vm_patterns(patterns):
             print("Asking {0} to start".format(vm_name))
@@ -139,8 +142,10 @@ class VirtualMachineCommand(CoreCommand):
                 if self.wait_for_task_to_complete(task):
                     print("Success")
                 else:
+                    errors += 1
                     print("Error")
-        return
+
+        return not bool(errors)
 
     def do_migrate_vm(self, line):
         """Usage: migrate_vm [pattern1 [pattern2]...] ! TARGET_ESX_NAME
