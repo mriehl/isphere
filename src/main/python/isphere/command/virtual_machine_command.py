@@ -7,16 +7,44 @@
 """
 Virtual machine specific REPL commands.
 """
-
 from __future__ import print_function
 
 from pyVmomi import vim
 
 from isphere.interactive_wrapper import NotFound
 from isphere.command.core_command import CoreCommand, _input
+import time
+
+
+class TimeoutException(Exception):
+    pass
 
 
 class VirtualMachineCommand(CoreCommand):
+
+    @staticmethod
+    def wait_for_task_to_complete(task, retries=10, poll_interval=1):
+        while retries > 0:
+            if task.info.state in ['running', 'queued']:
+                pass
+            elif task.info.state == 'success':
+                return
+            elif task.info.state == 'error':
+                if isinstance(task.info.error, vim.fault.InvalidPowerState):
+                    return
+
+                raise Exception("Error occured at {0} on {1}. Error was: {2}".format(task.info.descriptionId,
+                                                                                     task.info.entityName,
+                                                                                     task.info.error.msg))
+            else:
+                raise Exception("Unknown state {0} for task {1} on {2}!".format(task.info.state,
+                                                                                task.info.descriptionId,
+                                                                                task.info.entityName))
+
+            retries -= 1
+            time.sleep(poll_interval)
+
+        raise TimeoutException("Timeout occured")
 
     def do_reset_vm(self, patterns):
         """Usage: reset_vm [pattern1 [pattern2]...]
@@ -90,7 +118,7 @@ class VirtualMachineCommand(CoreCommand):
             print("Asking {0} to reboot".format(vm_name))
             self.retrieve_vm(vm_name).RebootGuest()
 
-    def do_shutdown_vm(self, patterns, ask=True):
+    def do_shutdown_vm(self, patterns, ask=True, wait=True):
         """Usage: shutdown_vm [pattern1 [pattern2]...]
         shutdown vms matching the given ORed name patterns.
 
@@ -98,11 +126,19 @@ class VirtualMachineCommand(CoreCommand):
         """
 
         for vm_name in self.compile_and_yield_vm_patterns(patterns, True, ask):
-            self.retrieve_vm(vm_name).ShutdownGuest()
+            print("Asking {0} to stop".format(vm_name))
+            try:
+                task = self.retrieve_vm(vm_name).ShutdownGuest()
+            except vim.fault.InvalidPowerState:
+                print("Success")
+                return
+            if wait:
+                self.wait_for_task_to_complete(task)
+                print("Success")
 
         return
 
-    def do_startup_vm(self, patterns):
+    def do_startup_vm(self, patterns, wait=True):
         """Usage: startup_vm [pattern1 [pattern2]...]
         start vms matching the given ORed name patterns.
 
@@ -111,7 +147,11 @@ class VirtualMachineCommand(CoreCommand):
 
         for vm_name in self.compile_and_yield_vm_patterns(patterns):
             print("Asking {0} to start".format(vm_name))
-            self.retrieve_vm(vm_name).PowerOn()
+            task = self.retrieve_vm(vm_name).PowerOn()
+            if wait:
+                self.wait_for_task_to_complete(task)
+                print("Success")
+
         return
 
     def do_migrate_vm(self, line):

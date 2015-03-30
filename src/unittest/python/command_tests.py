@@ -312,6 +312,71 @@ class VSphereREPLTests(TestCase):
         mock_vm2.RebootGuest.assert_called_with()
 
     @patch("isphere.command.core_command.CachingVSphere.retrieve_vm")
+    def test_do_shutdown_vm_returns_true_on_success(self, cache_retrieve):
+        self.vm_names.return_value = ["any-host-1", "any-host-2"]
+        mock_vm1 = Mock()
+        mock_vm2 = Mock()
+
+        success_task_mock = Mock()
+        success_task_mock.info.state = 'success'
+        mock_vm1.ShutdownGuest.return_value = success_task_mock
+        mock_vm2.ShutdownGuest.return_value = success_task_mock
+
+        cache_retrieve.side_effect = [mock_vm1, mock_vm2]
+
+        self.assertEquals(None, self.repl.do_shutdown_vm("any.*", wait=True))
+        mock_vm1.ShutdownGuest.assert_called_with()
+        mock_vm2.ShutdownGuest.assert_called_with()
+
+    @patch("isphere.command.core_command.CachingVSphere.retrieve_vm")
+    def test_do_shutdown_vm_raises_exception_on_any_error(self, cache_retrieve):
+        self.vm_names.return_value = ["any-host-1", "any-host-2"]
+        mock_vm1 = Mock()
+        mock_vm2 = Mock()
+
+        success_task_mock = Mock()
+        success_task_mock.info.state = 'error'
+        mock_vm1.ShutdownGuest.return_value = success_task_mock
+        mock_vm2.ShutdownGuest.return_value = success_task_mock
+
+        cache_retrieve.side_effect = [mock_vm1, mock_vm2]
+
+        self.assertRaises(Exception, lambda: self.assertFalse(self.repl.do_shutdown_vm("any.*", wait=True)))
+        mock_vm1.ShutdownGuest.assert_called_with()
+
+    @patch("isphere.command.core_command.CachingVSphere.retrieve_vm")
+    def test_do_startup_vm_returns_nothing_on_success(self, cache_retrieve):
+        self.vm_names.return_value = ["any-host-1", "any-host-2"]
+        mock_vm1 = Mock()
+        mock_vm2 = Mock()
+
+        success_task_mock = Mock()
+        success_task_mock.info.state = 'success'
+        mock_vm1.PowerOn.return_value = success_task_mock
+        mock_vm2.PowerOn.return_value = success_task_mock
+
+        cache_retrieve.side_effect = [mock_vm1, mock_vm2]
+
+        self.assertEquals(None, self.repl.do_startup_vm("any.*", wait=True))
+        mock_vm1.PowerOn.assert_called_with()
+        mock_vm2.PowerOn.assert_called_with()
+
+    @patch("isphere.command.core_command.CachingVSphere.retrieve_vm")
+    def test_do_startup_vm_raises_exception_on_any_error(self, cache_retrieve):
+        self.vm_names.return_value = ["any-host-1", "any-host-2"]
+        mock_vm1 = Mock()
+        mock_vm2 = Mock()
+
+        error_task_mock = Mock()
+        error_task_mock.info.state = 'error'
+        mock_vm1.PowerOn.return_value = error_task_mock
+
+        cache_retrieve.side_effect = [mock_vm1, mock_vm2]
+
+        self.assertRaises(Exception, lambda: self.repl.do_startup_vm("any.*", wait=True))
+        mock_vm1.PowerOn.assert_called_with()
+
+    @patch("isphere.command.core_command.CachingVSphere.retrieve_vm")
     def test_should_print_config_for_matching_vms(self, cache_retrieve):
         self.vm_names.return_value = ["any-host-1"]
         mock_vm = Mock(config="Any vm config\nCould be several lines long.")
@@ -384,3 +449,27 @@ class VSphereREPLTests(TestCase):
                          [call(host=mock_esx), call(host=mock_esx)])
         mock_vm1.Relocate.assert_called_with(spec_1)
         mock_vm2.Relocate.assert_called_with(spec_2)
+
+    def test_wait_for_task_to_complete_raises_exception_on_unknown_task_state(self):
+        task_mock = Mock()
+        task_mock.info.state = 'foo'
+        task_mock.info.name = 'foo'
+        self.assertRaises(Exception, lambda: self.repl.wait_for_task_to_complete(task_mock))
+
+    def test_wait_for_task_to_complete_returns_none_on_success(self):
+        task_mock = Mock()
+        task_mock.info.state = 'success'
+        task_mock.info.name = 'foo'
+        self.assertEquals(None, self.repl.wait_for_task_to_complete(task_mock))
+
+    def test_wait_for_task_to_complete_raises_exception_on_error(self):
+        task_mock = Mock()
+        task_mock.info.state = 'error'
+        task_mock.info.name = 'foo'
+        self.assertRaises(Exception, lambda: self.repl.wait_for_task_to_complete(task_mock))
+
+    def test_wait_for_task_to_complete_raises_exception_on_timeout(self):
+        task_mock = Mock()
+        task_mock.info.state = 'queued'
+        task_mock.info.name = 'foo'
+        self.assertRaises(Exception, lambda: self.repl.wait_for_task_to_complete(task_mock, retries=2))
