@@ -312,15 +312,10 @@ class VSphereREPLTests(TestCase):
         mock_vm2.RebootGuest.assert_called_with()
 
     @patch("isphere.command.core_command.CachingVSphere.retrieve_vm")
-    def test_do_shutdown_vm_returns_true_on_success(self, cache_retrieve):
+    def test_do_shutdown_vm_calls_shutdown_guest_for_given_vms(self, cache_retrieve):
         self.vm_names.return_value = ["any-host-1", "any-host-2"]
         mock_vm1 = Mock()
         mock_vm2 = Mock()
-
-        success_task_mock = Mock()
-        success_task_mock.info.state = 'success'
-        mock_vm1.ShutdownGuest.return_value = success_task_mock
-        mock_vm2.ShutdownGuest.return_value = success_task_mock
 
         cache_retrieve.side_effect = [mock_vm1, mock_vm2]
 
@@ -329,23 +324,7 @@ class VSphereREPLTests(TestCase):
         mock_vm2.ShutdownGuest.assert_called_with()
 
     @patch("isphere.command.core_command.CachingVSphere.retrieve_vm")
-    def test_do_shutdown_vm_raises_exception_on_any_error(self, cache_retrieve):
-        self.vm_names.return_value = ["any-host-1", "any-host-2"]
-        mock_vm1 = Mock()
-        mock_vm2 = Mock()
-
-        success_task_mock = Mock()
-        success_task_mock.info.state = 'error'
-        mock_vm1.ShutdownGuest.return_value = success_task_mock
-        mock_vm2.ShutdownGuest.return_value = success_task_mock
-
-        cache_retrieve.side_effect = [mock_vm1, mock_vm2]
-
-        self.assertFalse(self.repl.do_shutdown_vm("any.*"))
-        mock_vm1.ShutdownGuest.assert_called_with()
-
-    @patch("isphere.command.core_command.CachingVSphere.retrieve_vm")
-    def test_do_startup_vm_returns_nothing_on_success(self, cache_retrieve):
+    def test_do_startup_vm_calls_power_on_for_given_vms(self, cache_retrieve):
         self.vm_names.return_value = ["any-host-1", "any-host-2"]
         mock_vm1 = Mock()
         mock_vm2 = Mock()
