@@ -16,6 +16,10 @@ from isphere.command.core_command import CoreCommand, _input
 import time
 
 
+class TimeoutException(Exception):
+    pass
+
+
 class VirtualMachineCommand(CoreCommand):
 
     @staticmethod
@@ -40,7 +44,7 @@ class VirtualMachineCommand(CoreCommand):
             retries -= 1
             time.sleep(poll_interval)
 
-        raise Exception("Timeout occured")
+        raise TimeoutException("Timeout occured")
 
     def do_reset_vm(self, patterns):
         """Usage: reset_vm [pattern1 [pattern2]...]
