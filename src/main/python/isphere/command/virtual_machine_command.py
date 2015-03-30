@@ -123,7 +123,11 @@ class VirtualMachineCommand(CoreCommand):
 
         for vm_name in self.compile_and_yield_vm_patterns(patterns, True, ask):
             print("Asking {0} to stop".format(vm_name))
-            task = self.retrieve_vm(vm_name).ShutdownGuest()
+            try:
+                task = self.retrieve_vm(vm_name).ShutdownGuest()
+            except vim.fault.InvalidPowerState as e:
+                print("Success")
+                return
             if wait:
                 self.wait_for_task_to_complete(task)
                 print("Success")
