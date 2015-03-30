@@ -324,7 +324,7 @@ class VSphereREPLTests(TestCase):
 
         cache_retrieve.side_effect = [mock_vm1, mock_vm2]
 
-        self.assertEquals(None, self.repl.do_shutdown_vm("any.*", wait=True))
+        self.assertEquals(None, self.repl.do_shutdown_vm("any.*"))
         mock_vm1.ShutdownGuest.assert_called_with()
         mock_vm2.ShutdownGuest.assert_called_with()
 
@@ -341,7 +341,7 @@ class VSphereREPLTests(TestCase):
 
         cache_retrieve.side_effect = [mock_vm1, mock_vm2]
 
-        self.assertRaises(Exception, lambda: self.assertFalse(self.repl.do_shutdown_vm("any.*", wait=True)))
+        self.assertFalse(self.repl.do_shutdown_vm("any.*"))
         mock_vm1.ShutdownGuest.assert_called_with()
 
     @patch("isphere.command.core_command.CachingVSphere.retrieve_vm")
