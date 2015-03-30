@@ -118,7 +118,7 @@ class VirtualMachineCommand(CoreCommand):
             print("Asking {0} to reboot".format(vm_name))
             self.retrieve_vm(vm_name).RebootGuest()
 
-    def do_shutdown_vm(self, patterns, ask=True, wait=True):
+    def do_shutdown_vm(self, patterns, ask=True):
         """Usage: shutdown_vm [pattern1 [pattern2]...]
         shutdown vms matching the given ORed name patterns.
 
@@ -128,13 +128,11 @@ class VirtualMachineCommand(CoreCommand):
         for vm_name in self.compile_and_yield_vm_patterns(patterns, True, ask):
             print("Asking {0} to stop".format(vm_name))
             try:
-                task = self.retrieve_vm(vm_name).ShutdownGuest()
+                #Todo: allow vm state polling to make this a synchronous call if needed
+                self.retrieve_vm(vm_name).ShutdownGuest()
             except vim.fault.InvalidPowerState:
                 print("Success")
                 return
-            if wait:
-                self.wait_for_task_to_complete(task)
-                print("Success")
 
         return
 
