@@ -125,7 +125,7 @@ class VirtualMachineCommand(CoreCommand):
             print("Asking {0} to stop".format(vm_name))
             try:
                 task = self.retrieve_vm(vm_name).ShutdownGuest()
-            except vim.fault.InvalidPowerState as e:
+            except vim.fault.InvalidPowerState:
                 print("Success")
                 return
             if wait:
