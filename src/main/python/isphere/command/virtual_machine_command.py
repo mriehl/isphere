@@ -128,7 +128,7 @@ class VirtualMachineCommand(CoreCommand):
         for vm_name in self.compile_and_yield_vm_patterns(patterns, True, ask):
             print("Asking {0} to stop".format(vm_name))
             try:
-                #Todo: allow vm state polling to make this a synchronous call if needed
+                # Todo: allow vm state polling to make this a synchronous call if needed
                 self.retrieve_vm(vm_name).ShutdownGuest()
             except vim.fault.InvalidPowerState:
                 print("Success")
